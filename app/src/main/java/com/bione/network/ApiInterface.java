@@ -1,0 +1,179 @@
+package com.bione.network;
+
+
+import com.bione.model.CommonResponse;
+import com.bione.model.availableSlots.Slot;
+//import com.bione.model.counsellors.Counselling;
+import com.bione.model.customerdata.SignInDatum;
+//import com.bione.model.customerkit.CustomerKit;
+import com.bione.model.updateprofile.UpdateProfile;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.HeaderMap;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.PartMap;
+import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
+
+
+/**
+ * Developer: Bione
+ * <p>
+ * The API interface for your application
+ */
+public interface ApiInterface {
+
+    // todo add these params to your API key constant file and remove them from here
+
+    String AUTHORIZATION = "authorization";
+    String CONTENT_TYPE = "content-type";
+    String CONTENT_LANG = "content-language";
+    String LIMIT = "limit";
+    String SKIP = "skip";
+
+    //todo Declare your API endpoints here
+
+    String GET_NOTIFICATIONS = "/driver/getNotifications";
+
+    /**
+     * Dummy sign in endpoint
+     *
+     * @param map the map of params to go along with reqquest
+     * @return parsed common response object
+     */
+
+//    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi-customersendotp/sendotp")
+    Call<List<CommonResponse>> sendOtp(@QueryMap Map<String, String> map);
+
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi/contact")
+    Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("rest/V1/integration/admin/token")
+    Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);
+
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi-customer/update")
+    Call<List<SignInDatum>> updateProfile(@QueryMap Map<String, String> map);
+
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi/updatefeedback")
+    Call<List<CommonResponse>> updateFeedback(@QueryMap Map<String, String> map);
+
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi/counsellor")
+    Call<List<CommonResponse>> scheduleCall(@QueryMap Map<String, String> map);
+
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @GET("/rest/V1/bioneapi-customersendotp/verifyotp")
+    Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
+
+
+//    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+//    @GET("/rest/V1/bioneapi/kitorderlist")
+//    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @GET("/rest/V1/bioneapi/availability")
+    Call<List<Slot>> availabilitySlots(@QueryMap Map<String, String> map);
+
+
+//    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+//    @GET("/rest/V1/bioneapi/counsellorlist")
+//    Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
+
+
+    @GET("/api/unknown")
+    Call<CommonResponse> doGetListResources();
+
+    @GET("/data.json")
+    Call<CommonResponse> getCoronaResults();
+
+
+    /**
+     * OTP verification
+     *
+     * @param map the map of params to go along with reqquest
+     * @return parsed common response object
+     */
+    @FormUrlEncoded
+    @POST("/signIn")
+    Call<CommonResponse> signIn(@FieldMap Map<String, String> map);
+
+    /**
+     * checkUnique call.
+     *
+     * @param headerMap  the header map
+     * @param customerId the id of the customer
+     * @param json       jsonobject
+     * @return the call
+     */
+    @Multipart
+    @PUT("/rest/V1/customers/{customers}")
+    Call<List<SignInDatum>> updateProfile3(@HeaderMap HashMap<String, String> headerMap,
+                                           @Path("customers") String customerId,
+//                                           @Body String json);
+                                           @PartMap HashMap<String, RequestBody> partMap);
+
+
+    /**
+     * checkUnique call.
+     *
+     * @param headerMap  the header map
+     * @param customerId the id of the customer
+     * @param json       jsonobject
+     * @return the call
+     */
+
+    @PUT("/rest/V1/customers/{customers}")
+    Call<UpdateProfile> updateProfile2(@HeaderMap HashMap<String, String> headerMap,
+                                       @Path("customers") String customerId,
+                                       @Body RequestBody json);
+//                                           @PartMap HashMap<String, RequestBody> partMap);
+
+//    /**
+//     * * Fetch notifications data from server
+//     *
+//     * @param authorization auth
+//     * @param contentlang   en
+//     * @param limit         limit
+//     * @param skip          skip
+//     * @return parsed notifications response object
+//     */
+//    @GET(GET_NOTIFICATIONS)
+//    Call<NotificationsResponse> getNotifications(@Header(AUTHORIZATION) String authorization,
+//                                                 @Header(CONTENT_LANG) String contentlang,
+//                                                 @Query(LIMIT) int limit,
+//
+//
+//
+//
+////    @FormUrlEncoded
+////    @POST("rest/V1/integration/admin/token")
+////    Call<String> adminToken2(@FieldMap Map<String, String> map);
+////
+////
+////    @POST
+////    Call<String> adminToken3(@Query(PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password, @Url String fullUrl);
+////
+////    @POST("rest/V1/integration/admin/token")
+////    Call<String> adminToken4(@Query(value = PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password);@Query(SKIP) int skip);
+}
