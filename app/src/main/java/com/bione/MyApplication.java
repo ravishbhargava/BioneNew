@@ -49,7 +49,7 @@ public class MyApplication extends Application {
 //                .build());
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/OpenSans-Regular.ttf")
+                .setDefaultFontPath("fonts/Poppins-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
