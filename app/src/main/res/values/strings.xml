@@ -73,9 +73,37 @@
     <string name="text_yes">YES</string>
     <string name="text_no">NO</string>
 
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_profile">My Profile</string>
+    <string name="nav_dashboard">My Dashboard</string>
+    <string name="nav_chat">Chat with us</string>
+    <string name="nav_faq">FAQ\'s</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+
+    <string-array name="nav_item_activity_titles">
+        <item>My Profile</item>
+        <item>My Dashboard</item>
+        <item>Chat with us</item>
+        <item>FAQ\'s</item>
+
+    </string-array>
+
+
 
     <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="by_signing_up_i_accept_the_terms_and_conditions">By signing up. I accept the Terms and Conditions</string>
+    <string name="by_signing_up_i_accept_the_terms_and_conditions">By signing up. I accept the <U>Terms and Conditions</U>></string>
     <string name="get_started">Get Started</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+    <string name="sign_in_with_email">Sign in with Email</string>
+    <string name="sign_in_with_phone_no">Sign in with Phone No.</string>
+    <string name="enter_your_email_id">Enter your Email ID</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="logout">Logout</string>
+
 
 </resources>

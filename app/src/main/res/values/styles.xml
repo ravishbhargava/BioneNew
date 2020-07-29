@@ -11,11 +11,22 @@
 <!--        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>-->
     </style>
 
+<!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
+<!--        <item name="android:textColorPrimary">TITLE_COLOR_GOES_HERE</item>-->
+<!--        <item name="android:textColorSecondary">SUBTITLE_COLOR_GOES_HERE</item>-->
+<!--    </style>-->
+
+    <style name="AppTheme.PopupOverlay" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <style name="CustomTextAppearance" parent="android:TextAppearance">
         <item name="android:textStyle">normal</item>
         <!-- Custom Attr-->
-        <item name="fontPath">fonts/OpenSans-Regular.ttf</item>
+        <item name="fontPath">fonts/Poppins-Regular.ttf</item>
     </style>
 
     <!--Custom bold text appearance-->
@@ -27,7 +38,7 @@
 
     <!--Custom semibold text appearance-->
     <style name="CustomTextAppearance.Semibold" parent="CustomTextAppearance">
-        <item name="fontPath">fonts/OpenSans-Semibold.ttf</item>
+        <item name="fontPath">fonts/Poppins-SemiBold.ttf</item>
     </style>
 
     <style name="primary_button">
