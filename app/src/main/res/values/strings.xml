@@ -1,7 +1,8 @@
 <resources>
 
     <string name="app_name">Bione</string>
-
+    <string name="facebook_app_id">295386748548112</string>
+    <string name="fb_login_protocol_scheme">fb295386748548112</string>
 
     <!-- Fcm service -->
     <string name="log_fcm_message_id">"FCM Message Id: "</string>

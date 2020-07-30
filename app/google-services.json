@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1071906469551",
+    "firebase_url": "https://bione-1596091527785.firebaseio.com",
+    "project_id": "bione-1596091527785",
+    "storage_bucket": "bione-1596091527785.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071906469551:android:cba83ba15f52476584c65a",
+        "android_client_info": {
+          "package_name": "com.bione"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071906469551-kd0ksmpe9uf7296un0dcuh06qh9c3ik7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bione",
+            "certificate_hash": "5acf530c353a34d47d0c91c54ad87c18291862ca"
+          }
+        },
+        {
+          "client_id": "1071906469551-m4ripecop2g26au0as75o5vk5h00fq5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvgpLCX4i1HzRlMkkxyDLMtWwFS3QcxDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071906469551-m4ripecop2g26au0as75o5vk5h00fq5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -82,7 +82,7 @@ public class Splash extends BaseActivity {
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
 
 //                Intent intent = new Intent(Splash.this, Walk.class);
-                Intent intent = new Intent(Splash.this, MainActivity.class);
+                Intent intent = new Intent(Splash.this, Login.class);
                 startActivity(intent);
             }
 

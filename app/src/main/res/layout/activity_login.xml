@@ -26,7 +26,18 @@
         android:layout_margin="@dimen/spacing_normal"
         android:orientation="vertical">
 
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llFBLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginVertical="@dimen/spacing_small"
@@ -58,6 +69,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llGoogleSignIn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginVertical="@dimen/spacing_small"
