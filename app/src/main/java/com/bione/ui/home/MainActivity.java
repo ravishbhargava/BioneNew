@@ -1,4 +1,4 @@
-package com.bione.ui.main;
+package com.bione.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;

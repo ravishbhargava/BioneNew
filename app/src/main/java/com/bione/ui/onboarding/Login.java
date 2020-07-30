@@ -11,21 +11,21 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.home.MainActivity;
 import com.bione.utils.Log;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,7 +35,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,30 +48,36 @@ public class Login extends BaseActivity implements View.OnClickListener {
 
     private LinearLayoutCompat llGoogleSignIn;
     private LinearLayoutCompat llFBLogin;
+    private LinearLayoutCompat llPhone;
+    private LinearLayoutCompat llEmail;
+    private LinearLayoutCompat llMailView;
+    private LinearLayoutCompat llPhoneView;
 
-    private LoginButton loginButton;
+    private String email = "";
 
-    private static final String EMAIL = "email";
+    private AppCompatTextView tvLogin;
+    private AppCompatTextView tvForgot;
+    private AppCompatEditText etEmail;
+    private AppCompatEditText etPassword;
+    private AppCompatEditText etPhone;
+
+//    private LoginButton loginButton;
+//    private static final String EMAIL = "email";
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
-        llGoogleSignIn = findViewById(R.id.llGoogleSignIn);
-        llFBLogin = findViewById(R.id.llFBLogin);
-        llGoogleSignIn.setOnClickListener(this);
-        llFBLogin.setOnClickListener(this);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
-//        AppEventsLogger.activateApp(this);
-        initGoogle();
         Log.d("hash key", " : " + printKeyHash(this));
+
+        init();
+        setListners();
+        setView(llPhoneView, llMailView);
+
+        initGoogle();
+        initFB();
 //        callbackManager = CallbackManager.Factory.create();
-
-
 //        loginButton = (LoginButton) findViewById(R.id.login_button);
 //        loginButton.setReadPermissions(Arrays.asList(EMAIL));
 //        // If you are using in a fragment, call loginButton.setFragment(this);
@@ -100,10 +105,38 @@ public class Login extends BaseActivity implements View.OnClickListener {
 //                // App code
 //            }
 //        });
+    }
+
+    private void init() {
+        llGoogleSignIn = findViewById(R.id.llGoogleSignIn);
+        llFBLogin = findViewById(R.id.llFBLogin);
+        llEmail = findViewById(R.id.llEmail);
+        llPhone = findViewById(R.id.llPhone);
 
 
+        llMailView = findViewById(R.id.llMailView);
+        llPhoneView = findViewById(R.id.llPhoneView);
+
+        etPassword = findViewById(R.id.etPassword);
+        etPhone = findViewById(R.id.etPhone);
+        etEmail = findViewById(R.id.etEmail);
+
+        tvForgot = findViewById(R.id.tvForgot);
+        tvLogin = findViewById(R.id.tvLogin);
+    }
+
+    private void setListners() {
+        llGoogleSignIn.setOnClickListener(this);
+        llFBLogin.setOnClickListener(this);
+        llEmail.setOnClickListener(this);
+        llPhone.setOnClickListener(this);
+        tvLogin.setOnClickListener(this);
+        tvForgot.setOnClickListener(this);
+    }
+
+    private void initFB() {
+        FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-//        LoginManager.getInstance().logInWithReadPermissions();
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -118,7 +151,8 @@ public class Login extends BaseActivity implements View.OnClickListener {
                                     // Application code
 
                                     try {
-                                        String email = object.getString("email");
+                                        email = object.getString("email");
+                                        etEmail.setText(email);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -150,9 +184,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                         // App code
                     }
                 });
-
     }
-
 
     private void initGoogle() {
         // Configure sign-in to request the user's ID, email address, and basic
@@ -172,23 +204,36 @@ public class Login extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            // Need to change google account details
             case R.id.llGoogleSignIn:
+                setView(llMailView, llPhoneView);
                 signIn();
                 break;
-// Need to change Application ID at LIVE
+            // Need to change Application ID at LIVE
             case R.id.llFBLogin:
-                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+                setView(llMailView, llPhoneView);
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"));
                 break;
-            // ...
+            case R.id.llEmail:
+                setView(llMailView, llPhoneView);
+                break;
+
+            case R.id.llPhone:
+                setView(llPhoneView, llMailView);
+                break;
+
+            case R.id.tvLogin:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+
         }
     }
 
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
+    private void setView(LinearLayoutCompat llVisible, LinearLayoutCompat llGone) {
+        llVisible.setVisibility(View.VISIBLE);
+        llGone.setVisibility(View.GONE);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -209,6 +254,8 @@ public class Login extends BaseActivity implements View.OnClickListener {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.d("handle", "+++++++++++++" + account.getEmail());
+            email = account.getEmail();
+            etEmail.setText(email);
             // Signed in successfully, show authenticated UI.
 //            updateUI(account);
         } catch (ApiException e) {
@@ -230,6 +277,8 @@ public class Login extends BaseActivity implements View.OnClickListener {
             Log.d("nulll", "----------------");
         } else {
             Log.d("onStart", "----------------" + account.getEmail());
+            email = account.getEmail();
+            etEmail.setText(email);
         }
 //        updateUI(account);
     }
@@ -239,6 +288,9 @@ public class Login extends BaseActivity implements View.OnClickListener {
         super.onStop();
         signOut();
         revokeAccess();
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        LoginManager.getInstance().logOut();
     }
 
     //If the user deletes their account, you must delete the information that your app obtained from the Google APIs.

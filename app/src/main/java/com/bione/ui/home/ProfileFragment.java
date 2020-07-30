@@ -1,4 +1,4 @@
-package com.bione.ui.main;
+package com.bione.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,14 +14,14 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
 
-public class ChatFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment {
 
     private View rootView;
     private String text = "Hello";
     private AppCompatTextView tvHeading;
     private AppCompatImageView ivHead;
 
-    public ChatFragment(String text) {
+    public ProfileFragment(String text) {
         this.text = text;
     }
 

@@ -12,8 +12,6 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.main.MainActivity;
-import com.bione.ui.onboarding.walkthrough.Walk;
 import com.bione.utils.Log;
 
 import java.io.UnsupportedEncodingException;
