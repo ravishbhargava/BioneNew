@@ -105,6 +105,7 @@
     <string name="enter_your_email_id">Enter your Email ID</string>
     <string name="enter_your_password">Enter your Password</string>
     <string name="logout">Logout</string>
+    <string name="follow_us_on">Follow us on</string>
 
 
 </resources>
