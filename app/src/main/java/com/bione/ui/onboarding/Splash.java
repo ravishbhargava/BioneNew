@@ -46,9 +46,9 @@ public class Splash extends BaseActivity {
 
         final Runnable r = new Runnable() {
             public void run() {
-//                adminTokenAPI();
-                Intent intent = new Intent(Splash.this, ScheduleNow.class);
-                startActivity(intent);
+                adminTokenAPI();
+//                Intent intent = new Intent(Splash.this, ScheduleNow.class);
+//                startActivity(intent);
             }
         };
 

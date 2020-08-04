@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.azoft.carousellayoutmanager.CarouselLayoutManager;
@@ -18,6 +19,7 @@ import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.home.banner.BannerPagerAdapter;
+import com.bione.ui.home.banner.CenterZoomLayoutManager;
 import com.bione.ui.home.banner.CounsellorAdapter;
 import com.bione.utils.CustomViewPager;
 //import com.yarolegovich.discretescrollview.DiscreteScrollView;
@@ -57,65 +59,79 @@ public class DashboardFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
-//            // vertical and cycle layout
-//            final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL, true);
+// vertical and cycle layout
+//            final CarouselLayoutManager layoutManagernager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false);
 //            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
 //
 //            final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 //            recyclerView.setLayoutManager(layoutManager);
 //            recyclerView.setHasFixedSize(true);
-//            recyclerView.setAdapter(new CounsellorAdapter("1"));
+//            recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
 //            recyclerView.addOnScrollListener(new CenterScrollListener());
 
-//            final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
-//            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
+            onSetRecyclerView();
 
-            RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
-            recyclerView.setHasFixedSize(true);
-            // use a linear layout manager
-            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-//            recyclerView.setLayoutManager(layoutManager);
-            // specify an adapter (see also next example)
-            CounsellorAdapter mAdapter = new CounsellorAdapter(mContext, "1");
-            recyclerView.setAdapter(mAdapter);
-
-
-//            final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
-//
-//            final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+//            RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
+//            // use this setting to improve performance if you know that changes
+//            // in content do not change the layout size of the RecyclerView
 //            recyclerView.setHasFixedSize(true);
-//            recyclerView.setLayoutManager(layoutManager);
-//
-//            recyclerView.setAdapter(new GalleryAdapter());
-//            recyclerView.addOnScrollListener(new CenterScrollListener());
-//            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
+//            // use a linear layout manager
+//            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+////            recyclerView.setLayoutManager(layoutManager);
+//            // specify an adapter (see also next example)
+//            CounsellorAdapter mAdapter = new CounsellorAdapter(mContext, "1");
+//            recyclerView.setAdapter(mAdapter);
 
-
-//            DiscreteScrollView scrollView = rootView.findViewById(R.id.picker);
-//            scrollView.setAdapter(new GalleryAdapter());
-//
-////            scrollView.setOrientation(DSVOrientation o); //Sets an orientation of the view
-//            scrollView.setOffscreenItems(3); //Reserve extra space equal to (childSize * count) on each side of the view
-//
-//            scrollView.getCurrentItem(); //returns adapter position of the currently selected item or -1 if adapter is empty.
-//            scrollView.scrollToPosition(scrollView.getCurrentItem()); //position becomes selected
-//            scrollView.smoothScrollToPosition(scrollView.getCurrentItem()); //position becomes selected with animated scroll
-//            scrollView.setItemTransitionTimeMillis(200);
-//
-//            scrollView.setItemTransformer(new ScaleTransformer.Builder()
-//                    .setMaxScale(1.05f)
-//                    .setMinScale(0.8f)
-//                    .setPivotX(Pivot.X.CENTER) // CENTER is a default one
-//                    .setPivotY(Pivot.Y.BOTTOM) // CENTER is a default one
-//                    .build());
 
             initViewPager(rootView);
 
         }
         return rootView;
+    }
+
+//    private void onSetRecyclerView() {
+//        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
+//        // Scroll to the position we want to snap to
+//        layoutManager.scrollToPosition(1);
+//        // Wait until the RecyclerView is laid out.
+//        recyclerView.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Shift the view to snap  near the center of the screen.
+//                // This does not have to be precise.
+//                int dx = (recyclerView.getWidth() - recyclerView.getChildAt(0).getWidth()) / 2;
+//                recyclerView.scrollBy(-dx, 0);
+//                // Assign the LinearSnapHelper that will initially snap the near-center view.
+//                LinearSnapHelper snapHelper = new LinearSnapHelper();
+//                snapHelper.attachToRecyclerView(recyclerView);
+//            }
+//        });
+//    }
+
+    private void onSetRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        CenterZoomLayoutManager layoutManager =
+                new CenterZoomLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
+        // Scroll to the position we want to snap to
+        layoutManager.scrollToPosition(0);
+        // Wait until the RecyclerView is laid out.
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Shift the view to snap  near the center of the screen.
+                // This does not have to be precise.
+                int dx = (recyclerView.getWidth() - recyclerView.getChildAt(0).getWidth()) / 2;
+                recyclerView.scrollBy(-dx, 0);
+                // Assign the LinearSnapHelper that will initially snap the near-center view.
+                LinearSnapHelper snapHelper = new LinearSnapHelper();
+                snapHelper.attachToRecyclerView(recyclerView);
+            }
+        });
     }
 
     @Override
