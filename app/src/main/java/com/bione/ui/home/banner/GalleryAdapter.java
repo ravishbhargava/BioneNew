@@ -56,7 +56,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 //        Glide.with(holder.itemView.getContext())
 //                .load(data.get(position).getResource())
 //                .into(holder.image);
-        holder.image.setBackgroundColor(R.drawable.drawable_border_selected);
+        holder.image.setBackgroundColor(R.drawable.drawable_border_primary);
     }
 
     @Override

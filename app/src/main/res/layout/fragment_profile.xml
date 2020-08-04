@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -172,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="@dimen/spacing_large"
-        android:background="@drawable/drawable_border_selected"
+        android:background="@drawable/drawable_border_primary"
         android:gravity="center"
         android:minHeight="50dp"
         android:text="Update"

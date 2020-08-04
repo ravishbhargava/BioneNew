@@ -24,36 +24,17 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     public CounsellorAdapter(final Context mContext, final String type) {
         this.type = type;
         this.mContext = mContext;
-//        this.counsellorList = counsellorList;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
-//        private ImageView ivCall;
-//        private TextView tvName;
-//        private TextView tvStatus;
-//        private TextView tvType;
-//        private TextView tvDate;
-//        private TextView tvDays;
-//        private TextView tvTimeSlot;
-//        private View bottomView;
-//        private AppCompatRatingBar ratingBar;
-//        private RelativeLayout bottomRel;
+
 
         public MyViewHolder(View v) {
             super(v);
             view = v;
-//            ivCall = v.findViewById(R.id.ivCall);
-//            tvName = v.findViewById(R.id.tvName);
-//            tvDays = v.findViewById(R.id.tvDays);
-//            tvDate = v.findViewById(R.id.tvDate);
-//            tvType = v.findViewById(R.id.tvType);
-//            tvTimeSlot = v.findViewById(R.id.tvTimeSlot);
-//            tvStatus = v.findViewById(R.id.tvStatus);
-//            ratingBar = v.findViewById(R.id.ratingBar);
-//            bottomRel = v.findViewById(R.id.bottomRel);
-//            bottomView = v.findViewById(R.id.bottomView);
+
         }
     }
 

@@ -34,7 +34,7 @@
         android:padding="@dimen/spacing_normal"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textAppearance="@style/CustomTextAppearance.Semibold"
         android:textSize="@dimen/font_xlarge" />
 
     <RelativeLayout

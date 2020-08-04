@@ -106,6 +106,9 @@ dependencies {
     //for circle image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+        // date day calendar
+    implementation 'com.michalsvec:single-row-calednar:1.0.0'
+
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'

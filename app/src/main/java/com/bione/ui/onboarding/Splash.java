@@ -12,6 +12,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.schedulecall.ScheduleNow;
 import com.bione.utils.Log;
 
 import java.io.UnsupportedEncodingException;
@@ -45,7 +46,9 @@ public class Splash extends BaseActivity {
 
         final Runnable r = new Runnable() {
             public void run() {
-                adminTokenAPI();
+//                adminTokenAPI();
+                Intent intent = new Intent(Splash.this, ScheduleNow.class);
+                startActivity(intent);
             }
         };
 

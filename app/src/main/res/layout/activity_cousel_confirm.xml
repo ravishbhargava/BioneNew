@@ -121,7 +121,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/spacing_xlarge"
-        android:background="@drawable/drawable_border_selected"
+        android:background="@drawable/drawable_border_primary"
         android:gravity="center"
         android:minHeight="50dp"
         android:text="Confirm"

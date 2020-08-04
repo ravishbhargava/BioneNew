@@ -43,7 +43,7 @@
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_margin="@dimen/spacing_tiny"
-            android:background="@drawable/drawable_border_selected"
+            android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:text="View Details"
             android:textAlignment="center"

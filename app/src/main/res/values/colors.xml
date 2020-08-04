@@ -23,6 +23,7 @@
     <color name="text_light_grey">#80333333</color>
 
     <color name="background_light">#F2F2F2</color>
+    <color name="dialog_bottom2">#ED9F2D</color>
 
     <color name="button_color_normal">@color/colorPrimary</color>
     <color name="button_color_pressed">@color/colorPrimaryDark</color>
