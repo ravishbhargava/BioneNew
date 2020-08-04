@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_light"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_large"
+            android:text="Counselling Type: Genetic"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="start"
+            android:paddingStart="@dimen/spacing_small"
+            android:text="Date &amp; Time"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:background="@drawable/drawable_border_white"
+            android:drawableStart="@mipmap/email"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="start"
+            android:padding="@dimen/spacing_small"
+            android:text="Monday, 27 July 2020, 10:00 AM"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="start"
+            android:paddingStart="@dimen/spacing_small"
+            android:text="Our Counsellor will contact you"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:background="@drawable/drawable_border_white"
+            android:drawableStart="@mipmap/email"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="start"
+            android:padding="@dimen/spacing_small"
+            android:text="+91 8865362735"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:gravity="start"
+            android:paddingStart="@dimen/spacing_small"
+            android:text="Your Details"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_tiny"
+            android:background="@drawable/drawable_border_white"
+            android:drawableStart="@mipmap/email"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="start"
+            android:hint="Full Name"
+            android:padding="@dimen/spacing_small"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_tiny"
+            android:background="@drawable/drawable_border_white"
+            android:drawableStart="@mipmap/email"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="start"
+            android:hint="Email ID"
+            android:padding="@dimen/spacing_small"
+            android:textColor="@color/text_black_opacity"
+            android:textSize="@dimen/font_small" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/spacing_xlarge"
+        android:background="@drawable/drawable_border_selected"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="Confirm"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextAppearance.Semibold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_xlarge" />
+</RelativeLayout>

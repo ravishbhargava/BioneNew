@@ -19,6 +19,10 @@
     <color name="border_light_grey">#E4E4E5</color>
 
     <color name="google_background">#EB4132</color>
+    <color name="text_black_opacity">#80333333</color>
+    <color name="text_light_grey">#80333333</color>
+
+    <color name="background_light">#F2F2F2</color>
 
     <color name="button_color_normal">@color/colorPrimary</color>
     <color name="button_color_pressed">@color/colorPrimaryDark</color>

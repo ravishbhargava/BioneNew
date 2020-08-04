@@ -253,7 +253,7 @@
                     android:drawableRight="@mipmap/email"
                     android:gravity="start"
                     android:hint="@string/enter_your_password"
-                    android:inputType="number"
+                    android:inputType="textPassword"
                     android:maxLength="10"
                     android:padding="@dimen/spacing_normal"
                     android:textSize="@dimen/font_large" />

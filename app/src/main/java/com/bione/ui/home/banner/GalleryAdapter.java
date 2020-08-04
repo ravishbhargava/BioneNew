@@ -72,7 +72,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.image);
-            overlay = itemView.findViewById(R.id.overlay);
+//            overlay = itemView.findViewById(R.id.overlay);
         }
 
         public void setOverlayColor(@ColorInt int color) {
