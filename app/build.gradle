@@ -93,21 +93,19 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
-    //implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
-    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
 
-    //Glide
+
+    // for Glide
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
-    //multi picker
+    // for multi picker
     implementation 'com.kbeanie:multipicker:1.1.31@aar'
-    //for cropping
+    // for cropping
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
-    //for circle image view
+    // for circle image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
-        // date day calendar
-    implementation 'com.michalsvec:single-row-calednar:1.0.0'
+    // for circle indicator
+    implementation 'me.relex:circleindicator:2.1.4'
 
 
     // retrofit

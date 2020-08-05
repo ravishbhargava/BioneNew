@@ -13,15 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.azoft.carousellayoutmanager.CarouselLayoutManager;
-import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.azoft.carousellayoutmanager.CenterScrollListener;
+
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.home.banner.BannerPagerAdapter;
 import com.bione.ui.home.banner.CenterZoomLayoutManager;
 import com.bione.ui.home.banner.CounsellorAdapter;
 import com.bione.utils.CustomViewPager;
+
+import me.relex.circleindicator.CircleIndicator;
+import me.relex.circleindicator.CircleIndicator3;
 //import com.yarolegovich.discretescrollview.DiscreteScrollView;
 //import com.yarolegovich.discretescrollview.transform.Pivot;
 //import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
@@ -59,57 +60,14 @@ public class DashboardFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-// vertical and cycle layout
-//            final CarouselLayoutManager layoutManagernager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false);
-//            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
-//
-//            final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-//            recyclerView.setLayoutManager(layoutManager);
-//            recyclerView.setHasFixedSize(true);
-//            recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
-//            recyclerView.addOnScrollListener(new CenterScrollListener());
 
             onSetRecyclerView();
-
-//            RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
-//            // use this setting to improve performance if you know that changes
-//            // in content do not change the layout size of the RecyclerView
-//            recyclerView.setHasFixedSize(true);
-//            // use a linear layout manager
-//            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-////            recyclerView.setLayoutManager(layoutManager);
-//            // specify an adapter (see also next example)
-//            CounsellorAdapter mAdapter = new CounsellorAdapter(mContext, "1");
-//            recyclerView.setAdapter(mAdapter);
-
-
             initViewPager(rootView);
 
         }
         return rootView;
     }
 
-//    private void onSetRecyclerView() {
-//        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
-//        // Scroll to the position we want to snap to
-//        layoutManager.scrollToPosition(1);
-//        // Wait until the RecyclerView is laid out.
-//        recyclerView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Shift the view to snap  near the center of the screen.
-//                // This does not have to be precise.
-//                int dx = (recyclerView.getWidth() - recyclerView.getChildAt(0).getWidth()) / 2;
-//                recyclerView.scrollBy(-dx, 0);
-//                // Assign the LinearSnapHelper that will initially snap the near-center view.
-//                LinearSnapHelper snapHelper = new LinearSnapHelper();
-//                snapHelper.attachToRecyclerView(recyclerView);
-//            }
-//        });
-//    }
 
     private void onSetRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
@@ -132,6 +90,8 @@ public class DashboardFragment extends BaseFragment {
                 snapHelper.attachToRecyclerView(recyclerView);
             }
         });
+
+
     }
 
     @Override
@@ -154,5 +114,11 @@ public class DashboardFragment extends BaseFragment {
         bannerPagerAdapter = new BannerPagerAdapter(getChildFragmentManager(), 3);
         viewPager.setAdapter(bannerPagerAdapter);
         viewPager.setCurrentItem(0);
+
+        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+
+// optional
+//        adapter.registerDataSetObserver(indicator.getDataSetObserver());
     }
 }
