@@ -21,10 +21,6 @@ public class FaqFragment extends BaseFragment {
     private AppCompatTextView tvHeading;
     private AppCompatImageView ivHead;
 
-    public FaqFragment(String text) {
-        this.text = text;
-    }
-
 
     @Override
     public void onAttach(Context context) {

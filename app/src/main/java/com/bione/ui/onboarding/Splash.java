@@ -4,6 +4,7 @@ package com.bione.ui.onboarding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import com.bione.R;
 import com.bione.db.CommonData;
@@ -12,7 +13,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.schedulecall.ScheduleNow;
+import com.bione.ui.onboarding.walkthrough.Walk;
 import com.bione.utils.Log;
 
 import java.io.UnsupportedEncodingException;
@@ -83,7 +84,7 @@ public class Splash extends BaseActivity {
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
 
 //                Intent intent = new Intent(Splash.this, Walk.class);
-                Intent intent = new Intent(Splash.this, Login.class);
+                Intent intent = new Intent(Splash.this, Walk.class);
                 startActivity(intent);
             }
 
@@ -100,5 +101,10 @@ public class Splash extends BaseActivity {
             }
 
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

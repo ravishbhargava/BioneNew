@@ -1,4 +1,4 @@
-package com.bione.ui.home.banner;
+package com.bione.ui.home.dashboard.banner;
 
 import android.content.Context;
 import android.os.Bundle;

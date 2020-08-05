@@ -120,7 +120,7 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="@dimen/spacing_normal"
                 android:background="@drawable/drawable_border"
-                android:drawableRight="@mipmap/email"
+                android:drawableRight="@mipmap/email_signin"
                 android:gravity="center_vertical"
                 android:padding="@dimen/spacing_normal"
                 android:text="20 Feb 2020" />

@@ -7,33 +7,42 @@
     android:padding="@dimen/spacing_normal"
     android:weightSum="10">
 
-
-    <com.bione.utils.CustomViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:background="#80010101"
+        android:orientation="vertical">
 
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        app:ci_drawable="@mipmap/email"
-        app:ci_drawable_unselected="@mipmap/google_logo" />
+        <com.bione.utils.CustomViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            app:ci_drawable="@mipmap/slider_circle_selected"
+            app:ci_drawable_unselected="@mipmap/slider_circle_unselected"
+            app:ci_height="10dp"
+            app:ci_width="10dp" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_weight="4" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         android:layout_weight="3"
         android:orientation="vertical">
 
@@ -43,13 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginHorizontal="@dimen/spacing_large"
-            android:layout_marginVertical="@dimen/spacing_normal"
+            android:layout_marginVertical="@dimen/spacing_small"
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:minHeight="50dp"
             android:text="Book Genomic Counselling"
             android:textAlignment="center"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/font_xlarge" />
 
@@ -58,19 +68,36 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_small"
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:minHeight="50dp"
             android:text="Customer Support"
             android:textAlignment="center"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_xlarge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRefer"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:background="@drawable/drawable_border_primary"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:text="Refer a friend"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/font_xlarge" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -78,6 +105,7 @@
                 android:layout_above="@+id/llBottom"
                 android:gravity="center"
                 android:text="@string/follow_us_on"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_small" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -86,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -94,7 +123,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_facebook" />
 
                 <androidx.appcompat.widget.AppCompatImageView
 
@@ -102,7 +131,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_instagram_sketched" />
 
                 <androidx.appcompat.widget.AppCompatImageView
 
@@ -110,7 +139,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_twitter" />
 
                 <androidx.appcompat.widget.AppCompatImageView
 
@@ -118,7 +147,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_youtube" />
 
                 <androidx.appcompat.widget.AppCompatImageView
 
@@ -126,7 +155,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_linkedin" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

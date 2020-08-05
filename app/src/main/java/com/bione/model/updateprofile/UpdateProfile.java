@@ -21,7 +21,7 @@ private String updatedAt;
 @SerializedName("created_in")
 @Expose
 private String createdIn;
-@SerializedName("email")
+@SerializedName("email_signin")
 @Expose
 private String email;
 @SerializedName("firstname")

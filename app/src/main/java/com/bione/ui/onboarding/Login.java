@@ -40,7 +40,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class Login extends BaseActivity implements View.OnClickListener {
+public class Login extends BaseActivity {
 
     private static final int RC_SIGN_IN = 101;
     private GoogleSignInClient mGoogleSignInClient;
@@ -62,7 +62,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
     private AppCompatEditText etPhone;
 
 //    private LoginButton loginButton;
-//    private static final String EMAIL = "email";
+//    private static final String EMAIL = "email_signin";
 
 
     @Override
@@ -151,7 +151,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                                     // Application code
 
                                     try {
-                                        email = object.getString("email");
+                                        email = object.getString("email_signin");
                                         etEmail.setText(email);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -163,7 +163,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
                                     }
                                 });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,name,email,gender,birthday");
+                        parameters.putString("fields", "id,name,email_signin,gender,birthday");
                         request.setParameters(parameters);
                         request.executeAsync();
 
@@ -187,7 +187,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
     }
 
     private void initGoogle() {
-        // Configure sign-in to request the user's ID, email address, and basic
+        // Configure sign-in to request the user's ID, email_signin address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -212,7 +212,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
             // Need to change Application ID at LIVE
             case R.id.llFBLogin:
                 setView(llMailView, llPhoneView);
-                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"));
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email_signin"));
                 break;
             case R.id.llEmail:
                 setView(llMailView, llPhoneView);

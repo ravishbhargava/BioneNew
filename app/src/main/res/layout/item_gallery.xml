@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="250dp"
-    android:layout_gravity="center"
     android:id="@+id/llVisible"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_margin="4dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:background="@color/dialog_bottom2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher_round" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            android:src="@mipmap/image_longevity" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginVertical="@dimen/spacing_tiny"
+
             android:gravity="center"
-            android:text="Micro Biome"
+            android:text="Genetic \nSusceptibility Test"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textSize="@dimen/font_small" />
 
@@ -37,15 +63,16 @@
             android:layout_alignParentBottom="true"
             android:layout_marginVertical="@dimen/spacing_tiny"
             android:gravity="center"
-
-            android:text="@string/by_signing_up_i_accept_the_terms_and_conditions"
+            android:paddingHorizontal="@dimen/spacing_small"
+            android:text="World's most comprehensive high-throughput DNA test - The best investment to know how your genes affect various health aspects for timely management"
             android:textSize="@dimen/font_tiny" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogin"
             android:layout_width="100dp"
             android:layout_height="20dp"
-            android:layout_margin="@dimen/spacing_tiny"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:layout_marginBottom="@dimen/spacing_small"
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:text="View Details"

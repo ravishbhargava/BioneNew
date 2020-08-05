@@ -3,7 +3,6 @@ package com.bione.ui.base;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,7 +21,6 @@ import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
-//import com.bione.ui.onboarding.OtpActivity;
 import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
@@ -30,10 +28,14 @@ import com.bione.utils.ProgressDialog;
 
 import java.util.List;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 
+//import com.bione.ui.onboarding.OtpActivity;
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+
+public abstract class BaseActivity extends AppCompatActivity implements BaseView, View.OnClickListener {
 
     private static final int OVERLAY_TEXT_SIZE_INT = 15;
     private static final int TEN = 10;
@@ -52,6 +54,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
 //    @Override
 //    protected void attachBaseContext(Context newBase) {

@@ -3,7 +3,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/spacing_normal"
+    android:padding="@dimen/spacing_normal"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/spacing_large"
+        android:layout_margin="@dimen/spacing_normal"
         android:src="@mipmap/bione_logo" />
 
 
@@ -23,17 +23,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivLogo"
-        android:layout_margin="@dimen/spacing_normal"
+        android:layout_margin="@dimen/spacing_large"
         android:orientation="vertical">
 
 
-<!--        <com.facebook.login.widget.LoginButton-->
-<!--            android:id="@+id/login_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginBottom="30dp" />-->
+        <!--        <com.facebook.login.widget.LoginButton-->
+        <!--            android:id="@+id/login_button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:layout_marginBottom="30dp" />-->
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llFBLogin"
@@ -47,7 +47,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/spacing_small"
-                android:src="@mipmap/google_logo" />
+                android:src="@mipmap/facebook_signin" />
 
 
             <View
@@ -63,7 +63,7 @@
                 android:text="@string/sign_in_with_facebook"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/white"
-                android:textSize="@dimen/spacing_normal" />
+                android:textSize="@dimen/font_small" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -79,7 +79,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/spacing_small"
-                android:src="@mipmap/google_logo" />
+                android:src="@mipmap/google_signin" />
 
 
             <View
@@ -95,7 +95,7 @@
                 android:text="@string/sign_in_with_google"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/white"
-                android:textSize="@dimen/spacing_normal" />
+                android:textSize="@dimen/font_small" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -111,7 +111,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/spacing_small"
-                android:src="@mipmap/email" />
+                android:src="@mipmap/email_signin" />
 
 
             <View
@@ -127,7 +127,7 @@
                 android:text="@string/sign_in_with_email"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/spacing_normal" />
+                android:textSize="@dimen/font_small" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -143,7 +143,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:padding="@dimen/spacing_small"
-                android:src="@mipmap/phone" />
+                android:src="@mipmap/phone_signin" />
 
 
             <View
@@ -158,7 +158,7 @@
                 android:text="@string/sign_in_with_phone_no"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/spacing_normal" />
+                android:textSize="@dimen/font_small" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -169,7 +169,6 @@
             android:layout_marginVertical="@dimen/spacing_small"
             android:text="or"
             android:textAppearance="@style/CustomTextAppearance"
-
             android:textSize="@dimen/font_normal" />
 
 
@@ -192,7 +191,8 @@
                 android:gravity="center"
                 android:padding="@dimen/spacing_normal"
                 android:text="+91"
-                android:textSize="@dimen/font_large" />
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
 
             <View
                 android:layout_width="1dp"
@@ -210,7 +210,8 @@
                 android:maxLength="10"
                 android:padding="@dimen/spacing_normal"
                 android:text=""
-                android:textSize="@dimen/font_large" />
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -227,10 +228,10 @@
                 android:background="@drawable/drawable_border"
                 android:gravity="left|center"
                 android:hint="@string/enter_your_email_id"
-                android:padding="@dimen/font_normal"
+                android:padding="@dimen/spacing_normal"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/spacing_normal" />
+                android:textSize="@dimen/font_normal" />
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -248,16 +249,21 @@
                     android:id="@+id/etPassword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.70"
+                    android:layout_weight="0.60"
                     android:background="@color/transparent"
-                    android:drawableRight="@mipmap/email"
                     android:gravity="start"
                     android:hint="@string/enter_your_password"
                     android:inputType="textPassword"
-                    android:maxLength="10"
                     android:padding="@dimen/spacing_normal"
-                    android:textSize="@dimen/font_large" />
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_normal" />
 
+                <ImageView
+                    android:id="@+id/viewEye"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.10"
+                    android:src="@drawable/ic_hidden" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvForgot"
@@ -267,8 +273,9 @@
                     android:gravity="center"
                     android:padding="@dimen/spacing_normal"
                     android:text="Forgot?"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_large" />
+                    android:textSize="@dimen/font_normal" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -282,9 +289,9 @@
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:minHeight="50dp"
-            android:text="login"
+            android:text="Login"
             android:textAlignment="center"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/font_xlarge" />
@@ -296,8 +303,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginVertical="@dimen/spacing_large"
         android:gravity="center"
-
         android:text="@string/by_signing_up_i_accept_the_terms_and_conditions"
+        android:textAppearance="@style/CustomTextAppearance"
         android:textSize="@dimen/font_small" />
 
 </RelativeLayout>

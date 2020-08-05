@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,10 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
+import com.bione.ui.base.BaseActivity;
+import com.bione.ui.home.dashboard.DashboardFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         setUpNavigationView();
 
         if (savedInstanceState == null) {
-            navItemIndex = 0;
+            navItemIndex = 1;
             CURRENT_TAG = TAG_DASH;
             loadHomeFragment();
         }
@@ -171,24 +172,25 @@ public class MainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // PROFILE fragment
-                ProfileFragment profileFragment = new ProfileFragment("1");
+                ProfileFragment profileFragment = new ProfileFragment();
                 return profileFragment;
+
             case 1:
                 // DASH fragment
-                DashboardFragment dashboardFragment = new DashboardFragment("2");
+                DashboardFragment dashboardFragment = new DashboardFragment();
                 return dashboardFragment;
             case 2:
                 // CHAT fragment
-                ChatFragment chatFragment = new ChatFragment("3");
+                ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;
             case 3:
                 // FAQ fragment
-                FaqFragment faqFragment = new FaqFragment("2");
+                FaqFragment faqFragment = new FaqFragment();
                 return faqFragment;
 
 
             default:
-                return new DashboardFragment("1");
+                return new DashboardFragment();
         }
     }
 
@@ -213,11 +215,11 @@ public class MainActivity extends AppCompatActivity {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_profile:
                         navItemIndex = 0;
-                        CURRENT_TAG = TAG_DASH;
+                        CURRENT_TAG = TAG_PROFILE;
                         break;
                     case R.id.nav_dashboard:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_PROFILE;
+                        CURRENT_TAG = TAG_DASH;
                         break;
                     case R.id.nav_chat:
                         navItemIndex = 2;
@@ -291,6 +293,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         super.onBackPressed();
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 
 //    @Override

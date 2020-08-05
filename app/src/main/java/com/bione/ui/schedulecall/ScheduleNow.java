@@ -2,6 +2,7 @@ package com.bione.ui.schedulecall;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,4 +76,8 @@ public class ScheduleNow extends BaseActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }

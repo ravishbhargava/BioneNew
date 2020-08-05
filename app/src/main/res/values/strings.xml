@@ -96,7 +96,7 @@
 
 
     <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="by_signing_up_i_accept_the_terms_and_conditions">By signing up. I accept the <U>Terms and Conditions</U>></string>
+    <string name="by_signing_up_i_accept_the_terms_and_conditions">By signing up. I accept the <u>Terms and Conditions</u>></string>
     <string name="get_started">Get Started</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>

@@ -18,7 +18,7 @@ public final class AppConstant {
     public static final String PARAM_FIRSTNAME = "firstname";
     public static final String PARAM_MIDDLENAME = "middlename";
     public static final String PARAM_LASTNAME = "lastname";
-    public static final String PARAM_EMAIL = "email";
+    public static final String PARAM_EMAIL = "email_signin";
     public static final String PARAM_CURRENTEMAIL = "currentemail";
     public static final String PARAM_NEWEMAIL = "newemail";
     public static final String PARAM_MOBILE = "mobile";

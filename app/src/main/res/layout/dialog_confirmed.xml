@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Your Booking has been\nConfirmed"
-                android:textAppearance="@style/CustomTextAppearance"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_large" />
 
             <androidx.appcompat.widget.AppCompatTextView

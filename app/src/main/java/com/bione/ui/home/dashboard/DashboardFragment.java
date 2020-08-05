@@ -1,4 +1,4 @@
-package com.bione.ui.home;
+package com.bione.ui.home.dashboard;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,38 +8,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
-import com.bione.ui.home.banner.BannerPagerAdapter;
-import com.bione.ui.home.banner.CenterZoomLayoutManager;
-import com.bione.ui.home.banner.CounsellorAdapter;
+
+import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
+import com.bione.ui.home.dashboard.craousel.CenterZoomLayoutManager;
+import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
 import com.bione.utils.CustomViewPager;
 
 import me.relex.circleindicator.CircleIndicator;
-import me.relex.circleindicator.CircleIndicator3;
-//import com.yarolegovich.discretescrollview.DiscreteScrollView;
-//import com.yarolegovich.discretescrollview.transform.Pivot;
-//import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
+
 
 public class DashboardFragment extends BaseFragment {
 
     private View rootView;
-    //    private String text = "Hello";
-//    private AppCompatTextView tvHeading;
-//    private AppCompatImageView ivHead;
     private BannerPagerAdapter bannerPagerAdapter;
     private CustomViewPager viewPager;
     private Context mContext;
-
-    public DashboardFragment(String text) {
-//        this.text = text;
-    }
 
 
     @Override
@@ -115,10 +104,10 @@ public class DashboardFragment extends BaseFragment {
         viewPager.setAdapter(bannerPagerAdapter);
         viewPager.setCurrentItem(0);
 
-        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
+        CircleIndicator indicator =  view.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
 
-// optional
-//        adapter.registerDataSetObserver(indicator.getDataSetObserver());
+        // optional
+        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
     }
 }

@@ -19,10 +19,10 @@ public final class ValidationUtil {
     }
 
     /**
-     * Method to validate email id
+     * Method to validate email_signin id
      *
-     * @param email user email
-     * @return whether email is valid
+     * @param email user email_signin
+     * @return whether email_signin is valid
      */
     public static boolean checkEmail(final String email) {
         if (TextUtils.isEmpty(email) || (!email.matches(Patterns.EMAIL_ADDRESS.toString()))) {

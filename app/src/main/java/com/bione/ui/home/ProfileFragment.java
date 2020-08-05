@@ -41,9 +41,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
     private AppCompatImageView ivAddProfile;
 
 
-    public ProfileFragment(String text) {
-        this.text = text;
-    }
+
 
 
     @Override

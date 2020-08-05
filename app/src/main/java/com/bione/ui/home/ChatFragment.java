@@ -21,11 +21,6 @@ public class ChatFragment extends BaseFragment {
     private AppCompatTextView tvHeading;
     private AppCompatImageView ivHead;
 
-    public ChatFragment(String text) {
-        this.text = text;
-    }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
