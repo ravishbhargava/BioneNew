@@ -13,8 +13,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            >
+            android:layout_centerInParent="true">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/cvBorder"
@@ -40,10 +39,10 @@
                 android:id="@+id/ivAddProfile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="70dp"
                 android:layout_marginStart="-20dp"
+                android:layout_marginTop="70dp"
                 android:layout_toEndOf="@+id/cvBorder"
-                android:src="@mipmap/email_signin" />
+                android:src="@drawable/ic_camera" />
         </RelativeLayout>
 
     </RelativeLayout>
@@ -79,7 +78,7 @@
                 android:background="@color/transparent"
                 android:enabled="false"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_large" />
         </RelativeLayout>
 
@@ -105,7 +104,7 @@
                 android:enabled="false"
                 android:inputType="number"
                 android:text="+91 9876543210"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -130,7 +129,7 @@
                 android:background="@color/transparent"
                 android:enabled="false"
                 android:text="John@gmail.com"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -155,7 +154,7 @@
                 android:background="@color/transparent"
                 android:enabled="false"
                 android:text="Male"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
 
@@ -181,7 +180,7 @@
                 android:enabled="false"
                 android:inputType="textPassword"
                 android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_xlarge" />
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

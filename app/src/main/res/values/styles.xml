@@ -16,12 +16,27 @@
     <!--        <item name="android:textColorSecondary">SUBTITLE_COLOR_GOES_HERE</item>-->
     <!--    </style>-->
 
+    <style name="MyActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#fa0</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <!--        <item name="actionBarTabBarStyle">@color/white</item>-->
+        <!--        <item name="android:actionBarItemBackground">@color/colorPrimary</item>-->
+        <item name="colorPrimary">@color/white</item>
+
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="AppTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
     </style>
+
 
     <style name="CustomTextAppearance" parent="android:TextAppearance">
         <item name="android:textStyle">normal</item>

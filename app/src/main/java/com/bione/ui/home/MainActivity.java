@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity {
     private static final String TAG_PROFILE = "Profile";
     private static final String TAG_CHAT = "Chat";
     private static final String TAG_FAQ = "Faq";
+    private static final String TAG_SESSION = "Session";
     //    private static final String TAG_SETTINGS = "settings";
     public static String CURRENT_TAG = TAG_DASH;
 
@@ -180,10 +181,16 @@ public class MainActivity extends BaseActivity {
                 DashboardFragment dashboardFragment = new DashboardFragment();
                 return dashboardFragment;
             case 2:
+                // Session fragment
+                SessionFragment sessionFragment = new SessionFragment();
+                return sessionFragment;
+
+            case 3:
                 // CHAT fragment
                 ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;
-            case 3:
+
+            case 4:
                 // FAQ fragment
                 FaqFragment faqFragment = new FaqFragment();
                 return faqFragment;
@@ -221,15 +228,18 @@ public class MainActivity extends BaseActivity {
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_DASH;
                         break;
-                    case R.id.nav_chat:
+                    case R.id.nav_session:
                         navItemIndex = 2;
+                        CURRENT_TAG = TAG_SESSION;
+                    case R.id.nav_chat:
+                        navItemIndex = 3;
                         CURRENT_TAG = TAG_CHAT;
                         break;
                     case R.id.nav_faq:
-                        navItemIndex = 3;
+                        navItemIndex = 4;
                         CURRENT_TAG = TAG_FAQ;
                         break;
-//                    case R.id.nav_settings:
+
 
                     default:
                         navItemIndex = 0;

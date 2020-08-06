@@ -31,7 +31,7 @@
                 android:background="@color/google_background"
                 android:gravity="center"
                 android:text="@string/logout"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_xlarge"></TextView>
         </RelativeLayout>
