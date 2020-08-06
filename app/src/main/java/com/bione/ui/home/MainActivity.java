@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity {
         setUpNavigationView();
 
         if (savedInstanceState == null) {
-            navItemIndex = 1;
+            navItemIndex = 0;
             CURRENT_TAG = TAG_DASH;
             loadHomeFragment();
         }
@@ -172,14 +172,16 @@ public class MainActivity extends BaseActivity {
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
-                // PROFILE fragment
-                ProfileFragment profileFragment = new ProfileFragment();
-                return profileFragment;
 
-            case 1:
                 // DASH fragment
                 DashboardFragment dashboardFragment = new DashboardFragment();
                 return dashboardFragment;
+
+            case 1:
+                // PROFILE fragment
+//                ProfileFragment profileFragment = new ProfileFragment();
+//                return profileFragment;
+
             case 2:
                 // Session fragment
                 SessionFragment sessionFragment = new SessionFragment();
@@ -220,21 +222,26 @@ public class MainActivity extends BaseActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_profile:
-                        navItemIndex = 0;
-                        CURRENT_TAG = TAG_PROFILE;
-                        break;
+
                     case R.id.nav_dashboard:
-                        navItemIndex = 1;
+                        navItemIndex = 0;
                         CURRENT_TAG = TAG_DASH;
                         break;
+
+                    case R.id.nav_profile:
+                        navItemIndex = 1;
+                        CURRENT_TAG = TAG_PROFILE;
+                        break;
+
                     case R.id.nav_session:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SESSION;
+
                     case R.id.nav_chat:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_CHAT;
                         break;
+
                     case R.id.nav_faq:
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_FAQ;

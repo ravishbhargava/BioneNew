@@ -36,6 +36,9 @@ public class BannerPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 text = "3";
                 return new BannerFragment(text);
+            case 3:
+                text = "4";
+                return new BannerFragment(text);
 
             default:
                 return null;

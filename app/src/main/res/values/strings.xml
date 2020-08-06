@@ -86,13 +86,14 @@
 
 
     <string-array name="nav_item_activity_titles">
-        <item>My Profile</item>
         <item>My Dashboard</item>
+        <item>My Profile</item>
+        <item>My Session</item>
         <item>Chat with us</item>
         <item>FAQ\'s</item>
 
-    </string-array>
 
+    </string-array>
 
 
     <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>

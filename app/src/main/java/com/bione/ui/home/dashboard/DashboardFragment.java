@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.model.CrouselData;
 import com.bione.ui.base.BaseFragment;
-
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.ui.home.dashboard.craousel.CenterZoomLayoutManager;
 import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
 import com.bione.utils.CustomViewPager;
+
+import java.util.ArrayList;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -29,7 +31,7 @@ public class DashboardFragment extends BaseFragment {
     private BannerPagerAdapter bannerPagerAdapter;
     private CustomViewPager viewPager;
     private Context mContext;
-
+    private ArrayList<CrouselData> crouselDataArrayList;
 
     @Override
     public void onAttach(Context context) {
@@ -49,7 +51,7 @@ public class DashboardFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
+            setArrayList();
             onSetRecyclerView();
             initViewPager(rootView);
 
@@ -59,11 +61,14 @@ public class DashboardFragment extends BaseFragment {
 
 
     private void onSetRecyclerView() {
+
+
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         CenterZoomLayoutManager layoutManager =
                 new CenterZoomLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new CounsellorAdapter(mContext, "1"));
+
+        recyclerView.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList));
         // Scroll to the position we want to snap to
         layoutManager.scrollToPosition(0);
         // Wait until the RecyclerView is laid out.
@@ -100,14 +105,63 @@ public class DashboardFragment extends BaseFragment {
 
 
         // setting viewPager's pages
-        bannerPagerAdapter = new BannerPagerAdapter(getChildFragmentManager(), 3);
+        bannerPagerAdapter = new BannerPagerAdapter(getChildFragmentManager(), 4);
         viewPager.setAdapter(bannerPagerAdapter);
         viewPager.setCurrentItem(0);
 
-        CircleIndicator indicator =  view.findViewById(R.id.indicator);
+        CircleIndicator indicator = view.findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
 
         // optional
         bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
+    }
+
+    private void setArrayList() {
+        crouselDataArrayList = new ArrayList<>();
+
+        CrouselData data = new CrouselData();
+        data.setDrawable(0);
+        data.setHeading("");
+        data.setText("");
+
+        CrouselData data1 = new CrouselData();
+        data1.setDrawable(R.mipmap.image_longevity);
+        data1.setHeading("Longevity Plus Test");
+        data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " +
+                "affect various health aspects for " +
+                "timely management");
+
+        CrouselData data2 = new CrouselData();
+        data2.setDrawable(R.mipmap.image_microbiome);
+        data2.setHeading("MyMicrobiome Test");
+        data2.setText("Discover & understand your gastrointestinal microbiota and best " +
+                "suited personalised diet for a " +
+                "healthy & happy life.");
+
+        CrouselData data3 = new CrouselData();
+        data3.setDrawable(R.mipmap.image_genetic);
+        data3.setHeading("Genetic \n" +
+                "Susceptibility Test");
+        data3.setText("Discover & understand how your " +
+                "genes can be responsible for the susceptibility to viral infections like " +
+                "SARS and Influenza.");
+
+        CrouselData data4 = new CrouselData();
+        data4.setDrawable(R.mipmap.image_clinical);
+        data4.setHeading("Clinical \nGenetics Tests ");
+        data4.setText("The genesis of elite\n" +
+                "genetic testing");
+
+        CrouselData data5 = new CrouselData();
+        data5.setDrawable(0);
+        data5.setHeading("");
+        data5.setText("");
+
+        crouselDataArrayList.add(data);
+        crouselDataArrayList.add(data1);
+        crouselDataArrayList.add(data2);
+        crouselDataArrayList.add(data3);
+        crouselDataArrayList.add(data4);
+        crouselDataArrayList.add(data5);
     }
 }

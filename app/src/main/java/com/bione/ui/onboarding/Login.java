@@ -74,6 +74,7 @@ public class Login extends BaseActivity {
         init();
         setListners();
         setView(llPhoneView, llMailView);
+        setView(llEmail, llPhone);
 
         initGoogle();
         initFB();
@@ -207,19 +208,23 @@ public class Login extends BaseActivity {
             // Need to change google account details
             case R.id.llGoogleSignIn:
                 setView(llMailView, llPhoneView);
+                setView(llPhone, llEmail);
                 signIn();
                 break;
             // Need to change Application ID at LIVE
             case R.id.llFBLogin:
                 setView(llMailView, llPhoneView);
+                setView(llPhone, llEmail);
                 LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email_signin"));
                 break;
             case R.id.llEmail:
                 setView(llMailView, llPhoneView);
+                setView(llPhone, llEmail);
                 break;
 
             case R.id.llPhone:
                 setView(llPhoneView, llMailView);
+                setView(llEmail, llPhone);
                 break;
 
             case R.id.tvLogin:
