@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llVisible"
     android:layout_width="150dp"
-    android:layout_height="250dp"
+    android:layout_height="200dp"
     android:layout_gravity="center"
     android:layout_margin="4dp">
 
@@ -45,7 +45,7 @@
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_normal"
+            android:layout_margin="@dimen/spacing_xsmall"
             android:src="@mipmap/image_longevity" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginVertical="@dimen/spacing_tiny"
+
             android:gravity="center"
             android:text="Genetic \nSusceptibility Test"
             android:textAppearance="@style/CustomTextAppearance.Semibold"
@@ -66,7 +66,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginVertical="@dimen/spacing_tiny"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/spacing_small"
+            android:paddingHorizontal="@dimen/spacing_tiny"
             android:text="World's most comprehensive high-throughput DNA test - The best investment to know how your genes affect various health aspects for timely management"
             android:textSize="@dimen/font_tiny" />
 
@@ -75,7 +75,7 @@
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_xsmall"
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:text="View Details"
