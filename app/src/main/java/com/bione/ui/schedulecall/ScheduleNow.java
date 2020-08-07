@@ -1,8 +1,12 @@
 package com.bione.ui.schedulecall;
 
-import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,14 +32,16 @@ public class ScheduleNow extends BaseActivity {
         setContentView(R.layout.activity_book_call);
 
 
-
-
         recyclerView = findViewById(R.id.date_recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        // horizontal RecyclerView
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView.setLayoutManager(mLayoutManager);
+
         // specify an adapter (see also next example)
 
         Calendar mCalendar = Calendar.getInstance();
@@ -43,9 +49,61 @@ public class ScheduleNow extends BaseActivity {
         //  mCalendar.get(Calendar.D)
 
 
+
+        recyclerView
+                .addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView,
+                                           int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        int totalItemCount = mLayoutManager.getChildCount();
+                        for (int i = 0; i < totalItemCount; i++){
+                            View childView = recyclerView.getChildAt(i);
+                            TextView childTextView = (TextView) (childView.findViewById(R.id.tvDay));
+                            String childTextViewText = (String) (childTextView.getText());
+
+                            if (childTextViewText.equals("Sun"))
+                                childTextView.setTextColor(Color.RED);
+                            else
+                                childTextView.setTextColor(Color.BLACK);
+
+                        }
+
+
+                    }
+                });
+
+
         mAdapter = new CalendarAdapter(this, calendarList);
         recyclerView.setAdapter(mAdapter);
         prepareCalendarData();
+
+        // row click listener
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                MyCalendar calendar = calendarList.get(position);
+                TextView childTextView = (TextView) (view.findViewById(R.id.tvDay));
+
+                Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
+                childTextView.startAnimation(startRotateAnimation);
+                childTextView.setTextColor(Color.CYAN);
+                Toast.makeText(ScheduleNow.this, "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                MyCalendar calendar = calendarList.get(position);
+
+                TextView childTextView = (TextView) (view.findViewById(R.id.tvDay));
+                childTextView.setTextColor(Color.BLUE);
+
+                Toast.makeText(getApplicationContext(), calendar.getDate() + "/" + calendar.getDay() + "/" + calendar.getMonth() + "   selected!", Toast.LENGTH_SHORT).show();
+
+            }
+        }));
 
     }
 

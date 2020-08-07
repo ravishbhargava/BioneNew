@@ -1,13 +1,16 @@
 package com.bione.ui.home.dashboard;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +28,13 @@ import java.util.ArrayList;
 import me.relex.circleindicator.CircleIndicator;
 
 
-public class DashboardFragment extends BaseFragment {
+public class DashboardFragment extends BaseFragment implements View.OnClickListener {
 
     private View rootView;
     private BannerPagerAdapter bannerPagerAdapter;
     private CustomViewPager viewPager;
     private Context mContext;
+    private AppCompatTextView tvCustomerSupport;
     private ArrayList<CrouselData> crouselDataArrayList;
 
     @Override
@@ -51,6 +55,8 @@ public class DashboardFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+            tvCustomerSupport = rootView.findViewById(R.id.tvCustomerSupport);
+            tvCustomerSupport.setOnClickListener(this);
             setArrayList();
             onSetRecyclerView();
             initViewPager(rootView);
@@ -96,6 +102,14 @@ public class DashboardFragment extends BaseFragment {
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()) {
+            case R.id.tvCustomerSupport:
+                openDialog();
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void initViewPager(View view) {
@@ -163,5 +177,35 @@ public class DashboardFragment extends BaseFragment {
         crouselDataArrayList.add(data3);
         crouselDataArrayList.add(data4);
         crouselDataArrayList.add(data5);
+    }
+
+    private void openDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.dialog_contact_us);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+
+        ImageView ivMail = dialog.findViewById(R.id.ivMail);
+        ImageView ivPhone = dialog.findViewById(R.id.ivPhone);
+
+
+        // if button is clicked, close the custom dialog
+        ivMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ivPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

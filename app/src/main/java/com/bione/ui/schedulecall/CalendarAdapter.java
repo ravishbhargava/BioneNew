@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -31,6 +30,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
         public View view;
         public AppCompatTextView tvDate;
         public AppCompatTextView tvDay;
+        public AppCompatTextView tvMonth;
         public View vLine;
 
         public MyViewHolder(View v) {
@@ -38,6 +38,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
             view = v;
             tvDate = v.findViewById(R.id.tvDate);
             tvDay = v.findViewById(R.id.tvDay);
+            tvMonth = v.findViewById(R.id.tvMonth);
             vLine = v.findViewById(R.id.vLine);
 
         }
@@ -57,6 +58,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+        holder.tvMonth.setText("" + mCalendar.get(position).getMonth());
         holder.tvDate.setText("" + mCalendar.get(position).getDate());
         holder.tvDay.setText("" + mCalendar.get(position).getDay());
 

@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/spacing_large"
-    android:paddingTop="@dimen/spacing_large"
-    android:paddingBottom="0dp">
+
+    >
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_small"
         android:text="Contact us via"
         android:textAppearance="@style/CustomTextAppearance"
         android:textSize="@dimen/font_large" />
