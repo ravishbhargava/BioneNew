@@ -22,20 +22,22 @@ public class MyCalendar {
         this.date = date;
         this.month = getMonthStr(month);
         this.year = year;
-        this.pos =i;
+        this.pos = i;
 
     }
-    private String getMonthStr(String month){
 
-        Calendar cal=Calendar.getInstance();
+    private String getMonthStr(String month) {
+
+        Calendar cal = Calendar.getInstance();
 
         SimpleDateFormat month_date = new SimpleDateFormat("MMM");
-        int monthnum=Integer.parseInt(month);
-        cal.set(Calendar.MONTH,monthnum);
+        int monthnum = Integer.parseInt(month);
+        cal.set(Calendar.MONTH, monthnum);
         String month_name = month_date.format(cal.getTime());
         return month_name;
 
     }
+
     public int getPos() {
         return pos;
     }
@@ -59,6 +61,7 @@ public class MyCalendar {
     public void setMonth(String month) {
         this.month = month;
     }
+
     public String getMonth() {
         return month;
     }
