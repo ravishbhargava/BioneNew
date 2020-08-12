@@ -1,6 +1,7 @@
 package com.bione.ui.onboarding;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -228,8 +229,7 @@ public class Login extends BaseActivity {
                 break;
 
             case R.id.tvLogin:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                openDialog();
                 break;
 
         }
@@ -318,6 +318,31 @@ public class Login extends BaseActivity {
                         // ...
                     }
                 });
+    }
+
+    private void openDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_otp);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+
+        // if button is clicked, close the custom dialog
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dialog.show();
     }
 
     public static String printKeyHash(Activity context) {

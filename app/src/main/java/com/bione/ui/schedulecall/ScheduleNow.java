@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +24,8 @@ import java.util.List;
 
 public class ScheduleNow extends BaseActivity {
 
-    //    private Context mContext;
+    private AppCompatImageView ivBack;
+
     private RecyclerView recyclerViewHorizontal;
     private CalendarAdapter calendarAdapter;
     private List<MyCalendar> calendarList = new ArrayList<>();
@@ -45,9 +47,11 @@ public class ScheduleNow extends BaseActivity {
         setContentView(R.layout.activity_book_call);
 
 
+        ivBack = findViewById(R.id.ivBack);
         tvSelectedSlot = findViewById(R.id.tvSelectedSlot);
         tvScheduleNow = findViewById(R.id.tvScheduleNow);
         tvScheduleNow.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
 
         initRecycler();
 
@@ -217,6 +221,10 @@ public class ScheduleNow extends BaseActivity {
             case R.id.tvScheduleNow:
                 Intent intent = new Intent(this, CounsellingConfirm.class);
                 startActivity(intent);
+                break;
+
+            case R.id.ivBack:
+                finish();
                 break;
 
             default:

@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
 
+    <include layout="@layout/include_header" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/tvScheduleNow"
-
+        android:layout_below="@+id/header"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -1,5 +1,6 @@
 package com.bione.ui.home;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,6 +31,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
     private View rootView;
     private String text = "Hello";
     private AppCompatTextView tvHeading;
+    private AppCompatTextView tvUpdate;
     private AppCompatImageView ivHead;
     private Context mContext;
 
@@ -39,9 +41,6 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
     private String imageLink;
     private CircleImageView cvProfilePic;
     private AppCompatImageView ivAddProfile;
-
-
-
 
 
     @Override
@@ -62,12 +61,14 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_profile, container, false);
             tvHeading = rootView.findViewById(R.id.tvHeading);
+            tvUpdate = rootView.findViewById(R.id.tvUpdate);
             ivHead = rootView.findViewById(R.id.ivHead);
 
 
             cvProfilePic = rootView.findViewById(R.id.cvProfilePic);
             ivAddProfile = rootView.findViewById(R.id.ivAddProfile);
             ivAddProfile.setOnClickListener(this);
+            tvUpdate.setOnClickListener(this);
 
         }
         return rootView;
@@ -83,8 +84,12 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         switch (view.getId()) {
             case R.id.ivAddProfile:
                 imagePicker();
-
                 break;
+
+            case R.id.tvUpdate:
+                openDialog();
+                break;
+
         }
     }
 
@@ -112,6 +117,8 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         });
     }
 
+
+
     @Override
     public void onRequestPermissionsResult(final int requestCode,
                                            @NonNull final String[] permissions, @NonNull final int[] grantResults) {
@@ -124,6 +131,10 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
                                  final Intent data) {
         if (imageChooser != null) {
             imageChooser.onActivityResult(requestCode, resultCode, data);
+//            File imgFile = new  File(pictureFilePath);
+//            if(imgFile.exists())            {
+//                ivAddProfile.setImageURI(Uri.fromFile(imgFile));
+//            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -136,10 +147,34 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
                 .load(photoFile)
                 .apply(RequestOptions.circleCropTransform())
                 .into(cvProfilePic);
+
     }
 
     @Override
     public void croppedImage(File mCroppedImage) {
 
+    }
+
+    private void openDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.dialog_password);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+//        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+
+        // if button is clicked, close the custom dialog
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
     }
 }

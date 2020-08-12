@@ -179,8 +179,8 @@ public class MainActivity extends BaseActivity {
 
             case 1:
                 // PROFILE fragment
-//                ProfileFragment profileFragment = new ProfileFragment();
-//                return profileFragment;
+                ProfileFragment profileFragment = new ProfileFragment();
+                return profileFragment;
 
             case 2:
                 // Session fragment
