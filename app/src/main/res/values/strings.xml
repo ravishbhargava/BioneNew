@@ -1,8 +1,10 @@
 <resources>
 
     <string name="app_name">Bione</string>
-    <string name="facebook_app_id">295386748548112</string>
-    <string name="fb_login_protocol_scheme">fb295386748548112</string>
+    <string name="facebook_app_id">295386748548112</string><!--//ravish-->
+    <string name="fb_login_protocol_scheme">fb295386748548112</string><!--// ravish -->
+    <!--    <string name="facebook_app_id">637942996791077</string>&lt;!&ndash; Office &ndash;&gt;-->
+    <!--    <string name="fb_login_protocol_scheme">fb637942996791077</string>&lt;!&ndash; office &ndash;&gt;-->
 
     <!-- Fcm service -->
     <string name="log_fcm_message_id">"FCM Message Id: "</string>

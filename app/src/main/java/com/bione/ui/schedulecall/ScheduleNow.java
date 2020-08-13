@@ -13,14 +13,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.db.CommonData;
+import com.bione.model.CommonResponse;
 import com.bione.model.Slots;
 import com.bione.model.availableSlots.ListItem;
+import com.bione.model.availableSlots.Slot;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.schedulecall.adapter.SlotsAdapter;
+import com.bione.utils.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import static com.bione.utils.AppConstant.PARAM_CUSTOMER_ID;
+import static com.bione.utils.AppConstant.PARAM_CUSTOMER_NAME;
+import static com.bione.utils.AppConstant.PARAM_DATE;
+import static com.bione.utils.AppConstant.PARAM_GENETIC_TYPE;
+import static com.bione.utils.AppConstant.PARAM_TIME_SLOT;
+import static com.bione.utils.AppConstant.SUCCESS;
 
 public class ScheduleNow extends BaseActivity {
 
@@ -41,11 +56,15 @@ public class ScheduleNow extends BaseActivity {
     private ArrayList<ListItem> availableSlots;
     private ArrayList<Slots> arrayTimeSlots = new ArrayList<>();
 
+    private String geneticType = "Genetic";
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_call);
 
+        Log.d("customrer id", "------" + CommonData.getUserData().getEntityId());
 
         ivBack = findViewById(R.id.ivBack);
         tvSelectedSlot = findViewById(R.id.tvSelectedSlot);
@@ -53,6 +72,7 @@ public class ScheduleNow extends BaseActivity {
         tvScheduleNow.setOnClickListener(this);
         ivBack.setOnClickListener(this);
 
+        availableSlots = new ArrayList<>();
         initRecycler();
 
 
@@ -80,6 +100,7 @@ public class ScheduleNow extends BaseActivity {
         selectedText = calendarList.get(0).getDate();
         setScroll(mLayoutManager);
 
+        availableSlotsAPI();
 
         // row click listener
         recyclerViewHorizontal.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewHorizontal, new RecyclerTouchListener.ClickListener() {
@@ -219,8 +240,8 @@ public class ScheduleNow extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.tvScheduleNow:
-                Intent intent = new Intent(this, CounsellingConfirm.class);
-                startActivity(intent);
+                scheduleCallAPI();
+
                 break;
 
             case R.id.ivBack:
@@ -244,7 +265,7 @@ public class ScheduleNow extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         arrayTimeSlots = new ArrayList<>();
-        availableSlots = new ArrayList<>();
+//        availableSlots = new ArrayList<>();
 
         Slots slots1 = new Slots("09:00AM-09:30AM", false);
         Slots slots2 = new Slots("09:30AM-10:00AM", false);
@@ -301,6 +322,86 @@ public class ScheduleNow extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
+    }
+
+
+    private void availableSlotsAPI() {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_DATE, "2020-05-09")
+//                .add(PARAM_DATE, "09-05-2020")
+//                .add(PARAM_DATE, tvCalendarDate.getText().toString())
+                .build();
+
+        RestClient.getApiInterface().availabilitySlots(commonParams.getMap()).enqueue(new ResponseResolver<List<Slot>>() {
+            @Override
+            public void onSuccess(List<Slot> slots) {
+
+                if (slots.get(0).getCode() == SUCCESS) {
+                    try {
+
+                        Log.d(" time slots arrayTimeSlots", " size :: " + slots.get(0).getListItems().size());
+                        // specify an adapter (see also next example)
+                        availableSlots = (ArrayList<ListItem>) slots.get(0).getListItems();
+                        initRecycler();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    private void scheduleCallAPI() {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_CUSTOMER_NAME, CommonData.getUserData().getFirstname())
+                .add(PARAM_CUSTOMER_ID, CommonData.getUserData().getEntityId())
+                .add(PARAM_GENETIC_TYPE, geneticType)
+                .add(PARAM_DATE, "09-05-2020")
+//                .add(PARAM_DATE, tvCalendarDate.getText().toString())
+                .add(PARAM_TIME_SLOT, arrayTimeSlots.get(mAdapter.getCheckedPosition()).name)
+
+                .build();
+
+        RestClient.getApiInterface().scheduleCall(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponses) {
+
+                if (commonResponses.get(0).getStatusCode().equals("200")) {
+                    finish();
+                    Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
+                    startActivity(intent);
+                } else {
+                    showErrorMessage(commonResponses.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
     }
 
     public interface OnItemClickListener {

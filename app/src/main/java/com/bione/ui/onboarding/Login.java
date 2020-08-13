@@ -2,6 +2,7 @@ package com.bione.ui.onboarding;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +19,18 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.bione.R;
+import com.bione.db.CommonData;
+import com.bione.model.CommonResponse;
+import com.bione.model.customerdata.Customer;
+import com.bione.model.customerdata.SignInDatum;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.MainActivity;
 import com.bione.utils.Log;
+import com.bione.utils.ValidationUtil;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -40,6 +51,11 @@ import org.json.JSONException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.List;
+
+import static com.bione.utils.AppConstant.PARAM_MOBILE;
+import static com.bione.utils.AppConstant.PARAM_OTP;
+import static com.bione.utils.AppConstant.SUCCESS;
 
 public class Login extends BaseActivity {
 
@@ -62,6 +78,8 @@ public class Login extends BaseActivity {
     private AppCompatEditText etPassword;
     private AppCompatEditText etPhone;
 
+    private String phoneNumber = "";
+    private String otpCode = "";
 //    private LoginButton loginButton;
 //    private static final String EMAIL = "email_signin";
 
@@ -229,10 +247,56 @@ public class Login extends BaseActivity {
                 break;
 
             case R.id.tvLogin:
-                openDialog();
+                phoneNumber = etPhone.getText().toString();
+                if (ValidationUtil.checkPhone(phoneNumber)) {
+                    callSendOtp(phoneNumber, this, false);
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
         }
+    }
+
+
+    public void callSendOtp(final String phoneNumber, final Context context, final boolean resend) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_MOBILE, "" + phoneNumber).build();
+                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+
+        RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    if (resend) {
+                        showErrorMessage(commonResponse.get(0).getMessage());
+                    } else {
+//                        Intent intent = new Intent(context, OtpActivity.class);
+//                        intent.putExtra("phoneNumber", phoneNumber);
+//                        startActivity(intent);
+                        openDialog();
+                    }
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+
     }
 
     private void setView(LinearLayoutCompat llVisible, LinearLayoutCompat llGone) {
@@ -295,7 +359,7 @@ public class Login extends BaseActivity {
         revokeAccess();
 //        AccessToken accessToken = AccessToken.getCurrentAccessToken();
 //        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        LoginManager.getInstance().logOut();
+//        LoginManager.getInstance().logOut();
     }
 
     //If the user deletes their account, you must delete the information that your app obtained from the Google APIs.
@@ -335,14 +399,69 @@ public class Login extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+//                Intent intent = new Intent(Login.this, MainActivity.class);
+//                // set the new task and clear flags
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+
+                otpCode = etOtp.getText().toString();
+                if (otpCode.length() < 4) {
+                    Toast.makeText(getApplicationContext(), "Enter OTP Code", Toast.LENGTH_SHORT).show();
+                } else {
+                    callVerifyOtp();
+                }
                 dialog.dismiss();
 
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 
         dialog.show();
+    }
+
+
+    public void callVerifyOtp() {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_MOBILE, "" + phoneNumber)
+                .add(PARAM_MOBILE, "91" + phoneNumber)
+                .add(PARAM_OTP, otpCode)
+                .build();
+        RestClient.getApiInterface().verifyOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<SignInDatum>>() {
+            @Override
+            public void onSuccess(List<SignInDatum> commonResponse) {
+
+                if (commonResponse.get(0).getCode() == SUCCESS) {
+                    try {
+
+                        CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
+                        Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
+
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        // set the new task and clear flags
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+
     }
 
     public static String printKeyHash(Activity context) {
