@@ -2,7 +2,7 @@ package com.bione.ui.schedulecall;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class myCalendarData  {
+public class MyCalendarData {
 
     private int startday, currentmonth, currentyear,dayofweek;
     private String stringDayofWeek;
@@ -10,7 +10,7 @@ public class myCalendarData  {
     private Calendar calendar ;
     // constructor
 
-    public  myCalendarData (int start){
+    public MyCalendarData(int start){
 
         this.calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, start);

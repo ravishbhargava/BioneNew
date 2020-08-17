@@ -64,6 +64,7 @@
     <string name="text_home_genomic_counselling">Genomic\nCounselling</string>
     <string name="text_home_my_smart_diet">MySmart\nDiet</string>
     <string name="text_home_my_cool_fitness">MyCool\nFitness</string>
+    <string name="error_name">Please enter name</string>
     <string name="error_firstname">Please enter first name</string>
     <string name="error_lastname">Please enter last name</string>
     <string name="error_message">Please enter some message</string>

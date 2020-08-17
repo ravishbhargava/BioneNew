@@ -12,6 +12,7 @@ public class MyCalendar {
 
     private String day;
     private String date, month, year;
+    private int monthNumber = 0;
     private int pos;
 
     public MyCalendar() {
@@ -23,6 +24,7 @@ public class MyCalendar {
         this.month = getMonthStr(month);
         this.year = year;
         this.pos = i;
+        this.monthNumber = Integer.parseInt(month) + 1;
 
     }
 
@@ -76,5 +78,11 @@ public class MyCalendar {
         this.year = year;
     }
 
+    public int getMonthNumber() {
+        return monthNumber;
+    }
 
+    public void setMonthNumber(int monthNumber) {
+        this.monthNumber = monthNumber;
+    }
 }

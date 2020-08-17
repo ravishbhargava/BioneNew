@@ -23,6 +23,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.schedulecall.adapter.CalendarAdapter;
 import com.bione.ui.schedulecall.adapter.SlotsAdapter;
 import com.bione.utils.Log;
 
@@ -45,7 +46,6 @@ public class ScheduleNow extends BaseActivity {
     private CalendarAdapter calendarAdapter;
     private List<MyCalendar> calendarList = new ArrayList<>();
 
-    private String selectedText = "";
 
     private AppCompatTextView tvSelectedSlot;
     private AppCompatTextView tvScheduleNow;
@@ -57,6 +57,13 @@ public class ScheduleNow extends BaseActivity {
     private ArrayList<Slots> arrayTimeSlots = new ArrayList<>();
 
     private String geneticType = "Genetic";
+    private String selectedText = "";
+    private String selectedDateToPass = "";
+
+    private String dayToPass;
+    private String dateToPass;
+    private String monthToPass;
+    private String yearToPass;
 
 
     @Override
@@ -99,8 +106,10 @@ public class ScheduleNow extends BaseActivity {
 
         selectedText = calendarList.get(0).getDate();
         setScroll(mLayoutManager);
-
+        Calendar myCalendar = Calendar.getInstance();
+        selectedDateToPass = myCalendar.get(Calendar.YEAR) + "-" + (myCalendar.get(Calendar.MONTH) + 1) + "-" + myCalendar.get(Calendar.DAY_OF_MONTH);
         availableSlotsAPI();
+
 
         // row click listener
         recyclerViewHorizontal.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewHorizontal, new RecyclerTouchListener.ClickListener() {
@@ -109,18 +118,17 @@ public class ScheduleNow extends BaseActivity {
                 MyCalendar calendar = calendarList.get(position);
                 TextView childTextView = (TextView) (view.findViewById(R.id.tvDate));
 
-//                Animation startRotateAnimation = AnimationUtils.makeInChildBottomAnimation(getApplicationContext());
-//                childTextView.startAnimation(startRotateAnimation);
-//                childTextView.setTextColor(Color.BLUE);
+                Toast.makeText(getApplicationContext(), calendar.getMonthNumber() + " is selected!", Toast.LENGTH_SHORT).show();
+                selectedDateToPass = calendar.getYear() + "-" + calendar.getMonthNumber() + "-" + calendar.getDate();
 
-//                Toast.makeText(ScheduleNow.this, ""+calendar.getDate(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), calendar.getDay() + " is selected!", Toast.LENGTH_SHORT).show();
+                dayToPass = calendar.getDay();
+                dateToPass = calendar.getDate();
+                yearToPass = calendar.getYear();
+                monthToPass = calendar.getMonth();
 
                 selectedText = calendar.getDate();
 
                 int totalItemCount = mLayoutManager.getChildCount();
-
-
                 for (int i = 0; i < totalItemCount; i++) {
                     View childView = recyclerViewHorizontal.getChildAt(i);
                     TextView childTextView2 = (childView.findViewById(R.id.tvDate));
@@ -135,6 +143,7 @@ public class ScheduleNow extends BaseActivity {
                         vLine.setVisibility(View.GONE);
                     }
                 }
+                availableSlotsAPI();
 //                setScroll(mLayoutManager);
             }
 
@@ -142,11 +151,16 @@ public class ScheduleNow extends BaseActivity {
             public void onLongClick(View view, int position) {
                 MyCalendar calendar = calendarList.get(position);
 
-                TextView childTextView = (view.findViewById(R.id.tvDate));
-
+//                TextView childTextView = (view.findViewById(R.id.tvDate));
 //                childTextView.setTextColor(Color.BLUE);
 
-                Toast.makeText(getApplicationContext(), calendar.getDate() + "/" + calendar.getDay() + "/" + calendar.getMonth() + "   selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), calendar.getDate() + "/" + calendar.getDay() + "/" + calendar.getMonthNumber() + "   selected!", Toast.LENGTH_SHORT).show();
+
+                selectedDateToPass = calendar.getYear() + "-" + calendar.getMonthNumber() + "-" + calendar.getDate();
+                dayToPass = calendar.getDay();
+                dateToPass = calendar.getDate();
+                yearToPass = calendar.getYear();
+                monthToPass = calendar.getMonth();
 
                 selectedText = calendar.getDate();
 
@@ -167,7 +181,7 @@ public class ScheduleNow extends BaseActivity {
                         vLine.setVisibility(View.GONE);
                     }
                 }
-
+                availableSlotsAPI();
 //                setScroll(mLayoutManager);
             }
         }));
@@ -212,7 +226,7 @@ public class ScheduleNow extends BaseActivity {
         // initialize mycalendarData and get Instance
         // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
 
-        myCalendarData m_calendar = new myCalendarData(0);
+        MyCalendarData m_calendar = new MyCalendarData(0);
 
         for (int i = 0; i < 30; i++) {
 
@@ -240,8 +254,18 @@ public class ScheduleNow extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.tvScheduleNow:
-                scheduleCallAPI();
+//                scheduleCallAPI();
+                Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
 
+                intent.putExtra("dayToPass", dayToPass);
+                intent.putExtra("dateToPass", dateToPass);
+                intent.putExtra("monthToPass", monthToPass);
+                intent.putExtra("yearToPass", yearToPass);
+                intent.putExtra("geneticType", geneticType);
+                intent.putExtra("selectedDateToPass", selectedDateToPass);
+                intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
+                intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
+                startActivity(intent);
                 break;
 
             case R.id.ivBack:
@@ -306,13 +330,25 @@ public class ScheduleNow extends BaseActivity {
         arrayTimeSlots.add(slots18);
 
 
-        for (int i = 0; i < availableSlots.size(); i++) {
-            for (int j = 0; j < arrayTimeSlots.size(); j++) {
-                if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
-                    arrayTimeSlots.get(j).setSelected(true);
+        mAdapter = new SlotsAdapter(arrayTimeSlots, null);
+        recyclerView.setAdapter(mAdapter);
+
+        for (int i = 0; i < arrayTimeSlots.size(); i++) {
+            for (int j = 0; j < availableSlots.size(); j++) {
+                if (arrayTimeSlots.get(i).name.equals(availableSlots.get(j).getTimeSlot())) {
+                    arrayTimeSlots.get(i).setSelected(true);
                 }
             }
         }
+
+
+//        for (int i = 0; i < availableSlots.size(); i++) {
+//            for (int j = 0; j < arrayTimeSlots.size(); j++) {
+//                if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
+//                    arrayTimeSlots.get(j).setSelected(true);
+//                }
+//            }
+//        }
 
         // specify an adapter (see also next example)
         mAdapter = new SlotsAdapter(arrayTimeSlots, new OnItemClickListener() {
@@ -326,9 +362,10 @@ public class ScheduleNow extends BaseActivity {
 
 
     private void availableSlotsAPI() {
+        Log.d("selectedDateToPass", "------" + selectedDateToPass);
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_DATE, "2020-05-09")
+                .add(PARAM_DATE, selectedDateToPass)
 //                .add(PARAM_DATE, "09-05-2020")
 //                .add(PARAM_DATE, tvCalendarDate.getText().toString())
                 .build();
@@ -354,6 +391,10 @@ public class ScheduleNow extends BaseActivity {
             @Override
             public void onError(ApiError error) {
                 Log.d("onError", "" + error);
+                if (error.getStatusCode() == 404) {
+                    availableSlots = new ArrayList<>();
+                    initRecycler();
+                }
                 showErrorMessage(error.getMessage());
             }
 
@@ -371,7 +412,7 @@ public class ScheduleNow extends BaseActivity {
                 .add(PARAM_CUSTOMER_NAME, CommonData.getUserData().getFirstname())
                 .add(PARAM_CUSTOMER_ID, CommonData.getUserData().getEntityId())
                 .add(PARAM_GENETIC_TYPE, geneticType)
-                .add(PARAM_DATE, "09-05-2020")
+                .add(PARAM_DATE, selectedDateToPass)
 //                .add(PARAM_DATE, tvCalendarDate.getText().toString())
                 .add(PARAM_TIME_SLOT, arrayTimeSlots.get(mAdapter.getCheckedPosition()).name)
 
@@ -384,6 +425,8 @@ public class ScheduleNow extends BaseActivity {
                 if (commonResponses.get(0).getStatusCode().equals("200")) {
                     finish();
                     Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
+                    String strName = null;
+                    intent.putExtra("STRING_I_NEED", strName);
                     startActivity(intent);
                 } else {
                     showErrorMessage(commonResponses.get(0).getMessage());

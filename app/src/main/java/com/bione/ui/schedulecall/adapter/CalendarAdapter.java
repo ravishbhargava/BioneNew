@@ -1,4 +1,4 @@
-package com.bione.ui.schedulecall;
+package com.bione.ui.schedulecall.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.ui.schedulecall.MyCalendar;
 
 import java.util.List;
 

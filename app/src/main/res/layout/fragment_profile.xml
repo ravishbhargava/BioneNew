@@ -69,16 +69,28 @@
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_large" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/tvName"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_large" />
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vName"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_edit"></View>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:text="John Smith"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_large" />
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -124,16 +136,28 @@
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_large" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/tvEmail"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:text="John@gmail.com"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_xlarge" />
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vEmail"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_edit"></View>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:text="John@gmail.com"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_xlarge" />
+            </LinearLayout>
         </RelativeLayout>
 
 
@@ -178,17 +202,30 @@
 
                 android:textSize="@dimen/font_large" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvPassword"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:inputType="textPassword"
-                android:text="John Smith"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_xlarge" />
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/vPassword"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_edit"></View>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/transparent"
+                    android:enabled="false"
+                    android:inputType="textPassword"
+                    android:text="John Smith"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_xlarge" />
+            </LinearLayout>
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 

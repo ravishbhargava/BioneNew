@@ -49,6 +49,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private AppCompatTextView tvBookCounselling;
     private ArrayList<CrouselData> crouselDataArrayList;
 
+    private String emailId = "support@bione.in";
+    private String mobileNumber = "+91 6366 754 050";
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -245,7 +248,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             Log.d("--------", "You already have permission");
 
             try {
-                String number = ("tel:" + "9876543210");
+                String number = ("tel:" + mobileNumber);
                 Intent mIntent = new Intent(Intent.ACTION_CALL);
                 mIntent.setData(Uri.parse(number));
                 startActivity(mIntent);
@@ -267,7 +270,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
                     // permission was granted, yay! Do the phone call
                     Log.d("--------", "permission was granted, yay! Do the phone call");
-                    String number = ("tel:" + "9876543210");
+                    String number = ("tel:" + mobileNumber);
                     Intent mIntent = new Intent(Intent.ACTION_CALL);
                     mIntent.setData(Uri.parse(number));
                     startActivity(mIntent);
@@ -312,9 +315,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private void sendMail() {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
-        i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-        i.putExtra(Intent.EXTRA_TEXT, "body of email");
+        i.putExtra(Intent.EXTRA_EMAIL, new String[]{emailId});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Query: ");
+        i.putExtra(Intent.EXTRA_TEXT, "");
         try {
             startActivity(Intent.createChooser(i, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {

@@ -1,8 +1,9 @@
 package com.bione.model.updateprofile;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class UpdateProfile {
 
@@ -21,7 +22,7 @@ private String updatedAt;
 @SerializedName("created_in")
 @Expose
 private String createdIn;
-@SerializedName("email_signin")
+@SerializedName("email")
 @Expose
 private String email;
 @SerializedName("firstname")

@@ -11,7 +11,7 @@ public class Customer {
     @SerializedName("website_id")
     @Expose
     private String websiteId;
-    @SerializedName("email_signin")
+    @SerializedName("email")
     @Expose
     private String email;
     @SerializedName("group_id")
