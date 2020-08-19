@@ -1,11 +1,14 @@
 package com.bione.ui.home.dashboard.banner;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +24,8 @@ public class BannerFragment extends BaseFragment {
     private String text = "Hello";
     private AppCompatTextView tvHeading;
     private AppCompatImageView ivHead;
+
+    private RelativeLayout root;
 
     public BannerFragment(String text) {
         this.text = text;
@@ -43,6 +48,7 @@ public class BannerFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_banner, container, false);
+            root = rootView.findViewById(R.id.root);
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
 
@@ -61,6 +67,13 @@ public class BannerFragment extends BaseFragment {
                 ivHead.setImageResource(R.mipmap.banner_4);
             }
 
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
+                    startActivity(browserIntent);
+                }
+            });
 
         }
         return rootView;

@@ -2,12 +2,10 @@ package com.bione.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +18,7 @@ import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.zoho.salesiqembed.ZohoSalesIQ;
 
 
 public class MainActivity extends BaseActivity {
@@ -189,6 +188,7 @@ public class MainActivity extends BaseActivity {
 
             case 3:
                 // CHAT fragment
+                ZohoSalesIQ.Chat.show();
                 ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;
 

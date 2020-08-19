@@ -109,6 +109,18 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
         }
     }
 
+//    public void setList(final ArrayList<Slots> slots) {
+//        this.slots = slots;
+//        notifyDataSetChanged();
+//
+//    }
+    public void refreshEvents(ArrayList<Slots> slots) {
+        checkedPosition = -1;
+        this.slots.clear();
+        this.slots.addAll(slots);
+        notifyDataSetChanged();
+    }
+
     public int getCheckedPosition() {
         return checkedPosition;
     }

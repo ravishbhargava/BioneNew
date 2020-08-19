@@ -128,6 +128,6 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
 // zoho integration
-//    implementation 'com.zoho.salesiq:mobilisten:2.2'
+    implementation 'com.zoho.salesiq:mobilisten:2.2'
 
 }

@@ -95,7 +95,7 @@ public class ScheduleNow extends BaseActivity {
 
         // specify an adapter (see also next example)
 
-        Calendar mCalendar = Calendar.getInstance();
+//        Calendar mCalendar = Calendar.getInstance();
         //  mCalendar.get(Calendar.MONTH);
         //  mCalendar.get(Calendar.D)
 
@@ -288,6 +288,31 @@ public class ScheduleNow extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        createlist();
+//        mAdapter = new SlotsAdapter(arrayTimeSlots, null);
+//        recyclerView.setAdapter(mAdapter);
+
+
+//        for (int i = 0; i < arrayTimeSlots.size(); i++) {
+//            for (int j = 0; j < availableSlots.size(); j++) {
+//                if (arrayTimeSlots.get(i).name.equals(availableSlots.get(j).getTimeSlot())) {
+//                    arrayTimeSlots.get(i).setSelected(true);
+//                }
+//            }
+//        }
+
+
+        // specify an adapter (see also next example)
+        mAdapter = new SlotsAdapter(arrayTimeSlots, new OnItemClickListener() {
+            @Override
+            public void onItemClick(String text) {
+                tvSelectedSlot.setText(text);
+            }
+        });
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    private void createlist() {
         arrayTimeSlots = new ArrayList<>();
 //        availableSlots = new ArrayList<>();
 
@@ -328,36 +353,6 @@ public class ScheduleNow extends BaseActivity {
         arrayTimeSlots.add(slots16);
         arrayTimeSlots.add(slots17);
         arrayTimeSlots.add(slots18);
-
-
-        mAdapter = new SlotsAdapter(arrayTimeSlots, null);
-        recyclerView.setAdapter(mAdapter);
-
-        for (int i = 0; i < arrayTimeSlots.size(); i++) {
-            for (int j = 0; j < availableSlots.size(); j++) {
-                if (arrayTimeSlots.get(i).name.equals(availableSlots.get(j).getTimeSlot())) {
-                    arrayTimeSlots.get(i).setSelected(true);
-                }
-            }
-        }
-
-
-//        for (int i = 0; i < availableSlots.size(); i++) {
-//            for (int j = 0; j < arrayTimeSlots.size(); j++) {
-//                if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
-//                    arrayTimeSlots.get(j).setSelected(true);
-//                }
-//            }
-//        }
-
-        // specify an adapter (see also next example)
-        mAdapter = new SlotsAdapter(arrayTimeSlots, new OnItemClickListener() {
-            @Override
-            public void onItemClick(String text) {
-                tvSelectedSlot.setText(text);
-            }
-        });
-        recyclerView.setAdapter(mAdapter);
     }
 
 
@@ -376,25 +371,37 @@ public class ScheduleNow extends BaseActivity {
 
                 if (slots.get(0).getCode() == SUCCESS) {
                     try {
-
+                        availableSlots = new ArrayList<>();
                         Log.d(" time slots arrayTimeSlots", " size :: " + slots.get(0).getListItems().size());
                         // specify an adapter (see also next example)
                         availableSlots = (ArrayList<ListItem>) slots.get(0).getListItems();
-                        initRecycler();
+//                        initRecycler();
+                        createlist();
+                        for (int i = 0; i < availableSlots.size(); i++) {
+                            for (int j = 0; j < arrayTimeSlots.size(); j++) {
+                                if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
+                                    arrayTimeSlots.get(j).setSelected(true);
+                                }
+                            }
+                        }
+                        mAdapter.refreshEvents(arrayTimeSlots);
+//                        mAdapter.setList(arrayTimeSlots);
+//                        mAdapter = new SlotsAdapter(arrayTimeSlots, null);
+//                        recyclerView.setAdapter(mAdapter);
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                } else {
+                    availableSlots = new ArrayList<>();
+                    createlist();
+                    mAdapter.refreshEvents(arrayTimeSlots);
                 }
             }
 
             @Override
             public void onError(ApiError error) {
                 Log.d("onError", "" + error);
-                if (error.getStatusCode() == 404) {
-                    availableSlots = new ArrayList<>();
-                    initRecycler();
-                }
                 showErrorMessage(error.getMessage());
             }
 
