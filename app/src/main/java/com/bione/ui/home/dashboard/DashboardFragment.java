@@ -40,7 +40,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 101;
-    //    private static int MY_PERMISSIONS_REQUEST_CALL_PHONE = 101;
+
     private View rootView;
     private BannerPagerAdapter bannerPagerAdapter;
     private CustomViewPager viewPager;

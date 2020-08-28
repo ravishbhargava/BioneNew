@@ -55,16 +55,20 @@ public class BannerFragment extends BaseFragment {
 
             if (text.equals("1")) {
 //                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageResource(R.mipmap.banner_1);
+//                ivHead.setImageResource(R.mipmap.banner_1);
+                setView(R.mipmap.banner_1);
             } else if (text.equals("2")) {
 //                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageResource(R.mipmap.banner_2);
+//                ivHead.setImageResource(R.mipmap.banner_2);
+                setView(R.mipmap.banner_2);
             } else if (text.equals("3")) {
 //                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageResource(R.mipmap.banner_3);
+//                ivHead.setImageResource(R.mipmap.banner_3);
+                setView(R.mipmap.banner_3);
             } else if (text.equals("4")) {
 //                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageResource(R.mipmap.banner_4);
+//                ivHead.setImageResource(R.mipmap.banner_4);
+                setView(R.mipmap.banner_4);
             }
 
             root.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +83,11 @@ public class BannerFragment extends BaseFragment {
         return rootView;
     }
 
-    private void setView() {
+    private void setView(final int image) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ivHead.setImageDrawable(getResources().getDrawable(R.mipmap.banner_1, getActivity().getTheme()));
+            ivHead.setBackgroundDrawable(getResources().getDrawable(image, getActivity().getTheme()));
         } else {
-            ivHead.setImageDrawable(getResources().getDrawable(R.mipmap.banner_1));
+            ivHead.setBackgroundDrawable(getResources().getDrawable(image));
         }
     }
 

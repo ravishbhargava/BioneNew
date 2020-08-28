@@ -36,6 +36,8 @@ public final class AppConstant {
     public static final String PARAM_GENETIC_TYPE = "genetic_type";
     public static final String PARAM_TIME_SLOT = "time_slot";
 
+    public static final String PARAM_TPKEN_ID = "token_id";
+
 
     //status code
     public static final int SESSION_EXPIRED = 401;

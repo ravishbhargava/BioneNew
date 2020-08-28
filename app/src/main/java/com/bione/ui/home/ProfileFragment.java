@@ -159,13 +159,13 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         tvEmail.setText(customer.getEmail());
         tvContactNumber.setText(customer.getMobilenumber());
 
-        if (customer.getGender().equals("0")) {
-            tvGender.setText("Male");
-        } else {
-            tvGender.setText("Female");
-
+        if (customer.getGender() != null) {
+            if (customer.getGender().equals("0")) {
+                tvGender.setText("Male");
+            } else {
+                tvGender.setText("Female");
+            }
         }
-
 
     }
 

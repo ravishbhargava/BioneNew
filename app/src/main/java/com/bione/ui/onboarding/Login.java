@@ -55,6 +55,8 @@ import java.util.List;
 
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
+import static com.bione.utils.AppConstant.PARAM_PASSWORD;
+import static com.bione.utils.AppConstant.PARAM_USERNAME;
 import static com.bione.utils.AppConstant.SUCCESS;
 
 public class Login extends BaseActivity {
@@ -80,6 +82,8 @@ public class Login extends BaseActivity {
 
     private String phoneNumber = "";
     private String otpCode = "";
+
+    private boolean isThroughPhoneNumber = true;
 //    private LoginButton loginButton;
 //    private static final String EMAIL = "email_signin";
 
@@ -226,32 +230,48 @@ public class Login extends BaseActivity {
         switch (view.getId()) {
             // Need to change google account details
             case R.id.llGoogleSignIn:
+                if (isThroughPhoneNumber) {
+                    isThroughPhoneNumber = false;
+                }
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
                 signIn();
                 break;
             // Need to change Application ID at LIVE
             case R.id.llFBLogin:
+                if (isThroughPhoneNumber) {
+                    isThroughPhoneNumber = false;
+                }
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
                 LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email_signin"));
                 break;
             case R.id.llEmail:
+                if (isThroughPhoneNumber) {
+                    isThroughPhoneNumber = false;
+                }
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
                 break;
 
             case R.id.llPhone:
+                if (!isThroughPhoneNumber) {
+                    isThroughPhoneNumber = true;
+                }
                 setView(llPhoneView, llMailView);
                 setView(llEmail, llPhone);
                 break;
 
             case R.id.tvLogin:
-                phoneNumber = etPhone.getText().toString();
-                if (ValidationUtil.checkPhone(phoneNumber)) {
-                    callSendOtp(phoneNumber, this, false);
+                if (isThroughPhoneNumber) {
+                    phoneNumber = etPhone.getText().toString();
+                    if (ValidationUtil.checkPhone(phoneNumber)) {
+                        callSendOtp(phoneNumber, this, false);
+                    } else {
+                        Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
+                    getCustomerToken();
                 }
 
                 break;
@@ -404,6 +424,7 @@ public class Login extends BaseActivity {
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                startActivity(intent);
 
+
                 otpCode = etOtp.getText().toString();
                 if (otpCode.length() < 4) {
                     Toast.makeText(getApplicationContext(), "Enter OTP Code", Toast.LENGTH_SHORT).show();
@@ -411,6 +432,7 @@ public class Login extends BaseActivity {
                     callVerifyOtp();
                 }
                 dialog.dismiss();
+
 
             }
         });
@@ -463,6 +485,94 @@ public class Login extends BaseActivity {
         });
 
     }
+
+    private void getCustomerToken() {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_USERNAME, "murugesan@bione.in")
+                .add(PARAM_PASSWORD, "admin@123")
+                .build();
+
+        Log.d("code ", "map :: " + commonParams.getMap());
+
+        RestClient.getApiInterface().getCustomerToken(commonParams.getMap()).enqueue(new ResponseResolver<String>() {
+
+            @Override
+            public void onSuccess(String s) {
+
+                CommonData.updateCustomerToken(s);
+                Log.d("customer ", "token :: " + CommonData.getCustomerToken());
+
+//                Intent intent = new Intent(Splash.this, Walk.class);
+//                startActivity(intent);
+                getCustomerDetails();
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+
+        });
+    }
+
+    public void getCustomerDetails() {
+        showLoading();
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("Authorization", "Bearer " + CommonData.getCustomerToken())
+//                .add(PARAM_TPKEN_ID, "Bearer " + CommonData.getCustomerToken())
+                .add("Content-Type", "application/json")
+                .build();
+
+//        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_TPKEN_ID, CommonData.getCustomerToken())
+//                .build();
+        RestClient.getApiInterface().getCustomerDetails(commonParams.getMap()).enqueue(new ResponseResolver<Customer>() {
+            @Override
+            public void onSuccess(Customer commonResponse) {
+
+//                if (commonResponse.get(0).getCode() == SUCCESS) {
+                try {
+
+                    CommonData.saveUserData(commonResponse);
+                    Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
+
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    // set the new task and clear flags
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+//                } else {
+//                    showErrorMessage(commonResponse.get(0).getMessage());
+//                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+
+    }
+
 
     public static String printKeyHash(Activity context) {
         PackageInfo packageInfo;

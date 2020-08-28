@@ -11,6 +11,7 @@ public final class CommonData {
 
     private static final String PAPER_DEVICE_TOKEN = "paper_device_token";
     private static final String PAPER_ADMIN_TOKEN = "paper_admin_token";
+    private static final String PAPER_CUSTOMER_TOKEN = "paper_customer_token";
     private static final String PAPER_LOGIN_DATA = "paper_login_data";
     private static final String PAPER_USER_DATA = "paper_user_data";
 
@@ -66,19 +67,37 @@ public final class CommonData {
     /**
      * Update admin token.
      *
-     * @param token the fcm token
+     * @param token the admin token
      */
     public static void updateAdminToken(final String token) {
         Paper.book().write(PAPER_ADMIN_TOKEN, token);
     }
 
     /**
-     * Gets fcm token.
+     * Gets admin token.
      *
      * @return the admin token
      */
     public static String getAdminToken() {
         return Paper.book().read(PAPER_ADMIN_TOKEN);
+    }
+
+    /**
+     * Update customer token.
+     *
+     * @param token the customer token
+     */
+    public static void updateCustomerToken(final String token) {
+        Paper.book().write(PAPER_CUSTOMER_TOKEN, token);
+    }
+
+    /**
+     * Gets customer token.
+     *
+     * @return the customer token
+     */
+    public static String getCustomerToken() {
+        return Paper.book().read(PAPER_CUSTOMER_TOKEN);
     }
 
 

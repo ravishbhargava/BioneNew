@@ -53,7 +53,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 
         // create a new view
         View v = (View) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_gallery, parent, false);
+                .inflate(R.layout.item_gallery2, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;

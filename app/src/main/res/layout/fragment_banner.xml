@@ -9,18 +9,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:src="@mipmap/banner_1" />
+        android:background="@mipmap/banner_1" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_rectangle_80"
-        android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvHeading"

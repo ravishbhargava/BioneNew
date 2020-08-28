@@ -4,6 +4,7 @@ package com.bione.network;
 import com.bione.model.CommonResponse;
 import com.bione.model.availableSlots.Slot;
 //import com.bione.model.counsellors.Counselling;
+import com.bione.model.customerdata.Customer;
 import com.bione.model.customerdata.SignInDatum;
 //import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.updateprofile.UpdateProfile;
@@ -66,6 +67,10 @@ public interface ApiInterface {
     @POST("rest/V1/integration/admin/token")
     Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);
 
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("rest/V1/integration/customer/token")
+    Call<String> getCustomerToken(@QueryMap(encoded = true) Map<String, String> map);
+
 
     //    @Headers({"Content-Type: application/json; charset=utf-8"})
     @POST("/rest/V1/bioneapi-customer/update")
@@ -85,6 +90,10 @@ public interface ApiInterface {
     //    @Headers({"Content-Type: application/json; charset=utf-8"})
     @GET("/rest/V1/bioneapi-customersendotp/verifyotp")
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
+
+    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @GET("/rest/V1/customers/me")
+    Call<Customer> getCustomerDetails(@HeaderMap HashMap<String, String> headerMap);
 
 
 //    //    @Headers({"Content-Type: application/json; charset=utf-8"})

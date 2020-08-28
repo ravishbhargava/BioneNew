@@ -1,45 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_normal"
-    android:weightSum="10">
+    android:padding="@dimen/spacing_normal">
 
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="@dimen/spacing_small"
-        android:layout_weight="1.2"
+        android:layout_margin="@dimen/spacing_small"
         android:src="@mipmap/bione_logo" />
 
     <com.bione.utils.CustomViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/spacing_small"
-        android:layout_weight="5.5" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/ivLogo"
+        android:layout_marginHorizontal="@dimen/spacing_normal" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:layout_weight="3.3"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_spacing_50"
+            android:layout_height="@dimen/spacing_xlarge"
             android:orientation="horizontal"
             app:ci_drawable="@mipmap/tutorial_circle_selected"
             app:ci_drawable_unselected="@mipmap/tutorial_circle_unselected"
@@ -58,7 +54,7 @@
             android:id="@+id/tvContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_normal"
+            android:layout_margin="@dimen/spacing_small"
             android:background="@drawable/drawable_border_primary"
             android:gravity="center"
             android:minHeight="40dp"
@@ -69,11 +65,11 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_xlarge" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -135,7 +131,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

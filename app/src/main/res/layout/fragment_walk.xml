@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
+android:layout_height="wrap_content"
 android:layout_margin="@dimen/spacing_normal"
 android:gravity="center"
 android:orientation="vertical">
@@ -19,8 +19,8 @@ android:orientation="vertical">
     android:id="@+id/tvHeading"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/spacing_medium"
     android:gravity="center"
+    android:layout_marginTop="@dimen/spacing_small"
     android:textAppearance="@style/CustomTextAppearance"
     android:text="@string/dummy_text"
     android:textSize="@dimen/font_normal" />

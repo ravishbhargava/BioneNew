@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/spacing_normal"
+    android:weightSum="10">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.bione.utils.CustomViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_alignBottom="@+id/viewpager"
+            android:orientation="horizontal"
+            app:ci_drawable="@mipmap/slider_circle_selected"
+            app:ci_drawable_unselected="@mipmap/slider_circle_unselected"
+            app:ci_height="@dimen/spacing_small"
+            app:ci_width="@dimen/spacing_small" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        android:gravity="center">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_xsmall" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBookCounselling"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginVertical="@dimen/spacing_tiny"
+            android:background="@drawable/drawable_border_primary"
+            android:gravity="center"
+            android:padding="@dimen/spacing_tiny"
+            android:text="Book Genomic Counselling"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCustomerSupport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_tiny"
+            android:background="@drawable/drawable_border_primary"
+            android:gravity="center"
+            android:padding="@dimen/spacing_tiny"
+            android:text="Customer Support"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRefer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_xlarge"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:background="@drawable/drawable_border_primary"
+            android:gravity="center"
+            android:padding="@dimen/spacing_tiny"
+            android:text="Refer a friend"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/spacing_xsmall"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/follow_us_on"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_small" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/spacing_tiny"
+                    android:src="@drawable/ic_facebook" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/spacing_tiny"
+                    android:src="@drawable/ic_instagram_sketched" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/spacing_tiny"
+                    android:src="@drawable/ic_twitter" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/spacing_tiny"
+                    android:src="@drawable/ic_youtube" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/spacing_tiny"
+                    android:src="@drawable/ic_linkedin" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
