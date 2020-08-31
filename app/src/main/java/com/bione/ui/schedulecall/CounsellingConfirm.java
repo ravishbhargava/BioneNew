@@ -32,12 +32,15 @@ public class CounsellingConfirm extends BaseActivity {
 
     private AppCompatTextView tvDateTime;
     private AppCompatTextView tvConfirm;
+    private AppCompatTextView tvCounsellorName;
+    private AppCompatTextView tvCounsellingType;
     private AppCompatEditText etMail;
     private AppCompatEditText etName;
     private AppCompatEditText etPhone;
 
     private AppCompatImageView ivBack;
 
+    private String counsellorName = "counsellorName";
     private String geneticType = "Genetic";
     private String selectedDateToPass = "";
     private String selectedTimeSlot = "";
@@ -69,9 +72,13 @@ public class CounsellingConfirm extends BaseActivity {
             yearToPass = extras.getString("yearToPass");
             timeToPass = extras.getString("timeToPass");
             geneticType = extras.getString("geneticType");
+            counsellorName = extras.getString("counsellorName");
             selectedDateToPass = extras.getString("selectedDateToPass");
             selectedTimeSlot = extras.getString("selectedTimeSlot");
         }
+
+        Log.d("geneticType", "---" + geneticType);
+        Log.d("counsellorName", "---" + counsellorName);
         init();
         setdata();
 
@@ -83,13 +90,16 @@ public class CounsellingConfirm extends BaseActivity {
         etPhone = findViewById(R.id.etPhone);
         tvDateTime = findViewById(R.id.tvDateTime);
         tvConfirm = findViewById(R.id.tvConfirm);
+        tvCounsellorName = findViewById(R.id.tvCounsellorName);
+        tvCounsellingType = findViewById(R.id.tvCounsellingType);
         ivBack = findViewById(R.id.ivBack);
         tvConfirm.setOnClickListener(this);
         ivBack.setOnClickListener(this);
     }
 
     private void setdata() {
-
+        tvCounsellingType.setText("Counselling Type: " + geneticType);
+        tvCounsellorName.setText(counsellorName);
         tvDateTime.setText(dayToPass + ", " + dateToPass + " " + monthToPass + " " + yearToPass + ", " + timeToPass);
         customer = CommonData.getUserData();
 

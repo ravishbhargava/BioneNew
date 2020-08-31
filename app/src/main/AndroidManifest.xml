@@ -56,7 +56,10 @@
             android:name=".ui.onboarding.Login"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-
+        <activity
+            android:name=".ui.schedulecall.CategorySelect"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.schedulecall.ScheduleNow"
             android:screenOrientation="portrait"
@@ -67,6 +70,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -75,6 +79,8 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">

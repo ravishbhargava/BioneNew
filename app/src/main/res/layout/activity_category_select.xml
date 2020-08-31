@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light">
@@ -20,7 +19,7 @@
             android:layout_gravity="center"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Book a session"
+            android:text="Book your session"
             android:textAppearance="@style/CustomTextAppearance.Medium"
             android:textColor="@color/black"
             android:textSize="@dimen/font_large" />
@@ -40,8 +39,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:visibility="gone"
-                android:weightSum="3">
+                android:weightSum="3"
+
+                >
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/llGenetics"
@@ -58,7 +58,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/iv_genetic"
+                            android:id="@+id/ivGenetic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_tiny"
@@ -85,7 +85,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llFitness"
+                    android:id="@+id/llMicroBiome"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -101,7 +101,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/iv_microbiome"
+                            android:id="@+id/ivMicrobiome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_tiny"
@@ -128,7 +128,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llFood"
+                    android:id="@+id/llLongevity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -142,7 +142,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/iv_longivity"
+                            android:id="@+id/ivLongevity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/spacing_tiny"
@@ -167,56 +167,6 @@
                         android:textSize="@dimen/font_small" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCalendarDate"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginVertical="@dimen/spacing_normal"
-                android:background="@drawable/drawable_border"
-                android:drawableRight="@mipmap/email_signin"
-                android:gravity="center_vertical"
-                android:padding="@dimen/spacing_normal"
-                android:text="20 Feb 2020"
-                android:visibility="gone" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/drawable_border_white"
-                android:padding="@dimen/spacing_small">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/date_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="visible"
-
-                    />
-            </RelativeLayout>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llAvailableSlots"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_show_available_slots"
-                    android:textAlignment="center" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -259,10 +209,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     </LinearLayout>
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvScheduleNow"
         android:layout_width="match_parent"
@@ -272,12 +219,11 @@
         android:background="@drawable/drawable_border_primary"
         android:gravity="center"
         android:minHeight="50dp"
-        android:text="Schedule Now"
+        android:text="Proceed"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/CustomTextAppearance.Semibold"
         android:textColor="@color/white"
         android:textSize="@dimen/font_xlarge" />
-
-
 </RelativeLayout>
+

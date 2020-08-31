@@ -27,7 +27,7 @@ import com.bione.ui.base.BaseFragment;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.ui.home.dashboard.craousel.CenterZoomLayoutManager;
 import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
-import com.bione.ui.schedulecall.ScheduleNow;
+import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
 
@@ -121,7 +121,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
 
             case R.id.tvBookCounselling:
-                Intent intent = new Intent(mContext, ScheduleNow.class);
+                Intent intent = new Intent(mContext, CategorySelect.class);
                 startActivity(intent);
                 break;
 

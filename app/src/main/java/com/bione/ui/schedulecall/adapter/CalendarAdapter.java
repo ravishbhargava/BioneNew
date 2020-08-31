@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.ui.schedulecall.MyCalendar;
 
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -59,7 +60,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        holder.tvMonth.setText("" + mCalendar.get(position).getMonth());
+        try {
+            holder.tvMonth.setText("" + mCalendar.get(position).getMonthName());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.tvDate.setText("" + mCalendar.get(position).getDate());
         holder.tvDay.setText("" + mCalendar.get(position).getDay());
 

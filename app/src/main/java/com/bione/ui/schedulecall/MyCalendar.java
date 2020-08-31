@@ -1,6 +1,9 @@
 package com.bione.ui.schedulecall;
 
 
+import com.bione.utils.Log;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,6 +16,7 @@ public class MyCalendar {
     private String day;
     private String date, month, year;
     private int monthNumber = 0;
+    private String monthName = "";
     private int pos;
 
     public MyCalendar() {
@@ -39,6 +43,7 @@ public class MyCalendar {
         return month_name;
 
     }
+
 
     public int getPos() {
         return pos;
@@ -84,5 +89,20 @@ public class MyCalendar {
 
     public void setMonthNumber(int monthNumber) {
         this.monthNumber = monthNumber;
+    }
+
+    public String getMonthName() throws ParseException {
+        String monthpassed = String.valueOf(monthNumber);
+        return formatMonth(monthpassed);
+    }
+
+    public void setMonthName(String monthName) {
+        this.monthName = monthName;
+    }
+
+    public String formatMonth(String month) throws ParseException {
+        SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+        SimpleDateFormat monthDisplay = new SimpleDateFormat("MMM");
+        return monthDisplay.format(monthParse.parse(month));
     }
 }
