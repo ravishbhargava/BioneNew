@@ -33,6 +33,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
         public AppCompatTextView tvDate;
         public AppCompatTextView tvDay;
         public AppCompatTextView tvMonth;
+//        public AppCompatTextView tvSelectedText;
         public View vLine;
 
         public MyViewHolder(View v) {
@@ -41,6 +42,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
             tvDate = v.findViewById(R.id.tvDate);
             tvDay = v.findViewById(R.id.tvDay);
             tvMonth = v.findViewById(R.id.tvMonth);
+//            tvSelectedText = v.findViewById(R.id.tvSelectedText);
             vLine = v.findViewById(R.id.vLine);
 
         }
@@ -62,12 +64,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         try {
             holder.tvMonth.setText("" + mCalendar.get(position).getMonthName());
+//            holder.tvSelectedText.setText("" + mCalendar.get(position).getDay() + "-" + mCalendar.get(position).getMonthName());
         } catch (ParseException e) {
             e.printStackTrace();
         }
         holder.tvDate.setText("" + mCalendar.get(position).getDate());
         holder.tvDay.setText("" + mCalendar.get(position).getDay());
-
     }
 
 

@@ -193,10 +193,9 @@
                     android:id="@+id/date_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fadeScrollbars="false"
                     android:orientation="horizontal"
-                    android:visibility="visible"
-
-                    />
+                    android:scrollbars="horizontal" />
             </RelativeLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -254,8 +253,8 @@
                     android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    />
+                    android:fadeScrollbars="false"
+                    android:scrollbars="vertical" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

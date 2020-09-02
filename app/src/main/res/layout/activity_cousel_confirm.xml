@@ -7,7 +7,7 @@
 
     <include layout="@layout/include_header" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCounsellingType"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/height_spacing_50"
             android:layout_gravity="center"
             android:background="@color/white"
             android:gravity="center_vertical"
@@ -28,127 +28,124 @@
             android:textColor="@color/black"
             android:textSize="@dimen/font_normal" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:gravity="start"
-            android:paddingStart="@dimen/spacing_small"
-            android:text="Counsellor Name"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvCounsellorName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_tiny"
-            android:background="@drawable/drawable_border_white"
-            android:drawableStart="@drawable/ic_confirm_name"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center_vertical"
-            android:hint="Tanya"
-            android:padding="@dimen/spacing_xsmall"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:gravity="start"
-            android:paddingStart="@dimen/spacing_small"
-            android:text="Date &amp; Time"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_xsmall"
-            android:background="@drawable/drawable_border_white"
-            android:drawableStart="@drawable/ic_confirm_calendar"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center_vertical"
-            android:padding="@dimen/spacing_xsmall"
-            android:text="Monday, 27 July 2020, 10:00 AM"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:gravity="start"
-            android:paddingStart="@dimen/spacing_small"
-            android:text="Our Counsellor will contact you"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_xsmall"
-            android:background="@drawable/drawable_border_white"
-            android:drawableStart="@drawable/ic_confirm_call"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center_vertical"
-            android:hint="+91 8865362735"
-            android:padding="@dimen/spacing_xsmall"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:gravity="start"
-            android:paddingStart="@dimen/spacing_small"
-            android:text="Your Details"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingStart="@dimen/spacing_small"
+                android:text="Counsellor Name"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_tiny"
-            android:background="@drawable/drawable_border_white"
-            android:drawableStart="@drawable/ic_confirm_name"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center_vertical"
-            android:hint="Full Name"
-            android:padding="@dimen/spacing_xsmall"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCounsellorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_tiny"
+                android:background="@drawable/drawable_border_white"
+                android:drawableStart="@drawable/ic_counsellor_small_image"
+                android:gravity="center_vertical"
+                android:hint="Tanya"
+                android:padding="@dimen/spacing_tiny"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_tiny"
-            android:background="@drawable/drawable_border_white"
-            android:drawableStart="@drawable/ic_confirm_email"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center_vertical"
-            android:hint="Email ID"
-            android:padding="@dimen/spacing_xsmall"
-            android:textColor="@color/text_black_opacity"
-            android:textSize="@dimen/font_small" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="start"
+                android:paddingStart="@dimen/spacing_small"
+                android:text="Date &amp; Time"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="@dimen/spacing_xsmall"
+                android:background="@drawable/drawable_border_white"
+                android:drawableStart="@drawable/ic_confirm_calendar"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_xsmall"
+                android:text="Monday, 27 July 2020, 10:00 AM"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:gravity="start"
+                android:paddingStart="@dimen/spacing_small"
+                android:text="Our Counsellor will contact you"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_xsmall"
+                android:background="@drawable/drawable_border_white"
+                android:drawableStart="@drawable/ic_confirm_call"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:gravity="center_vertical"
+                android:hint="+91 8865362735"
+                android:padding="@dimen/spacing_xsmall"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:gravity="start"
+                android:paddingStart="@dimen/spacing_small"
+                android:text="Your Details"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_tiny"
+                android:background="@drawable/drawable_border_white"
+                android:drawableStart="@drawable/ic_confirm_name"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:gravity="center_vertical"
+                android:hint="Full Name"
+                android:padding="@dimen/spacing_xsmall"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_tiny"
+                android:background="@drawable/drawable_border_white"
+                android:drawableStart="@drawable/ic_confirm_email"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:gravity="center_vertical"
+                android:hint="Email ID"
+                android:padding="@dimen/spacing_xsmall"
+                android:textColor="@color/text_black_opacity"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -25,6 +25,7 @@ import com.bione.ui.schedulecall.adapter.CalendarAdapter;
 import com.bione.ui.schedulecall.adapter.SlotsAdapter;
 import com.bione.utils.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,22 +116,8 @@ public class ScheduleNow extends BaseActivity {
             public void onClick(View view, int position) {
 
                 setSelectedData(position);
+                setCalendarUI(recyclerViewHorizontal, mLayoutManager);
 
-                int totalItemCount = mLayoutManager.getChildCount();
-                for (int i = 0; i < totalItemCount; i++) {
-                    View childView = recyclerViewHorizontal.getChildAt(i);
-                    TextView childTextView2 = (childView.findViewById(R.id.tvDate));
-                    View vLine = (childView.findViewById(R.id.vLine));
-                    String childTextViewText = (String) (childTextView2.getText());
-
-                    if (childTextViewText.equals(selectedText)) {
-//                        childTextView2.setTextColor(Color.RED);
-                        vLine.setVisibility(View.VISIBLE);
-                    } else {
-//                        childTextView2.setTextColor(Color.BLACK);
-                        vLine.setVisibility(View.GONE);
-                    }
-                }
                 availableSlotsAPI();
             }
 
@@ -138,24 +125,8 @@ public class ScheduleNow extends BaseActivity {
             public void onLongClick(View view, int position) {
 
                 setSelectedData(position);
+                setCalendarUI(recyclerViewHorizontal, mLayoutManager);
 
-                int totalItemCount = mLayoutManager.getChildCount();
-
-                for (int i = 0; i < totalItemCount; i++) {
-                    View childView = recyclerViewHorizontal.getChildAt(i);
-                    TextView childTextView2 = (childView.findViewById(R.id.tvDate));
-                    View vLine = (childView.findViewById(R.id.vLine));
-
-                    String childTextViewText = (String) (childTextView2.getText());
-
-                    if (childTextViewText.equals(selectedText)) {
-//                        childTextView2.setTextColor(Color.RED);
-                        vLine.setVisibility(View.VISIBLE);
-                    } else {
-//                        childTextView2.setTextColor(Color.BLACK);
-                        vLine.setVisibility(View.GONE);
-                    }
-                }
                 availableSlotsAPI();
             }
         }));
@@ -169,7 +140,12 @@ public class ScheduleNow extends BaseActivity {
         dateToPass = calendar.getDate();
         yearToPass = calendar.getYear();
         monthToPass = calendar.getMonth();
-        selectedText = calendar.getDate();
+        try {
+            selectedText = calendar.getDate() + "-" + calendar.getMonthName();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void setScroll(RecyclerView.LayoutManager mLayoutManager) {
@@ -179,84 +155,35 @@ public class ScheduleNow extends BaseActivity {
                                    int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                int totalItemCount = mLayoutManager.getChildCount();
-
-                for (int i = 0; i < totalItemCount; i++) {
-                    View childView = recyclerView.getChildAt(i);
-                    TextView childTextView = (childView.findViewById(R.id.tvDate));
-                    View vLine = (childView.findViewById(R.id.vLine));
-
-                    String childTextViewText = (String) (childTextView.getText());
-
-                    if (childTextViewText.equals(selectedText)) {
-//                        childTextView.setTextColor(Color.RED);
-                        vLine.setVisibility(View.VISIBLE);
-                    } else {
-//                        childTextView.setTextColor(Color.BLACK);
-                        vLine.setVisibility(View.GONE);
-                    }
-                }
+                setCalendarUI(recyclerView, mLayoutManager);
             }
         });
     }
 
+    private void setCalendarUI(final RecyclerView recyclerView, final RecyclerView.LayoutManager mLayoutManager) {
 
-    /**
-     * Prepares sample data to provide data set to adapter
-     */
-    private void prepareCalendarData() {
+        int totalItemCount = mLayoutManager.getChildCount();
 
-        // run a for loop for all the next 30 days of the current month starting today
-        // initialize mycalendarData and get Instance
-        // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
+        for (int i = 0; i < totalItemCount; i++) {
+            View childView = recyclerView.getChildAt(i);
+            TextView tvDay = (childView.findViewById(R.id.tvDay));
+            TextView tvDate = (childView.findViewById(R.id.tvDate));
+            TextView tvMonth = (childView.findViewById(R.id.tvMonth));
+            View vLine = (childView.findViewById(R.id.vLine));
 
-        MyCalendarData m_calendar = new MyCalendarData(0);
-        for (int i = 0; i < 30; i++) {
-            MyCalendar calendar = new MyCalendar(m_calendar.getWeekDay(),
-                    String.valueOf(m_calendar.getDay()),
-                    String.valueOf(m_calendar.getMonth()),
-                    String.valueOf(m_calendar.getYear()),
-                    i);
-            m_calendar.getNextWeekDay(1);
-            calendarList.add(calendar);
-        }
+            String childTextViewText = (String) (tvDate.getText()) + "-" + (String) (tvMonth.getText());
 
-        // notify adapter about data set changes
-        // so that it will render the list with new data
-        calendarAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.tvScheduleNow:
-
-                if (mAdapter.getCheckedPosition() != -1) {
-                    Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
-
-                    intent.putExtra("dayToPass", dayToPass);
-                    intent.putExtra("dateToPass", dateToPass);
-                    intent.putExtra("monthToPass", monthToPass);
-                    intent.putExtra("yearToPass", yearToPass);
-                    intent.putExtra("geneticType", geneticType);
-                    intent.putExtra("counsellorName", counsellorName);
-                    intent.putExtra("selectedDateToPass", selectedDateToPass);
-                    intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
-                    intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
-                    startActivity(intent);
-                } else {
-                    showErrorMessage("Please select time slot");
-                }
-                break;
-
-            case R.id.ivBack:
-                finish();
-                break;
-
-            default:
-                break;
+            if (childTextViewText.equals(selectedText)) {
+                tvDay.setTextColor(getResources().getColor(R.color.colorPrimary));
+                tvDate.setTextColor(getResources().getColor(R.color.colorPrimary));
+                tvMonth.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                vLine.setVisibility(View.VISIBLE);
+            } else {
+                tvDay.setTextColor(getResources().getColor(R.color.black));
+                tvDate.setTextColor(getResources().getColor(R.color.black));
+                tvMonth.setTextColor(getResources().getColor(R.color.black));
+//                vLine.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -265,7 +192,7 @@ public class ScheduleNow extends BaseActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        createlist();
+        createList();
 
         // specify an adapter (see also next example)
         mAdapter = new SlotsAdapter(arrayTimeSlots, new OnItemClickListener() {
@@ -277,7 +204,7 @@ public class ScheduleNow extends BaseActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
-    private void createlist() {
+    private void createList() {
         arrayTimeSlots = new ArrayList<>();
 
         Slots slots1 = new Slots("09:00AM-09:30AM", false);
@@ -319,6 +246,60 @@ public class ScheduleNow extends BaseActivity {
         arrayTimeSlots.add(slots18);
     }
 
+    private void prepareCalendarData() {
+
+        // run a for loop for all the next 30 days of the current month starting today
+        // initialize mycalendarData and get Instance
+        // getnext to get next set of date etc.. which can be used to populate MyCalendarList in for loop
+
+        MyCalendarData m_calendar = new MyCalendarData(0);
+        for (int i = 0; i < 30; i++) {
+            MyCalendar calendar = new MyCalendar(m_calendar.getWeekDay(),
+                    String.valueOf(m_calendar.getDay()),
+                    String.valueOf(m_calendar.getMonth()),
+                    String.valueOf(m_calendar.getYear()),
+                    i);
+            m_calendar.getNextWeekDay(1);
+            calendarList.add(calendar);
+        }
+        calendarAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.tvScheduleNow:
+
+                if (mAdapter.getCheckedPosition() != -1) {
+                    Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
+
+                    intent.putExtra("dayToPass", dayToPass);
+                    intent.putExtra("dateToPass", dateToPass);
+                    intent.putExtra("monthToPass", monthToPass);
+                    intent.putExtra("yearToPass", yearToPass);
+                    intent.putExtra("geneticType", geneticType);
+                    intent.putExtra("counsellorName", counsellorName);
+                    intent.putExtra("selectedDateToPass", selectedDateToPass);
+                    intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
+                    intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
+
+                    startActivity(intent);
+                } else {
+                    showErrorMessage("Please select time slot");
+                }
+                break;
+
+            case R.id.ivBack:
+                finish();
+                break;
+
+            default:
+                break;
+        }
+    }
+
 
     private void availableSlotsAPI() {
         Log.d("selectedDateToPass", "------" + selectedDateToPass);
@@ -337,7 +318,7 @@ public class ScheduleNow extends BaseActivity {
                         Log.d(" time slots arrayTimeSlots", " size :: " + slots.get(0).getListItems().size());
 
                         availableSlots = (ArrayList<ListItem>) slots.get(0).getListItems();
-                        createlist();
+                        createList();
                         for (int i = 0; i < availableSlots.size(); i++) {
                             for (int j = 0; j < arrayTimeSlots.size(); j++) {
                                 if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
@@ -352,7 +333,7 @@ public class ScheduleNow extends BaseActivity {
                     }
                 } else {
                     availableSlots = new ArrayList<>();
-                    createlist();
+                    createList();
                     mAdapter.refreshEvents(arrayTimeSlots);
                 }
             }

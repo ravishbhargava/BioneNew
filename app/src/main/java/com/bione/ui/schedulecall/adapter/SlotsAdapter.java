@@ -1,9 +1,11 @@
 package com.bione.ui.schedulecall.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +45,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
     }
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
@@ -50,27 +53,35 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
         if (slots.get(position).isSelected()) {
 //            holder.tvNotAvailable.setVisibility(View.VISIBLE);
             holder.tvNotAvailable.setText("NOT AVAILABLE");
-            holder.ivSelected.setVisibility(View.GONE);
+            holder.tvNotAvailable.setTextColor(R.color.not_available_color);
+//            holder.ivSelected.setVisibility(View.GONE);
+            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
 
         } else {
 //            holder.tvNotAvailable.setVisibility(View.GONE);
             holder.tvNotAvailable.setText("AVAILABLE");
-            holder.ivSelected.setVisibility(View.GONE);
+            holder.tvNotAvailable.setTextColor(R.color.available_color);
+//            holder.ivSelected.setVisibility(View.GONE);
+            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
 
             if (checkedPosition == -1) {
-                holder.ivSelected.setVisibility(View.GONE);
+//                holder.ivSelected.setVisibility(View.GONE);
+                holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
             } else {
                 if (checkedPosition == position) {
-                    holder.ivSelected.setVisibility(View.VISIBLE);
+//                    holder.ivSelected.setVisibility(View.VISIBLE);
+                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
                 } else {
-                    holder.ivSelected.setVisibility(View.GONE);
+//                    holder.ivSelected.setVisibility(View.GONE);
+                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
                 }
             }
             holder.llSlots.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (!slots.get(position).isSelected()) {
-                        holder.ivSelected.setVisibility(View.VISIBLE);
+//                        holder.ivSelected.setVisibility(View.VISIBLE);
+                        holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
 
                         if (checkedPosition != position) {
                             notifyItemChanged(checkedPosition);
@@ -97,6 +108,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
         private TextView tvNotAvailable;
         private ImageView ivSelected;
         private LinearLayoutCompat llSlots;
+        private RelativeLayout relRow;
 
         public MyViewHolder(View v) {
             super(v);
@@ -105,6 +117,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
             tvNotAvailable = v.findViewById(R.id.tvNotAvailable);
             ivSelected = v.findViewById(R.id.ivSelected);
             llSlots = v.findViewById(R.id.llSlots);
+            relRow = v.findViewById(R.id.relRow);
 
         }
     }

@@ -47,6 +47,7 @@
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/black"
             android:textSize="@dimen/font_normal" />
+
     </LinearLayout>
 
     <View

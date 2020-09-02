@@ -7,9 +7,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/relRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/drawable_border_white"
+        android:background="@drawable/drawable_border_transparent"
         android:padding="@dimen/spacing_normal">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -55,7 +56,7 @@
                 android:layout_height="20dp"
                 android:layout_marginRight="@dimen/spacing_normal"
                 android:src="@mipmap/ic_launcher_round"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </RelativeLayout>
