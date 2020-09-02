@@ -44,6 +44,21 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
 
     }
 
+//    @SuppressLint("ResourceAsColor")
+//    @Override
+//    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+//
+//        holder.tvSlotTime.setText(slots.get(position).name);
+//
+//        if (slots.get(position).isSelected()) {
+//            holder.tvNotAvailable.setText("NOT AVAILABLE");
+//            holder.tvNotAvailable.setTextColor(R.color.not_available_color);
+//        } else {
+//            holder.tvNotAvailable.setText("AVAILABLE");
+//            holder.tvNotAvailable.setTextColor(R.color.available_color);
+//        }
+//
+//    }
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -122,11 +137,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
         }
     }
 
-//    public void setList(final ArrayList<Slots> slots) {
-//        this.slots = slots;
-//        notifyDataSetChanged();
-//
-//    }
+
     public void refreshEvents(ArrayList<Slots> slots) {
         checkedPosition = -1;
         this.slots.clear();

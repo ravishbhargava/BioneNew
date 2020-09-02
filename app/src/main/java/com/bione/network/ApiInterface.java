@@ -3,10 +3,8 @@ package com.bione.network;
 
 import com.bione.model.CommonResponse;
 import com.bione.model.availableSlots.Slot;
-//import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.Customer;
 import com.bione.model.customerdata.SignInDatum;
-//import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.updateprofile.UpdateProfile;
 
 import java.util.HashMap;
@@ -26,6 +24,9 @@ import retrofit2.http.PUT;
 import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
+
+//import com.bione.model.counsellors.Counselling;
+//import com.bione.model.customerkit.CustomerKit;
 
 
 /**
@@ -47,6 +48,10 @@ public interface ApiInterface {
 
     String GET_NOTIFICATIONS = "/driver/getNotifications";
 
+
+    @POST("rest/V1/integration/admin/token")
+    Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);
+
     /**
      * Dummy sign in endpoint
      *
@@ -54,61 +59,51 @@ public interface ApiInterface {
      * @return parsed common response object
      */
 
-//    @Headers({"Content-Type: application/json; charset=utf-8"})
     @POST("/rest/V1/bioneapi-customersendotp/sendotp")
     Call<List<CommonResponse>> sendOtp(@QueryMap Map<String, String> map);
 
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("/rest/V1/bioneapi/contact")
-    Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("rest/V1/integration/admin/token")
-    Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("rest/V1/integration/customer/token")
-    Call<String> getCustomerToken(@QueryMap(encoded = true) Map<String, String> map);
-
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("/rest/V1/bioneapi-customer/update")
-    Call<List<SignInDatum>> updateProfile(@QueryMap Map<String, String> map);
-
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("/rest/V1/bioneapi/updatefeedback")
-    Call<List<CommonResponse>> updateFeedback(@QueryMap Map<String, String> map);
-
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-    @POST("/rest/V1/bioneapi/counsellor")
-    Call<List<CommonResponse>> scheduleCall(@QueryMap Map<String, String> map);
-
-
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
     @GET("/rest/V1/bioneapi-customersendotp/verifyotp")
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
 
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
     @GET("/rest/V1/customers/me")
     Call<Customer> getCustomerDetails(@HeaderMap HashMap<String, String> headerMap);
 
+    @POST("rest/V1/integration/customer/token")
+    Call<String> getCustomerToken(@QueryMap(encoded = true) Map<String, String> map);
 
-//    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-//    @GET("/rest/V1/bioneapi/kitorderlist")
-//    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+    @POST("/rest/V1/bioneapi/sociallogin")
+    Call<List<SignInDatum>> socialLogin(@QueryMap Map<String, String> map);
 
-    //    @Headers({"Content-Type: application/json; charset=utf-8"})
+    @POST("/rest/V1/bioneapi/updatefeedback")
+    Call<List<CommonResponse>> updateFeedback(@QueryMap Map<String, String> map);
+
     @GET("/rest/V1/bioneapi/availability")
     Call<List<Slot>> availabilitySlots(@QueryMap Map<String, String> map);
 
+    @POST("/rest/V1/bioneapi/counsellor")
+    Call<List<CommonResponse>> scheduleCall(@QueryMap Map<String, String> map);
 
-//    //    @Headers({"Content-Type: application/json; charset=utf-8"})
-//    @GET("/rest/V1/bioneapi/counsellorlist")
-//    Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
+    @POST("/rest/V1/bioneapi/contact")
+    Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
 
+    /**
+     * checkUnique call.
+     *
+     * @param headerMap  the header map
+     * @param customerId the id of the customer
+     * @param json       jsonobject
+     * @return the call
+     */
+    @PUT("/rest/V1/customers/{customers}")
+    Call<UpdateProfile> updateProfile2(@HeaderMap HashMap<String, String> headerMap,
+                                       @Path("customers") String customerId,
+                                       @Body RequestBody json);
+
+
+
+
+    @POST("/rest/V1/bioneapi-customer/update")
+    Call<List<SignInDatum>> updateProfile(@QueryMap Map<String, String> map);
 
     @GET("/api/unknown")
     Call<CommonResponse> doGetListResources();
@@ -143,19 +138,6 @@ public interface ApiInterface {
                                            @PartMap HashMap<String, RequestBody> partMap);
 
 
-    /**
-     * checkUnique call.
-     *
-     * @param headerMap  the header map
-     * @param customerId the id of the customer
-     * @param json       jsonobject
-     * @return the call
-     */
-
-    @PUT("/rest/V1/customers/{customers}")
-    Call<UpdateProfile> updateProfile2(@HeaderMap HashMap<String, String> headerMap,
-                                       @Path("customers") String customerId,
-                                       @Body RequestBody json);
 //                                           @PartMap HashMap<String, RequestBody> partMap);
 
 //    /**
@@ -185,4 +167,12 @@ public interface ApiInterface {
 ////
 ////    @POST("rest/V1/integration/admin/token")
 ////    Call<String> adminToken4(@Query(value = PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password);@Query(SKIP) int skip);
+
+////  @Headers({"Content-Type: application/json; charset=utf-8"})
+//    @GET("/rest/V1/bioneapi/kitorderlist")
+//    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+
+
+//    @GET("/rest/V1/bioneapi/counsellorlist")
+//    Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
 }

@@ -1,6 +1,7 @@
 package com.bione.ui.schedulecall;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,6 +19,8 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.home.MainActivity;
+import com.bione.ui.onboarding.Login;
 import com.bione.utils.Log;
 
 import java.util.List;
@@ -182,7 +185,10 @@ public class CounsellingConfirm extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                finish();
+                Intent intent = new Intent(CounsellingConfirm.this, MainActivity.class);
+                // set the new task and clear flags
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 

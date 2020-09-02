@@ -31,6 +31,7 @@ import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.MainActivity;
 import com.bione.utils.Log;
 import com.bione.utils.ValidationUtil;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -53,9 +54,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.bione.utils.AppConstant.PARAM_EMAIL;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
 import static com.bione.utils.AppConstant.PARAM_PASSWORD;
+import static com.bione.utils.AppConstant.PARAM_PHONE;
 import static com.bione.utils.AppConstant.PARAM_USERNAME;
 import static com.bione.utils.AppConstant.SUCCESS;
 
@@ -73,6 +76,7 @@ public class Login extends BaseActivity {
     private LinearLayoutCompat llPhoneView;
 
     private String email = "";
+    private String password = "";
 
     private AppCompatTextView tvLogin;
     private AppCompatTextView tvForgot;
@@ -175,8 +179,9 @@ public class Login extends BaseActivity {
                                     // Application code
 
                                     try {
-                                        email = object.getString("email_signin");
+                                        email = object.getString("email");
                                         etEmail.setText(email);
+                                        callSocialLogin(email, " ");
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -187,7 +192,7 @@ public class Login extends BaseActivity {
                                     }
                                 });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,name,email_signin,gender,birthday");
+                        parameters.putString("fields", "id,name,email,gender,birthday");
                         request.setParameters(parameters);
                         request.executeAsync();
 
@@ -244,7 +249,7 @@ public class Login extends BaseActivity {
                 }
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
-                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email_signin"));
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
                 break;
             case R.id.llEmail:
                 if (isThroughPhoneNumber) {
@@ -271,7 +276,17 @@ public class Login extends BaseActivity {
                         Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    getCustomerToken();
+                    email = etEmail.getText().toString();
+                    if (ValidationUtil.checkEmail(email)) {
+                        password = etPassword.getText().toString();
+                        if (ValidationUtil.checkPassword(password)) {
+                            getCustomerToken();
+                        } else {
+                            showErrorMessage("Please enter valid password");
+                        }
+                    } else {
+                        showErrorMessage("Please enter valid email");
+                    }
                 }
 
                 break;
@@ -335,6 +350,7 @@ public class Login extends BaseActivity {
             com.google.android.gms.tasks.Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         } else {
+            Log.d("callbackManager", "------------- aaaaya");
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -345,6 +361,7 @@ public class Login extends BaseActivity {
             Log.d("handle", "+++++++++++++" + account.getEmail());
             email = account.getEmail();
             etEmail.setText(email);
+            callSocialLogin(email, " ");
             // Signed in successfully, show authenticated UI.
 //            updateUI(account);
         } catch (ApiException e) {
@@ -368,6 +385,7 @@ public class Login extends BaseActivity {
             Log.d("onStart", "----------------" + account.getEmail());
             email = account.getEmail();
             etEmail.setText(email);
+            callSocialLogin(email, " ");
         }
 //        updateUI(account);
     }
@@ -377,9 +395,9 @@ public class Login extends BaseActivity {
         super.onStop();
         signOut();
         revokeAccess();
-//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-//        LoginManager.getInstance().logOut();
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        LoginManager.getInstance().logOut();
     }
 
     //If the user deletes their account, you must delete the information that your app obtained from the Google APIs.
@@ -440,11 +458,9 @@ public class Login extends BaseActivity {
         dialog.show();
     }
 
-
     public void callVerifyOtp() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_MOBILE, "" + phoneNumber)
                 .add(PARAM_MOBILE, "91" + phoneNumber)
                 .add(PARAM_OTP, otpCode)
                 .build();
@@ -486,11 +502,55 @@ public class Login extends BaseActivity {
 
     }
 
+    public void callSocialLogin(final String email, final String phone) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_PHONE, phone)
+                .add(PARAM_EMAIL, email)
+                .build();
+        RestClient.getApiInterface().socialLogin(commonParams.getMap()).enqueue(new ResponseResolver<List<SignInDatum>>() {
+            @Override
+            public void onSuccess(List<SignInDatum> commonResponse) {
+
+                if (commonResponse.get(0).getCode() == SUCCESS) {
+                    try {
+
+                        CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
+                        Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
+
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        // set the new task and clear flags
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+
+    }
+
     private void getCustomerToken() {
 
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_USERNAME, "murugesan@bione.in")
-                .add(PARAM_PASSWORD, "admin@123")
+                .add(PARAM_USERNAME, email)
+                .add(PARAM_PASSWORD, password)
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
@@ -528,13 +588,9 @@ public class Login extends BaseActivity {
 
         final CommonParams commonParams = new CommonParams.Builder()
                 .add("Authorization", "Bearer " + CommonData.getCustomerToken())
-//                .add(PARAM_TPKEN_ID, "Bearer " + CommonData.getCustomerToken())
                 .add("Content-Type", "application/json")
                 .build();
 
-//        final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_TPKEN_ID, CommonData.getCustomerToken())
-//                .build();
         RestClient.getApiInterface().getCustomerDetails(commonParams.getMap()).enqueue(new ResponseResolver<Customer>() {
             @Override
             public void onSuccess(Customer commonResponse) {
