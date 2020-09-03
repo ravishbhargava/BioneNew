@@ -25,6 +25,8 @@ import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 import com.bione.utils.ProgressDialog;
+import com.zoho.livechat.android.MbedableComponent;
+import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.util.List;
 
@@ -52,6 +54,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        try {
+            ZohoSalesIQ.Chat.setVisibility(MbedableComponent.CHAT,false);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -59,10 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
-//    @Override
-//    protected void attachBaseContext(Context newBase) {
-//        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-//    }
 
     @Override
     protected void onResume() {

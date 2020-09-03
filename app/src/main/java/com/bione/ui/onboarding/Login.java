@@ -8,8 +8,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -84,12 +86,12 @@ public class Login extends BaseActivity {
     private AppCompatEditText etPassword;
     private AppCompatEditText etPhone;
 
+    private ImageView viewEye;
+    private boolean isShow = false;
     private String phoneNumber = "";
     private String otpCode = "";
 
     private boolean isThroughPhoneNumber = true;
-//    private LoginButton loginButton;
-//    private static final String EMAIL = "email_signin";
 
 
     @Override
@@ -151,6 +153,8 @@ public class Login extends BaseActivity {
 
         tvForgot = findViewById(R.id.tvForgot);
         tvLogin = findViewById(R.id.tvLogin);
+
+        viewEye = findViewById(R.id.viewEye);
     }
 
     private void setListners() {
@@ -160,6 +164,7 @@ public class Login extends BaseActivity {
         llPhone.setOnClickListener(this);
         tvLogin.setOnClickListener(this);
         tvForgot.setOnClickListener(this);
+        viewEye.setOnClickListener(this);
     }
 
     private void initFB() {
@@ -234,6 +239,19 @@ public class Login extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             // Need to change google account details
+
+            case R.id.viewEye:
+                if (!isShow) {
+                    isShow = true;
+                    viewEye.setImageResource(R.drawable.ic_show);
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                } else {
+                    isShow = false;
+                    viewEye.setImageResource(R.drawable.ic_hidden);
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                break;
+
             case R.id.llGoogleSignIn:
                 if (isThroughPhoneNumber) {
                     isThroughPhoneNumber = false;

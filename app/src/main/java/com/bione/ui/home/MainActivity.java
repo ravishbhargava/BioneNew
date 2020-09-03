@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
+import com.bione.db.CommonData;
+import com.bione.model.customerdata.Customer;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -27,7 +29,7 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgProfile;
-    private TextView txtName, txtWebsite;
+    private TextView txtName, txtPhone;
     private Toolbar toolbar;
 //    private FloatingActionButton fab;
 
@@ -65,8 +67,8 @@ public class MainActivity extends BaseActivity {
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
-        txtName = (TextView) navHeader.findViewById(R.id.name);
-        txtWebsite = (TextView) navHeader.findViewById(R.id.website);
+        txtName = navHeader.findViewById(R.id.name);
+        txtPhone = navHeader.findViewById(R.id.phone);
 //        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
@@ -93,26 +95,18 @@ public class MainActivity extends BaseActivity {
      * name, website, notifications action view (dot)
      */
     private void loadNavHeader() {
-        // name, website
-        txtName.setText("SK Chikara");
-        txtWebsite.setText("+91 9876543210");
-
-//        // loading header background image
-//        Glide.with(this).load(urlNavHeaderBg)
-//                .crossFade()
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(imgNavHeaderBg);
-//
-//        // Loading profile image
-//        Glide.with(this).load(urlProfileImg)
-//                .crossFade()
-//                .thumbnail(0.5f)
-//                .bitmapTransform(new CircleTransform(this))
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(imgProfile);
-
-        // showing dot next to notifications label
-//        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+        // name, phone
+        Customer customer = CommonData.getUserData();
+        if (customer.getFirstname() != null) {
+            if (customer.getLastname() != null) {
+                txtName.setText(customer.getFirstname() + " " + customer.getLastname());
+            } else {
+                txtName.setText(customer.getFirstname());
+            }
+        }
+        if (customer.getMobilenumber() != null) {
+            txtPhone.setText("+" + customer.getMobilenumber());
+        }
     }
 
     /***
