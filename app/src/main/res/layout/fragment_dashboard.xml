@@ -18,7 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="@dimen/height_spacing_150"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -30,18 +30,19 @@
                 <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/indicator"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/height_spacing_50"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
                     app:ci_drawable="@mipmap/slider_circle_selected"
                     app:ci_drawable_unselected="@mipmap/slider_circle_unselected"
-                    app:ci_height="10dp"
-                    app:ci_width="10dp" />
+                    app:ci_height="@dimen/spacing_small"
+                    app:ci_width="@dimen/spacing_small" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_small"
                 android:gravity="center">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -64,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_large"
-                    android:layout_marginVertical="@dimen/spacing_tiny"
+                    android:layout_marginVertical="@dimen/spacing_xsmall"
                     android:background="@drawable/drawable_border_primary"
                     android:gravity="center"
                     android:padding="@dimen/spacing_xsmall"
@@ -80,7 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_large"
-                    android:layout_marginBottom="@dimen/spacing_tiny"
+                    android:layout_marginBottom="@dimen/spacing_xsmall"
                     android:background="@drawable/drawable_border_primary"
                     android:gravity="center"
                     android:padding="@dimen/spacing_xsmall"

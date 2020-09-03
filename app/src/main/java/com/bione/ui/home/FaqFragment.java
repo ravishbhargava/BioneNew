@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +16,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
+import com.bione.utils.Log;
 
 public class FaqFragment extends BaseFragment {
 
@@ -20,7 +24,8 @@ public class FaqFragment extends BaseFragment {
     private String text = "Hello";
     private AppCompatTextView tvHeading;
     private AppCompatImageView ivHead;
-
+    private WebView webView;
+    private String link = "https://www.bione.in/faqs";
 
     @Override
     public void onAttach(Context context) {
@@ -37,21 +42,37 @@ public class FaqFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_walk, container, false);
+            rootView = inflater.inflate(R.layout.fragment_faq, container, false);
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
+            webView = rootView.findViewById(R.id.webView);
 
-            if (text.equals("1")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk1));
-            } else if (text.equals("2")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk2));
-            } else if (text.equals("3")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk3));
-            }
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
 
+            webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+
+            showLoading();
+            webView.setWebViewClient(new WebViewClient() {
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    Log.i("", "Processing webview url click...");
+                    view.loadUrl(url);
+                    hideLoading();
+                    return true;
+                }
+
+                public void onPageFinished(WebView view, String url) {
+                    Log.i("", "Finished loading URL: " + url);
+                    hideLoading();
+                }
+
+                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                    Log.e("", "Error: " + description);
+                    hideLoading();
+                    showErrorMessage(description);
+                }
+            });
+            webView.loadUrl(link);
 
         }
         return rootView;
@@ -66,4 +87,5 @@ public class FaqFragment extends BaseFragment {
     public void onClick(View view) {
 
     }
+
 }

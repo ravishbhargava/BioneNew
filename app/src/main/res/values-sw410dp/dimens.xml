@@ -63,5 +63,8 @@
     <dimen name="item_gallery_button_width">100dp</dimen>
     <dimen name="height_spacing_50">50dp</dimen>
 
+    <!-- dashboard screen size -->
+    <dimen name="height_spacing_150">150dp</dimen>
+    <dimen name="height_spacing_80">80dp</dimen>
 
 </resources>

@@ -236,6 +236,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.nav_session:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SESSION;
+                        break;
 
                     case R.id.nav_chat:
                         navItemIndex = 3;

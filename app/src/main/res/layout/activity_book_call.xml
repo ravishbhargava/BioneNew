@@ -31,7 +31,7 @@
             android:layout_above="@+id/tvScheduleNow"
             android:layout_below="@+id/header"
             android:layout_marginHorizontal="@dimen/spacing_normal"
-            android:layout_marginVertical="@dimen/spacing_tiny"
+            android:layout_marginVertical="@dimen/spacing_small"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 

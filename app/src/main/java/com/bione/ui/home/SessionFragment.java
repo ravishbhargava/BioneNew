@@ -37,20 +37,10 @@ public class SessionFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_walk, container, false);
+            rootView = inflater.inflate(R.layout.fragment_session, container, false);
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
 
-            if (text.equals("1")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk1));
-            } else if (text.equals("2")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk2));
-            } else if (text.equals("3")) {
-                tvHeading.setText(R.string.dummy_text);
-                ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk3));
-            }
 
 
         }
