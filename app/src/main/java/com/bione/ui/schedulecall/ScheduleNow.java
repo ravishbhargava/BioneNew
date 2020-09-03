@@ -1,5 +1,6 @@
 package com.bione.ui.schedulecall;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,12 +62,14 @@ public class ScheduleNow extends BaseActivity {
     private String monthToPass;
     private String yearToPass;
 
+    private Context mContext;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_call);
-
+        mContext = getApplicationContext();
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
 //            newString= null;
@@ -195,7 +198,7 @@ public class ScheduleNow extends BaseActivity {
         createList();
 
         // specify an adapter (see also next example)
-        mAdapter = new SlotsAdapter(arrayTimeSlots, new OnItemClickListener() {
+        mAdapter = new SlotsAdapter(mContext,arrayTimeSlots, new OnItemClickListener() {
             @Override
             public void onItemClick(String text) {
                 tvSelectedSlot.setText(text);
@@ -207,24 +210,24 @@ public class ScheduleNow extends BaseActivity {
     private void createList() {
         arrayTimeSlots = new ArrayList<>();
 
-        Slots slots1 = new Slots("09:00AM-09:30AM", false);
-        Slots slots2 = new Slots("09:30AM-10:00AM", false);
-        Slots slots3 = new Slots("10:00AM-10:30AM", false);
-        Slots slots4 = new Slots("10:30AM-11:00AM", false);
-        Slots slots5 = new Slots("11:00AM-11:30AM", false);
-        Slots slots6 = new Slots("11:30AM-12:00PM", false);
-        Slots slots7 = new Slots("12:00PM-12:30PM", false);
-        Slots slots8 = new Slots("12:30PM-01:00PM", false);
-        Slots slots9 = new Slots("01:00PM-01:30PM", false);
-        Slots slots10 = new Slots("01:30PM-02:00PM", false);
-        Slots slots11 = new Slots("02:00PM-02:30PM", false);
-        Slots slots12 = new Slots("02:30PM-03:00PM", false);
-        Slots slots13 = new Slots("03:00PM-03:30PM", false);
-        Slots slots14 = new Slots("03:30PM-04:00PM", false);
-        Slots slots15 = new Slots("04:00PM-04:30PM", false);
-        Slots slots16 = new Slots("04:30PM-05:00PM", false);
-        Slots slots17 = new Slots("05:00PM-05:30PM", false);
-        Slots slots18 = new Slots("05:30PM-06:00PM", false);
+        Slots slots1 = new Slots("09:00AM-09:30AM", false, "AVAILABLE");
+        Slots slots2 = new Slots("09:30AM-10:00AM", false, "AVAILABLE");
+        Slots slots3 = new Slots("10:00AM-10:30AM", false, "AVAILABLE");
+        Slots slots4 = new Slots("10:30AM-11:00AM", false, "AVAILABLE");
+        Slots slots5 = new Slots("11:00AM-11:30AM", false, "AVAILABLE");
+        Slots slots6 = new Slots("11:30AM-12:00PM", false, "AVAILABLE");
+        Slots slots7 = new Slots("12:00PM-12:30PM", false, "AVAILABLE");
+        Slots slots8 = new Slots("12:30PM-01:00PM", false, "AVAILABLE");
+        Slots slots9 = new Slots("01:00PM-01:30PM", false, "AVAILABLE");
+        Slots slots10 = new Slots("01:30PM-02:00PM", false, "AVAILABLE");
+        Slots slots11 = new Slots("02:00PM-02:30PM", false, "AVAILABLE");
+        Slots slots12 = new Slots("02:30PM-03:00PM", false, "AVAILABLE");
+        Slots slots13 = new Slots("03:00PM-03:30PM", false, "AVAILABLE");
+        Slots slots14 = new Slots("03:30PM-04:00PM", false, "AVAILABLE");
+        Slots slots15 = new Slots("04:00PM-04:30PM", false, "AVAILABLE");
+        Slots slots16 = new Slots("04:30PM-05:00PM", false, "AVAILABLE");
+        Slots slots17 = new Slots("05:00PM-05:30PM", false, "AVAILABLE");
+        Slots slots18 = new Slots("05:30PM-06:00PM", false, "AVAILABLE");
 
         arrayTimeSlots.add(slots1);
         arrayTimeSlots.add(slots2);
@@ -323,6 +326,7 @@ public class ScheduleNow extends BaseActivity {
                             for (int j = 0; j < arrayTimeSlots.size(); j++) {
                                 if (availableSlots.get(i).getTimeSlot().equals(arrayTimeSlots.get(j).name)) {
                                     arrayTimeSlots.get(j).setSelected(true);
+                                    arrayTimeSlots.get(j).setText("NOT AVAILABLE");
                                 }
                             }
                         }

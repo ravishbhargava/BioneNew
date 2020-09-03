@@ -1,6 +1,6 @@
 package com.bione.ui.schedulecall.adapter;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +24,13 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
     private ArrayList<Slots> slots;
     private int checkedPosition = -1;
     private final ScheduleNow.OnItemClickListener listener;
+    private Context mContext;
 
-    public SlotsAdapter(final ArrayList<Slots> slots, final ScheduleNow.OnItemClickListener listener) {
+    public SlotsAdapter(final Context mContext, final ArrayList<Slots> slots, final ScheduleNow.OnItemClickListener listener) {
 
         this.slots = slots;
         this.listener = listener;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -44,58 +46,33 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
 
     }
 
-//    @SuppressLint("ResourceAsColor")
-//    @Override
-//    public void onBindViewHolder(final MyViewHolder holder, final int position) {
-//
-//        holder.tvSlotTime.setText(slots.get(position).name);
-//
-//        if (slots.get(position).isSelected()) {
-//            holder.tvNotAvailable.setText("NOT AVAILABLE");
-//            holder.tvNotAvailable.setTextColor(R.color.not_available_color);
-//        } else {
-//            holder.tvNotAvailable.setText("AVAILABLE");
-//            holder.tvNotAvailable.setTextColor(R.color.available_color);
-//        }
-//
-//    }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         holder.tvSlotTime.setText(slots.get(position).name);
-        if (slots.get(position).isSelected()) {
-//            holder.tvNotAvailable.setVisibility(View.VISIBLE);
-            holder.tvNotAvailable.setText("NOT AVAILABLE");
-            holder.tvNotAvailable.setTextColor(R.color.not_available_color);
-//            holder.ivSelected.setVisibility(View.GONE);
-            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
 
+        if (slots.get(position).getText().equals("NOT AVAILABLE")) {
+            holder.tvNotAvailable.setText(slots.get(position).getText());
+            holder.tvNotAvailable.setTextColor(mContext.getResources().getColor(R.color.not_available_color));
         } else {
-//            holder.tvNotAvailable.setVisibility(View.GONE);
-            holder.tvNotAvailable.setText("AVAILABLE");
-            holder.tvNotAvailable.setTextColor(R.color.available_color);
-//            holder.ivSelected.setVisibility(View.GONE);
-            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
+            holder.tvNotAvailable.setText(slots.get(position).getText());
+            holder.tvNotAvailable.setTextColor(mContext.getResources().getColor(R.color.available_color));
 
-            if (checkedPosition == -1) {
-//                holder.ivSelected.setVisibility(View.GONE);
-                holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
-            } else {
-                if (checkedPosition == position) {
+            if (checkedPosition == position) {
 //                    holder.ivSelected.setVisibility(View.VISIBLE);
-                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
-                } else {
+                holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
+            } else {
 //                    holder.ivSelected.setVisibility(View.GONE);
-                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
-                }
+                holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
             }
-            holder.llSlots.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        }
+        holder.llSlots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!slots.get(position).getText().equals("NOT AVAILABLE")) {
                     if (!slots.get(position).isSelected()) {
-//                        holder.ivSelected.setVisibility(View.VISIBLE);
                         holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
 
                         if (checkedPosition != position) {
@@ -105,9 +82,59 @@ public class SlotsAdapter extends RecyclerView.Adapter<SlotsAdapter.MyViewHolder
                         }
                     }
                 }
-            });
-        }
+            }
+        });
+
     }
+
+//    @SuppressLint("ResourceAsColor")
+//    @Override
+//    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+//
+//        holder.tvSlotTime.setText(slots.get(position).name);
+//        if (slots.get(position).isSelected()) {
+////            holder.tvNotAvailable.setVisibility(View.VISIBLE);
+//            holder.tvNotAvailable.setText("NOT AVAILABLE");
+//            holder.tvNotAvailable.setTextColor(R.color.not_available_color);
+////            holder.ivSelected.setVisibility(View.GONE);
+//            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
+//
+//        } else {
+////            holder.tvNotAvailable.setVisibility(View.GONE);
+//            holder.tvNotAvailable.setText("AVAILABLE");
+//            holder.tvNotAvailable.setTextColor(R.color.available_color);
+////            holder.ivSelected.setVisibility(View.GONE);
+//            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
+//
+//            if (checkedPosition == -1) {
+////                holder.ivSelected.setVisibility(View.GONE);
+//                holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
+//            } else {
+//                if (checkedPosition == position) {
+////                    holder.ivSelected.setVisibility(View.VISIBLE);
+//                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
+//                } else {
+////                    holder.ivSelected.setVisibility(View.GONE);
+//                    holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
+//                }
+//            }
+//            holder.llSlots.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (!slots.get(position).isSelected()) {
+////                        holder.ivSelected.setVisibility(View.VISIBLE);
+//                        holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
+//
+//                        if (checkedPosition != position) {
+//                            notifyItemChanged(checkedPosition);
+//                            listener.onItemClick(slots.get(position).name);
+//                            checkedPosition = position;
+//                        }
+//                    }
+//                }
+//            });
+//        }
+//    }
 
 
     @Override
