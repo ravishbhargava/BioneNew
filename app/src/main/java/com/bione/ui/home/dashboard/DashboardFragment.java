@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,6 +53,12 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private String emailId = "support@bione.in";
     private String mobileNumber = "+91 6366 754 050";
 
+    private AppCompatImageView ivFacebook;
+    private AppCompatImageView ivInsta;
+    private AppCompatImageView ivTwitter;
+    private AppCompatImageView ivYoutube;
+    private AppCompatImageView ivLinkedIn;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,6 +81,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             tvBookCounselling = rootView.findViewById(R.id.tvBookCounselling);
             tvCustomerSupport.setOnClickListener(this);
             tvBookCounselling.setOnClickListener(this);
+
+            init(rootView);
+            setListeners();
+
             setArrayList();
             onSetRecyclerView();
             initViewPager(rootView);
@@ -81,7 +92,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
         return rootView;
     }
-
 
     private void onSetRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
@@ -112,6 +122,27 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
     }
 
+    private void init(View view) {
+        ivFacebook = view.findViewById(R.id.ivFacebook);
+        ivInsta = view.findViewById(R.id.ivInsta);
+        ivTwitter = view.findViewById(R.id.ivTwitter);
+        ivYoutube = view.findViewById(R.id.ivYoutube);
+        ivLinkedIn = view.findViewById(R.id.ivLinkedIn);
+    }
+
+    private void setListeners() {
+        ivFacebook.setOnClickListener(this);
+        ivInsta.setOnClickListener(this);
+        ivTwitter.setOnClickListener(this);
+        ivYoutube.setOnClickListener(this);
+        ivLinkedIn.setOnClickListener(this);
+    }
+
+    private void openLink(final String url) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -125,6 +156,25 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 startActivity(intent);
                 break;
 
+            case R.id.ivFacebook:
+                openLink("https://www.facebook.com/bioneventures/");
+                break;
+
+            case R.id.ivTwitter:
+                openLink("https://twitter.com/Bioneventures");
+                break;
+
+            case R.id.ivInsta:
+                openLink("https://www.instagram.com/bione.ventures/");
+                break;
+
+            case R.id.ivLinkedIn:
+                openLink("https://www.linkedin.com/company/bioneindia/");
+                break;
+
+            case R.id.ivYoutube:
+                openLink("https://www.bione.in/");
+                break;
             default:
                 break;
         }

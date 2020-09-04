@@ -105,7 +105,7 @@ public class CategorySelect extends BaseActivity {
                 finish();
                 break;
             case R.id.llGenetics:
-                createList("Adrija", "Genetic");
+                createList("Adrija Mishra", "Genetic");
                 selectType(ivGenetic, ivMicrobiome, ivLongevity);
                 break;
             case R.id.llMicroBiome:
@@ -113,7 +113,7 @@ public class CategorySelect extends BaseActivity {
                 selectType(ivMicrobiome, ivGenetic, ivLongevity);
                 break;
             case R.id.llLongevity:
-                createList("Mishra", "Longevity");
+                createList("Adrija Mishra", "Longevity");
                 selectType(ivLongevity, ivMicrobiome, ivGenetic);
                 break;
 
@@ -142,7 +142,7 @@ public class CategorySelect extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
-        createList("Adrija", "Genetic");
+        createList("Adrija Mishra", "Genetic");
     }
 
     private void createList(String name, String type) {

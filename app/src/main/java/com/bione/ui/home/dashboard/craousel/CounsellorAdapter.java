@@ -31,16 +31,20 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
+        public View viewShaded;
         public CardView llVisible;
         public ImageView image;
         public AppCompatTextView tvHeading;
+        public AppCompatTextView tvDetail;
         public AppCompatTextView tvText;
 
         public MyViewHolder(View v) {
             super(v);
             view = v;
+            viewShaded = v.findViewById(R.id.viewShaded);
             image = v.findViewById(R.id.image);
             tvHeading = v.findViewById(R.id.tvHeading);
+            tvDetail = v.findViewById(R.id.tvDetail);
             tvText = v.findViewById(R.id.tvText);
             llVisible = v.findViewById(R.id.llVisible);
 
@@ -61,16 +65,20 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-//        holder.tvType.setText(counsellorList.get(position).getGeneticType());
-//        holder.tvName.setText(counsellorList.get(position).getCustomerName());
+
         if (position == 0 || position == (crouselDataArrayList.size() - 1)) {
             holder.llVisible.setVisibility(View.INVISIBLE);
         } else {
-
+            if (position == crouselDataArrayList.size() - 2) {
+                holder.viewShaded.setVisibility(View.VISIBLE);
+            } else {
+                holder.viewShaded.setVisibility(View.GONE);
+            }
             holder.llVisible.setVisibility(View.VISIBLE);
             holder.tvHeading.setText(crouselDataArrayList.get(position).getHeading());
             holder.tvText.setText(crouselDataArrayList.get(position).getText());
             holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
+//            holder.tvDetail.setEnabled(false);
         }
 
     }

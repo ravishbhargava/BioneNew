@@ -122,7 +122,6 @@
                         android:text="@string/follow_us_on"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textSize="@dimen/font_small" />
-
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/llBottom"
                         android:layout_width="wrap_content"
@@ -133,7 +132,7 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
-
+                            android:id="@+id/ivFacebook"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
@@ -141,7 +140,7 @@
                             android:src="@drawable/ic_facebook" />
 
                         <androidx.appcompat.widget.AppCompatImageView
-
+                            android:id="@+id/ivInsta"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
@@ -149,7 +148,7 @@
                             android:src="@drawable/ic_instagram_sketched" />
 
                         <androidx.appcompat.widget.AppCompatImageView
-
+                            android:id="@+id/ivTwitter"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
@@ -157,7 +156,7 @@
                             android:src="@drawable/ic_twitter" />
 
                         <androidx.appcompat.widget.AppCompatImageView
-
+                            android:id="@+id/ivYoutube"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
@@ -165,13 +164,62 @@
                             android:src="@drawable/ic_youtube" />
 
                         <androidx.appcompat.widget.AppCompatImageView
-
+                            android:id="@+id/ivLinkedIn"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:layout_marginHorizontal="@dimen/spacing_tiny"
                             android:src="@drawable/ic_linkedin" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
+<!--                    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                        android:id="@+id/llBottom"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentBottom="true"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_marginTop="@dimen/spacing_small"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <androidx.appcompat.widget.AppCompatImageView-->
+
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginHorizontal="@dimen/spacing_tiny"-->
+<!--                            android:src="@drawable/ic_facebook" />-->
+
+<!--                        <androidx.appcompat.widget.AppCompatImageView-->
+
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginHorizontal="@dimen/spacing_tiny"-->
+<!--                            android:src="@drawable/ic_instagram_sketched" />-->
+
+<!--                        <androidx.appcompat.widget.AppCompatImageView-->
+
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginHorizontal="@dimen/spacing_tiny"-->
+<!--                            android:src="@drawable/ic_twitter" />-->
+
+<!--                        <androidx.appcompat.widget.AppCompatImageView-->
+
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginHorizontal="@dimen/spacing_tiny"-->
+<!--                            android:src="@drawable/ic_youtube" />-->
+
+<!--                        <androidx.appcompat.widget.AppCompatImageView-->
+
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginHorizontal="@dimen/spacing_tiny"-->
+<!--                            android:src="@drawable/ic_linkedin" />-->
+<!--                    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
                 </RelativeLayout>

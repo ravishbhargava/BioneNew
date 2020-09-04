@@ -71,7 +71,7 @@
             android:textSize="@dimen/font_tiny" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvLogin"
+            android:id="@+id/tvDetail"
             android:layout_width="@dimen/item_gallery_button_width"
             android:layout_height="@dimen/spacing_medium"
             android:layout_marginTop="@dimen/spacing_tiny"
@@ -87,6 +87,13 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:id="@+id/viewShaded"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#403D44F0"
+        />
 
 
 </androidx.cardview.widget.CardView>
