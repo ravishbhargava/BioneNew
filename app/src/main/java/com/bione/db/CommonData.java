@@ -1,6 +1,9 @@
 package com.bione.db;
 
 import com.bione.model.customerdata.Customer;
+import com.kbeanie.multipicker.api.entity.ChosenImage;
+
+import java.util.List;
 
 import io.paperdb.Paper;
 
@@ -14,6 +17,7 @@ public final class CommonData {
     private static final String PAPER_CUSTOMER_TOKEN = "paper_customer_token";
     private static final String PAPER_LOGIN_DATA = "paper_login_data";
     private static final String PAPER_USER_DATA = "paper_user_data";
+    private static final String PAPER_USER_PHOTO = "paper_user_photo";
 
 
     /**
@@ -117,6 +121,24 @@ public final class CommonData {
      */
     public static String getFcmToken() {
         return Paper.book().read(PAPER_DEVICE_TOKEN);
+    }
+
+    /**
+     * Update photo token.
+     *
+     * @param photo the photo
+     */
+    public static void updateUserPhoto(final List<ChosenImage> token) {
+        Paper.book().write(PAPER_USER_PHOTO, token);
+    }
+
+    /**
+     * Gets photo .
+     *
+     * @return the photo
+     */
+    public static List<ChosenImage> getUserPhoto() {
+        return Paper.book().read(PAPER_USER_PHOTO);
     }
 
 }

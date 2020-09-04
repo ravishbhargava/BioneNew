@@ -1,5 +1,7 @@
 package com.bione.ui.home;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,8 +22,11 @@ import com.bione.db.CommonData;
 import com.bione.model.customerdata.Customer;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
+import com.bione.ui.onboarding.Splash;
 import com.google.android.material.navigation.NavigationView;
 import com.zoho.salesiqembed.ZohoSalesIQ;
+
+import io.paperdb.Paper;
 
 
 public class MainActivity extends BaseActivity {
@@ -29,7 +35,7 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgProfile;
-    private TextView txtName, txtPhone;
+    private TextView txtName, txtPhone, tvLogout;
     private Toolbar toolbar;
 //    private FloatingActionButton fab;
 
@@ -64,11 +70,56 @@ public class MainActivity extends BaseActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        tvLogout = findViewById(R.id.tvLogout);
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                new CustomAlertDialog.Builder(MainActivity.this)
+//                        .setMessage("Logout")
+//                        .setCancelable(false)
+//                        .setNegativeButton(R.string.text_cancel, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick() {
+//                                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//                        .setPositiveButton(R.string.text_ok, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick() {
+//                                Toast.makeText(getApplicationContext(), "Ok", Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//                        .show();
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("Are you sure?")
+                        .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+//                                Toast.makeText(getApplicationContext(), "Yes", Toast.LENGTH_SHORT).show();
+                                Paper.book().destroy();
+                                Intent intent = new Intent(MainActivity.this, Splash.class);
+                                // set the new task and clear flags
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                Toast.makeText(getApplicationContext(), "No", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+            }
+        });
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
         txtName = navHeader.findViewById(R.id.name);
         txtPhone = navHeader.findViewById(R.id.phone);
+
 //        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 

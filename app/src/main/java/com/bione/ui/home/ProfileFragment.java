@@ -3,12 +3,16 @@ package com.bione.ui.home;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,9 +37,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -73,6 +82,10 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
     private JSONArray customAttributeArray = new JSONArray();
     private JSONObject customAttributeObject = new JSONObject();
 
+    private String currentPassword = "";
+    private String newPassword = "";
+
+    private RelativeLayout relPassword;
 
     @Override
     public void onAttach(Context context) {
@@ -123,6 +136,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         vEmail = rootView.findViewById(R.id.vEmail);
         vName = rootView.findViewById(R.id.vName);
 
+        relPassword = rootView.findViewById(R.id.relPassword);
 
         cvProfilePic = rootView.findViewById(R.id.cvProfilePic);
         ivAddProfile = rootView.findViewById(R.id.ivAddProfile);
@@ -165,6 +179,23 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
             } else {
                 tvGender.setText("Female");
             }
+        }
+
+        if (CommonData.getCustomerToken().equals("")) {
+            relPassword.setVisibility(View.GONE);
+        } else {
+            relPassword.setVisibility(View.VISIBLE);
+        }
+
+        Log.d("getCustomerToken", " ------------------ " + CommonData.getCustomerToken());
+
+        if (CommonData.getUserPhoto() != null) {
+            photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailPath());
+
+            Glide.with(mContext)
+                    .load(photoFile)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(cvProfilePic);
         }
 
     }
@@ -224,6 +255,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         imageChooser.selectImage(new ImageChooser.OnImageSelectListener() {
             @Override
             public void loadImage(final List<ChosenImage> list) {
+                CommonData.updateUserPhoto(list);
                 photoFile = new File(list.get(0).getThumbnailPath());
                 uriImage = Uri.parse(list.get(0).getQueryUri());
                 if (uriImage != null) {
@@ -259,6 +291,8 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
 
     @Override
     public void loadImage(List<ChosenImage> list) {
+        CommonData.updateUserPhoto(list);
+
         photoFile = new File(list.get(0).getThumbnailPath());
 
         Glide.with(mContext)
@@ -273,6 +307,77 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
 
     }
 
+    public void savefile(String name, String path) {
+        File direct = new File(Environment.getExternalStorageDirectory() + "/MyAppFolder/MyApp/");
+        File file = new File(Environment.getExternalStorageDirectory() + "/MyAppFolder/MyApp/" + name + ".png");
+
+        if (!direct.exists()) {
+            direct.mkdir();
+        }
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                FileChannel src = new FileInputStream(path).getChannel();
+                FileChannel dst = new FileOutputStream(file).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+
+        File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File("/sdcard/DirName/");
+            wallpaperDirectory.mkdirs();
+        }
+
+        File file = new File("/sdcard/DirName/", fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveImageToExternal(String imgName, Bitmap bm) throws IOException {
+        //Create Path to save Image
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES + "bionenew"); //Creates app specific folder
+        path.mkdirs();
+        File imageFile = new File(path, imgName + ".png"); // Imagename.png
+        FileOutputStream out = new FileOutputStream(imageFile);
+        try {
+            bm.compress(Bitmap.CompressFormat.PNG, 100, out); // Compress Image
+            out.flush();
+            out.close();
+
+            // Tell the media scanner about the new file so that it is
+            // immediately available to the user.
+            MediaScannerConnection.scanFile(mContext, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                public void onScanCompleted(String path, Uri uri) {
+                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                    Log.i("ExternalStorage", "-> uri=" + uri);
+                }
+            });
+        } catch (Exception e) {
+            throw new IOException();
+        }
+    }
+
+
     private void openDialog() {
         // custom dialog
         final Dialog dialog = new Dialog(mContext);
@@ -285,6 +390,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
         AppCompatEditText etConfirmPassword = dialog.findViewById(R.id.etConfirmPassword);
 
         AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+
 
         // if button is clicked, close the custom dialog
         tvOk.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +407,9 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
                             showErrorMessage("Please enter confirm password");
                         } else {
                             if (etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())) {
+//                                updatePasswordAPI();
+                                currentPassword = etCurrentPassword.getText().toString();
+                                newPassword = etNewPassword.getText().toString();
                                 updatePasswordAPI();
                                 dialog.dismiss();
 
@@ -319,8 +428,74 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
     }
 
     private void updatePasswordAPI() {
+        showLoading();
+        createPasswordObject();
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("Authorization", "Bearer " + CommonData.getCustomerToken())
+                .add("Content-Type", "application/json")
+                .build();
+
+        final CommonParams commonParams2 = new CommonParams.Builder()
+                .add("customerId", CommonData.getUserData().getEntityId())
+                .build();
+
+        Log.d("headers", " data :: " + commonParams.getMap().toString());
+        Log.d("params", " data :: " + commonParams2.getMap().toString());
+
+        RequestBody body =
+                RequestBody.create(MediaType.parse("text/plain"), jsonObject.toString());
+
+        RestClient.getApiInterface().changePassword(
+                commonParams.getMap(),
+                commonParams.getMap(),
+                body)
+                .enqueue(new ResponseResolver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean isChanged) {
+
+                        try {
+                            if (isChanged)
+                                showErrorMessage("Password changed successfully");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiError error) {
+                        Log.d("onError", "" + error);
+                        showErrorMessage(error.getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        throwable.printStackTrace();
+                        showErrorMessage(throwable.getMessage());
+                    }
+                });
+    }
+
+
+    private void createPasswordObject() {
+//        {
+//            "currentPassword": "Mmmmm@1234",
+//                "newPassword": "Mmmmm@123"
+//        }
+        jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("currentPassword", currentPassword);
+            jsonObject.put("newPassword", newPassword);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("jsonObject", "data :: " + jsonObject.toString());
 
     }
+
 
     private void updateProfileAPI() {
         showLoading();
@@ -384,6 +559,7 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
                     }
                 });
     }
+
 
     private void createJsonObject() {
 //        {

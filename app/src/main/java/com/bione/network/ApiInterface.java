@@ -3,7 +3,6 @@ package com.bione.network;
 
 import com.bione.model.CommonResponse;
 import com.bione.model.availableSlots.Slot;
-import com.bione.model.customerdata.Customer;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.updateprofile.UpdateProfile;
 
@@ -66,7 +65,7 @@ public interface ApiInterface {
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
 
     @GET("/rest/V1/customers/me")
-    Call<Customer> getCustomerDetails(@HeaderMap HashMap<String, String> headerMap);
+    Call<UpdateProfile> getCustomerDetails(@HeaderMap HashMap<String, String> headerMap);
 
     @POST("rest/V1/integration/customer/token")
     Call<String> getCustomerToken(@QueryMap(encoded = true) Map<String, String> map);
@@ -99,7 +98,18 @@ public interface ApiInterface {
                                        @Path("customers") String customerId,
                                        @Body RequestBody json);
 
-
+    /**
+     * checkUnique call.
+     *
+     * @param headerMap  the header map
+     * @param customerId the id of the customer
+     * @param json       jsonobject
+     * @return the call
+     */
+    @PUT("/rest/V1/customers/me/password")
+    Call<Boolean> changePassword(@HeaderMap HashMap<String, String> headerMap,
+                                 @QueryMap Map<String, String> map,
+                                 @Body RequestBody json);
 
 
     @POST("/rest/V1/bioneapi-customer/update")

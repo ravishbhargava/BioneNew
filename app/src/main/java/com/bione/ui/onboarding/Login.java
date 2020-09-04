@@ -25,6 +25,7 @@ import com.bione.db.CommonData;
 import com.bione.model.CommonResponse;
 import com.bione.model.customerdata.Customer;
 import com.bione.model.customerdata.SignInDatum;
+import com.bione.model.updateprofile.UpdateProfile;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
@@ -488,7 +489,7 @@ public class Login extends BaseActivity {
 
                 if (commonResponse.get(0).getCode() == SUCCESS) {
                     try {
-
+                        CommonData.updateCustomerToken("");
                         CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
                         Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
 
@@ -532,7 +533,7 @@ public class Login extends BaseActivity {
 
                 if (commonResponse.get(0).getCode() == SUCCESS) {
                     try {
-
+                        CommonData.updateCustomerToken("");
                         CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
                         Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
 
@@ -609,15 +610,30 @@ public class Login extends BaseActivity {
                 .add("Content-Type", "application/json")
                 .build();
 
-        RestClient.getApiInterface().getCustomerDetails(commonParams.getMap()).enqueue(new ResponseResolver<Customer>() {
+        RestClient.getApiInterface().getCustomerDetails(commonParams.getMap()).enqueue(new ResponseResolver<UpdateProfile>() {
             @Override
-            public void onSuccess(Customer commonResponse) {
+            public void onSuccess(UpdateProfile updateProfile) {
 
-//                if (commonResponse.get(0).getCode() == SUCCESS) {
+
                 try {
+                    Log.d("update ", "mobile :: " + updateProfile.getCustomAttributes().get(0).getValue());
 
-                    CommonData.saveUserData(commonResponse);
-                    Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
+                    Customer customer = CommonData.getUserData();
+                    customer.setFirstname(updateProfile.getFirstname());
+//                            customer.setMiddlename(updateProfile.getMiddlename());
+                    customer.setLastname(updateProfile.getLastname());
+                    customer.setEmail(updateProfile.getEmail());
+                    customer.setWebsiteId("" + updateProfile.getWebsiteId());
+                    customer.setEntityId("" + updateProfile.getId());
+                    customer.setMobilenumber(updateProfile.getCustomAttributes().get(0).getValue());
+
+                    if (updateProfile.getMiddlename() != null) {
+                        customer.setMiddlename(updateProfile.getMiddlename());
+                    }
+
+                    CommonData.saveUserData(customer);
+
+                    Log.d("common data", "mobile :: " + CommonData.getUserData().getMobilenumber());
 
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     // set the new task and clear flags
@@ -627,9 +643,6 @@ public class Login extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                } else {
-//                    showErrorMessage(commonResponse.get(0).getMessage());
-//                }
             }
 
             @Override
