@@ -15,7 +15,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/height_spacing_50"
             android:layout_gravity="center"
             android:background="@color/white"
             android:gravity="center"
@@ -214,12 +214,11 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvScheduleNow"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/spacing_xlarge"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/spacing_normal"
         android:background="@drawable/drawable_border_primary"
         android:gravity="center"
-        android:minHeight="50dp"
         android:text="Proceed"
         android:textAlignment="center"
         android:textAllCaps="false"

@@ -256,7 +256,7 @@
                         android:id="@+id/etPassword"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.60"
+                        android:layout_weight="0.80"
                         android:background="@color/transparent"
                         android:gravity="start"
                         android:hint="@string/enter_your_password"
@@ -269,7 +269,7 @@
                         android:id="@+id/viewEye"
                         android:layout_width="0dp"
                         android:layout_height="15dp"
-                        android:layout_weight="0.10"
+                        android:layout_weight="0.20"
                         android:src="@drawable/ic_hidden" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -280,6 +280,7 @@
                         android:gravity="center"
                         android:padding="@dimen/spacing_small"
                         android:text="Forgot?"
+                        android:visibility="gone"
                         android:textAppearance="@style/CustomTextAppearance.Medium"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_normal" />

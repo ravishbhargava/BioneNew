@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="@dimen/spacing_small"
-        android:layout_weight="1.2"
+        android:layout_weight="1"
         android:src="@mipmap/bione_logo" />
 
     <com.bione.utils.CustomViewPager
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:layout_weight="3.3"
+        android:layout_weight="3.5"
         android:orientation="vertical">
 
         <me.relex.circleindicator.CircleIndicator
@@ -47,6 +47,7 @@
             app:ci_width="10dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTerm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

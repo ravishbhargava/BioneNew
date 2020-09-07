@@ -1,6 +1,8 @@
 package com.bione.ui.home.dashboard.craousel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +82,14 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
             holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
 //            holder.tvDetail.setEnabled(false);
         }
+
+        holder.llVisible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
+                mContext.startActivity(browserIntent);
+            }
+        });
 
     }
 

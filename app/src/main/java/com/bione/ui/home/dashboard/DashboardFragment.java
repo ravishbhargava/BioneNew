@@ -157,23 +157,23 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
 
             case R.id.ivFacebook:
-                openLink("https://www.facebook.com/bioneventures/");
+                openLink(getResources().getString(R.string.facebook_link));
                 break;
 
             case R.id.ivTwitter:
-                openLink("https://twitter.com/Bioneventures");
+                openLink(getResources().getString(R.string.twitter_link));
                 break;
 
             case R.id.ivInsta:
-                openLink("https://www.instagram.com/bione.ventures/");
+                openLink(getResources().getString(R.string.instagram_link));
                 break;
 
             case R.id.ivLinkedIn:
-                openLink("https://www.linkedin.com/company/bioneindia/");
+                openLink(getResources().getString(R.string.linkedin_link));
                 break;
 
             case R.id.ivYoutube:
-                openLink("https://www.bione.in/");
+                openLink(getResources().getString(R.string.youtube_link));
                 break;
             default:
                 break;

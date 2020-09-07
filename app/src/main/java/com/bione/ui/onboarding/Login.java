@@ -81,6 +81,7 @@ public class Login extends BaseActivity {
     private String email = "";
     private String password = "";
 
+    private AppCompatTextView tvTerm;
     private AppCompatTextView tvLogin;
     private AppCompatTextView tvForgot;
     private AppCompatEditText etEmail;
@@ -154,6 +155,7 @@ public class Login extends BaseActivity {
 
         tvForgot = findViewById(R.id.tvForgot);
         tvLogin = findViewById(R.id.tvLogin);
+        tvTerm = findViewById(R.id.tvTerm);
 
         viewEye = findViewById(R.id.viewEye);
     }
@@ -163,6 +165,7 @@ public class Login extends BaseActivity {
         llFBLogin.setOnClickListener(this);
         llEmail.setOnClickListener(this);
         llPhone.setOnClickListener(this);
+        tvTerm.setOnClickListener(this);
         tvLogin.setOnClickListener(this);
         tvForgot.setOnClickListener(this);
         viewEye.setOnClickListener(this);
@@ -307,9 +310,12 @@ public class Login extends BaseActivity {
                         showErrorMessage("Please enter valid email");
                     }
                 }
-
                 break;
 
+            case R.id.tvTerm:
+                Intent intent = new Intent(Login.this, WebviewActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

@@ -13,6 +13,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.home.MainActivity;
 import com.bione.ui.onboarding.walkthrough.Walk;
 import com.bione.utils.Log;
 
@@ -53,7 +54,7 @@ public class Splash extends BaseActivity {
             }
         };
 
-        handler.postDelayed(r, 1000);
+        handler.postDelayed(r, 500);
 
     }
 
@@ -83,9 +84,14 @@ public class Splash extends BaseActivity {
                 CommonData.updateAdminToken(s);
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
 
-//                Intent intent = new Intent(Splash.this, Walk.class);
-                Intent intent = new Intent(Splash.this, Walk.class);
-                startActivity(intent);
+                if (CommonData.getUserData() != null) {
+                    Intent intent = new Intent(Splash.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(Splash.this, Walk.class);
+                    startActivity(intent);
+                }
+
             }
 
             @Override

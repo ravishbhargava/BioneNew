@@ -57,6 +57,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name=".ui.onboarding.WebviewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".ui.schedulecall.CategorySelect"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />

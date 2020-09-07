@@ -1,10 +1,10 @@
 <resources>
 
     <string name="app_name">Bione</string>
-    <string name="facebook_app_id">295386748548112</string><!--//ravish-->
-    <string name="fb_login_protocol_scheme">fb295386748548112</string><!--// ravish -->
-<!--        <string name="facebook_app_id">637942996791077</string>&lt;!&ndash; Office &ndash;&gt;-->
-<!--        <string name="fb_login_protocol_scheme">fb637942996791077</string>&lt;!&ndash; office &ndash;&gt;-->
+<!--    <string name="facebook_app_id">295386748548112</string>&lt;!&ndash;//ravish&ndash;&gt;-->
+<!--    <string name="fb_login_protocol_scheme">fb295386748548112</string>&lt;!&ndash;// ravish &ndash;&gt;-->
+        <string name="facebook_app_id">637942996791077</string><!-- Office -->
+        <string name="fb_login_protocol_scheme">fb637942996791077</string><!-- office -->
 
     <!-- Fcm service -->
     <string name="log_fcm_message_id">"FCM Message Id: "</string>
@@ -111,6 +111,11 @@
     <string name="logout">Logout</string>
     <string name="follow_us_on">Follow us on</string>
     <string name="nav_mysessions">MySessions</string>
+    <string name="linkedin_link">https://www.linkedin.com/company/bioneindia/</string>
+    <string name="instagram_link">https://www.instagram.com/bioneindia/</string>
+    <string name="facebook_link">https://business.facebook.com/bioneindia/</string>
+    <string name="twitter_link">https://twitter.com/Bioneindia</string>
+    <string name="youtube_link">https://www.youtube.com/channel/UC9_J3ElNoz2rKmnvdoTs4ow</string>
 
 
 </resources>

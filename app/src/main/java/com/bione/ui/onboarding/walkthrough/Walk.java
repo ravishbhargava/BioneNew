@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.onboarding.Login;
+import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.CustomViewPager;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -19,6 +20,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class Walk extends BaseActivity {
 
     private CustomViewPager viewPager;
+    private AppCompatTextView tvTerm;
     private AppCompatTextView tvGetStarted;
     private AppCompatImageView ivFacebook;
     private AppCompatImageView ivInsta;
@@ -45,6 +47,7 @@ public class Walk extends BaseActivity {
         ivYoutube = findViewById(R.id.ivYoutube);
         ivLinkedIn = findViewById(R.id.ivLinkedIn);
         tvGetStarted = findViewById(R.id.tvContinue);
+        tvTerm = findViewById(R.id.tvTerm);
     }
 
     private void setListeners() {
@@ -54,6 +57,7 @@ public class Walk extends BaseActivity {
         ivYoutube.setOnClickListener(this);
         ivLinkedIn.setOnClickListener(this);
         tvGetStarted.setOnClickListener(this);
+        tvTerm.setOnClickListener(this);
     }
 
     private void initViewPager() {
@@ -87,23 +91,28 @@ public class Walk extends BaseActivity {
                 break;
 
             case R.id.ivFacebook:
-                openLink("https://www.facebook.com/bioneventures/");
+                openLink(getResources().getString(R.string.facebook_link));
                 break;
 
             case R.id.ivTwitter:
-                openLink("https://twitter.com/Bioneventures");
+                openLink(getResources().getString(R.string.twitter_link));
                 break;
 
             case R.id.ivInsta:
-                openLink("https://www.instagram.com/bione.ventures/");
+                openLink(getResources().getString(R.string.instagram_link));
                 break;
 
             case R.id.ivLinkedIn:
-                openLink("https://www.linkedin.com/company/bioneindia/");
+                openLink(getResources().getString(R.string.linkedin_link));
                 break;
 
             case R.id.ivYoutube:
-                openLink("https://www.bione.in/");
+                openLink(getResources().getString(R.string.youtube_link));
+                break;
+
+            case R.id.tvTerm:
+                Intent intent2 = new Intent(this, WebviewActivity.class);
+                startActivity(intent2);
                 break;
 
         }
