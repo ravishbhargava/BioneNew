@@ -23,8 +23,12 @@ import com.bione.model.customerdata.Customer;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
 import com.bione.ui.onboarding.Splash;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.zoho.salesiqembed.ZohoSalesIQ;
+
+import java.io.File;
 
 import io.paperdb.Paper;
 
@@ -34,7 +38,7 @@ public class MainActivity extends BaseActivity {
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
-    private ImageView imgProfile;
+    private ImageView ivProfile;
     private TextView txtName, txtPhone, tvLogout;
     private Toolbar toolbar;
 //    private FloatingActionButton fab;
@@ -121,7 +125,7 @@ public class MainActivity extends BaseActivity {
         txtPhone = navHeader.findViewById(R.id.phone);
 
 //        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+        ivProfile = (ImageView) navHeader.findViewById(R.id.ivProfile);
 
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
@@ -138,6 +142,8 @@ public class MainActivity extends BaseActivity {
             CURRENT_TAG = TAG_DASH;
             loadHomeFragment();
         }
+
+
     }
 
     /***
@@ -157,6 +163,15 @@ public class MainActivity extends BaseActivity {
         }
         if (customer.getMobilenumber() != null) {
             txtPhone.setText("+" + customer.getMobilenumber());
+        }
+
+        if (CommonData.getUserPhoto() != null) {
+            File photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailSmallPath());
+
+            Glide.with(getApplicationContext())
+                    .load(photoFile)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(ivProfile);
         }
     }
 
@@ -325,6 +340,8 @@ public class MainActivity extends BaseActivity {
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
+
+                loadNavHeader();
             }
         };
 

@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.core.widget.TextViewCompat;
 
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
@@ -48,13 +46,13 @@ public class WalkFragment extends BaseFragment {
             ivHead = rootView.findViewById(R.id.ivHead);
 
             if (text.equals("1")) {
-                tvHeading.setText(R.string.dummy_text);
+                tvHeading.setText("Personalised Food & nutrition recommendations, which food groups you’re sensitive to, and your weight regain response.");
                 ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk1));
             } else if (text.equals("2")) {
-                tvHeading.setText(R.string.dummy_text);
+                tvHeading.setText("Genetic-based advices with simple and actionable recommendations.");
                 ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk2));
             } else if (text.equals("3")) {
-                tvHeading.setText(R.string.dummy_text);
+                tvHeading.setText("Speak with our team of genomic counsellors to understand your test reports.");
                 ivHead.setImageDrawable(getActivity().getDrawable(R.mipmap.walk3));
             }
 
