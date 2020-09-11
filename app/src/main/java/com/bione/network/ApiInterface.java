@@ -3,6 +3,7 @@ package com.bione.network;
 
 import com.bione.model.CommonResponse;
 import com.bione.model.availableSlots.Slot;
+import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.updateprofile.UpdateProfile;
 
@@ -81,6 +82,9 @@ public interface ApiInterface {
 
     @POST("/rest/V1/bioneapi/counsellor")
     Call<List<CommonResponse>> scheduleCall(@QueryMap Map<String, String> map);
+
+    @GET("/rest/V1/bioneapi/counsellorlist")
+    Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
 
     @POST("/rest/V1/bioneapi/contact")
     Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);

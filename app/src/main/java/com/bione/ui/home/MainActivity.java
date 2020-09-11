@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.customerdata.Customer;
+import com.bione.ui.Counselling.MyCounsellingFragment;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
 import com.bione.ui.onboarding.Splash;
@@ -243,7 +244,7 @@ public class MainActivity extends BaseActivity {
 
             case 2:
                 // Session fragment
-                SessionFragment sessionFragment = new SessionFragment();
+                MyCounsellingFragment sessionFragment = new MyCounsellingFragment();
                 return sessionFragment;
 
             case 3:

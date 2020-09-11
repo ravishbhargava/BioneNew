@@ -56,6 +56,11 @@
         <item name="fontPath">fonts/Poppins-SemiBold.ttf</item>
     </style>
 
+    <!--Custom light text appearance-->
+    <style name="CustomTextAppearance.Light" parent="CustomTextAppearance">
+        <item name="fontPath">fonts/Poppins-Light.ttf</item>
+    </style>
+
     <style name="primary_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

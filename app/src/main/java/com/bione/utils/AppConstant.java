@@ -10,7 +10,7 @@ public final class AppConstant {
     public static final String NOTIFICATION_RECEIVED = "notification_received";
     public static final String MESSAGE = "message";
     public static final String DATE_FORMAT = "yyyy-MM-dd";
-    public static final String DATE_FORMAT_DAY_MONTH = "dd MMM";
+    public static final String DATE_FORMAT_DAY_MONTH = "dd\nMMM";
 
 
     public static final String PARAM_USERNAME = "username";

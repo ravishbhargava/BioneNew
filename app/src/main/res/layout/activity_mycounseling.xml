@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_spacing_50"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="My Sessions"
+        android:textAppearance="@style/CustomTextAppearance.Medium"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:textSize="@dimen/font_large" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tabMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginHorizontal="@dimen/spacing_normal"
+        android:background="@drawable/drawable_border"
+        android:minHeight="@dimen/height_spacing_50"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="Upcoming"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="Past"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textSize="@dimen/font_large" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.bione.utils.CustomViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvSchedule"
+        android:layout_below="@+id/tabMode"
+        android:layout_margin="@dimen/spacing_normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="@string/text_schedule_counselling"
+        android:textAlignment="center"
+        android:textSize="@dimen/font_large"
+        android:visibility="gone" />
+
+</RelativeLayout>
