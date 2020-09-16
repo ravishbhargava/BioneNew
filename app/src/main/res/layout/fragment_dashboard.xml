@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:layout_marginVertical="@dimen/spacing_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_spacing_150"
                 android:gravity="center"
@@ -58,6 +59,7 @@
                 android:id="@+id/bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_normal"
                 android:orientation="vertical">
 
 
@@ -66,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_large"
-                    android:layout_marginVertical="@dimen/spacing_xsmall"
+                    android:layout_marginVertical="@dimen/spacing_normal"
                     android:background="@drawable/drawable_border_primary"
                     android:gravity="center"
                     android:padding="@dimen/spacing_xsmall"
@@ -82,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_large"
-                    android:layout_marginBottom="@dimen/spacing_xsmall"
+                    android:layout_marginBottom="@dimen/spacing_normal"
                     android:background="@drawable/drawable_border_primary"
                     android:gravity="center"
                     android:padding="@dimen/spacing_xsmall"

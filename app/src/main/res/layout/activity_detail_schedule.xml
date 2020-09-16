@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="Book a session"
+                android:text="Genomic Counselling"
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_large" />
@@ -33,6 +33,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/spacing_normal"
 
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/spacing_normal">
@@ -106,6 +107,24 @@
                         android:textSize="@dimen/font_xlarge" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:background="@drawable/drawable_border_primary"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:visibility="visible"
+                    android:text="Feedback"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/CustomTextAppearance.Semibold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_xlarge" />
 
             </LinearLayout>
         </LinearLayout>

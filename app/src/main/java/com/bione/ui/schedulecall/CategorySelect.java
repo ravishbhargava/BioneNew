@@ -109,7 +109,7 @@ public class CategorySelect extends BaseActivity {
                 selectType(ivGenetic, ivMicrobiome, ivLongevity);
                 break;
             case R.id.llMicroBiome:
-                createList("Tanya", "MicroBiome");
+                createList("Tanya", "MyMicroBiome");
                 selectType(ivMicrobiome, ivGenetic, ivLongevity);
                 break;
             case R.id.llLongevity:

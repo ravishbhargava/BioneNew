@@ -86,7 +86,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         holder.tvName.setText(counsellorList.get(position).getCustomerName());
         holder.tvDate.setText(CommonUtil.getDayMonth(counsellorList.get(position).getDate()));
         holder.tvTimeSlot.setText(counsellorList.get(position).getTimeSlot());
-
+        holder.ratingBar.setIsIndicator(true);
         if (counsellorList.get(position).getStarsRatings() == null) {
             holder.ratingBar.setVisibility(View.GONE);
         } else {

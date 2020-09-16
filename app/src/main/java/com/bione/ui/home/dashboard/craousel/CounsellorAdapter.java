@@ -2,7 +2,6 @@ package com.bione.ui.home.dashboard.craousel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 
     private Context mContext;
     private ArrayList<CrouselData> crouselDataArrayList;
-
+    private String openType = "WebView"; //PdfView
 
     public CounsellorAdapter(final Context mContext, final ArrayList<CrouselData> crouselDataArrayList) {
         this.crouselDataArrayList = crouselDataArrayList;
@@ -71,23 +70,34 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         if (position == 0 || position == (crouselDataArrayList.size() - 1)) {
             holder.llVisible.setVisibility(View.INVISIBLE);
         } else {
-            if (position == crouselDataArrayList.size() - 2) {
-                holder.viewShaded.setVisibility(View.VISIBLE);
-            } else {
-                holder.viewShaded.setVisibility(View.GONE);
-            }
+            holder.viewShaded.setVisibility(View.GONE);
             holder.llVisible.setVisibility(View.VISIBLE);
             holder.tvHeading.setText(crouselDataArrayList.get(position).getHeading());
             holder.tvText.setText(crouselDataArrayList.get(position).getText());
             holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
-//            holder.tvDetail.setEnabled(false);
         }
+        //            if (position == crouselDataArrayList.size() - 2) {
+//            } else {
+//                holder.viewShaded.setVisibility(View.GONE);
+//            }
+//            holder.tvDetail.setEnabled(false);
 
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
-                mContext.startActivity(browserIntent);
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
+//                mContext.startActivity(browserIntent);
+
+                if (position == 4) {
+                    openType = "WebView";
+                } else {
+                    openType = "WebView";
+                }
+                Intent intent = new Intent(mContext, PDFViewActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("openType", openType);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
             }
         });
 
