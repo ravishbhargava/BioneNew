@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
+import com.bione.ui.mymicrobiome.MyMicroBiome;
 
 import java.util.ArrayList;
 
@@ -87,17 +88,22 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
             public void onClick(View view) {
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
 //                mContext.startActivity(browserIntent);
-
-                if (position == 4) {
-                    openType = "WebView";
+                if (position == 2) {
+                    Intent intent = new Intent(mContext, MyMicroBiome.class);
+                    mContext.startActivity(intent);
                 } else {
-                    openType = "WebView";
+
+                    if (position == 4) {
+                        openType = "WebView";
+                    } else {
+                        openType = "WebView";
+                    }
+                    Intent intent = new Intent(mContext, PDFViewActivity.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("openType", openType);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
                 }
-                Intent intent = new Intent(mContext, PDFViewActivity.class);
-                intent.putExtra("position", position);
-                intent.putExtra("openType", openType);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
             }
         });
 

@@ -47,6 +47,7 @@ public class PDFViewActivity extends BaseActivity {
         if (extras != null) {
 //            filename = extras.getString("pdfUrl");
             position = extras.getInt("position");
+            filename = extras.getString("pdfUrl");
             // and get whatever type user account id is
         }
 
@@ -65,8 +66,11 @@ public class PDFViewActivity extends BaseActivity {
         pdfView = findViewById(R.id.pdfv);
         webView = findViewById(R.id.webView);
 
-
-        if (position == 3) {
+        if (!filename.equals("")) {
+            webView.setVisibility(View.GONE);
+            pdfView.setVisibility(View.VISIBLE);
+            openUrl();
+        } else if (position == 3) {
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);
             pdfView.fromAsset("Bione-Suspectibility.pdf").load();

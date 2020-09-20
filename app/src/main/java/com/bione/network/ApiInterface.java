@@ -5,6 +5,7 @@ import com.bione.model.CommonResponse;
 import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
+import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.updateprofile.UpdateProfile;
 
 import java.util.HashMap;
@@ -88,6 +89,9 @@ public interface ApiInterface {
 
     @POST("/rest/V1/bioneapi/contact")
     Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
+    @GET("/rest/V1/bioneapi/kitorderlist")
+    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+
 
     /**
      * checkUnique call.
