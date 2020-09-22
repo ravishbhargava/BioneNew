@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "302681074583-1uie7s4etuvh39ehrtq79g59h5l77c83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bione",
+            "certificate_hash": "eced641f2cf12bf77c1a3976350ceeddf49ff141"
+          }
+        },
+        {
+          "client_id": "302681074583-8n6v2frlc8i2dk9ed62bg5cqol404deu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bione",
+            "certificate_hash": "a7f27ddd477ee42192de97096f1249c37b40730a"
+          }
+        },
+        {
           "client_id": "302681074583-6jc32ut50jcam60no01utb5r5akvalcp.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +46,13 @@
             {
               "client_id": "302681074583-6jc32ut50jcam60no01utb5r5akvalcp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "302681074583-01v81uhef3hrdsdmu154k3tg69bfhe0q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bione"
+              }
             }
           ]
         }

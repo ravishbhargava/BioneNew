@@ -65,11 +65,12 @@ public class PDFViewActivity extends BaseActivity {
         tvBook = findViewById(R.id.tvBook);
         pdfView = findViewById(R.id.pdfv);
         webView = findViewById(R.id.webView);
-
-        if (!filename.equals("")) {
-            webView.setVisibility(View.GONE);
-            pdfView.setVisibility(View.VISIBLE);
-            openUrl();
+        if (filename != null) {
+            if (!filename.equals("")) {
+                webView.setVisibility(View.GONE);
+                pdfView.setVisibility(View.VISIBLE);
+                openUrl();
+            }
         } else if (position == 3) {
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);

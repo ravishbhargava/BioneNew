@@ -85,15 +85,14 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_tiny" />
 
+        <View
+            android:id="@+id/viewShaded"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#403D44F0" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-        android:id="@+id/viewShaded"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#403D44F0"
-        />
 
 
 </androidx.cardview.widget.CardView>

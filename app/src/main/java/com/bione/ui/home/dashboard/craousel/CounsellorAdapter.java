@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
-import com.bione.ui.mymicrobiome.MyMicroBiome;
 
 import java.util.ArrayList;
 
@@ -77,21 +76,17 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
             holder.tvText.setText(crouselDataArrayList.get(position).getText());
             holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
         }
-        //            if (position == crouselDataArrayList.size() - 2) {
-//            } else {
-//                holder.viewShaded.setVisibility(View.GONE);
-//            }
-//            holder.tvDetail.setEnabled(false);
+
 
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
 //                mContext.startActivity(browserIntent);
-                if (position == 2) {
-                    Intent intent = new Intent(mContext, MyMicroBiome.class);
-                    mContext.startActivity(intent);
-                } else {
+//                if (position == 2) {
+//                    Intent intent = new Intent(mContext, MyMicroBiome.class);
+//                    mContext.startActivity(intent);
+//                } else {
 
                     if (position == 4) {
                         openType = "WebView";
@@ -103,7 +98,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
                     intent.putExtra("openType", openType);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
-                }
+//                }
             }
         });
 
