@@ -87,6 +87,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".ui.mymicrobiome.SessionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+
 
 
 

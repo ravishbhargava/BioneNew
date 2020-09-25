@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.db.CommonData;
 import com.bione.model.CounsellorsData;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.mymicrobiome.SessionActivity;
 import com.bione.ui.schedulecall.adapter.CounsellorsAdapter;
 import com.bione.utils.Log;
 
@@ -40,9 +40,20 @@ public class CategorySelect extends BaseActivity {
     private LinearLayoutCompat llGenetics;
     private LinearLayoutCompat llMicroBiome;
     private LinearLayoutCompat llLongevity;
+
     private ImageView ivGenetic;
     private ImageView ivMicrobiome;
     private ImageView ivLongevity;
+
+    private ImageView ivGeneticInner;
+    private ImageView ivMicrobiomeInner;
+    private ImageView ivLongevityInner;
+
+    private AppCompatTextView tvGenetics;
+    private AppCompatTextView tvFitness;
+    private AppCompatTextView tvFood;
+
+    private String fromFlow = "";
 
 
     @Override
@@ -50,21 +61,31 @@ public class CategorySelect extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_select);
 
-
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-//            filename = extras.getString("pdfUrl");
             geneticType = extras.getString("geneticType");
-
-            // and get whatever type user account id is
+            fromFlow = extras.getString("fromFlow");
         }
 
-        Log.d("customrer id", "------" + CommonData.getUserData().getEntityId());
 
+        initViews();
+        setListeners();
+
+        flowDecide();
+
+        geneticTypeSelected();
+        initRecycler();
+    }
+
+    private void initViews() {
         ivBack = findViewById(R.id.ivBack);
         tvSelectedSlot = findViewById(R.id.tvSelectedSlot);
         tvScheduleNow = findViewById(R.id.tvScheduleNow);
+
+        tvGenetics = findViewById(R.id.tvGenetics);
+        tvFitness = findViewById(R.id.tvFitness);
+        tvFood = findViewById(R.id.tvFood);
 
         llGenetics = findViewById(R.id.llGenetics);
         llMicroBiome = findViewById(R.id.llMicroBiome);
@@ -74,24 +95,50 @@ public class CategorySelect extends BaseActivity {
         ivMicrobiome = findViewById(R.id.ivMicrobiome);
         ivLongevity = findViewById(R.id.ivLongevity);
 
+        ivGeneticInner = findViewById(R.id.ivGeneticInner);
+        ivMicrobiomeInner = findViewById(R.id.ivMicrobiomeInner);
+        ivLongevityInner = findViewById(R.id.ivLongevityInner);
+    }
+
+    private void setListeners() {
         tvScheduleNow.setOnClickListener(this);
         ivBack.setOnClickListener(this);
 
         llGenetics.setOnClickListener(this);
         llMicroBiome.setOnClickListener(this);
         llLongevity.setOnClickListener(this);
+    }
 
-        geneticTypeSelected();
+    private void flowDecide() {
+        // from mymicrobiome this will show
+        if (fromFlow.equals("MyMicroBiome")) {
+            tvGenetics.setText("MyReport");
+            tvFitness.setText("Diet & Nutrition");
+            tvFood.setText("MySessions");
 
-        initRecycler();
+            ivGeneticInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_result));
+            ivMicrobiomeInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_nutrition));
+            ivLongevityInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_teacher));
 
+            geneticType = "MyReport";
+//            createList("Tanya", "MyReport");
+
+        } else {// normal scenario this will show
+            tvGenetics.setText("My Genetic\nTesting");
+            tvFitness.setText("MyMicrobiome\nTesting");
+            tvFood.setText("Longevity Plus\nTesting");
+
+            ivGeneticInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_group));
+            ivMicrobiomeInner.setImageDrawable(getResources().getDrawable(R.mipmap.ic_bacteria));
+            ivLongevityInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_nutri));
+        }
     }
 
 
     private void geneticTypeSelected() {
-        if (geneticType.equals("Genetic")) {
+        if (geneticType.equals("Genetic") || geneticType.equals("MyReport")) {
             selectType(ivGenetic, ivMicrobiome, ivLongevity);
-        } else if (geneticType.equals("MyMicroBiome")) {
+        } else if (geneticType.equals("MyMicroBiome") || geneticType.equals("Diet & Nutrition")) {
             selectType(ivMicrobiome, ivGenetic, ivLongevity);
         } else if (geneticType.equals("Longevity")) {
             selectType(ivLongevity, ivMicrobiome, ivGenetic);
@@ -127,16 +174,31 @@ public class CategorySelect extends BaseActivity {
                 finish();
                 break;
             case R.id.llGenetics:
-                createList("Adrija Mishra", "Genetic");
+                if (fromFlow.equals("MyMicroBiome")) {
+                    geneticType = "MyReport";
+                    createList("Tanya", "MyReport");
+                } else {
+                    createList("Adrija Mishra", "Genetic");
+                }
                 geneticTypeSelected();
                 break;
             case R.id.llMicroBiome:
-                createList("Tanya", "MyMicroBiome");
+                if (fromFlow.equals("MyMicroBiome")) {
+                    geneticType = "Diet & Nutrition";
+                    createList("Tanya", "Diet & Nutrition");
+                } else {
+                    createList("Tanya", "MyMicroBiome");
+                }
                 geneticTypeSelected();
                 break;
             case R.id.llLongevity:
-                createList("Adrija Mishra", "Longevity");
-                geneticTypeSelected();
+                if (fromFlow.equals("MyMicroBiome")) {
+                    Intent intent1 = new Intent(CategorySelect.this, SessionActivity.class);
+                    startActivity(intent1);
+                } else {
+                    createList("Adrija Mishra", "Longevity");
+                    geneticTypeSelected();
+                }
                 break;
 
             default:
@@ -164,7 +226,11 @@ public class CategorySelect extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
-        createList("Adrija Mishra", "Genetic");
+        if (fromFlow.equals("MyMicroBiome")) {
+            createList("Tanya", "MyReport");
+        } else {
+            createList("Adrija Mishra", "Genetic");
+        }
     }
 
     private void createList(String name, String type) {

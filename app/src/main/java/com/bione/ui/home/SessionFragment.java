@@ -37,7 +37,7 @@ public class SessionFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_session, container, false);
+            rootView = inflater.inflate(R.layout.activity_session, container, false);
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
 

@@ -65,7 +65,7 @@
                             android:src="@drawable/ic_selected_circle" />
 
                         <ImageView
-
+                            android:id="@+id/ivGeneticInner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -77,8 +77,8 @@
                         android:id="@+id/tvGenetics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:drawableTop="@drawable/drawable_border_white"
+                        android:gravity="center"
                         android:text="My Genetic\nTesting"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
@@ -109,6 +109,7 @@
                             android:src="@drawable/ic_unselected_circle" />
 
                         <ImageView
+                            android:id="@+id/ivMicrobiomeInner"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_centerInParent="true"
@@ -121,8 +122,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/drawable_border_white"
+                        android:gravity="center"
                         android:text="MyMicrobiome\nTesting"
-android:gravity="center"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_small" />
@@ -150,6 +151,7 @@ android:gravity="center"
                             android:src="@drawable/ic_unselected_circle" />
 
                         <ImageView
+                            android:id="@+id/ivLongevityInner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -162,8 +164,8 @@ android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/drawable_border_white"
-                        android:text="Longevity Plus\nTesting"
                         android:gravity="center"
+                        android:text="Longevity Plus\nTesting"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_small" />
@@ -206,8 +208,9 @@ android:gravity="center"
                     android:id="@+id/my_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fadeScrollbars="false"
-                    />
+                    android:fadeScrollbars="false" />
+
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

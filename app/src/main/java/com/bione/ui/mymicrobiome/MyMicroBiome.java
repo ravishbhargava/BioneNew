@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
+import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.CustomViewPager;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -21,21 +23,25 @@ public class MyMicroBiome extends BaseActivity {
     private CustomViewPager viewPager;
     private Context mContext;
     private LinearLayoutCompat llReports;
+    private LinearLayoutCompat llCouselling;
+
+    private AppCompatImageView ivBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mymicrobiome);
 
+        ivBack = findViewById(R.id.ivBack);
         llReports = findViewById(R.id.llReports);
+        llCouselling = findViewById(R.id.llCouselling);
+
+        ivBack.setOnClickListener(this);
+        llReports.setOnClickListener(this);
+        llCouselling.setOnClickListener(this);
+
         initViewPager();
-        llReports.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MyMicroBiome.this, MyReportActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void initViewPager() {
@@ -59,6 +65,25 @@ public class MyMicroBiome extends BaseActivity {
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
 
+            case R.id.llReports:
+                Intent intent = new Intent(MyMicroBiome.this, MyReportActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.llCouselling:
+                Intent intent2 = new Intent(MyMicroBiome.this, CategorySelect.class);
+                intent2.putExtra("fromFlow", "MyMicroBiome");
+                intent2.putExtra("geneticType", "MyMicroBiome");
+                startActivity(intent2);
+                break;
+
+            case R.id.ivBack:
+                finish();
+                break;
+
+            default:
+        }
     }
 }
