@@ -24,6 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
+import com.bione.model.customerkit.CustomerKit;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.ui.home.dashboard.craousel.CenterZoomLayoutManager;
@@ -33,8 +38,12 @@ import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
+
+import static com.bione.utils.AppConstant.PARAM_CUSTOMER;
+import static com.bione.utils.AppConstant.SUCCESS;
 
 
 public class DashboardFragment extends BaseFragment implements View.OnClickListener {
@@ -58,6 +67,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private AppCompatImageView ivTwitter;
     private AppCompatImageView ivYoutube;
     private AppCompatImageView ivLinkedIn;
+
+    private int kitOrderSize = 0;
 
     @Override
     public void onAttach(Context context) {
@@ -86,7 +97,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             setListeners();
 
             setArrayList();
-            onSetRecyclerView();
+            callAPI();
+//            onSetRecyclerView();
             initViewPager(rootView);
 
         }
@@ -99,7 +111,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 new CenterZoomLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList));
+        recyclerView.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList, kitOrderSize));
         // Scroll to the position we want to snap to
         layoutManager.scrollToPosition(0);
         // Wait until the RecyclerView is laid out.
@@ -222,8 +234,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         CrouselData data3 = new CrouselData();
         data3.setDrawable(R.mipmap.image_genetic);
-        data3.setHeading("Genetic \n" +
-                "Susceptibility Test");
+        data3.setHeading("Bione Gene-Check\n");
         data3.setText("Discover & understand how your " +
                 "genes can be responsible for the susceptibility to viral infections like " +
                 "SARS and Influenza.");
@@ -240,8 +251,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data5.setText("");
 
         crouselDataArrayList.add(data);
-        crouselDataArrayList.add(data1);
         crouselDataArrayList.add(data2);
+        crouselDataArrayList.add(data1);
         crouselDataArrayList.add(data3);
         crouselDataArrayList.add(data4);
         crouselDataArrayList.add(data5);
@@ -373,5 +384,58 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void callAPI() {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+                .add(PARAM_CUSTOMER, "36")
+                .build();
+
+        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
+            @Override
+            public void onSuccess(List<CustomerKit> customerKits) {
+
+                if (customerKits.get(0).getCode() == SUCCESS) {
+                    try {
+
+                        Log.d("customer kit ordered", " size :: " + customerKits.get(0).getKitOrders().size());
+                        kitOrderSize = customerKits.get(0).getKitOrders().size();
+                        onSetRecyclerView();
+                        // specify an adapter (see also next example)
+//                        kitOrders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
+//                        initRecycler();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (customerKits.get(0).getCode() == 404) {
+//                    showErrorMessage("No Reports");
+                    kitOrderSize = 0;
+                    onSetRecyclerView();
+                } else {
+                    showErrorMessage(customerKits.get(0).getMessage());
+                    kitOrderSize = 0;
+                    onSetRecyclerView();
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+                kitOrderSize = 0;
+                onSetRecyclerView();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+                kitOrderSize = 0;
+                onSetRecyclerView();
+            }
+        });
     }
 }

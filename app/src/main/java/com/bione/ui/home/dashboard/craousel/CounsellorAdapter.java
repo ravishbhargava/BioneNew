@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
+import com.bione.ui.mymicrobiome.MyMicroBiome;
 
 import java.util.ArrayList;
 
@@ -23,10 +24,12 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     private Context mContext;
     private ArrayList<CrouselData> crouselDataArrayList;
     private String openType = "WebView"; //PdfView
+    private int kitOrderSize = 0;
 
-    public CounsellorAdapter(final Context mContext, final ArrayList<CrouselData> crouselDataArrayList) {
+    public CounsellorAdapter(final Context mContext, final ArrayList<CrouselData> crouselDataArrayList, final int kitOrderSize) {
         this.crouselDataArrayList = crouselDataArrayList;
         this.mContext = mContext;
+        this.kitOrderSize = kitOrderSize;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -81,24 +84,15 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bione.in"));
-//                mContext.startActivity(browserIntent);
-//                if (position == 2) {
-//                    Intent intent = new Intent(mContext, MyMicroBiome.class);
-//                    mContext.startActivity(intent);
-//                } else {
-
-                    if (position == 4) {
-                        openType = "WebView";
+                if (kitOrderSize > 0) {
+                    if (position == 1) {
+                        openMyMicroBiome();
                     } else {
-                        openType = "WebView";
+                        openPDFView(position);
                     }
-                    Intent intent = new Intent(mContext, PDFViewActivity.class);
-                    intent.putExtra("position", position);
-                    intent.putExtra("openType", openType);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intent);
-//                }
+                } else {
+                    openPDFView(position);
+                }
             }
         });
 
@@ -110,5 +104,17 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         return crouselDataArrayList.size();
     }
 
+    private void openMyMicroBiome() {
+        Intent intent = new Intent(mContext, MyMicroBiome.class);
+        mContext.startActivity(intent);
+    }
+
+    private void openPDFView(final int position) {
+        Intent intent = new Intent(mContext, PDFViewActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("openType", openType);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
+    }
 
 }

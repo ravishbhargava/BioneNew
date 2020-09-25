@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import java.net.URL;
 public class PDFViewActivity extends BaseActivity {
 
     private WebView webView;
+    private LinearLayout bottom;
     private AppCompatImageView ivBack;
     private PDFView pdfView;
     private AppCompatTextView tvBook;
@@ -35,6 +37,8 @@ public class PDFViewActivity extends BaseActivity {
     private String filename = "";
     private int position = 0;
     private String link = "https://www.bione.in/genetics";
+
+    private String geneticType = "Genetic";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,31 +69,40 @@ public class PDFViewActivity extends BaseActivity {
         tvBook = findViewById(R.id.tvBook);
         pdfView = findViewById(R.id.pdfv);
         webView = findViewById(R.id.webView);
+        bottom = findViewById(R.id.bottom);
+
         if (filename != null) {
             if (!filename.equals("")) {
                 webView.setVisibility(View.GONE);
                 pdfView.setVisibility(View.VISIBLE);
+                bottom.setVisibility(View.GONE);
                 openUrl();
             }
         } else if (position == 3) {
+            bottom.setVisibility(View.VISIBLE);
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);
             pdfView.fromAsset("Bione-Suspectibility.pdf").load();
             tvTitle.setText("Genetic Susceptibility Test");
+
         } else {
 
             webView.setVisibility(View.VISIBLE);
             pdfView.setVisibility(View.GONE);
+            bottom.setVisibility(View.VISIBLE);
 
-            if (position == 1) {
+            if (position == 2) {
                 link = "https://www.bione.in/longevity-plus-test";
                 tvTitle.setText("Longevity Plus Test");
-            } else if (position == 2) {
+                geneticType = "Longevity";
+            } else if (position == 1) {
                 link = "https://www.bione.in/mymicrobiome-test";
                 tvTitle.setText("MyMicroBiome Test");
+                geneticType = "MyMicroBiome";
             } else if (position == 4) {
                 link = "https://www.bione.in/genetics";
                 tvTitle.setText("Clinical Genetic Test");
+                geneticType = "Genetic";
             } else {
                 link = "https://www.bione.in/";
                 tvTitle.setText("Bione");
@@ -101,6 +114,7 @@ public class PDFViewActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PDFViewActivity.this, CategorySelect.class);
+                intent.putExtra("geneticType",geneticType);
                 startActivity(intent);
             }
         });

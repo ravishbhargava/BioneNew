@@ -50,6 +50,16 @@ public class CategorySelect extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_select);
 
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+//            filename = extras.getString("pdfUrl");
+            geneticType = extras.getString("geneticType");
+
+            // and get whatever type user account id is
+        }
+
         Log.d("customrer id", "------" + CommonData.getUserData().getEntityId());
 
         ivBack = findViewById(R.id.ivBack);
@@ -71,10 +81,22 @@ public class CategorySelect extends BaseActivity {
         llMicroBiome.setOnClickListener(this);
         llLongevity.setOnClickListener(this);
 
+        geneticTypeSelected();
+
         initRecycler();
 
     }
 
+
+    private void geneticTypeSelected() {
+        if (geneticType.equals("Genetic")) {
+            selectType(ivGenetic, ivMicrobiome, ivLongevity);
+        } else if (geneticType.equals("MyMicroBiome")) {
+            selectType(ivMicrobiome, ivGenetic, ivLongevity);
+        } else if (geneticType.equals("Longevity")) {
+            selectType(ivLongevity, ivMicrobiome, ivGenetic);
+        }
+    }
 
     private void selectType(final ImageView selected, final ImageView unselected1, final ImageView unselected2) {
 
@@ -106,15 +128,15 @@ public class CategorySelect extends BaseActivity {
                 break;
             case R.id.llGenetics:
                 createList("Adrija Mishra", "Genetic");
-                selectType(ivGenetic, ivMicrobiome, ivLongevity);
+                geneticTypeSelected();
                 break;
             case R.id.llMicroBiome:
                 createList("Tanya", "MyMicroBiome");
-                selectType(ivMicrobiome, ivGenetic, ivLongevity);
+                geneticTypeSelected();
                 break;
             case R.id.llLongevity:
                 createList("Adrija Mishra", "Longevity");
-                selectType(ivLongevity, ivMicrobiome, ivGenetic);
+                geneticTypeSelected();
                 break;
 
             default:
@@ -154,6 +176,8 @@ public class CategorySelect extends BaseActivity {
 
         counsellorsDataArrayList.add(counsellorsData);
         mAdapter.refreshEvents(counsellorsDataArrayList);
+
+        geneticType = counsellorsDataArrayList.get(0).getType();
 //        recyclerView.setAdapter(mAdapter);
     }
 
