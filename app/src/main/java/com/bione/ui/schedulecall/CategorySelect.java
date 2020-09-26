@@ -111,7 +111,8 @@ public class CategorySelect extends BaseActivity {
 
     private void flowDecide() {
         // from mymicrobiome this will show
-        if (fromFlow.equals("MyMicroBiome")) {
+        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
+
             tvGenetics.setText("MyReport");
             tvFitness.setText("Diet & Nutrition");
             tvFood.setText("MySessions");
@@ -174,7 +175,7 @@ public class CategorySelect extends BaseActivity {
                 finish();
                 break;
             case R.id.llGenetics:
-                if (fromFlow.equals("MyMicroBiome")) {
+                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
                     geneticType = "MyReport";
                     createList("Tanya", "MyReport");
                 } else {
@@ -183,7 +184,7 @@ public class CategorySelect extends BaseActivity {
                 geneticTypeSelected();
                 break;
             case R.id.llMicroBiome:
-                if (fromFlow.equals("MyMicroBiome")) {
+                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
                     geneticType = "Diet & Nutrition";
                     createList("Tanya", "Diet & Nutrition");
                 } else {
@@ -192,7 +193,7 @@ public class CategorySelect extends BaseActivity {
                 geneticTypeSelected();
                 break;
             case R.id.llLongevity:
-                if (fromFlow.equals("MyMicroBiome")) {
+                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
                     Intent intent1 = new Intent(CategorySelect.this, SessionActivity.class);
                     startActivity(intent1);
                 } else {
@@ -226,7 +227,7 @@ public class CategorySelect extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
-        if (fromFlow.equals("MyMicroBiome")) {
+        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
             createList("Tanya", "MyReport");
         } else {
             createList("Adrija Mishra", "Genetic");
