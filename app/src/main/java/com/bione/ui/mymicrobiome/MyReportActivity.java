@@ -49,8 +49,7 @@ public class MyReportActivity extends BaseActivity {
             }
         });
 
-//        callAPI();
-
+        callAPI();
 
     }
 
