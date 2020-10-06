@@ -13,7 +13,6 @@ import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.ui.mymicrobiome.report.MyReportTypeActivity;
-import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.CustomViewPager;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -115,7 +114,7 @@ public class MyMicroBiome extends BaseActivity {
                 break;
 
             case R.id.llCouselling:
-                Intent intent2 = new Intent(MyMicroBiome.this, CategorySelect.class);
+                Intent intent2 = new Intent(MyMicroBiome.this, CategorySelect2.class);
                 intent2.putExtra("fromFlow", "MyMicroBiome");
                 intent2.putExtra("geneticType", "MyMicroBiome");
                 startActivity(intent2);

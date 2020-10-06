@@ -20,14 +20,14 @@ import com.bione.ui.mymicrobiome.MyMicroBiome;
 import java.util.ArrayList;
 
 
-public class CounsellorAdapter2 extends RecyclerView.Adapter<CounsellorAdapter2.MyViewHolder> {
+public class CrousellBookCallAdapter extends RecyclerView.Adapter<CrousellBookCallAdapter.MyViewHolder> {
 
     private Context mContext;
     private ArrayList<CrouselData> crouselDataArrayList;
     private String openType = "WebView"; //PdfView
 //    private int kitOrderSize = 0;
 
-    public CounsellorAdapter2(final Context mContext, final ArrayList<CrouselData> crouselDataArrayList) {
+    public CrousellBookCallAdapter(final Context mContext, final ArrayList<CrouselData> crouselDataArrayList) {
         this.crouselDataArrayList = crouselDataArrayList;
         this.mContext = mContext;
 //        this.kitOrderSize = kitOrderSize;
@@ -58,7 +58,7 @@ public class CounsellorAdapter2 extends RecyclerView.Adapter<CounsellorAdapter2.
 
     @NonNull
     @Override
-    public CounsellorAdapter2.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CrousellBookCallAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         // create a new view
         View v = (View) LayoutInflater.from(parent.getContext())

@@ -18,8 +18,8 @@ import com.bione.model.CounsellorsData;
 import com.bione.model.CrouselData;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.mymicrobiome.SessionActivity;
-import com.bione.ui.schedulecall.adapter.CounsellorAdapter2;
 import com.bione.ui.schedulecall.adapter.CounsellorsAdapter;
+import com.bione.ui.schedulecall.adapter.CrousellBookCallAdapter;
 import com.bione.utils.CenterZoomLayoutManager;
 import com.bione.utils.Log;
 
@@ -93,7 +93,7 @@ public class CategorySelect extends BaseActivity {
                 new CenterZoomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(new CounsellorAdapter2(this, crouselDataArrayList));
+        recyclerView.setAdapter(new CrousellBookCallAdapter(this, crouselDataArrayList));
         // Scroll to the position we want to snap to
         layoutManager.scrollToPosition(0);
         // Wait until the RecyclerView is laid out.
