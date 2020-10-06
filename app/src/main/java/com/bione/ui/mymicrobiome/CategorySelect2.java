@@ -1,4 +1,4 @@
-package com.bione.ui.schedulecall;
+package com.bione.ui.mymicrobiome;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import com.bione.R;
 import com.bione.model.CounsellorsData;
 import com.bione.model.CrouselData;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.mymicrobiome.SessionActivity;
+import com.bione.ui.schedulecall.ScheduleNow;
 import com.bione.ui.schedulecall.adapter.CounsellorAdapter2;
 import com.bione.ui.schedulecall.adapter.CounsellorsAdapter;
 import com.bione.utils.CenterZoomLayoutManager;
@@ -25,7 +25,7 @@ import com.bione.utils.Log;
 
 import java.util.ArrayList;
 
-public class CategorySelect extends BaseActivity {
+public class CategorySelect2 extends BaseActivity {
 
     private AppCompatImageView ivBack;
 
@@ -245,7 +245,7 @@ public class CategorySelect extends BaseActivity {
 
                 Log.d("geneticType", "---" + geneticType);
                 Log.d("counsellorName", "---" + counsellorName);
-                Intent intent = new Intent(CategorySelect.this, ScheduleNow.class);
+                Intent intent = new Intent(CategorySelect2.this, ScheduleNow.class);
                 intent.putExtra("geneticType", geneticType);
                 intent.putExtra("counsellorName", counsellorName);
                 startActivity(intent);
@@ -274,7 +274,7 @@ public class CategorySelect extends BaseActivity {
                 break;
             case R.id.llLongevity:
                 if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-                    Intent intent1 = new Intent(CategorySelect.this, SessionActivity.class);
+                    Intent intent1 = new Intent(CategorySelect2.this, SessionActivity.class);
                     startActivity(intent1);
                 } else {
                     createList("Adrija Mishra", "Longevity");
@@ -299,13 +299,13 @@ public class CategorySelect extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        // specify an adapter (see also next example)
-        mAdapter = new CounsellorsAdapter(counsellorsDataArrayList, new CategorySelect.OnItemClickListener() {
-            @Override
-            public void onItemClick(String text) {
-
-            }
-        });
+//        // specify an adapter (see also next example)
+//        mAdapter = new CounsellorsAdapter(counsellorsDataArrayList, new CategorySelect2.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(String text) {
+//
+//            }
+//        });
         recyclerView.setAdapter(mAdapter);
         if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
             createList("Tanya", "MyReport");

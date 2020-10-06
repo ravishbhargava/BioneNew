@@ -1,4 +1,4 @@
-package com.bione.ui.mymicrobiome.adapter;
+package com.bione.ui.mymicrobiome.report.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -49,12 +49,12 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.tvOrderId.setText(customerKits.get(position).getId());
         holder.tvKitName.setText(customerKits.get(position).getKitName());
 
-        if (customerKits.get(position).getSkuCode().equals("")) {
+        if (customerKits.get(position).getBarCode().equals("")) {
             holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.gray));
             holder.tvKitId.setText("Bar Code: Not Available");
         } else {
             holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-            holder.tvKitId.setText("Bar Code: " + customerKits.get(position).getSkuCode());
+            holder.tvKitId.setText("Bar Code: " + customerKits.get(position).getBarCode());
             holder.llMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

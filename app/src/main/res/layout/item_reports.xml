@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:paddingHorizontal="@dimen/spacing_normal">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -51,8 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_small"
-            android:padding="@dimen/spacing_small"
-            android:src="@drawable/ic_confirm_email" />
+            android:src="@mipmap/image_microbiome" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -63,14 +63,14 @@
                 android:id="@+id/tvKitName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MyMicrobione Kit"
+                android:text="MyMicrobione Test"
                 android:textSize="@dimen/font_xxxlarge" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvKitId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bar Code: #8943252523"
+                android:text="Sample ID: #8943252523"
                 android:textSize="@dimen/font_large" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

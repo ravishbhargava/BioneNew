@@ -1,4 +1,4 @@
-package com.bione.ui.home.dashboard.craousel;
+package com.bione.utils;
 
 import android.content.Context;
 import android.view.View;
@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CenterZoomLayoutManager extends LinearLayoutManager {
 
-    private final float mShrinkAmount = 0.15f;
-    private final float mShrinkDistance = 0.9f;
+//    private final float mShrinkAmount = 0.15f;
+//    private final float mShrinkDistance = 0.9f;
+
+    private final float mShrinkAmount = 0.50f;
+    private final float mShrinkDistance = 0.25f;
 
     public CenterZoomLayoutManager(Context context) {
         super(context);

@@ -11,9 +11,10 @@ private String customerCode;
 @SerializedName("id")
 @Expose
 private String id;
-@SerializedName("order_id")
+@SerializedName("bar_code")
 @Expose
-private String orderId;
+private String barCode;
+
 @SerializedName("increment_id")
 @Expose
 private Object incrementId;
@@ -46,12 +47,12 @@ public void setId(String id) {
 this.id = id;
 }
 
-public String getOrderId() {
-return orderId;
+public String getBarCode() {
+return barCode;
 }
 
-public void setOrderId(String orderId) {
-this.orderId = orderId;
+public void setBarCode(String barCode) {
+this.barCode = barCode;
 }
 
 public Object getIncrementId() {

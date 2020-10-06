@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.db.CommonData;
 import com.bione.model.CrouselData;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.network.ApiError;
@@ -32,9 +31,9 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
-import com.bione.ui.home.dashboard.craousel.CenterZoomLayoutManager;
 import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
 import com.bione.ui.schedulecall.CategorySelect;
+import com.bione.utils.CenterZoomLayoutManager;
 import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
 
@@ -114,7 +113,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         recyclerView.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList, kitOrderSize));
         // Scroll to the position we want to snap to
-        layoutManager.scrollToPosition(0);
+        layoutManager.scrollToPosition(1);
         // Wait until the RecyclerView is laid out.
         recyclerView.post(new Runnable() {
             @Override
@@ -234,22 +233,30 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 "healthy & happy life.");
 
         CrouselData data3 = new CrouselData();
-        data3.setDrawable(R.mipmap.image_genetic);
-        data3.setHeading("Bione Gene-Check\n");
-        data3.setText("Discover & understand how your " +
+        data3.setDrawable(R.mipmap.image_longifit);
+        data3.setHeading("LongiFit");
+        data3.setText("Get deep insight into DNA. Understand how your body " +
+                "responds to sports, dietary needs, food reactions, skin health & " +
+                "overall fitness.");
+
+
+        CrouselData data4 = new CrouselData();
+        data4.setDrawable(R.mipmap.image_genetic);
+        data4.setHeading("Bione Gene-Check\n");
+        data4.setText("Discover & understand how your " +
                 "genes can be responsible for the susceptibility to viral infections like " +
                 "SARS and Influenza.");
 
-        CrouselData data4 = new CrouselData();
-        data4.setDrawable(R.mipmap.image_clinical);
-        data4.setHeading("Clinical \nGenetics Tests ");
-        data4.setText("The genesis of elite\n" +
+        CrouselData data5 = new CrouselData();
+        data5.setDrawable(R.mipmap.image_clinical);
+        data5.setHeading("Clinical \nGenetics Tests ");
+        data5.setText("The genesis of elite\n" +
                 "genetic testing");
 
-        CrouselData data5 = new CrouselData();
-        data5.setDrawable(0);
-        data5.setHeading("");
-        data5.setText("");
+        CrouselData data6 = new CrouselData();
+        data6.setDrawable(0);
+        data6.setHeading("");
+        data6.setText("");
 
         crouselDataArrayList.add(data);
         crouselDataArrayList.add(data2);
@@ -257,6 +264,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         crouselDataArrayList.add(data3);
         crouselDataArrayList.add(data4);
         crouselDataArrayList.add(data5);
+        crouselDataArrayList.add(data6);
     }
 
     private void openDialog() {
@@ -390,8 +398,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-//                .add(PARAM_CUSTOMER, "36")
+//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+                .add(PARAM_CUSTOMER, "36")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {

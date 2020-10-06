@@ -79,7 +79,7 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/relCounsellor"
+                        android:id="@+id/llFoodAdvice"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="@dimen/spacing_small"

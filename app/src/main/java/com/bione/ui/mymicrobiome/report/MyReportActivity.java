@@ -1,4 +1,4 @@
-package com.bione.ui.mymicrobiome;
+package com.bione.ui.mymicrobiome.report;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.db.CommonData;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.customerkit.KitOrder;
 import com.bione.network.ApiError;
@@ -17,7 +16,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.mymicrobiome.adapter.ReportAdapter;
+import com.bione.ui.mymicrobiome.report.adapter.ReportAdapter;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
@@ -72,8 +71,8 @@ public class MyReportActivity extends BaseActivity {
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-//                .add(PARAM_CUSTOMER, "36")
+//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+                .add(PARAM_CUSTOMER, "36")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
