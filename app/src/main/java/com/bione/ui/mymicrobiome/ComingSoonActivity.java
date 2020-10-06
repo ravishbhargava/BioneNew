@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
@@ -20,22 +21,54 @@ public class ComingSoonActivity extends BaseActivity {
     private CustomViewPager viewPager;
     private Context mContext;
 
+    private AppCompatTextView tvBody;
+    private AppCompatTextView tvHead;
+    private AppCompatTextView tvLink;
 
     private AppCompatImageView ivBack;
+
+    private String body = "";
+    private String head = "";
+    private String link = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coming_soon);
 
-        ivBack = findViewById(R.id.ivBack);
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            body = extras.getString("body");
+            head = extras.getString("head");
+            link = extras.getString("link");
+        }
 
 
-        ivBack.setOnClickListener(this);
+        init();
 
+
+        if (body != null) {
+            tvBody.setText(body);
+        }
+        if (head != null) {
+            tvHead.setText(head);
+        }
 
         initViewPager();
 
+    }
+
+    private void init() {
+        ivBack = findViewById(R.id.ivBack);
+        tvBody = findViewById(R.id.tvBody);
+        tvHead = findViewById(R.id.tvHead);
+        tvLink = findViewById(R.id.tvLink);
+
+
+        ivBack.setOnClickListener(this);
+        tvLink.setOnClickListener(this);
     }
 
     private void initViewPager() {
@@ -61,6 +94,8 @@ public class ComingSoonActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
 
+
+            case R.id.tvLink:
             case R.id.ivBack:
                 finish();
                 break;

@@ -112,7 +112,7 @@
                     android:weightSum="2">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/relFoodNutrition"
+                        android:id="@+id/llSmartDiet"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="@dimen/spacing_small"
@@ -136,7 +136,7 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/relFitness"
+                        android:id="@+id/llFoodDiary"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="@dimen/spacing_small"
@@ -169,7 +169,7 @@
                     android:weightSum="2">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/relSocial"
+                        android:id="@+id/llQuestionnaire"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="@dimen/spacing_small"

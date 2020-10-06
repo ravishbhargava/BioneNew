@@ -9,85 +9,109 @@
 
     <include layout="@layout/include_header" />
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/spacing_normal">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_spacing_150"
+            android:layout_marginHorizontal="@dimen/spacing_normal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.bione.utils.CustomViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_spacing_50"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                app:ci_drawable="@mipmap/slider_circle_selected"
+                app:ci_drawable_unselected="@mipmap/slider_circle_unselected"
+                app:ci_height="@dimen/spacing_small"
+                app:ci_width="@dimen/spacing_small" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHead"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_spacing_50"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="My Food Advice"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#f2f2f2"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <RelativeLayout
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_spacing_150"
-                android:layout_marginVertical="@dimen/spacing_normal"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_xlarge"
+                android:src="@drawable/ic_flat" />
 
-                <com.bione.utils.CustomViewPager
-                    android:id="@+id/viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <me.relex.circleindicator.CircleIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_spacing_50"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal"
-                    app:ci_drawable="@mipmap/slider_circle_selected"
-                    app:ci_drawable_unselected="@mipmap/slider_circle_unselected"
-                    app:ci_height="@dimen/spacing_small"
-                    app:ci_width="@dimen/spacing_small" />
-            </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBody"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_spacing_50"
-                android:layout_gravity="center"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_normal"
                 android:gravity="center"
-                android:text="Book a session"
-                android:textAppearance="@style/CustomTextAppearance.Medium"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_large" />
+                android:text="@string/dummy_text"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/height_spacing_50"
-                    android:src="@drawable/ic_flat" />
-
-
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvHeading"
+                    android:id="@+id/tvTerm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_above="@id/tvLink"
                     android:gravity="center"
-                    android:text="@string/dummy_text"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_normal" />
+                    android:text="For more details contact  our expertise"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
+                    android:textSize="@dimen/font_small" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLink"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/spacing_normal"
+                    android:background="@drawable/drawable_border_primary"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="Link"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/CustomTextAppearance.Semibold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_xlarge" />
 
 
-                </LinearLayout>
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
 </androidx.appcompat.widget.LinearLayoutCompat>

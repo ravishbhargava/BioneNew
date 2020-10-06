@@ -26,6 +26,9 @@ public class MyMicroBiome extends BaseActivity {
     private LinearLayoutCompat llReports;
     private LinearLayoutCompat llCouselling;
     private LinearLayoutCompat llFoodAdvice;
+    private LinearLayoutCompat llSmartDiet;
+    private LinearLayoutCompat llFoodDiary;
+    private LinearLayoutCompat llQuestionnaire;
 
     private AppCompatImageView ivBack;
 
@@ -38,11 +41,17 @@ public class MyMicroBiome extends BaseActivity {
         llReports = findViewById(R.id.llReports);
         llCouselling = findViewById(R.id.llCouselling);
         llFoodAdvice = findViewById(R.id.llFoodAdvice);
+        llSmartDiet = findViewById(R.id.llSmartDiet);
+        llFoodDiary = findViewById(R.id.llFoodDiary);
+        llQuestionnaire = findViewById(R.id.llQuestionnaire);
 
         ivBack.setOnClickListener(this);
         llReports.setOnClickListener(this);
         llCouselling.setOnClickListener(this);
         llFoodAdvice.setOnClickListener(this);
+        llSmartDiet.setOnClickListener(this);
+        llFoodDiary.setOnClickListener(this);
+        llQuestionnaire.setOnClickListener(this);
 
         initViewPager();
 
@@ -71,9 +80,33 @@ public class MyMicroBiome extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.llQuestionnaire:
+                Intent intentQuestionnaire = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
+                intentQuestionnaire.putExtra("head","My Questionnaire");
+                intentQuestionnaire.putExtra("body","Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+                intentQuestionnaire.putExtra("link","google.com");
+                startActivity(intentQuestionnaire);
+                break;
+            case R.id.llFoodDiary:
+                Intent intentFoodDiary = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
+                intentFoodDiary.putExtra("head","My Food Diary");
+                intentFoodDiary.putExtra("body","Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+                intentFoodDiary.putExtra("link","google.com");
+                startActivity(intentFoodDiary);
+                break;
+            case R.id.llSmartDiet:
+                Intent intentSmartDiet = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
+                intentSmartDiet.putExtra("head","My Smart Diet");
+                intentSmartDiet.putExtra("body","Our nutritionists are working on your SmartDiet. You'll be able to access it soon after you receive your report.");
+                intentSmartDiet.putExtra("link","google.com");
+                startActivity(intentSmartDiet);
+                break;
             case R.id.llFoodAdvice:
-                Intent intent = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
-                startActivity(intent);
+                Intent intentFoodAdvice = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
+                intentFoodAdvice.putExtra("head","My Food Advice");
+                intentFoodAdvice.putExtra("body","Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+                intentFoodAdvice.putExtra("link","google.com");
+                startActivity(intentFoodAdvice);
                 break;
 
             case R.id.llReports:
