@@ -20,7 +20,6 @@ import com.bione.ui.base.BaseActivity;
 import com.bione.ui.mymicrobiome.SessionActivity;
 import com.bione.ui.schedulecall.adapter.CounsellorsAdapter;
 import com.bione.ui.schedulecall.adapter.CrousellBookCallAdapter;
-import com.bione.utils.CenterZoomLayoutManager;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
@@ -59,6 +58,7 @@ public class CategorySelect extends BaseActivity {
 
     private String fromFlow = "";
 
+    private int position = 1;
     private ArrayList<CrouselData> crouselDataArrayList;
 
 
@@ -71,7 +71,9 @@ public class CategorySelect extends BaseActivity {
 
         if (extras != null) {
             geneticType = extras.getString("geneticType");
+            position = extras.getInt("position");
             fromFlow = extras.getString("fromFlow");
+            crouselDataArrayList = extras.getParcelableArrayList("array");
         }
 
 
@@ -79,7 +81,7 @@ public class CategorySelect extends BaseActivity {
         setListeners();
         flowDecide();
 
-        setArrayList();
+//        setArrayList();
         onSetRecyclerView();
 
         geneticTypeSelected();
@@ -89,13 +91,21 @@ public class CategorySelect extends BaseActivity {
 
     private void onSetRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        CenterZoomLayoutManager layoutManager =
-                new CenterZoomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        CenterZoomLayoutManager layoutManager =
+//                new CenterZoomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(new CrousellBookCallAdapter(this, crouselDataArrayList));
+        recyclerView.setAdapter(new CrousellBookCallAdapter(this, crouselDataArrayList, position, new OnItemClickListenerSelected() {
+            @Override
+            public void onItemClickSelected(int position) {
+                layoutManager.scrollToPosition(position);
+                createList(crouselDataArrayList.get(position).getNameCounsellor(), crouselDataArrayList.get(position).getTypeCounsellor());
+            }
+        }));
         // Scroll to the position we want to snap to
-        layoutManager.scrollToPosition(0);
+        layoutManager.scrollToPosition(position);
         // Wait until the RecyclerView is laid out.
         recyclerView.post(new Runnable() {
             @Override
@@ -109,6 +119,8 @@ public class CategorySelect extends BaseActivity {
                 snapHelper.attachToRecyclerView(recyclerView);
             }
         });
+
+
     }
 
     private void setArrayList() {
@@ -119,43 +131,48 @@ public class CategorySelect extends BaseActivity {
         data.setHeading("");
         data.setText("");
 
+
         CrouselData data1 = new CrouselData();
-        data1.setDrawable(R.mipmap.image_longevity);
-        data1.setHeading("Longevity Plus Test");
-        data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " +
-                "affect various health aspects for " +
-                "timely management");
+        data1.setDrawable(R.drawable.ic_group);
+        data1.setHeading("My Genetic\n" +
+                "Testing");
+        data1.setText("");
 
         CrouselData data2 = new CrouselData();
-        data2.setDrawable(R.mipmap.image_microbiome);
-        data2.setHeading("MyMicrobiome Test");
-        data2.setText("Discover & understand your gastrointestinal microbiota and best " +
-                "suited personalised diet for a " +
-                "healthy & happy life.");
+        data2.setDrawable(R.mipmap.ic_bacteria);
+        data2.setHeading("MyMicrobiome\n" +
+                "Test");
+        data2.setText("");
 
         CrouselData data3 = new CrouselData();
-        data3.setDrawable(R.mipmap.image_genetic);
-        data3.setHeading("Bione Gene-Check\n");
-        data3.setText("Discover & understand how your " +
-                "genes can be responsible for the susceptibility to viral infections like " +
-                "SARS and Influenza.");
+        data3.setDrawable(R.drawable.ic_nutri);
+        data3.setHeading("Longevity Plus\n" +
+                "Test");
+        data3.setText("");
 
         CrouselData data4 = new CrouselData();
-        data4.setDrawable(R.mipmap.image_clinical);
-        data4.setHeading("Clinical \nGenetics Tests ");
-        data4.setText("The genesis of elite\n" +
-                "genetic testing");
+        data4.setDrawable(R.drawable.ic_longifit);
+        data4.setHeading("LongiFit\n" +
+                "Test");
+        data4.setText("");
 
         CrouselData data5 = new CrouselData();
-        data5.setDrawable(0);
-        data5.setHeading("");
+        data5.setDrawable(R.drawable.ic_gene_check);
+        data5.setHeading("Gene-Chek\n" +
+                "Genetic Susceptibility Test");
         data5.setText("");
 
+        CrouselData data6 = new CrouselData();
+        data6.setDrawable(0);
+        data6.setHeading("");
+        data6.setText("");
+
         crouselDataArrayList.add(data);
-        crouselDataArrayList.add(data2);
         crouselDataArrayList.add(data1);
+        crouselDataArrayList.add(data2);
         crouselDataArrayList.add(data3);
         crouselDataArrayList.add(data4);
+        crouselDataArrayList.add(data5);
         crouselDataArrayList.add(data5);
     }
 
@@ -307,11 +324,14 @@ public class CategorySelect extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mAdapter);
-        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-            createList("Tanya", "MyReport");
-        } else {
-            createList("Adrija Mishra", "Genetic");
-        }
+
+        createList(crouselDataArrayList.get(position).getNameCounsellor(), crouselDataArrayList.get(position).getTypeCounsellor());
+
+//        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
+//            createList("Tanya", "MyReport");
+//        } else {
+//            createList("Adrija Mishra", "Genetic");
+//        }
     }
 
     private void createList(String name, String type) {
@@ -330,6 +350,10 @@ public class CategorySelect extends BaseActivity {
 
     public interface OnItemClickListener {
         void onItemClick(final String text);
+    }
+
+    public interface OnItemClickListenerSelected {
+        void onItemClickSelected(final int position);
     }
 
 }

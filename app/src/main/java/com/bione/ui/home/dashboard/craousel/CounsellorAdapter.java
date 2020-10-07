@@ -110,9 +110,12 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     }
 
     private void openPDFView(final int position) {
+        crouselDataArrayList.get(position).setIschecked(true);
+
         Intent intent = new Intent(mContext, PDFViewActivity.class);
         intent.putExtra("position", position);
         intent.putExtra("openType", openType);
+        intent.putParcelableArrayListExtra("array", crouselDataArrayList);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }

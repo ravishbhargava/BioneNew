@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
+import com.bione.model.CrouselData;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.Log;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class PDFViewActivity extends BaseActivity {
 
@@ -40,6 +42,8 @@ public class PDFViewActivity extends BaseActivity {
 
     private String geneticType = "Genetic";
 
+    private ArrayList<CrouselData> crouselDataArrayList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class PDFViewActivity extends BaseActivity {
 //            filename = extras.getString("pdfUrl");
             position = extras.getInt("position");
             filename = extras.getString("pdfUrl");
+            crouselDataArrayList = extras.getParcelableArrayList("array");
             // and get whatever type user account id is
         }
 
@@ -114,7 +119,9 @@ public class PDFViewActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PDFViewActivity.this, CategorySelect.class);
-                intent.putExtra("geneticType",geneticType);
+                intent.putExtra("geneticType", geneticType);
+                intent.putExtra("position", position);
+                intent.putParcelableArrayListExtra("array", crouselDataArrayList);
                 startActivity(intent);
             }
         });

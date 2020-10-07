@@ -215,48 +215,73 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         CrouselData data = new CrouselData();
         data.setDrawable(0);
+        data.setDrawableTest(0);
+        data.setHeadingTest("");
         data.setHeading("");
         data.setText("");
+        data.setIschecked(false);
+        data.setNameCounsellor("");
+        data.setTypeCounsellor("");
 
         CrouselData data1 = new CrouselData();
         data1.setDrawable(R.mipmap.image_longevity);
+        data1.setDrawableTest(R.drawable.ic_nutri);
+        data1.setHeadingTest("Longevity Plus\nTest");
         data1.setHeading("Longevity Plus Test");
-        data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " +
-                "affect various health aspects for " +
-                "timely management");
+        data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " + "affect various health aspects for " + "timely management");
+        data1.setIschecked(false);
+        data1.setNameCounsellor("Adrija Mishra");
+        data1.setTypeCounsellor("Longevity Plus Test");
 
         CrouselData data2 = new CrouselData();
         data2.setDrawable(R.mipmap.image_microbiome);
+        data2.setDrawableTest(R.mipmap.ic_bacteria);
+        data2.setHeadingTest("MyMicrobiome\nTest");
         data2.setHeading("MyMicrobiome Test");
-        data2.setText("Discover & understand your gastrointestinal microbiota and best " +
-                "suited personalised diet for a " +
-                "healthy & happy life.");
+        data2.setText("Discover & understand your gastrointestinal microbiota and best " + "suited personalised diet for a " + "healthy & happy life.");
+        data2.setIschecked(false);
+        data2.setNameCounsellor("Tanya");
+        data2.setTypeCounsellor("MyMicrobiome Test");
 
         CrouselData data3 = new CrouselData();
         data3.setDrawable(R.mipmap.image_longifit);
+        data3.setDrawableTest(R.drawable.ic_longifit);
+        data3.setHeadingTest("LongiFit\nTest");
         data3.setHeading("LongiFit");
-        data3.setText("Get deep insight into DNA. Understand how your body " +
-                "responds to sports, dietary needs, food reactions, skin health & " +
-                "overall fitness.");
-
+        data3.setText("Get deep insight into DNA. Understand how your body " + "responds to sports, dietary needs, food reactions, skin health & " + "overall fitness.");
+        data3.setIschecked(false);
+        data3.setNameCounsellor("Tanya");
+        data3.setTypeCounsellor("LongiFit Test");
 
         CrouselData data4 = new CrouselData();
         data4.setDrawable(R.mipmap.image_genetic);
-        data4.setHeading("Bione Gene-Check\n");
-        data4.setText("Discover & understand how your " +
-                "genes can be responsible for the susceptibility to viral infections like " +
-                "SARS and Influenza.");
+        data4.setDrawableTest(R.drawable.ic_gene_check);
+        data4.setHeadingTest("Gene-Check");
+        data4.setHeading("Bione Gene-Check");
+        data4.setText("Discover & understand how your " + "genes can be responsible for the susceptibility to viral infections like " + "SARS and Influenza.");
+        data4.setIschecked(false);
+        data4.setNameCounsellor("Adrija Mishra");
+        data4.setTypeCounsellor("Gene-Check");
 
         CrouselData data5 = new CrouselData();
         data5.setDrawable(R.mipmap.image_clinical);
+        data5.setDrawableTest(R.drawable.ic_group);
+        data5.setHeadingTest("Genetic\nTest");
         data5.setHeading("Clinical \nGenetics Tests ");
-        data5.setText("The genesis of elite\n" +
-                "genetic testing");
+        data5.setText("The genesis of elite\n" + "genetic testing");
+        data5.setIschecked(false);
+        data5.setNameCounsellor("Adrija Mishra");
+        data5.setTypeCounsellor("Genetic Test");
 
         CrouselData data6 = new CrouselData();
         data6.setDrawable(0);
+        data6.setDrawableTest(0);
+        data6.setHeadingTest("");
         data6.setHeading("");
         data6.setText("");
+        data6.setIschecked(false);
+        data6.setNameCounsellor("");
+        data6.setTypeCounsellor("");
 
         crouselDataArrayList.add(data);
         crouselDataArrayList.add(data2);
