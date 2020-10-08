@@ -87,6 +87,13 @@ public class PDFViewActivity extends BaseActivity {
             bottom.setVisibility(View.VISIBLE);
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);
+            pdfView.fromAsset("Bione-LongiFit.pdf").load();
+            tvTitle.setText("LongiFit");
+
+        }else if (position == 4) {
+            bottom.setVisibility(View.VISIBLE);
+            webView.setVisibility(View.GONE);
+            pdfView.setVisibility(View.VISIBLE);
             pdfView.fromAsset("Bione-Suspectibility.pdf").load();
             tvTitle.setText("Genetic Susceptibility Test");
 
@@ -104,7 +111,7 @@ public class PDFViewActivity extends BaseActivity {
                 link = "https://www.bione.in/mymicrobiome-test";
                 tvTitle.setText("MyMicroBiome Test");
                 geneticType = "MyMicroBiome";
-            } else if (position == 4) {
+            } else if (position == 5) {
                 link = "https://www.bione.in/genetics";
                 tvTitle.setText("Clinical Genetic Test");
                 geneticType = "Genetic";

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CommonListData;
+import com.bione.ui.mymicrobiome.ComingSoonActivity;
 import com.bione.ui.mymicrobiome.report.MyReportActivity;
 
 import java.util.ArrayList;
@@ -52,9 +53,18 @@ public class ReportTypeAdapter extends RecyclerView.Adapter<ReportTypeAdapter.My
         holder.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MyReportActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+                if(position==1) {
+                    Intent intent = new Intent(mContext, MyReportActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }else{
+                    Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("head","Report in Details");
+                    intent.putExtra("body","Coming Soon");
+                    intent.putExtra("link","google.com");
+                    mContext.startActivity(intent);
+                }
             }
         });
     }

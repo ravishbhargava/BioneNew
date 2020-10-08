@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.model.customerkit.KitOrder;
 import com.bione.ui.home.dashboard.craousel.PDFViewActivity;
+import com.bione.ui.mymicrobiome.ComingSoonActivity;
 
 
 import java.util.ArrayList;
@@ -46,22 +48,30 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tvOrderId.setText(customerKits.get(position).getId());
+//        holder.tvOrderId.setText(customerKits.get(position).getId());
         holder.tvKitName.setText(customerKits.get(position).getKitName());
 
         if (customerKits.get(position).getBarCode().equals("")) {
-            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.gray));
+//            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.gray));
             holder.tvKitId.setText("Bar Code: Not Available");
         } else {
-            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+//            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
             holder.tvKitId.setText("Bar Code: " + customerKits.get(position).getBarCode());
             holder.llMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, PDFViewActivity.class);
-                    intent.putExtra("pdfUrl", customerKits.get(position).getReportUrl());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intent);
+                    if (customerKits.get(position).getReportUrl() != null) {
+                        if (!customerKits.get(position).getReportUrl().equals("")) {
+                            Intent intent = new Intent(mContext, PDFViewActivity.class);
+                            intent.putExtra("pdfUrl", customerKits.get(position).getReportUrl());
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intent);
+                        } else {
+                            callDummy();
+                        }
+                    } else {
+                        callDummy();
+                    }
                 }
             });
         }
@@ -73,11 +83,21 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         return customerKits.size();
     }
 
+    private void callDummy() {
+        Toast.makeText(mContext, "Report in progress", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(mContext, ComingSoonActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("head", "Report in PDF");
+        intent.putExtra("body", "Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.\n");
+        intent.putExtra("link", "google.com");
+        mContext.startActivity(intent);
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
-        private TextView tvOrderId;
-        private TextView tvReport;
+        //        private TextView tvOrderId;
+//        private TextView tvReport;
         private TextView tvKitName;
         private TextView tvKitId;
         private AppCompatImageView ivKit;
@@ -86,8 +106,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         public MyViewHolder(View v) {
             super(v);
             view = v;
-            tvOrderId = v.findViewById(R.id.tvOrderId);
-            tvReport = v.findViewById(R.id.tvReport);
+//            tvOrderId = v.findViewById(R.id.tvOrderId);
+//            tvReport = v.findViewById(R.id.tvReport);
             tvKitName = v.findViewById(R.id.tvKitName);
             tvKitId = v.findViewById(R.id.tvKitId);
             ivKit = v.findViewById(R.id.ivKit);
