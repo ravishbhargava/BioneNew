@@ -53,7 +53,7 @@ public class ReportTypeAdapter extends RecyclerView.Adapter<ReportTypeAdapter.My
         holder.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(position==1) {
+                if(position==0) {
                     Intent intent = new Intent(mContext, MyReportActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);

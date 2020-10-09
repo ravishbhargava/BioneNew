@@ -3,6 +3,7 @@
     android:id="@+id/llVisible"
     android:layout_width="@dimen/item_gallery_width"
     android:layout_height="@dimen/item_gallery_height"
+    android:layout_marginHorizontal="-10dp"
     android:layout_gravity="center"
     android:layout_marginBottom="2dp">
 

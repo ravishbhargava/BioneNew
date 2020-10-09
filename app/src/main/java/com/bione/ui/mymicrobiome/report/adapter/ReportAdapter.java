@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.customerkit.KitOrder;
-import com.bione.ui.home.dashboard.craousel.PDFViewActivity;
 import com.bione.ui.mymicrobiome.ComingSoonActivity;
-
+import com.bione.ui.mymicrobiome.report.ReportPDFViewActivity;
 
 import java.util.ArrayList;
 
@@ -62,8 +61,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                 public void onClick(View view) {
                     if (customerKits.get(position).getReportUrl() != null) {
                         if (!customerKits.get(position).getReportUrl().equals("")) {
-                            Intent intent = new Intent(mContext, PDFViewActivity.class);
-                            intent.putExtra("pdfUrl", customerKits.get(position).getReportUrl());
+                            Intent intent = new Intent(mContext, ReportPDFViewActivity.class);
+                            intent.putExtra("barCode", customerKits.get(position).getBarCode());
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             mContext.startActivity(intent);
                         } else {

@@ -70,7 +70,7 @@ public class CategorySelect extends BaseActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            geneticType = extras.getString("geneticType");
+//            geneticType = extras.getString("geneticType");
             position = extras.getInt("position");
             fromFlow = extras.getString("fromFlow");
             crouselDataArrayList = extras.getParcelableArrayList("array");
@@ -84,8 +84,9 @@ public class CategorySelect extends BaseActivity {
 //        setArrayList();
         onSetRecyclerView();
 
-        geneticTypeSelected();
+
         initRecycler();
+        geneticTypeSelected();
     }
 
 

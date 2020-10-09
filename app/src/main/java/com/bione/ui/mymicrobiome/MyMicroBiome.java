@@ -82,14 +82,14 @@ public class MyMicroBiome extends BaseActivity {
             case R.id.llQuestionnaire:
                 Intent intentQuestionnaire = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
                 intentQuestionnaire.putExtra("head","My Questionnaire");
-                intentQuestionnaire.putExtra("body","Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+                intentQuestionnaire.putExtra("body","Coming Soon");
                 intentQuestionnaire.putExtra("link","google.com");
                 startActivity(intentQuestionnaire);
                 break;
             case R.id.llFoodDiary:
                 Intent intentFoodDiary = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
                 intentFoodDiary.putExtra("head","My Food Diary");
-                intentFoodDiary.putExtra("body","Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+                intentFoodDiary.putExtra("body","Coming Soon");
                 intentFoodDiary.putExtra("link","google.com");
                 startActivity(intentFoodDiary);
                 break;

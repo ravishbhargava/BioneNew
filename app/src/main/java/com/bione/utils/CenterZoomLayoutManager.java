@@ -12,7 +12,7 @@ public class CenterZoomLayoutManager extends LinearLayoutManager {
 //    private final float mShrinkDistance = 0.9f;
 
     private final float mShrinkAmount = 0.50f;
-    private final float mShrinkDistance = 0.25f;
+    private final float mShrinkDistance = 0.10f;
 
     public CenterZoomLayoutManager(Context context) {
         super(context);

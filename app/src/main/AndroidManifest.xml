@@ -105,6 +105,12 @@
             android:name=".ui.mymicrobiome.CategorySelect2"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.mymicrobiome.report.ReportPDFViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+
 
 
 
