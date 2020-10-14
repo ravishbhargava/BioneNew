@@ -285,13 +285,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data6.setNameCounsellor("");
         data6.setTypeCounsellor("");
 
-        crouselDataArrayList.add(data);
-        crouselDataArrayList.add(data2);
-        crouselDataArrayList.add(data1);
-        crouselDataArrayList.add(data3);
-        crouselDataArrayList.add(data4);
-        crouselDataArrayList.add(data5);
-        crouselDataArrayList.add(data6);
+        crouselDataArrayList.add(data);   //empty
+        crouselDataArrayList.add(data2);   //My Micro Biome
+        crouselDataArrayList.add(data3);   //LongiFit
+        crouselDataArrayList.add(data4);   //Gene-Check
+        crouselDataArrayList.add(data1);   //Longevity Plus
+        crouselDataArrayList.add(data5);   //Clinical Genetic test
+        crouselDataArrayList.add(data6);   //empty
     }
 
     private void openDialog() {
@@ -325,6 +325,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         dialog.show();
     }
+
     private void callPhoneCHeckPermission() {
 
 // Here, thisActivity is the current activity
@@ -352,6 +353,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             }
         }
     }
+
     private void sendMail() {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
@@ -364,6 +366,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -416,7 +419,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     private void callAPI() {

@@ -100,7 +100,7 @@
                     android:background="@drawable/drawable_border_primary"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="Link"
+                    android:text="Customer Support"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textAppearance="@style/CustomTextAppearance.Semibold"

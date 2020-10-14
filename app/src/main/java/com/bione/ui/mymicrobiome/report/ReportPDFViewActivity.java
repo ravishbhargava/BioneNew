@@ -10,6 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.mymicrobiome.CategorySelect2;
 import com.bione.utils.Log;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnErrorListener;
@@ -36,7 +38,9 @@ public class ReportPDFViewActivity extends BaseActivity {
 
     private WebView webView;
     private LinearLayout bottom;
+    private RelativeLayout relProfile;
     private AppCompatImageView ivBack;
+    private AppCompatImageView ivShare;
     private PDFView pdfView;
     private AppCompatTextView tvBook;
     private AppCompatTextView tvTitle;
@@ -65,7 +69,9 @@ public class ReportPDFViewActivity extends BaseActivity {
             // and get whatever type user account id is
         }
 
+        relProfile = findViewById(R.id.relProfile);
         ivBack = findViewById(R.id.ivBack);
+        ivShare = findViewById(R.id.ivProfile);
         tvExtra = findViewById(R.id.tvExtra);
         tvTitle = findViewById(R.id.tvTitle);
         tvBook = findViewById(R.id.tvBook);
@@ -74,7 +80,9 @@ public class ReportPDFViewActivity extends BaseActivity {
         bottom = findViewById(R.id.bottom);
         tvExtra.setVisibility(View.GONE);
         bottom.setVisibility(View.GONE);
-        tvBook.setText("Share PDF");
+//        relProfile.setVisibility(View.VISIBLE);
+
+        tvBook.setText("Book Counselling");
 
         openDialog();
 
@@ -84,10 +92,20 @@ public class ReportPDFViewActivity extends BaseActivity {
                 finish();
             }
         });
-        tvBook.setOnClickListener(new View.OnClickListener() {
+        ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendEmail();
+            }
+        });
+        tvBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(ReportPDFViewActivity.this, CategorySelect2.class);
+                intent2.putExtra("fromFlow", "MyMicroBiome");
+                intent2.putExtra("geneticType", "MyMicroBiome");
+                startActivity(intent2);
+//                sendEmail();
             }
         });
 
@@ -193,6 +211,7 @@ public class ReportPDFViewActivity extends BaseActivity {
                         public void loadComplete(int nbPages) {
                             hideLoading();
                             bottom.setVisibility(View.VISIBLE);
+                            relProfile.setVisibility(View.VISIBLE);
                         }
                     })
                     .load();
@@ -200,7 +219,7 @@ public class ReportPDFViewActivity extends BaseActivity {
         }
     }
 
-    private void errorMessage(){
+    private void errorMessage() {
         Toast.makeText(this, "Wrong Password", Toast.LENGTH_SHORT).show();
     }
 
@@ -251,12 +270,13 @@ public class ReportPDFViewActivity extends BaseActivity {
             public void onClick(View v) {
 
                 password = etPassword.getText().toString();
-                if (password.length() < 4) {
-                    Toast.makeText(getApplicationContext(), "Enter Correct Password", Toast.LENGTH_SHORT).show();
-                } else {
+                if (!password.equals("")) {
                     openUrl();
+                    dialog.dismiss();
+                } else {
+                    showErrorMessage("Please enter password");
                 }
-                dialog.dismiss();
+
             }
         });
 
@@ -278,7 +298,7 @@ public class ReportPDFViewActivity extends BaseActivity {
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
+//            finish();
             Log.i("Finished sending email...", "");
         } catch (android.content.ActivityNotFoundException ex) {
 

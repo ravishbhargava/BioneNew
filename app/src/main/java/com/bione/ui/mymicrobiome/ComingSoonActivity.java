@@ -1,8 +1,8 @@
 package com.bione.ui.mymicrobiome;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -33,7 +33,7 @@ public class ComingSoonActivity extends BaseActivity {
 
     private BannerPagerAdapter bannerPagerAdapter;
     private CustomViewPager viewPager;
-    private Context mContext;
+    private Activity mContext;
 
     private AppCompatTextView tvBody;
     private AppCompatTextView tvHead;
@@ -45,11 +45,13 @@ public class ComingSoonActivity extends BaseActivity {
     private String head = "";
     private String link = "";
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coming_soon);
 
+        mContext = ComingSoonActivity.this;
 
         Bundle extras = getIntent().getExtras();
 
@@ -111,6 +113,7 @@ public class ComingSoonActivity extends BaseActivity {
 
             case R.id.tvLink:
                 openDialog();
+
                 break;
             case R.id.ivBack:
                 finish();
@@ -210,6 +213,18 @@ public class ComingSoonActivity extends BaseActivity {
                     String number = ("tel:" + mobileNumber);
                     Intent mIntent = new Intent(Intent.ACTION_CALL);
                     mIntent.setData(Uri.parse(number));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    Activity#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for Activity#requestPermissions for more details.
+                            return;
+                        }
+                    }
                     startActivity(mIntent);
                 } else {
                     Log.d("--------", "permission denied, boo! Disable the");
