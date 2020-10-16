@@ -20,7 +20,6 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.MainActivity;
-import com.bione.ui.onboarding.Login;
 import com.bione.utils.Log;
 
 import java.util.List;
@@ -28,7 +27,9 @@ import java.util.List;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER_ID;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER_NAME;
 import static com.bione.utils.AppConstant.PARAM_DATE;
+import static com.bione.utils.AppConstant.PARAM_ENTITY_ID;
 import static com.bione.utils.AppConstant.PARAM_GENETIC_TYPE;
+import static com.bione.utils.AppConstant.PARAM_SLOT;
 import static com.bione.utils.AppConstant.PARAM_TIME_SLOT;
 
 public class CounsellingConfirm extends BaseActivity {
@@ -55,6 +56,7 @@ public class CounsellingConfirm extends BaseActivity {
     private String monthToPass;
     private String yearToPass;
     private String timeToPass;
+    private String bookingId = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class CounsellingConfirm extends BaseActivity {
 //            intent.putExtra("selectedDateToPass", selectedDateToPass);
 //            intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
 //            intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
+            bookingId = extras.getString("bookingId");
             dayToPass = extras.getString("dayToPass");
             dateToPass = extras.getString("dateToPass");
             monthToPass = extras.getString("monthToPass");
@@ -118,7 +121,12 @@ public class CounsellingConfirm extends BaseActivity {
 
             case R.id.tvConfirm:
 //                openDialog();
-                scheduleCallAPI();
+                if (bookingId != null) {
+                    call();
+                } else {
+                    scheduleCallAPI();
+                }
+
                 break;
 
             case R.id.ivBack:
@@ -149,6 +157,41 @@ public class CounsellingConfirm extends BaseActivity {
 
                 if (commonResponses.get(0).getStatusCode().equals("200")) {
 
+                    openDialog();
+                } else {
+                    showErrorMessage(commonResponses.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+
+    private void call() {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_ENTITY_ID, bookingId)
+                .add(PARAM_DATE, selectedDateToPass)
+                .add(PARAM_SLOT, selectedTimeSlot)
+
+                .build();
+
+        RestClient.getApiInterface().updateBooking(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponses) {
+
+                if (commonResponses.get(0).getStatusCode().equals("200")) {
                     openDialog();
                 } else {
                     showErrorMessage(commonResponses.get(0).getMessage());

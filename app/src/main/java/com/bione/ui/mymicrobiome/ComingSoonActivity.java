@@ -72,7 +72,7 @@ public class ComingSoonActivity extends BaseActivity {
             tvHead.setText(head);
         }
 
-        initViewPager();
+//        initViewPager();
 
     }
 

@@ -44,6 +44,18 @@ public class ListItem implements Parcelable {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("reason_cancelation")
+    @Expose
+    private String reasonCancelation;
+
+
+    public String getReasonCancelation() {
+        return reasonCancelation;
+    }
+
+    public void setReasonCancelation(String reasonCancelation) {
+        this.reasonCancelation = reasonCancelation;
+    }
 
     public String getMobilecounsellingId() {
         return mobilecounsellingId;
@@ -141,6 +153,9 @@ public class ListItem implements Parcelable {
         this.status = status;
     }
 
+    public ListItem() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -160,9 +175,7 @@ public class ListItem implements Parcelable {
         dest.writeString(this.starsRatings);
         dest.writeString(this.createdAt);
         dest.writeString(this.status);
-    }
-
-    public ListItem() {
+        dest.writeString(this.reasonCancelation);
     }
 
     protected ListItem(Parcel in) {
@@ -178,6 +191,7 @@ public class ListItem implements Parcelable {
         this.starsRatings = in.readString();
         this.createdAt = in.readString();
         this.status = in.readString();
+        this.reasonCancelation = in.readString();
     }
 
     public static final Creator<ListItem> CREATOR = new Creator<ListItem>() {

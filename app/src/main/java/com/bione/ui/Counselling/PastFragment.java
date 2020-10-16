@@ -86,14 +86,14 @@ public class PastFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
 
-
         // specify an adapter (see also next example)
-        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList);
-        recyclerView.setAdapter(mAdapter);
-    }
+        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList, new OnclickItemCounsellor() {
+            @Override
+            public void onItemClick(final int position, final String actionType) {
 
-    public void setList(final ArrayList<ListItem> counsellorList) {
-        mAdapter.setList(counsellorList);
+            }
+        });
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -116,9 +116,7 @@ public class PastFragment extends BaseFragment {
 
                 if (counsellings.get(0).getCode() == SUCCESS) {
                     try {
-
                         Log.d("customer counsellors", " size :: " + counsellings.get(0).getListItems().size());
-
 
                         ArrayList<ListItem> beforeFilterList = (ArrayList<ListItem>) counsellings.get(0).getListItems();
 
@@ -127,11 +125,8 @@ public class PastFragment extends BaseFragment {
                                 counsellorsList.add(beforeFilterList.get(i));
                             }
                         }
+                        mAdapter.refreshEvents(counsellorsList);
 
-
-                        // specify an adapter (see also next example)
-                        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList);
-                        recyclerView.setAdapter(mAdapter);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

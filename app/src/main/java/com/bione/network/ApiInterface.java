@@ -87,8 +87,15 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi/counsellorlist")
     Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
 
+    @POST("/rest/V1/bioneapi/cancelcouselling")
+    Call<List<CommonResponse>> cancelBooking(@QueryMap Map<String, String> map);
+
+    @POST("/rest/V1/bioneapi/updateslot")
+    Call<List<CommonResponse>> updateBooking(@QueryMap Map<String, String> map);
+
     @POST("/rest/V1/bioneapi/contact")
     Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
+
     @GET("/rest/V1/bioneapi/kitorderlist")
     Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
 

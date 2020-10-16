@@ -23,20 +23,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/spacing_small"
                 android:paddingLeft="@dimen/spacing_small"
                 android:text="Status"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_small" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvDays"
+                android:id="@+id/tvReason"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/spacing_small"
                 android:paddingRight="@dimen/spacing_small"
-                android:text=""
+                android:text="Not intrested"
                 android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_small" />
+                android:textSize="@dimen/font_small"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -44,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDate"
@@ -94,7 +96,6 @@
                     android:textSize="@dimen/font_normal" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivCall"
                 android:layout_width="wrap_content"
@@ -105,8 +106,42 @@
                 android:padding="@dimen/spacing_normal"
                 android:src="@drawable/ic_phone" />
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomRel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:paddingHorizontal="@dimen/spacing_normal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/drawable_border_transparent"
+                android:padding="@dimen/spacing_xsmall"
+                android:text="Cancel"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_small" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvReschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/drawable_border_transparent"
+                android:padding="@dimen/spacing_xsmall"
+                android:text="Re-schedule"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_small" />
 
         </RelativeLayout>
+
     </LinearLayout>
 
 
@@ -124,9 +159,9 @@
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:padding="@dimen/spacing_xsmall"
-            android:textSize="@dimen/font_normal"
             android:text="Feedback"
-            android:textAppearance="@style/CustomTextAppearance" />
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textSize="@dimen/font_normal" />
 
         <!--                    style="@style/ratting_bar_selector"-->
         <androidx.appcompat.widget.AppCompatRatingBar
@@ -139,18 +174,7 @@
             android:numStars="5"
             android:rating="3" />
 
-        <!--        <androidx.appcompat.widget.AppCompatRatingBar-->
-        <!--            android:id="@+id/ratingBar"-->
-
-        <!--            style="@style/ratting_bar_selector2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_alignParentEnd="true"-->
-        <!--            android:layout_centerInParent="true"-->
-        <!--            android:isIndicator="true"-->
-        <!--            android:numStars="5"-->
-        <!--            android:stepSize="0.1" />-->
-
     </RelativeLayout>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

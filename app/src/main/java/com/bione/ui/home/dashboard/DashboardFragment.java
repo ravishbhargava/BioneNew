@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.db.CommonData;
 import com.bione.model.CrouselData;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.network.ApiError;
@@ -31,17 +30,14 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
-import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
 import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.CenterZoomLayoutManager;
-import com.bione.utils.CustomViewPager;
+import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.relex.circleindicator.CircleIndicator;
 
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER;
 import static com.bione.utils.AppConstant.SUCCESS;
@@ -55,8 +51,15 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private String mobileNumber = "+91 6366 754 050";
 
     private View rootView;
-    private BannerPagerAdapter bannerPagerAdapter;
-    private CustomViewPager viewPager;
+//    private BannerPagerAdapter bannerPagerAdapter;
+//    private CustomViewPager viewPager;
+//    private int NUM_PAGES = 4;
+//    private int currentPage = 0;
+
+    private CenterZoomLayoutManager centerZoomLayoutManager;
+    private RecyclerView recyclerViewCarousel;
+    private int number = 0;
+
     private Context mContext;
     private AppCompatTextView tvCustomerSupport;
     private AppCompatTextView tvBookCounselling;
@@ -69,6 +72,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private AppCompatImageView ivLinkedIn;
 
     private int kitOrderSize = 0;
+
 
     @Override
     public void onAttach(Context context) {
@@ -99,34 +103,36 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             setArrayList();
             callAPI();
 //            onSetRecyclerView();
-            initViewPager(rootView);
+//            initViewPager(rootView);
 
         }
         return rootView;
     }
 
     private void onSetRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        CenterZoomLayoutManager layoutManager =
+        recyclerViewCarousel = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        centerZoomLayoutManager =
                 new CenterZoomLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewCarousel.setLayoutManager(centerZoomLayoutManager);
 
-        recyclerView.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList, kitOrderSize));
+        recyclerViewCarousel.setAdapter(new CounsellorAdapter(mContext, crouselDataArrayList, kitOrderSize));
         // Scroll to the position we want to snap to
-        layoutManager.scrollToPosition(1);
+        centerZoomLayoutManager.scrollToPosition(1);
         // Wait until the RecyclerView is laid out.
-        recyclerView.post(new Runnable() {
+        recyclerViewCarousel.post(new Runnable() {
             @Override
             public void run() {
                 // Shift the view to snap  near the center of the screen.
                 // This does not have to be precise.
-                int dx = (recyclerView.getWidth() - recyclerView.getChildAt(0).getWidth()) / 2;
-                recyclerView.scrollBy(-dx, 0);
+                int dx = (recyclerViewCarousel.getWidth() - recyclerViewCarousel.getChildAt(0).getWidth()) / 2;
+                recyclerViewCarousel.scrollBy(-dx, 0);
                 // Assign the LinearSnapHelper that will initially snap the near-center view.
                 LinearSnapHelper snapHelper = new LinearSnapHelper();
-                snapHelper.attachToRecyclerView(recyclerView);
+                snapHelper.attachToRecyclerView(recyclerViewCarousel);
             }
         });
+
+
     }
 
     @Override
@@ -161,9 +167,15 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         switch (view.getId()) {
             case R.id.tvCustomerSupport:
                 openDialog();
+//                if(number > 1){
+//                    centerZoomLayoutManager.scrollToPosition(number--);
+//                }
                 break;
 
             case R.id.tvBookCounselling:
+//                if(number < 6){
+//                    centerZoomLayoutManager.scrollToPosition(number++);
+//                }
                 Intent intent = new Intent(mContext, CategorySelect.class);
                 intent.putExtra("position", 1);
                 intent.putParcelableArrayListExtra("array", crouselDataArrayList);
@@ -194,23 +206,42 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    private void initViewPager(View view) {
-        viewPager = view.findViewById(R.id.viewpager);
-        viewPager.setOffscreenPageLimit(2);
-        viewPager.setPagingEnabled(true);
-
-
-        // setting viewPager's pages
-        bannerPagerAdapter = new BannerPagerAdapter(getChildFragmentManager(), 4);
-        viewPager.setAdapter(bannerPagerAdapter);
-        viewPager.setCurrentItem(0);
-
-        CircleIndicator indicator = view.findViewById(R.id.indicator);
-        indicator.setViewPager(viewPager);
-
-        // optional
-        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
-    }
+//    private void initViewPager(View view) {
+//        viewPager = view.findViewById(R.id.viewpager);
+//        viewPager.setOffscreenPageLimit(2);
+//        viewPager.setPagingEnabled(true);
+//
+//
+//        // setting viewPager's pages
+//        bannerPagerAdapter = new BannerPagerAdapter(getChildFragmentManager(), NUM_PAGES);
+//        viewPager.setAdapter(bannerPagerAdapter);
+//        viewPager.setCurrentItem(0);
+//
+//        CircleIndicator indicator = view.findViewById(R.id.indicator);
+//        indicator.setViewPager(viewPager);
+//
+//        // optional
+//        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
+//
+//
+//        Handler handler = new Handler();
+//        Runnable update = new Runnable() {
+//            public void run() {
+//                if (currentPage == NUM_PAGES) {
+//                    currentPage = 0;
+//                }
+//                viewPager.setCurrentItem(currentPage++, true);
+//            }
+//        };
+//
+//        new Timer().schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                handler.post(update);
+//            }
+//        }, 2000, 2000);
+//    }
 
     private void setArrayList() {
         crouselDataArrayList = new ArrayList<>();
@@ -232,7 +263,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data1.setHeading("Longevity Plus Test");
         data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " + "affect various health aspects for " + "timely management");
         data1.setIschecked(false);
-        data1.setNameCounsellor("Adrija Mishra");
+        data1.setNameCounsellor("Genetic Counsellor");
         data1.setTypeCounsellor("Longevity Plus Test");
 
         CrouselData data2 = new CrouselData();
@@ -242,7 +273,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data2.setHeading("MyMicrobiome Test");
         data2.setText("Discover & understand your gastrointestinal microbiota and best " + "suited personalised diet for a " + "healthy & happy life.");
         data2.setIschecked(false);
-        data2.setNameCounsellor("Tanya");
+        data2.setNameCounsellor("Diet & Nutrition Counsellor");
         data2.setTypeCounsellor("MyMicrobiome Test");
 
         CrouselData data3 = new CrouselData();
@@ -252,7 +283,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data3.setHeading("LongiFit");
         data3.setText("Get deep insight into DNA. Understand how your body " + "responds to sports, dietary needs, food reactions, skin health & " + "overall fitness.");
         data3.setIschecked(false);
-        data3.setNameCounsellor("Adrija Mishra");
+        data3.setNameCounsellor("Genetic Counsellor");
         data3.setTypeCounsellor("LongiFit Test");
 
         CrouselData data4 = new CrouselData();
@@ -262,7 +293,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data4.setHeading("Bione Gene-Check");
         data4.setText("Discover & understand how your " + "genes can be responsible for the susceptibility to viral infections like " + "SARS and Influenza.");
         data4.setIschecked(false);
-        data4.setNameCounsellor("Adrija Mishra");
+        data4.setNameCounsellor("Genetic Counsellor");
         data4.setTypeCounsellor("Gene-Check Test");
 
         CrouselData data5 = new CrouselData();
@@ -272,7 +303,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data5.setHeading("Clinical \nGenetics Tests ");
         data5.setText("The genesis of elite\n" + "genetic testing");
         data5.setIschecked(false);
-        data5.setNameCounsellor("Adrija Mishra");
+        data5.setNameCounsellor("Genetic Counsellor");
         data5.setTypeCounsellor("Genetic Test");
 
         CrouselData data6 = new CrouselData();
@@ -309,7 +340,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                sendMail();
+                CommonUtil.sendEmail(mContext, "");
             }
         });
 
@@ -343,14 +374,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             //You already have permission
             Log.d("--------", "You already have permission");
 
-            try {
-                String number = ("tel:" + mobileNumber);
-                Intent mIntent = new Intent(Intent.ACTION_CALL);
-                mIntent.setData(Uri.parse(number));
-                startActivity(mIntent);
-            } catch (SecurityException e) {
-                e.printStackTrace();
-            }
+            CommonUtil.makeCall(mContext);
         }
     }
 
@@ -397,35 +421,35 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    protected void sendEmail() {
-        Log.i("Send email", "");
-        String[] TO = {""};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            getActivity().finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-
-            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    protected void sendEmail() {
+//        Log.i("Send email", "");
+//        String[] TO = {""};
+//        String[] CC = {""};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            getActivity().finish();
+//            Log.i("Finished sending email...", "");
+//        } catch (android.content.ActivityNotFoundException ex) {
+//
+//            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-//                .add(PARAM_CUSTOMER, "36")
+//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+                .add(PARAM_CUSTOMER, "36")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.db.CommonData;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.customerkit.KitOrder;
 import com.bione.network.ApiError;
@@ -33,7 +32,7 @@ public class MyReportActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
-    private ArrayList<KitOrder> kitOrders;
+    private ArrayList<KitOrder> kitOrders = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,8 +71,8 @@ public class MyReportActivity extends BaseActivity {
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-//                .add(PARAM_CUSTOMER, "36")
+//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+                .add(PARAM_CUSTOMER, "36")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
@@ -85,17 +84,24 @@ public class MyReportActivity extends BaseActivity {
 
                         Log.d("customer kit ordered", " size :: " + customerKits.get(0).getKitOrders().size());
                         // specify an adapter (see also next example)
-                        kitOrders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
+                        ArrayList<KitOrder> newKitorders = new ArrayList<>();
+                        newKitorders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
+                        for (int i = 0; i < newKitorders.size(); i++) {
+                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
+                                kitOrders.add(newKitorders.get(i));
+                            }
+                        }
+                        Log.d("newKitorders", "---" + newKitorders.size());
+                        Log.d("kitOrders", "----" + kitOrders.size());
+
                         initRecycler();
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-                else if(customerKits.get(0).getCode() == 404){
+                } else if (customerKits.get(0).getCode() == 404) {
                     showErrorMessage("No Reports");
-                }
-                else {
+                } else {
                     showErrorMessage(customerKits.get(0).getMessage());
                 }
             }

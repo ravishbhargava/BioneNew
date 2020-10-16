@@ -1,9 +1,11 @@
 package com.bione.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
@@ -28,6 +30,9 @@ import static com.bione.utils.AppConstant.DATE_FORMAT_DAY_MONTH;
  */
 
 public final class CommonUtil {
+
+    public static String EMAIL_SUPPORT = "support@bione.in";
+    public static String mobileNumber = "+91 6366 754 050";
 
     /**
      * Prevent instantiation
@@ -168,4 +173,37 @@ public final class CommonUtil {
     }
 
 
+    public static void makeCall(Context mContext) {
+        try {
+            String number = ("tel:" + mobileNumber);
+            Intent mIntent = new Intent(Intent.ACTION_CALL);
+            mIntent.setData(Uri.parse(number));
+            mContext.startActivity(mIntent);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendEmail(Context mContext, String text) {
+        Log.i("Send email", "");
+        String[] TO = {EMAIL_SUPPORT};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here \n" + text);
+
+        try {
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+
+            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

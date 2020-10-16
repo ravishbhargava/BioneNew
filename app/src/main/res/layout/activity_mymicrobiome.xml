@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_spacing_150"
                 android:layout_marginVertical="@dimen/spacing_normal"
@@ -41,7 +42,12 @@
                     app:ci_height="@dimen/spacing_small"
                     app:ci_width="@dimen/spacing_small" />
             </RelativeLayout>
-
+            <fragment
+                android:id="@+id/card_list_fragment"
+                android:name="com.bione.ui.base.BannerCommon"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_spacing_150"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

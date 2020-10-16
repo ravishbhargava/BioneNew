@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.model.counsellors.ListItem;
 import com.bione.ui.Counselling.DetailCounsellorActivity;
+import com.bione.ui.Counselling.OnclickItemCounsellor;
+import com.bione.ui.schedulecall.ScheduleNow;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 
@@ -26,16 +28,18 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     private String type = "Upcoming";
     private Context mContext;
     private ArrayList<ListItem> counsellorList;
+    private OnclickItemCounsellor listener;
 
 
     public CounsellorAdapter(final String type) {
         this.type = type;
     }
 
-    public CounsellorAdapter(final Context mContext, final String type, final ArrayList<ListItem> counsellorList) {
+    public CounsellorAdapter(final Context mContext, final String type, final ArrayList<ListItem> counsellorList, final OnclickItemCounsellor listener) {
         this.type = type;
         this.mContext = mContext;
         this.counsellorList = counsellorList;
+        this.listener = listener;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -46,24 +50,30 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         private TextView tvStatus;
         private TextView tvType;
         private TextView tvDate;
-        private TextView tvDays;
+        private TextView tvReason;
         private TextView tvTimeSlot;
-//        private View bottomView;
+        private TextView tvReschedule;
+        private TextView tvCancel;
+        //        private View bottomView;
         private AppCompatRatingBar ratingBar;
         private RelativeLayout bottomRel;
+        private RelativeLayout bottomRel2;
 
         public MyViewHolder(View v) {
             super(v);
             view = v;
             ivCall = v.findViewById(R.id.ivCall);
             tvName = v.findViewById(R.id.tvName);
-            tvDays = v.findViewById(R.id.tvDays);
+            tvReason = v.findViewById(R.id.tvReason);
             tvDate = v.findViewById(R.id.tvDate);
             tvType = v.findViewById(R.id.tvType);
+            tvCancel = v.findViewById(R.id.tvCancel);
+            tvReschedule = v.findViewById(R.id.tvReschedule);
             tvTimeSlot = v.findViewById(R.id.tvTimeSlot);
             tvStatus = v.findViewById(R.id.tvStatus);
             ratingBar = v.findViewById(R.id.ratingBar);
             bottomRel = v.findViewById(R.id.bottomRel);
+            bottomRel2 = v.findViewById(R.id.bottomRel2);
 //            bottomView = v.findViewById(R.id.bottomView);
         }
     }
@@ -97,45 +107,66 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 
         if (counsellorList.get(position).getStatus().equals("0")) {
             holder.tvStatus.setText("Pending");
-        } else {
+        } else if (counsellorList.get(position).getStatus().equals("1")) {
             holder.tvStatus.setText("Completed");
+        } else {
+            holder.tvStatus.setText("Cancelled");
+            holder.tvReason.setVisibility(View.VISIBLE);
+            holder.tvReason.setText(counsellorList.get(position).getReasonCancelation());
         }
 
 
         if (type.equals("Upcoming")) {
+            holder.bottomRel2.setVisibility(View.VISIBLE);
             holder.bottomRel.setVisibility(View.GONE);
-//            holder.bottomView.setVisibility(View.GONE);
-//            holder.view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-//                    callIntent.setData(Uri.parse("tel:" + "9876543210"));//change the number
-//                    if (checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PERMISSION_GRANTED) {
-//                        mContext.startActivity(callIntent);
-//                    } else {
-//                        // TODO: Consider calling
-//                        //    Activity#requestPermissions
-//                        // here to request the missing permissions, and then overriding
-//                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                        //                                          int[] grantResults)
-//                        // to handle the case where the user grants the permission. See the documentation
-//                        // for Activity#requestPermissions for more details.
-//                        return;
-//                    }
-//                }
-//            });
         } else {
+            holder.bottomRel2.setVisibility(View.GONE);
             holder.bottomRel.setVisibility(View.VISIBLE);
-//            holder.bottomView.setVisibility(View.VISIBLE);
-            holder.view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        }
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!type.equals("Upcoming")) {
                     Intent intent = new Intent(mContext, DetailCounsellorActivity.class);
                     intent.putExtra("counsellor", counsellorList.get(position));
                     mContext.startActivity(intent);
                 }
-            });
-        }
+            }
+        });
+
+        holder.ivCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (type.equals("Upcoming")) {
+                    listener.onItemClick(position, "call");
+                }
+            }
+        });
+
+        holder.tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (type.equals("Upcoming")) {
+                    listener.onItemClick(position, "cancel");
+                }
+            }
+        });
+
+        holder.tvReschedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (type.equals("Upcoming")) {
+                    Log.d("geneticType","----"+counsellorList.get(position).getGeneticType());
+                    Intent intent = new Intent(mContext, ScheduleNow.class);
+                    intent.putExtra("bookingId", counsellorList.get(position).getMobilecounsellingId());
+                    intent.putExtra("geneticType", counsellorList.get(position).getGeneticType());
+                    intent.putExtra("counsellorName", counsellorList.get(position).getCounsellorName());
+                    mContext.startActivity(intent);
+
+                }
+            }
+        });
     }
 
 
@@ -145,14 +176,11 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         return counsellorList.size();
     }
 
-    //    public ArrayList<ListItem> getCounsellorList() {
-//        return counsellorList;
-//    }
-//
-    public void setList(final ArrayList<ListItem> counseloeList) {
-        this.counsellorList = counsellorList;
+    public void refreshEvents(ArrayList<ListItem> counsellorList) {
+
+        this.counsellorList.clear();
+        this.counsellorList.addAll(counsellorList);
         notifyDataSetChanged();
     }
-
 
 }

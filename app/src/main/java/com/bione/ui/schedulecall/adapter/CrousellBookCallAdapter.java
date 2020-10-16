@@ -84,7 +84,7 @@ public class CrousellBookCallAdapter extends RecyclerView.Adapter<CrousellBookCa
 
             holder.llVisible.setVisibility(View.VISIBLE);
             holder.tvHeading.setText(crouselDataArrayList.get(position).getHeadingTest());
-            holder.ivGeneticInner.setImageResource(crouselDataArrayList.get(position).getDrawableTest());
+            holder.ivGeneticInner.setImageResource(crouselDataArrayList.get(position).getDrawable());
 
         }
 

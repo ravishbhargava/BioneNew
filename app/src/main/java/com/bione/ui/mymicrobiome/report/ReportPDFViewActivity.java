@@ -2,7 +2,6 @@ package com.bione.ui.mymicrobiome.report;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +20,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.mymicrobiome.CategorySelect2;
+import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnErrorListener;
@@ -95,7 +95,7 @@ public class ReportPDFViewActivity extends BaseActivity {
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendEmail();
+                CommonUtil.sendEmail(getApplicationContext(), pdfUrl);
             }
         });
         tvBook.setOnClickListener(new View.OnClickListener() {
@@ -283,28 +283,28 @@ public class ReportPDFViewActivity extends BaseActivity {
         dialog.show();
     }
 
-    protected void sendEmail() {
-        Log.i("Send email", "");
-        String[] TO = {""};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here\n" + pdfUrl);
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-//            finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-
-            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    protected void sendEmail() {
+//        Log.i("Send email", "");
+//        String[] TO = {""};
+//        String[] CC = {""};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here\n" + pdfUrl);
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+////            finish();
+//            Log.i("Finished sending email...", "");
+//        } catch (android.content.ActivityNotFoundException ex) {
+//
+//            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 }
 

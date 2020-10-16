@@ -118,6 +118,9 @@ public class CategorySelect extends BaseActivity {
                 // Assign the LinearSnapHelper that will initially snap the near-center view.
                 LinearSnapHelper snapHelper = new LinearSnapHelper();
                 snapHelper.attachToRecyclerView(recyclerView);
+
+//                PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+//                pagerSnapHelper.attachToRecyclerView(recyclerView);
             }
         });
 

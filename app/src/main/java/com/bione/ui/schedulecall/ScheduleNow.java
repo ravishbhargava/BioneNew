@@ -27,7 +27,9 @@ import com.bione.ui.schedulecall.adapter.SlotsAdapter;
 import com.bione.utils.Log;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static com.bione.utils.AppConstant.PARAM_DATE;
@@ -63,6 +65,10 @@ public class ScheduleNow extends BaseActivity {
     private String yearToPass;
 
     private Context mContext;
+    private String bookingId = "";
+
+    private String currentDateSlot = "";
+    private String currentTimeSlot = "";
 
 
     @Override
@@ -76,6 +82,7 @@ public class ScheduleNow extends BaseActivity {
         } else {
             geneticType = extras.getString("geneticType");
             counsellorName = extras.getString("counsellorName");
+            bookingId = extras.getString("bookingId");
 
         }
         Log.d("geneticType", "---" + geneticType);
@@ -88,8 +95,14 @@ public class ScheduleNow extends BaseActivity {
         tvScheduleNow = findViewById(R.id.tvScheduleNow);
         tvScheduleNow.setOnClickListener(this);
         ivBack.setOnClickListener(this);
-
         availableSlots = new ArrayList<>();
+
+        if (bookingId != null) {
+            tvScheduleNow.setText("Re-schedule");
+
+        } else {
+            tvScheduleNow.setText("Schedule Now");
+        }
 
         // horizontal calendar code
         initHorizontalRecyclerView();
@@ -100,7 +113,10 @@ public class ScheduleNow extends BaseActivity {
 
         //Slots list
         initRecycler();
+        getCurrentTimeSlot();
         availableSlotsAPI();
+
+
     }
 
     private void initHorizontalRecyclerView() {
@@ -198,7 +214,7 @@ public class ScheduleNow extends BaseActivity {
         createList();
 
         // specify an adapter (see also next example)
-        mAdapter = new SlotsAdapter(mContext,arrayTimeSlots, new OnItemClickListener() {
+        mAdapter = new SlotsAdapter(mContext, arrayTimeSlots, new OnItemClickListener() {
             @Override
             public void onItemClick(String text) {
                 tvSelectedSlot.setText(text);
@@ -278,6 +294,7 @@ public class ScheduleNow extends BaseActivity {
                 if (mAdapter.getCheckedPosition() != -1) {
                     Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
 
+                    intent.putExtra("bookingId", bookingId);
                     intent.putExtra("dayToPass", dayToPass);
                     intent.putExtra("dateToPass", dateToPass);
                     intent.putExtra("monthToPass", monthToPass);
@@ -330,6 +347,22 @@ public class ScheduleNow extends BaseActivity {
                                 }
                             }
                         }
+                        if (currentDateSlot.equals(selectedDateToPass)) {
+                            Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
+                            Log.d(" current", "currentDateSlot------" + currentDateSlot);
+                            for (int i = 0; i < arrayTimeSlots.size(); i++) {
+                                arrayTimeSlots.get(i).setSelected(true);
+                                arrayTimeSlots.get(i).setText("NOT AVAILABLE");
+                                Log.d("name", "------" + arrayTimeSlots.get(i).getName());
+                                if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
+                                    break;
+                                }
+                            }
+                        }else{
+                            Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
+                            Log.d("not current", "currentDateSlot------" + currentDateSlot);
+                        }
+
                         mAdapter.refreshEvents(arrayTimeSlots);
 
                     } catch (Exception e) {
@@ -358,5 +391,50 @@ public class ScheduleNow extends BaseActivity {
 
     public interface OnItemClickListener {
         void onItemClick(final String text);
+    }
+
+    private void getCurrentTimeSlot() {
+//        String timeValue = "2015-10-28T10:37:04.899+05:30";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        try {
+            Calendar startCalendar = Calendar.getInstance();
+            startCalendar.setTime(sdf.parse(sdf.format(startCalendar.getTime())));
+//            startCalendar.setTime(sdf.parse(timeValue));
+
+            if (startCalendar.get(Calendar.MINUTE) < 30) {
+                startCalendar.set(Calendar.MINUTE, 30);
+            } else {
+                startCalendar.add(Calendar.MINUTE, 30); // overstep hour and clear minutes
+                startCalendar.clear(Calendar.MINUTE);
+            }
+
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTime(startCalendar.getTime());
+
+            // if you want dates for whole next day, uncomment next line
+            //endCalendar.add(Calendar.DAY_OF_YEAR, 1);
+            endCalendar.add(Calendar.HOUR_OF_DAY, 24 - startCalendar.get(Calendar.HOUR_OF_DAY));
+
+            endCalendar.clear(Calendar.MINUTE);
+            endCalendar.clear(Calendar.SECOND);
+            endCalendar.clear(Calendar.MILLISECOND);
+
+            SimpleDateFormat slotTime = new SimpleDateFormat("hh:mma");
+            SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-dd");
+//            while (endCalendar.after(startCalendar)) {
+            String slotStartTime = slotTime.format(startCalendar.getTime());
+            String slotStartDate = slotDate.format(startCalendar.getTime());
+
+            startCalendar.add(Calendar.MINUTE, 30);
+            String slotEndTime = slotTime.format(startCalendar.getTime());
+
+            Log.d("DATE", slotStartTime + " - " + slotEndTime + slotStartDate);
+            currentTimeSlot = slotStartTime + "-" + slotEndTime;
+            currentDateSlot = slotStartDate;
+//            }
+
+        } catch (ParseException e) {
+            // date in wrong format
+        }
     }
 }

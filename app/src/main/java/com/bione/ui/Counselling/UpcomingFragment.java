@@ -1,18 +1,27 @@
 package com.bione.ui.Counselling;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.db.CommonData;
+import com.bione.model.CommonResponse;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.counsellors.ListItem;
 import com.bione.network.ApiError;
@@ -21,16 +30,21 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.Counselling.adapter.CounsellorAdapter;
 import com.bione.ui.base.BaseFragment;
+import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bione.utils.AppConstant.PARAM_CANCELATION;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER;
+import static com.bione.utils.AppConstant.PARAM_ENTITY_ID;
+import static com.bione.utils.AppConstant.PARAM_STATUS;
 import static com.bione.utils.AppConstant.SUCCESS;
 
 public class UpcomingFragment extends BaseFragment {
 
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 101;
     private View rootView;
     private CounsellorAdapter mAdapter;
     private RecyclerView recyclerView;
@@ -88,9 +102,17 @@ public class UpcomingFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
 
-
         // specify an adapter (see also next example)
-        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList);
+        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList, new OnclickItemCounsellor() {
+            @Override
+            public void onItemClick(final int position, final String actionType) {
+                if (actionType.equals("call")) {
+                    callPhoneCHeckPermission();
+                } else if (actionType.equals("cancel")) {
+                    openDialog(position);
+                }
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -124,10 +146,8 @@ public class UpcomingFragment extends BaseFragment {
                                 counsellorsList.add(beforeFilterList.get(i));
                             }
                         }
+                        mAdapter.refreshEvents(counsellorsList);
 
-                        // specify an adapter (see also next example)
-                        mAdapter = new CounsellorAdapter(mContext, type, counsellorsList);
-                        recyclerView.setAdapter(mAdapter);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -154,5 +174,96 @@ public class UpcomingFragment extends BaseFragment {
     @Override
     public void onClick(View view) {
 
+    }
+
+    private void callPhoneCHeckPermission() {
+
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(mContext,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE},
+                    MY_PERMISSIONS_REQUEST_CALL_PHONE);
+            Log.d("--------", "MY_PERMISSIONS_REQUEST_CALL_PHONE");
+            // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        } else {
+            //You already have permission
+            Log.d("--------", "You already have permission");
+            CommonUtil.makeCall(mContext);
+        }
+    }
+
+    private void call(int position, String cancelReason) {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_ENTITY_ID, counsellorsList.get(position).getMobilecounsellingId())
+                .add(PARAM_STATUS, 2)
+                .add(PARAM_CANCELATION, cancelReason)
+
+                .build();
+
+        RestClient.getApiInterface().cancelBooking(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponses) {
+
+                if (commonResponses.get(0).getStatusCode().equals("200")) {
+                    getCounsellingsAPI();
+//                    showErrorMessage(commonResponses.get(0).getMessage());
+                } else {
+                    showErrorMessage(commonResponses.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    private void openDialog(int position) {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.dialog_cancel_reason);
+//        dialog.getWindow().setBackgroundDrawable(null);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+//        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+
+        RadioGroup radioGroup = dialog.findViewById(R.id.radioGroup);
+        final RadioButton[] radioButton = new RadioButton[1];
+
+
+        // if button is clicked, close the custom dialog
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(mContext, "Please select Reason", Toast.LENGTH_SHORT).show();
+                } else {
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    // find the radiobutton by returned id
+                    radioButton[0] = (RadioButton) dialog.findViewById(selectedId);
+                    dialog.dismiss();
+                    call(position, radioButton[0].getText().toString());
+                }
+
+            }
+        });
+
+        dialog.show();
     }
 }

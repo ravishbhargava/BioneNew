@@ -37,6 +37,9 @@ public final class AppConstant {
     public static final String PARAM_CUSTOMER_ID = "customer_id";
     public static final String PARAM_GENETIC_TYPE = "genetic_type";
     public static final String PARAM_TIME_SLOT = "time_slot";
+    public static final String PARAM_SLOT = "slots";
+    public static final String PARAM_STATUS = "status";
+    public static final String PARAM_CANCELATION = "cancelation";
 
     public static final String PARAM_TPKEN_ID = "token_id";
 

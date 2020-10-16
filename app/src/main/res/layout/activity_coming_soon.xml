@@ -20,7 +20,8 @@
             android:layout_height="@dimen/height_spacing_150"
             android:layout_marginHorizontal="@dimen/spacing_normal"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <com.bione.utils.CustomViewPager
                 android:id="@+id/viewpager"
@@ -38,6 +39,13 @@
                 app:ci_height="@dimen/spacing_small"
                 app:ci_width="@dimen/spacing_small" />
         </RelativeLayout>
+
+        <fragment
+            android:id="@+id/card_list_fragment"
+            android:name="com.bione.ui.base.BannerCommon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_spacing_150"
+            android:layout_marginHorizontal="@dimen/spacing_normal" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvHead"
@@ -70,8 +78,8 @@
                 android:id="@+id/tvBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_normal"
                 android:gravity="center"
+                android:paddingHorizontal="@dimen/spacing_normal"
                 android:text="@string/dummy_text"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_normal" />

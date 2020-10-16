@@ -52,7 +52,7 @@ public class MyMicroBiome extends BaseActivity {
         llFoodDiary.setOnClickListener(this);
         llQuestionnaire.setOnClickListener(this);
 
-        initViewPager();
+//        initViewPager();
 
     }
 

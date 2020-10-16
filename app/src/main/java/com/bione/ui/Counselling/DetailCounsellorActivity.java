@@ -26,7 +26,7 @@ public class DetailCounsellorActivity extends BaseActivity {
     private TextView tvStatus;
     private TextView tvType;
     private TextView tvDate;
-    private TextView tvDays;
+    private TextView tvReason;
     private TextView tvTimeSlot;
     private TextView tvSummary;
     private TextView tvCounsellorName;
@@ -78,7 +78,7 @@ public class DetailCounsellorActivity extends BaseActivity {
     private void init() {
         tvSummary = findViewById(R.id.tvSummary);
         tvName = findViewById(R.id.tvName);
-        tvDays = findViewById(R.id.tvDays);
+        tvReason = findViewById(R.id.tvReason);
         tvDate = findViewById(R.id.tvDate);
         tvType = findViewById(R.id.tvType);
         ivBack = findViewById(R.id.ivBack);
@@ -118,8 +118,12 @@ public class DetailCounsellorActivity extends BaseActivity {
 
         if (counsellor.getStatus().equals("0")) {
             tvStatus.setText("Pending");
-        } else {
+        } else if (counsellor.getStatus().equals("1")) {
             tvStatus.setText("Completed");
+        } else {
+            tvStatus.setText("Cancelled");
+            tvReason.setText(counsellor.getReasonCancelation());
+            tvReason.setVisibility(View.VISIBLE);
         }
 //        ratingBar.setEnabled(false);
         ratingBar.setIsIndicator(true);
