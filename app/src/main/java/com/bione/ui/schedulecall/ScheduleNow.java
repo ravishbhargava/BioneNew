@@ -351,12 +351,13 @@ public class ScheduleNow extends BaseActivity {
                             Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
                             Log.d(" current", "currentDateSlot------" + currentDateSlot);
                             for (int i = 0; i < arrayTimeSlots.size(); i++) {
-                                arrayTimeSlots.get(i).setSelected(true);
-                                arrayTimeSlots.get(i).setText("NOT AVAILABLE");
-                                Log.d("name", "------" + arrayTimeSlots.get(i).getName());
                                 if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
                                     break;
                                 }
+                                arrayTimeSlots.get(i).setSelected(true);
+                                arrayTimeSlots.get(i).setText("NOT AVAILABLE");
+                                Log.d("name", "------" + arrayTimeSlots.get(i).getName());
+
                             }
                         }else{
                             Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
