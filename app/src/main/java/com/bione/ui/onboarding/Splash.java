@@ -84,15 +84,14 @@ public class Splash extends BaseActivity {
 
                 CommonData.updateAdminToken(s);
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
-
+                Intent intent;
                 if (CommonData.getUserData() != null) {
-                    Intent intent = new Intent(Splash.this, MainActivity.class);
-                    startActivity(intent);
+                    intent = new Intent(Splash.this, MainActivity.class);
                 } else {
-                    Intent intent = new Intent(Splash.this, Walk.class);
-                    startActivity(intent);
+                    intent = new Intent(Splash.this, Walk.class);
                 }
-
+                startActivity(intent);
+                finish();
             }
 
             @Override
