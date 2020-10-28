@@ -107,8 +107,10 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 
         if (counsellorList.get(position).getStatus().equals("0")) {
             holder.tvStatus.setText("Pending");
+            holder.tvReason.setVisibility(View.GONE);
         } else if (counsellorList.get(position).getStatus().equals("1")) {
             holder.tvStatus.setText("Completed");
+            holder.tvReason.setVisibility(View.GONE);
         } else {
             holder.tvStatus.setText("Cancelled");
             holder.tvReason.setVisibility(View.VISIBLE);

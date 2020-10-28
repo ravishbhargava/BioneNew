@@ -22,6 +22,7 @@ public class DetailCounsellorActivity extends BaseActivity {
     private AppCompatImageView ivBack;
     private ListItem counsellor;
     private RelativeLayout bottomRel;
+    private RelativeLayout bottomRel2;
     private TextView tvName;
     private TextView tvStatus;
     private TextView tvType;
@@ -85,6 +86,7 @@ public class DetailCounsellorActivity extends BaseActivity {
         tvStatus = findViewById(R.id.tvStatus);
         ratingBar = findViewById(R.id.ratingBar);
         bottomRel = findViewById(R.id.bottomRel);
+        bottomRel2 = findViewById(R.id.bottomRel2);
         tvSubmit = findViewById(R.id.tvSubmit);
 //        bottomView = findViewById(R.id.bottomView);
         tvTimeSlot = findViewById(R.id.tvTimeSlot);
@@ -99,6 +101,8 @@ public class DetailCounsellorActivity extends BaseActivity {
         tvSummary.setText(counsellor.getCounsellorSummary());
         tvCounsellorName.setText(counsellor.getCounsellorName());
         tvTimeSlot.setText(counsellor.getTimeSlot());
+
+        bottomRel2.setVisibility(View.GONE);
 
         if (counsellor.getFeedback() != null) {
             feedback = counsellor.getFeedback();

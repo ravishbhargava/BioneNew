@@ -175,30 +175,6 @@
                     android:weightSum="2">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llQuestionnaire"
-                        android:layout_width="0dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="@dimen/spacing_small"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/question_mymicro" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:gravity="center"
-                            android:text="Questionnaire"
-                            android:textSize="@dimen/font_large" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/llCouselling"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
@@ -220,6 +196,32 @@
                             android:text="MyCounselling"
                             android:textSize="@dimen/font_large" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llQuestionnaire"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/session_mymicro" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:gravity="center"
+                            android:text="My Session"
+                            android:textSize="@dimen/font_large" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

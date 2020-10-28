@@ -33,6 +33,7 @@ public final class AppConstant {
     public static final String PARAM_FEEDBACK = "feedback";
     public static final String PARAM_RATINGS = "ratings";
 
+    public static final String PARAM_COUNSELLOR_NAME = "counsellor_name";
     public static final String PARAM_CUSTOMER_NAME = "customer_name";
     public static final String PARAM_CUSTOMER_ID = "customer_id";
     public static final String PARAM_GENETIC_TYPE = "genetic_type";

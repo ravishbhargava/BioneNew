@@ -269,7 +269,8 @@ public class CategorySelect extends BaseActivity {
                 Intent intent = new Intent(CategorySelect.this, ScheduleNow.class);
                 intent.putExtra("geneticType", geneticType);
                 intent.putExtra("counsellorName", counsellorName);
-                startActivity(intent);
+                intent.putExtra("category", "category1");
+                startActivityForResult(intent, 101);
                 break;
 
             case R.id.ivBack:
@@ -360,4 +361,20 @@ public class CategorySelect extends BaseActivity {
         void onItemClickSelected(final int position);
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            Log.d("" + getClass().getSimpleName(), "se aaya");
+            if (data != null) {
+                if (data.getStringExtra("status").equals("Done")) {
+                    Intent intent = new Intent();
+                    intent.putExtra("status", "Done");
+                    setResult(101, intent);
+                    finish();
+                }
+            }
+        }
+    }
 }

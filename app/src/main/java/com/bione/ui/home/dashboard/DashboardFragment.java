@@ -74,6 +74,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
     private int kitOrderSize = 0;
 
+    public DashboardFragment() {
+
+    }
 
     @Override
     public void onAttach(Context context) {

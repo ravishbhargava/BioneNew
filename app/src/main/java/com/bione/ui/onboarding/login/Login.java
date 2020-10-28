@@ -1,4 +1,4 @@
-package com.bione.ui.onboarding;
+package com.bione.ui.onboarding.login;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -32,6 +32,7 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.MainActivity;
+import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
 import com.bione.utils.ValidationUtil;
 import com.facebook.AccessToken;
@@ -100,6 +101,9 @@ public class Login extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//        DataBindingUtil.setContentView(this,R.layout.activity_login);
+
         Log.d("hash key", " : " + printKeyHash(this));
 
         init();

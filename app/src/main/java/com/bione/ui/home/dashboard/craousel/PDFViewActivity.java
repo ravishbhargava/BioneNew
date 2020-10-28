@@ -83,14 +83,14 @@ public class PDFViewActivity extends BaseActivity {
                 bottom.setVisibility(View.GONE);
                 openUrl();
             }
-        } else if (position == 3) {
+        } else if (position == 2) {
             bottom.setVisibility(View.VISIBLE);
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);
             pdfView.fromAsset("Bione-LongiFit.pdf").load();
             tvTitle.setText("LongiFit");
 
-        }else if (position == 4) {
+        }else if (position == 3) {
             bottom.setVisibility(View.VISIBLE);
             webView.setVisibility(View.GONE);
             pdfView.setVisibility(View.VISIBLE);
@@ -103,7 +103,7 @@ public class PDFViewActivity extends BaseActivity {
             pdfView.setVisibility(View.GONE);
             bottom.setVisibility(View.VISIBLE);
 
-            if (position == 2) {
+            if (position == 4) {
                 link = "https://www.bione.in/longevity-plus-test";
                 tvTitle.setText("Longevity Plus Test");
                 geneticType = "Longevity";

@@ -114,15 +114,15 @@ public class CategorySelect2 extends BaseActivity {
         // from mymicrobiome this will show
 //        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
 
-            tvGenetics.setText("MyReport");
-            tvFitness.setText("Diet & Nutrition");
-            tvFood.setText("MySessions");
+        tvGenetics.setText("MyReport");
+        tvFitness.setText("MySmart Diet");
+        tvFood.setText("MyFood Advice");
 
-            ivGeneticInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_result));
-            ivMicrobiomeInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_nutrition));
-            ivLongevityInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_teacher));
+        ivGeneticInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_result));
+        ivMicrobiomeInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_nutrition));
+        ivLongevityInner.setImageDrawable(getResources().getDrawable(R.drawable.ic_teacher));
 
-            geneticType = "MyReport";
+        geneticType = "MyReport";
 //            createList("Tanya", "MyReport");
 
 //        } else {// normal scenario this will show
@@ -139,9 +139,9 @@ public class CategorySelect2 extends BaseActivity {
     private void geneticTypeSelected() {
         if (geneticType.equals("Genetic") || geneticType.equals("MyReport")) {
             selectType(ivGenetic, ivMicrobiome, ivLongevity);
-        } else if (geneticType.equals("MyMicroBiome") || geneticType.equals("Diet & Nutrition")) {
+        } else if (geneticType.equals("MyMicroBiome") || geneticType.equals("MySmart Diet")) {
             selectType(ivMicrobiome, ivGenetic, ivLongevity);
-        } else if (geneticType.equals("Longevity")) {
+        } else if (geneticType.equals("Longevity") || geneticType.equals("MyFood Advice")) {
             selectType(ivLongevity, ivMicrobiome, ivGenetic);
         }
     }
@@ -168,7 +168,8 @@ public class CategorySelect2 extends BaseActivity {
                 Intent intent = new Intent(CategorySelect2.this, ScheduleNow.class);
                 intent.putExtra("geneticType", geneticType);
                 intent.putExtra("counsellorName", counsellorName);
-                startActivity(intent);
+                intent.putExtra("category","category2");
+                startActivityForResult(intent,101);
                 break;
 
             case R.id.ivBack:
@@ -176,8 +177,8 @@ public class CategorySelect2 extends BaseActivity {
                 break;
             case R.id.llGenetics:
 //                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-                    geneticType = "MyReport";
-                    createList("Tanya", "MyReport");
+                geneticType = "MyReport";
+                createList("Diet & Nutrition", "MyReport");
 //                } else {
 //                    createList("Adrija Mishra", "Genetic");
 //                }
@@ -185,17 +186,21 @@ public class CategorySelect2 extends BaseActivity {
                 break;
             case R.id.llMicroBiome:
 //                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-                    geneticType = "Diet & Nutrition";
-                    createList("Tanya", "Diet & Nutrition");
+                geneticType = "MySmart Diet";
+                createList("Diet & Nutrition", "MySmart Diet");
 //                } else {
 //                    createList("Tanya", "MyMicroBiome");
 //                }
                 geneticTypeSelected();
                 break;
             case R.id.llLongevity:
+
+                geneticType = "MyFood Advice";
+                createList("Diet & Nutrition", "MyFood Advice");
+                geneticTypeSelected();
 //                if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-                    Intent intent1 = new Intent(CategorySelect2.this, SessionActivity.class);
-                    startActivity(intent1);
+//                    Intent intent1 = new Intent(CategorySelect2.this, SessionActivity.class);
+//                    startActivity(intent1);
 //                } else {
 //                    createList("Adrija Mishra", "Longevity");
 //                    geneticTypeSelected();
@@ -228,7 +233,7 @@ public class CategorySelect2 extends BaseActivity {
         });
         recyclerView.setAdapter(mAdapter);
 //        if (fromFlow != null && fromFlow.equals("MyMicroBiome")) {
-            createList("Tanya", "MyReport");
+        createList("Diet & Nutrition", "MyReport");
 //        } else {
 //            createList("Adrija Mishra", "Genetic");
 //        }
@@ -250,6 +255,22 @@ public class CategorySelect2 extends BaseActivity {
 
     public interface OnItemClickListener {
         void onItemClick(final String text);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            Log.d(""+ getClass().getSimpleName(), "se aaya");
+            if (data != null) {
+                if (data.getStringExtra("status").equals("Done")) {
+                    Intent intent = new Intent();
+                    intent.putExtra("status", "Done");
+                    setResult(101, intent);
+                    finish();
+                }
+            }
+        }
     }
 
 }

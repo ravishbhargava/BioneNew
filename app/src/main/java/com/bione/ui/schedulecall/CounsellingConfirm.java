@@ -19,11 +19,11 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.home.MainActivity;
 import com.bione.utils.Log;
 
 import java.util.List;
 
+import static com.bione.utils.AppConstant.PARAM_COUNSELLOR_NAME;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER_ID;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER_NAME;
 import static com.bione.utils.AppConstant.PARAM_DATE;
@@ -57,6 +57,7 @@ public class CounsellingConfirm extends BaseActivity {
     private String yearToPass;
     private String timeToPass;
     private String bookingId = "";
+    private String category = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class CounsellingConfirm extends BaseActivity {
 //            intent.putExtra("selectedDateToPass", selectedDateToPass);
 //            intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
 //            intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
+            category = extras.getString("category");
             bookingId = extras.getString("bookingId");
             dayToPass = extras.getString("dayToPass");
             dateToPass = extras.getString("dateToPass");
@@ -143,10 +145,10 @@ public class CounsellingConfirm extends BaseActivity {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_CUSTOMER_NAME, etName.getText().toString())
+                .add(PARAM_COUNSELLOR_NAME, counsellorName)
                 .add(PARAM_CUSTOMER_ID, CommonData.getUserData().getEntityId())
                 .add(PARAM_GENETIC_TYPE, geneticType)
                 .add(PARAM_DATE, selectedDateToPass)
-//                .add(PARAM_DATE, tvCalendarDate.getText().toString())
                 .add(PARAM_TIME_SLOT, selectedTimeSlot)
 
                 .build();
@@ -217,8 +219,8 @@ public class CounsellingConfirm extends BaseActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_confirmed);
         dialog.getWindow().setBackgroundDrawable(null);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setTitle("Title...");
-
         // set the custom dialog components - text, image and button
 //        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
         AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
@@ -228,10 +230,18 @@ public class CounsellingConfirm extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent = new Intent(CounsellingConfirm.this, MainActivity.class);
-                // set the new task and clear flags
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+
+                Intent intent = new Intent();
+                intent.putExtra("status", "Done");
+                setResult(101, intent);
+                finish();
+//                Intent intent;
+//                intent = new Intent(CounsellingConfirm.this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                if (category.equals("category2"))
+//                    intent.putExtra("category",category);
+//
+//                startActivity(intent);
             }
         });
 

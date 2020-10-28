@@ -198,6 +198,7 @@ public class UpcomingFragment extends BaseFragment {
 
     private void call(int position, String cancelReason) {
 
+        showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_ENTITY_ID, counsellorsList.get(position).getMobilecounsellingId())
                 .add(PARAM_STATUS, 2)

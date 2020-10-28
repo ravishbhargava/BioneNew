@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.bione.R;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
 import com.bione.utils.CustomViewPager;
+import com.bione.utils.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,6 +28,10 @@ public class BannerCommon extends BaseFragment {
     private int NUM_PAGES = 4;
     private int currentPage = 0;
 
+    public BannerCommon() {
+
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -36,7 +41,7 @@ public class BannerCommon extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("BannerCommon","onCreate");
     }
 
     @Nullable

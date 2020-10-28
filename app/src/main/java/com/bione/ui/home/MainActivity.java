@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity {
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
 
+    private String category = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +144,6 @@ public class MainActivity extends BaseActivity {
             CURRENT_TAG = TAG_DASH;
             loadHomeFragment();
         }
-
 
     }
 
@@ -235,6 +235,7 @@ public class MainActivity extends BaseActivity {
 
                 // DASH fragment
                 DashboardFragment dashboardFragment = new DashboardFragment();
+//                dashboardFragment.
                 return dashboardFragment;
 
             case 1:

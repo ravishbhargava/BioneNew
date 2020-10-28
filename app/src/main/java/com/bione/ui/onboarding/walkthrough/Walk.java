@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.onboarding.Login;
+import com.bione.ui.onboarding.login.Login;
 import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.CustomViewPager;
 

@@ -95,7 +95,7 @@ public class ReportPDFViewActivity extends BaseActivity {
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonUtil.sendEmail(getApplicationContext(), pdfUrl);
+                CommonUtil.sendEmail(ReportPDFViewActivity.this, pdfUrl);
             }
         });
         tvBook.setOnClickListener(new View.OnClickListener() {

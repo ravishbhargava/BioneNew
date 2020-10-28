@@ -70,6 +70,7 @@ public class ScheduleNow extends BaseActivity {
     private String currentDateSlot = "";
     private String currentTimeSlot = "";
 
+    private String category = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class ScheduleNow extends BaseActivity {
             geneticType = extras.getString("geneticType");
             counsellorName = extras.getString("counsellorName");
             bookingId = extras.getString("bookingId");
+            category = extras.getString("category");
 
         }
         Log.d("geneticType", "---" + geneticType);
@@ -294,6 +296,7 @@ public class ScheduleNow extends BaseActivity {
                 if (mAdapter.getCheckedPosition() != -1) {
                     Intent intent = new Intent(ScheduleNow.this, CounsellingConfirm.class);
 
+                    intent.putExtra("category", category);
                     intent.putExtra("bookingId", bookingId);
                     intent.putExtra("dayToPass", dayToPass);
                     intent.putExtra("dateToPass", dateToPass);
@@ -305,7 +308,7 @@ public class ScheduleNow extends BaseActivity {
                     intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
                     intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
 
-                    startActivity(intent);
+                    startActivityForResult(intent, 101);
                 } else {
                     showErrorMessage("Please select time slot");
                 }
@@ -359,7 +362,7 @@ public class ScheduleNow extends BaseActivity {
                                 Log.d("name", "------" + arrayTimeSlots.get(i).getName());
 
                             }
-                        }else{
+                        } else {
                             Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
                             Log.d("not current", "currentDateSlot------" + currentDateSlot);
                         }
@@ -436,6 +439,22 @@ public class ScheduleNow extends BaseActivity {
 
         } catch (ParseException e) {
             // date in wrong format
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            Log.d("" + getClass().getSimpleName(), "se aaya");
+            if (data != null) {
+                if (data.getStringExtra("status").equals("Done")) {
+                    Intent intent = new Intent();
+                    intent.putExtra("status", "Done");
+                    setResult(101, intent);
+                    finish();
+                }
+            }
         }
     }
 }
