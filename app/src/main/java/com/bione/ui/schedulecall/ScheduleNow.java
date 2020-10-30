@@ -30,6 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static com.bione.utils.AppConstant.PARAM_DATE;
@@ -69,6 +70,7 @@ public class ScheduleNow extends BaseActivity {
 
     private String currentDateSlot = "";
     private String currentTimeSlot = "";
+    private String actualTime = "";
 
     private String category = "";
 
@@ -353,14 +355,21 @@ public class ScheduleNow extends BaseActivity {
                         if (currentDateSlot.equals(selectedDateToPass)) {
                             Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
                             Log.d(" current", "currentDateSlot------" + currentDateSlot);
-                            for (int i = 0; i < arrayTimeSlots.size(); i++) {
-                                if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
-                                    break;
-                                }
-                                arrayTimeSlots.get(i).setSelected(true);
-                                arrayTimeSlots.get(i).setText("NOT AVAILABLE");
-                                Log.d("name", "------" + arrayTimeSlots.get(i).getName());
 
+
+                            if (checkSLotTime("09:00AM", actualTime)) {
+                                Log.d("checkslotime", "if");
+
+                                for (int i = 0; i < arrayTimeSlots.size(); i++) {
+                                    if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
+                                        break;
+                                    }
+                                    arrayTimeSlots.get(i).setSelected(true);
+                                    arrayTimeSlots.get(i).setText("NOT AVAILABLE");
+                                    Log.d("name", "------" + arrayTimeSlots.get(i).getName());
+                                }
+                            } else {
+                                Log.d("checkslotime", "else");
                             }
                         } else {
                             Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
@@ -397,13 +406,72 @@ public class ScheduleNow extends BaseActivity {
         void onItemClick(final String text);
     }
 
+    private boolean checkSLotTime(String startTimeSlot, String currentTimeSLot) {
+//        startTimeSlot = "09:00AM";
+//        currentTimeSLot = "08:00AM";
+        Log.d("startTimeSlot: " + startTimeSlot, "currentTimeSLot: " + currentTimeSLot);
+        try {
+            SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mma");
+            Date date1 = parseFormat.parse(startTimeSlot);
+            System.out.println(parseFormat.format(date1) + " = " + displayFormat.format(date1));
+
+            Date date2 = parseFormat.parse(currentTimeSlot);
+            System.out.println(parseFormat.format(date2) + " = " + displayFormat.format(date2));
+
+            if (parseFormat.format(date2).equals("12:00AM")) {
+                System.out.println("12:00AM night time handled");
+                return true;
+            } else if (date1.compareTo(date2) > 0) {
+                System.out.println("Date 1 occurs after Date 2");
+                return false;
+            } else if (date1.compareTo(date2) < 0) {
+                System.out.println("Date 1 occurs before Date 2");
+                return true;
+            } else if (date1.compareTo(date2) == 0) {
+                System.out.println("Both dates are equal");
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mma");
+//        try {
+//            Date d1 = sdf.parse(startTimeSlot);
+//            Date d2 = sdf.parse(currentTimeSLot);
+//            Log.d("d2: " + d2, "d1: " + d1);
+//            if (d1.compareTo(d2) > 0) {
+//                System.out.println("Date 1 occurs after Date 2");
+//                return false;
+//            } else if (d1.compareTo(d2) < 0) {
+//                System.out.println("Date 1 occurs before Date 2");
+//                return true;
+//            } else if (d1.compareTo(d2) == 0) {
+//                System.out.println("Both dates are equal");
+//                return true;
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return false;
+    }
+
     private void getCurrentTimeSlot() {
-//        String timeValue = "2015-10-28T10:37:04.899+05:30";
+        SimpleDateFormat slotTime = new SimpleDateFormat("hh:mma");
+        SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-dd");
+//        String timeValue = "2020-10-30T01:42:04.899+05:30";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         try {
             Calendar startCalendar = Calendar.getInstance();
             startCalendar.setTime(sdf.parse(sdf.format(startCalendar.getTime())));
 //            startCalendar.setTime(sdf.parse(timeValue));
+
+            String slotStartDate = slotDate.format(startCalendar.getTime());
+            actualTime = slotTime.format(startCalendar.getTime());
+
 
             if (startCalendar.get(Calendar.MINUTE) < 30) {
                 startCalendar.set(Calendar.MINUTE, 30);
@@ -423,18 +491,20 @@ public class ScheduleNow extends BaseActivity {
             endCalendar.clear(Calendar.SECOND);
             endCalendar.clear(Calendar.MILLISECOND);
 
-            SimpleDateFormat slotTime = new SimpleDateFormat("hh:mma");
-            SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-dd");
+
 //            while (endCalendar.after(startCalendar)) {
             String slotStartTime = slotTime.format(startCalendar.getTime());
-            String slotStartDate = slotDate.format(startCalendar.getTime());
+//            String slotStartDate = slotDate.format(startCalendar.getTime());
 
             startCalendar.add(Calendar.MINUTE, 30);
             String slotEndTime = slotTime.format(startCalendar.getTime());
 
-            Log.d("DATE", slotStartTime + " - " + slotEndTime + slotStartDate);
+            Log.d("DATETime-------->  Time: ", slotStartTime + " - " + slotEndTime + " date: " + slotStartDate);
+//            actualTime = slotStartTime;
             currentTimeSlot = slotStartTime + "-" + slotEndTime;
             currentDateSlot = slotStartDate;
+
+
 //            }
 
         } catch (ParseException e) {
