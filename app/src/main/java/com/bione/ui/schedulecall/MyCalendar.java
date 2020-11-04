@@ -1,8 +1,6 @@
 package com.bione.ui.schedulecall;
 
 
-import com.bione.utils.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

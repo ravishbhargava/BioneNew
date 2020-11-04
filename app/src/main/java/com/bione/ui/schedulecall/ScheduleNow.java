@@ -437,31 +437,12 @@ public class ScheduleNow extends BaseActivity {
             e.printStackTrace();
         }
 
-//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mma");
-//        try {
-//            Date d1 = sdf.parse(startTimeSlot);
-//            Date d2 = sdf.parse(currentTimeSLot);
-//            Log.d("d2: " + d2, "d1: " + d1);
-//            if (d1.compareTo(d2) > 0) {
-//                System.out.println("Date 1 occurs after Date 2");
-//                return false;
-//            } else if (d1.compareTo(d2) < 0) {
-//                System.out.println("Date 1 occurs before Date 2");
-//                return true;
-//            } else if (d1.compareTo(d2) == 0) {
-//                System.out.println("Both dates are equal");
-//                return true;
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return false;
     }
 
     private void getCurrentTimeSlot() {
         SimpleDateFormat slotTime = new SimpleDateFormat("hh:mma");
-        SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-d");
 //        String timeValue = "2020-10-30T01:42:04.899+05:30";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         try {
