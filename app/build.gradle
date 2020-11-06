@@ -111,20 +111,18 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
-//    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    // implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.thoughtbot:expandablerecyclerview:1.4'
 
-    //Calligraphy (custom font lib)
-//    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    // Calligraphy (custom font lib)
     implementation 'io.github.inflationx:calligraphy3:3.1.1'
     implementation 'io.github.inflationx:viewpump:2.0.3'
 
-    //paper db
+    // paper db
     implementation 'io.paperdb:paperdb:2.6'
-//    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.0'
-//    implementation 'com.github.mukeshsolanki:country-picker-android:2.0.2'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-// zoho integration
+    // zoho integration
     implementation 'com.zoho.salesiq:mobilisten:2.2'
 
 }

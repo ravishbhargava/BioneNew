@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/spacing_small"
-    android:background="@drawable/drawable_border_primary"
-    >
+    android:background="@drawable/drawable_border_primary">
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -26,6 +25,7 @@
         android:layout_toRightOf="@+id/ivLeft"
         android:gravity="center_vertical"
         android:text="Report in PDF"
+        android:textAppearance="@style/CustomTextAppearance"
         android:textColor="@color/white"
         android:textSize="@dimen/font_large" />
 

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.banner.BannerPagerAdapter;
+import com.bione.ui.myfoodadvice.category.MyFoodAdviceActivity;
 import com.bione.ui.mymicrobiome.report.MyReportTypeActivity;
 import com.bione.utils.CustomViewPager;
 
@@ -103,10 +104,10 @@ public class MyMicroBiome extends BaseActivity {
                 startActivity(intentSmartDiet);
                 break;
             case R.id.llFoodAdvice:
-                Intent intentFoodAdvice = new Intent(MyMicroBiome.this, ComingSoonActivity.class);
-                intentFoodAdvice.putExtra("head", "My Food Advice");
-                intentFoodAdvice.putExtra("body", "Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
-                intentFoodAdvice.putExtra("link", "google.com");
+                Intent intentFoodAdvice = new Intent(MyMicroBiome.this, MyFoodAdviceActivity.class);
+//                intentFoodAdvice.putExtra("head", "My Food Advice");
+//                intentFoodAdvice.putExtra("body", "Our experts are working on your test results. This option will get enabled automatically soon after you receive your report.");
+//                intentFoodAdvice.putExtra("link", "google.com");
                 startActivity(intentFoodAdvice);
                 break;
 

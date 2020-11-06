@@ -61,21 +61,22 @@ public class MyReportTypeActivity extends BaseActivity {
 
     private void createList() {
         reportType = new ArrayList<>();
+//
+//        CommonListData data = new CommonListData();
+//        data.setChecked(false);
+//        data.setHeading("Report In PDF");
+//        data.setText("Report In PDF");
+//        data.setDrawable(R.drawable.ic_report_pdf);
+//
+//        CommonListData data1 = new CommonListData();
+//        data1.setChecked(false);
+//        data1.setHeading("Report In Detail");
+//        data1.setText("Report In Detail");
+//        data1.setDrawable(R.drawable.ic_report_detail);
 
-        CommonListData data = new CommonListData();
-        data.setChecked(false);
-        data.setHeading("Report In PDF");
-        data.setText("Report In PDF");
-        data.setDrawable(R.drawable.ic_report_pdf);
+        reportType.add(new CommonListData(R.drawable.ic_report_pdf,"Report In PDF","Report In PDF",false));
+        reportType.add(new CommonListData(R.drawable.ic_report_detail,"Report In Detail","Report In Detail",false));
 
-        CommonListData data1 = new CommonListData();
-        data1.setChecked(false);
-        data1.setHeading("Report In Detail");
-        data1.setText("Report In Detail");
-        data1.setDrawable(R.drawable.ic_report_detail);
-
-        reportType.add(data);
-        reportType.add(data1);
     }
 
 

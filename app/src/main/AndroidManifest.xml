@@ -110,7 +110,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
-
+        <activity
+            android:name=".ui.myfoodadvice.category.MyFoodAdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.myfoodadvice.subcategory.SubFoodAdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
 
 
