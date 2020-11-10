@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mHandler = new Handler();
@@ -81,22 +81,6 @@ public class MainActivity extends BaseActivity {
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                new CustomAlertDialog.Builder(MainActivity.this)
-//                        .setMessage("Logout")
-//                        .setCancelable(false)
-//                        .setNegativeButton(R.string.text_cancel, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick() {
-//                                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .setPositiveButton(R.string.text_ok, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick() {
-//                                Toast.makeText(getApplicationContext(), "Ok", Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .show();
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setMessage("Are you sure?")
