@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/spacing_normal"
+        android:src="@mipmap/bione_logo" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@+id/ivLogo">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ivLogo"
+            android:layout_margin="@dimen/spacing_large"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginVertical="@dimen/spacing_large"
+                android:gravity="left"
+                android:text="Get Started with Genomics Journey with Bione"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_xxxlarge" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Your First Name*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etFirstName"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter First Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Your Middle Name*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etMiddleName"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Middle Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Your Last Name*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etLastName"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Last Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Email Address*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etEmail"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Email ID" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Password*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:layout_marginTop="0dp"
+                android:text="Passwords must be at least 6 characters containing 1-capital, 1- numeric
+and 1 special character"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/font_xsmall" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Confirm Password*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etConfirmPassword"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Confirm Password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Phone Number*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etEmail"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter First Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:layout_marginTop="0dp"
+                android:text="Mobile No. Without Country Code i.e 9898989898"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/font_xsmall" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_small"
+                android:background="@drawable/drawable_border_accent"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="Send OTP"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xlarge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Enter One Time Password*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etOtp"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="OTP"
+                android:layout_gravity="center"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</RelativeLayout>

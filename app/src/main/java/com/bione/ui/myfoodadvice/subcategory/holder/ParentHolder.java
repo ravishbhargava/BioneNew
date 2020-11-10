@@ -1,4 +1,4 @@
-package com.bione.ui.myfoodadvice.subcategory;
+package com.bione.ui.myfoodadvice.subcategory.holder;
 
 import android.view.View;
 import android.widget.TextView;

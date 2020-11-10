@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import com.bione.R;
 import com.bione.model.CommonListData;
 import com.bione.model.CommonListDataParent;
+import com.bione.ui.myfoodadvice.subcategory.holder.ChildHolder;
+import com.bione.ui.myfoodadvice.subcategory.holder.ParentHolder;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
