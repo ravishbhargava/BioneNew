@@ -560,7 +560,6 @@ public class ProfileFragment extends BaseFragment implements ImageChooser.OnImag
                 });
     }
 
-
     private void createJsonObject() {
 //        {
 //            "customer":{

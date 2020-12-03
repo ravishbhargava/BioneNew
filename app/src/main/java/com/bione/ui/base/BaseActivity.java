@@ -1,8 +1,10 @@
 package com.bione.ui.base;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -16,11 +18,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bione.R;
+import com.bione.db.CommonData;
 import com.bione.model.CommonResponse;
+import com.bione.model.customerdata.Customer;
+import com.bione.model.updateprofile.UpdateProfile;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
+import com.bione.ui.home.MainActivity;
 import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
@@ -28,14 +34,15 @@ import com.bione.utils.ProgressDialog;
 import com.zoho.livechat.android.MbedableComponent;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
-
-//import com.bione.ui.onboarding.OtpActivity;
-
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView, View.OnClickListener {
 
@@ -55,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.onCreate(savedInstanceState);
 
         try {
-            ZohoSalesIQ.Chat.setVisibility(MbedableComponent.CHAT,false);
+            ZohoSalesIQ.Chat.setVisibility(MbedableComponent.CHAT, false);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -194,10 +201,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return super.onOptionsItemSelected(item);
     }
 
-    public void callSendOtp(final String phoneNumber, final Context context, final boolean resend) {
+    public void callSendOtp(final String phoneNumber, final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_MOBILE, "" + phoneNumber).build();
                 .add(PARAM_MOBILE, "91" + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
@@ -208,7 +214,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
                     if (resend) {
                         showErrorMessage(commonResponse.get(0).getMessage());
                     } else {
-//                        Intent intent = new Intent(context, OtpActivity.class);
+//                        Intent intent = new Intent(activity, OtpActivity.class);
 //                        intent.putExtra("phoneNumber", phoneNumber);
 //                        startActivity(intent);
                     }
@@ -232,5 +238,50 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     }
 
+    public void createAccountSignUp(final Activity activity, final JSONObject jsonObject, final boolean isSocialSignUp) {
+        showLoading();
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface().createAccount(body)
+                .enqueue(new ResponseResolver<UpdateProfile>() {
+                    @Override
+                    public void onSuccess(UpdateProfile updateProfile) {
+                        try {
+                            Customer customer = new Customer();
+                            customer.setFirstname(updateProfile.getFirstname());
+                            customer.setLastname(updateProfile.getLastname());
+                            customer.setEmail(updateProfile.getEmail());
+                            customer.setWebsiteId("" + updateProfile.getWebsiteId());
+                            customer.setEntityId("" + updateProfile.getId());
+                            if (updateProfile.getMiddlename() != null)
+                                customer.setMiddlename(updateProfile.getMiddlename());
 
+                            if (!isSocialSignUp)
+                                customer.setMobilenumber(updateProfile.getCustomAttributes().get(0).getValue());
+
+                            CommonData.saveUserData(customer);
+//                            Log.d("common data", "mobile :: " + CommonData.getUserData().getMobilenumber());
+
+                            Intent intent = new Intent(activity, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+//                            finishAffinity();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiError error) {
+                        Log.d("onError", "" + error);
+                        showErrorMessage(error.getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        throwable.printStackTrace();
+                        showErrorMessage(throwable.getMessage());
+                    }
+                });
+    }
 }

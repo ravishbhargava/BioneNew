@@ -33,6 +33,7 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.MainActivity;
 import com.bione.ui.onboarding.WebviewActivity;
+import com.bione.ui.onboarding.signup.SignUpActivity;
 import com.bione.utils.Log;
 import com.bione.utils.ValidationUtil;
 import com.facebook.AccessToken;
@@ -51,7 +52,9 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -80,8 +83,10 @@ public class Login extends BaseActivity {
     private LinearLayoutCompat llPhoneView;
 
     private String email = "";
+    private String displayName = "";
     private String password = "";
 
+    private AppCompatTextView tvCreate;
     private AppCompatTextView tvTerm;
     private AppCompatTextView tvLogin;
     private AppCompatTextView tvForgot;
@@ -96,6 +101,10 @@ public class Login extends BaseActivity {
 
     private boolean isThroughPhoneNumber = true;
 
+    private JSONObject jsonObject = new JSONObject();
+    private JSONObject customerObject = new JSONObject();
+    private JSONArray customAttributeArray = new JSONArray();
+    private JSONObject customAttributeObject = new JSONObject();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,10 +116,10 @@ public class Login extends BaseActivity {
         Log.d("hash key", " : " + printKeyHash(this));
 
         init();
-        setListners();
+        setListeners();
         setView(llPhoneView, llMailView);
         setView(llEmail, llPhone);
-
+//        createJsonObject();
         initGoogle();
         initFB();
 //        callbackManager = CallbackManager.Factory.create();
@@ -148,8 +157,6 @@ public class Login extends BaseActivity {
         llFBLogin = findViewById(R.id.llFBLogin);
         llEmail = findViewById(R.id.llEmail);
         llPhone = findViewById(R.id.llPhone);
-
-
         llMailView = findViewById(R.id.llMailView);
         llPhoneView = findViewById(R.id.llPhoneView);
 
@@ -160,15 +167,17 @@ public class Login extends BaseActivity {
         tvForgot = findViewById(R.id.tvForgot);
         tvLogin = findViewById(R.id.tvLogin);
         tvTerm = findViewById(R.id.tvTerm);
+        tvCreate = findViewById(R.id.tvCreate);
 
         viewEye = findViewById(R.id.viewEye);
     }
 
-    private void setListners() {
+    private void setListeners() {
         llGoogleSignIn.setOnClickListener(this);
         llFBLogin.setOnClickListener(this);
         llEmail.setOnClickListener(this);
         llPhone.setOnClickListener(this);
+        tvCreate.setOnClickListener(this);
         tvTerm.setOnClickListener(this);
         tvLogin.setOnClickListener(this);
         tvForgot.setOnClickListener(this);
@@ -188,18 +197,13 @@ public class Login extends BaseActivity {
                                 loginResult.getAccessToken(),
                                 (object, response) -> {
                                     Log.v("LoginActivity", response.toString());
-
-                                    // Application code
-
                                     try {
                                         email = object.getString("email");
+                                        displayName = "";
+                                        displayName = object.getString("name");
+                                        Log.d("displayName", "-------------" + displayName);
                                         etEmail.setText(email);
                                         callSocialLogin(email, " ");
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    try {
-                                        String birthday = object.getString("birthday"); // 01/31/1980 format
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -208,22 +212,17 @@ public class Login extends BaseActivity {
                         parameters.putString("fields", "id,name,email,gender,birthday");
                         request.setParameters(parameters);
                         request.executeAsync();
-
-                        // App code
                     }
 
                     @Override
                     public void onCancel() {
                         Log.d("onCancel 2", "onCancel : ");
-
-                        // App code
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
                         Log.d("onError 2", "exception : ");
                         exception.printStackTrace();
-                        // App code
                     }
                 });
     }
@@ -247,7 +246,6 @@ public class Login extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             // Need to change google account details
-
             case R.id.viewEye:
                 if (!isShow) {
                     isShow = true;
@@ -266,6 +264,7 @@ public class Login extends BaseActivity {
                 }
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
+//                callSocialLogin("ravishdroid@gmail.com", "");
                 signIn();
                 break;
             // Need to change Application ID at LIVE
@@ -276,6 +275,7 @@ public class Login extends BaseActivity {
                 setView(llMailView, llPhoneView);
                 setView(llPhone, llEmail);
                 LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
+
                 break;
             case R.id.llEmail:
                 if (isThroughPhoneNumber) {
@@ -320,6 +320,11 @@ public class Login extends BaseActivity {
                 Intent intent = new Intent(Login.this, WebviewActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.tvCreate:
+                Intent intentSignUp = new Intent(Login.this, SignUpActivity.class);
+                startActivity(intentSignUp);
+                break;
         }
     }
 
@@ -338,9 +343,6 @@ public class Login extends BaseActivity {
                     if (resend) {
                         showErrorMessage(commonResponse.get(0).getMessage());
                     } else {
-//                        Intent intent = new Intent(context, OtpActivity.class);
-//                        intent.putExtra("phoneNumber", phoneNumber);
-//                        startActivity(intent);
                         openDialog();
                     }
                 } else {
@@ -389,6 +391,9 @@ public class Login extends BaseActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.d("handle", "+++++++++++++" + account.getEmail());
             email = account.getEmail();
+            displayName = "";
+            displayName = account.getDisplayName();
+            Log.d("displayName", "-------------" + displayName);
             etEmail.setText(email);
             callSocialLogin(email, " ");
             // Signed in successfully, show authenticated UI.
@@ -413,6 +418,8 @@ public class Login extends BaseActivity {
         } else {
             Log.d("onStart", "----------------" + account.getEmail());
             email = account.getEmail();
+            displayName = "";
+            displayName = account.getDisplayName();
             etEmail.setText(email);
             callSocialLogin(email, " ");
         }
@@ -465,13 +472,6 @@ public class Login extends BaseActivity {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                Intent intent = new Intent(Login.this, MainActivity.class);
-//                // set the new task and clear flags
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-
-
                 otpCode = etOtp.getText().toString();
                 if (otpCode.length() < 4) {
                     Toast.makeText(getApplicationContext(), "Enter OTP Code", Toast.LENGTH_SHORT).show();
@@ -479,8 +479,6 @@ public class Login extends BaseActivity {
                     callVerifyOtp();
                 }
                 dialog.dismiss();
-
-
             }
         });
 
@@ -555,6 +553,9 @@ public class Login extends BaseActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                } else if (commonResponse.get(0).getCode() == 404) {
+                    // not available
+                    createJsonObject();
                 } else {
                     showErrorMessage(commonResponse.get(0).getMessage());
                 }
@@ -576,24 +577,17 @@ public class Login extends BaseActivity {
     }
 
     private void getCustomerToken() {
-
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_USERNAME, email)
                 .add(PARAM_PASSWORD, password)
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
-
         RestClient.getApiInterface().getCustomerToken(commonParams.getMap()).enqueue(new ResponseResolver<String>() {
-
             @Override
             public void onSuccess(String s) {
-
                 CommonData.updateCustomerToken(s);
                 Log.d("customer ", "token :: " + CommonData.getCustomerToken());
-
-//                Intent intent = new Intent(Splash.this, Walk.class);
-//                startActivity(intent);
                 getCustomerDetails();
             }
 
@@ -608,7 +602,6 @@ public class Login extends BaseActivity {
                 throwable.printStackTrace();
                 showErrorMessage(throwable.getMessage());
             }
-
         });
     }
 
@@ -628,7 +621,7 @@ public class Login extends BaseActivity {
                 try {
                     Log.d("update ", "mobile :: " + updateProfile.getCustomAttributes().get(0).getValue());
 
-                    Customer customer = CommonData.getUserData();
+                    Customer customer = new Customer();
                     customer.setFirstname(updateProfile.getFirstname());
 //                            customer.setMiddlename(updateProfile.getMiddlename());
                     customer.setLastname(updateProfile.getLastname());
@@ -701,5 +694,73 @@ public class Login extends BaseActivity {
         }
 
         return key;
+    }
+
+
+    private void createJsonObject() {
+//        {
+//            "customer": {
+//                    "email": "xyz@bione.in",
+//                    "firstname": "John",
+//                    "middlename": "sir",
+//                    "lastname": "Doe",
+//                    "custom_attributes":[{"attribute_code":"mobilenumber","value":"9443088408"}]
+//        },
+//            "password":"Password1"
+//        }
+
+        String firstname = " ";
+        String middlename = " ";
+        String lastname = " ";
+
+        String str = displayName;
+        String[] splitStr = str.split("\\s+");
+
+        if (splitStr.length == 1) {
+            firstname = splitStr[0];
+        } else if (splitStr.length == 2) {
+            firstname = splitStr[0];
+            lastname = splitStr[1];
+        } else if (splitStr.length == 3) {
+            firstname = splitStr[0];
+            middlename = splitStr[1];
+            lastname = splitStr[2];
+        }
+
+//        String middleName = "";
+//
+//        if (etMiddleName.getText().toString().equals("")) {
+//            middleName = " ";
+//        } else {
+//            middleName = etMiddleName.getText().toString();
+//        }
+
+        jsonObject = new JSONObject();
+        customerObject = new JSONObject();
+        customAttributeArray = new JSONArray();
+        customAttributeObject = new JSONObject();
+
+        try {
+
+            customAttributeObject.put("attribute_code", "mobilenumber");
+            customAttributeObject.put("value", "");
+            customAttributeArray.put(customAttributeObject);
+
+//            customerObject.put("id", "" + CommonData.getUserData().getEntityId());
+            customerObject.put("email", email);
+            customerObject.put("firstname", firstname);
+            customerObject.put("middlename", middlename);
+            customerObject.put("lastname", lastname);
+//            customerObject.put("website_id", CommonData.getUserData().getWebsiteId());
+            customerObject.put("custom_attributes", customAttributeArray);
+
+            jsonObject.put("customer", customerObject);
+            jsonObject.put("password", "Password1");
+
+            Log.d("main json object ", "data :: " + jsonObject.toString());
+            createAccountSignUp(Login.this, jsonObject, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

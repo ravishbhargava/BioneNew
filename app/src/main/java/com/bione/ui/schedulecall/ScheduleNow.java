@@ -352,31 +352,32 @@ public class ScheduleNow extends BaseActivity {
                                 }
                             }
                         }
-                        if (currentDateSlot.equals(selectedDateToPass)) {
-                            Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
-                            Log.d(" current", "currentDateSlot------" + currentDateSlot);
-
-
-                            if (checkSLotTime("09:00AM", actualTime)) {
-                                Log.d("checkslotime", "if");
-
-                                for (int i = 0; i < arrayTimeSlots.size(); i++) {
-                                    if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
-                                        break;
-                                    }
-                                    arrayTimeSlots.get(i).setSelected(true);
-                                    arrayTimeSlots.get(i).setText("NOT AVAILABLE");
-                                    Log.d("name", "------" + arrayTimeSlots.get(i).getName());
-                                }
-                            } else {
-                                Log.d("checkslotime", "else");
-                            }
-                        } else {
-                            Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
-                            Log.d("not current", "currentDateSlot------" + currentDateSlot);
-                        }
-
-                        mAdapter.refreshEvents(arrayTimeSlots);
+                        checkDateEqual();
+//                        if (currentDateSlot.equals(selectedDateToPass)) {
+//                            Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
+//                            Log.d(" current", "currentDateSlot------" + currentDateSlot);
+//
+//
+//                            if (checkSLotTime("09:00AM", actualTime)) {
+//                                Log.d("checkslotime", "if");
+//
+//                                for (int i = 0; i < arrayTimeSlots.size(); i++) {
+//                                    if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
+//                                        break;
+//                                    }
+//                                    arrayTimeSlots.get(i).setSelected(true);
+//                                    arrayTimeSlots.get(i).setText("NOT AVAILABLE");
+//                                    Log.d("name", "------" + arrayTimeSlots.get(i).getName());
+//                                }
+//                            } else {
+//                                Log.d("checkslotime", "else");
+//                            }
+//                        } else {
+//                            Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
+//                            Log.d("not current", "currentDateSlot------" + currentDateSlot);
+//                        }
+//
+//                        mAdapter.refreshEvents(arrayTimeSlots);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -384,7 +385,7 @@ public class ScheduleNow extends BaseActivity {
                 } else {
                     availableSlots = new ArrayList<>();
                     createList();
-                    mAdapter.refreshEvents(arrayTimeSlots);
+                    checkDateEqual();
                 }
             }
 
@@ -438,6 +439,35 @@ public class ScheduleNow extends BaseActivity {
         }
 
         return false;
+    }
+
+    private void checkDateEqual() {
+
+        if (currentDateSlot.equals(selectedDateToPass)) {
+            Log.d(" current", "selectedDateToPass------" + selectedDateToPass);
+            Log.d(" current", "currentDateSlot------" + currentDateSlot);
+
+
+            if (checkSLotTime("09:00AM", actualTime)) {
+                Log.d("checkslotime", "if");
+
+                for (int i = 0; i < arrayTimeSlots.size(); i++) {
+                    if (arrayTimeSlots.get(i).getName().equals(currentTimeSlot)) {
+                        break;
+                    }
+                    arrayTimeSlots.get(i).setSelected(true);
+                    arrayTimeSlots.get(i).setText("NOT AVAILABLE");
+                    Log.d("name", "------" + arrayTimeSlots.get(i).getName());
+                }
+            } else {
+                Log.d("checkslotime", "else");
+            }
+        } else {
+            Log.d("not current", "selectedDateToPass------" + selectedDateToPass);
+            Log.d("not current", "currentDateSlot------" + currentDateSlot);
+        }
+
+        mAdapter.refreshEvents(arrayTimeSlots);
     }
 
     private void getCurrentTimeSlot() {

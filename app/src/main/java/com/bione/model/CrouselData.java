@@ -10,9 +10,18 @@ public class CrouselData implements Parcelable {
     private String headingTest;
     private String heading;
     private String text;
-    private boolean ischecked;
+    private boolean isChecked;
     private String nameCounsellor;
     private String typeCounsellor;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getDrawable() {
         return drawable;
@@ -38,12 +47,12 @@ public class CrouselData implements Parcelable {
         this.text = text;
     }
 
-    public boolean isIschecked() {
-        return ischecked;
+    public boolean isChecked() {
+        return isChecked;
     }
 
-    public void setIschecked(boolean ischecked) {
-        this.ischecked = ischecked;
+    public void setChecked(boolean checked) {
+        this.isChecked = checked;
     }
 
     public String getNameCounsellor() {
@@ -94,9 +103,10 @@ public class CrouselData implements Parcelable {
         dest.writeString(this.headingTest);
         dest.writeString(this.heading);
         dest.writeString(this.text);
-        dest.writeByte(this.ischecked ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isChecked ? (byte) 1 : (byte) 0);
         dest.writeString(this.nameCounsellor);
         dest.writeString(this.typeCounsellor);
+        dest.writeString(this.url);
     }
 
     protected CrouselData(Parcel in) {
@@ -105,9 +115,10 @@ public class CrouselData implements Parcelable {
         this.headingTest = in.readString();
         this.heading = in.readString();
         this.text = in.readString();
-        this.ischecked = in.readByte() != 0;
+        this.isChecked = in.readByte() != 0;
         this.nameCounsellor = in.readString();
         this.typeCounsellor = in.readString();
+        this.url = in.readString();
     }
 
     public static final Creator<CrouselData> CREATOR = new Creator<CrouselData>() {

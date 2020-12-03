@@ -1,5 +1,6 @@
 package com.bione.ui.home;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +8,13 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,19 +23,30 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
 import com.bione.db.CommonData;
+import com.bione.model.CommonResponse;
 import com.bione.model.customerdata.Customer;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.Counselling.MyCounsellingFragment;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.home.dashboard.DashboardFragment;
 import com.bione.ui.onboarding.Splash;
+import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.io.File;
+import java.util.List;
 
 import io.paperdb.Paper;
+
+import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
+import static com.bione.utils.AppConstant.PARAM_MOBILE;
+import static com.bione.utils.AppConstant.PARAM_OTP;
 
 
 public class MainActivity extends BaseActivity {
@@ -64,6 +79,10 @@ public class MainActivity extends BaseActivity {
     private Handler mHandler;
 
     private String category = "";
+
+    private Dialog dialog;
+    private LinearLayout topView;
+    private LinearLayout bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +139,12 @@ public class MainActivity extends BaseActivity {
         // load nav menu header data
         loadNavHeader();
 
+        if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
+            openDialog();
+        } else {
+
+        }
+
         // initializing navigation menu
         setUpNavigationView();
 
@@ -158,6 +183,8 @@ public class MainActivity extends BaseActivity {
                     .apply(RequestOptions.circleCropTransform())
                     .into(ivProfile);
         }
+
+
     }
 
     /***
@@ -417,4 +444,101 @@ public class MainActivity extends BaseActivity {
 //        else
 //            fab.hide();
 //    }
+
+    private void openDialog() {
+        // custom dialog
+//        final Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_otp_common);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+        topView = dialog.findViewById(R.id.topView);
+        bottomView = dialog.findViewById(R.id.bottomView);
+
+        AppCompatEditText etPhoneNumber = dialog.findViewById(R.id.etPhoneNumber);
+        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOtp = dialog.findViewById(R.id.tvOtp);
+
+        AppCompatTextView tvSendOtp = dialog.findViewById(R.id.tvSendOtp);
+        AppCompatTextView tvVerify = dialog.findViewById(R.id.tvVerify);
+
+        topView.setVisibility(View.VISIBLE);
+        bottomView.setVisibility(View.GONE);
+
+        // if button is clicked, close the custom dialog
+        tvSendOtp.setOnClickListener(v -> callVerifyMobile(etPhoneNumber.getText().toString(), false));
+
+        // if button is clicked, close the custom dialog
+        tvVerify.setOnClickListener(v -> callVerifyOtp(etPhoneNumber.getText().toString(), etOtp.getText().toString()));
+
+        dialog.show();
+    }
+
+    public void callVerifyMobile(final String phoneNumber, final boolean resend) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+
+        RestClient.getApiInterface().sendOtpRegister(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    topView.setVisibility(View.GONE);
+                    bottomView.setVisibility(View.VISIBLE);
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    public void callVerifyOtp(final String phoneNumber, final String otp) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_MOBILE, "" + phoneNumber).build();
+                .add(PARAM_MOBILE, "91" + phoneNumber)
+                .add(PARAM_CUSTOMERID, CommonData.getUserData().getEntityId())
+                .add(PARAM_OTP, otp)
+                .build();
+
+        RestClient.getApiInterface().verifyMobile(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    dialog.dismiss();
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
 }

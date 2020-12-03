@@ -110,7 +110,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     }
 
     private void openPDFView(final int position) {
-        crouselDataArrayList.get(position).setIschecked(true);
+        crouselDataArrayList.get(position).setChecked(true);
 
         Intent intent = new Intent(mContext, PDFViewActivity.class);
         intent.putExtra("position", position);

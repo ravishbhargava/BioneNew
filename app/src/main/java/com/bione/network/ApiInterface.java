@@ -66,6 +66,19 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi-customersendotp/verifyotp")
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
 
+    @POST("/rest/V1/bione/signupapi")
+    Call<List<CommonResponse>> sendOtpRegister(@QueryMap Map<String, String> map);
+
+    @POST("/rest/V1/bione/veryfyotpregister")
+    Call<List<CommonResponse>> sendOtpVerify(@QueryMap Map<String, String> map);
+
+
+
+    @POST("/rest/V1/bione/veryfyotp")
+    Call<List<CommonResponse>> verifyMobile(@QueryMap Map<String, String> map);
+
+
+
     @GET("/rest/V1/customers/me")
     Call<UpdateProfile> getCustomerDetails(@HeaderMap HashMap<String, String> headerMap);
 
@@ -99,7 +112,6 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi/kitorderlist")
     Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
 
-
     /**
      * checkUnique call.
      *
@@ -121,10 +133,24 @@ public interface ApiInterface {
      * @param json       jsonobject
      * @return the call
      */
+    @POST("/rest//V1/customers")
+    Call<UpdateProfile> createAccount(@Body RequestBody json);
+
+
+    /**
+     * checkUnique call.
+     *
+     * @param headerMap  the header map
+     * @param customerId the id of the customer
+     * @param json       jsonobject
+     * @return the call
+     */
     @PUT("/rest/V1/customers/me/password")
     Call<Boolean> changePassword(@HeaderMap HashMap<String, String> headerMap,
                                  @QueryMap Map<String, String> map,
                                  @Body RequestBody json);
+
+
 
 
     @POST("/rest/V1/bioneapi-customer/update")
@@ -136,11 +162,10 @@ public interface ApiInterface {
     @GET("/data.json")
     Call<CommonResponse> getCoronaResults();
 
-
     /**
      * OTP verification
      *
-     * @param map the map of params to go along with reqquest
+     * @param map the map of params to go along with request
      * @return parsed common response object
      */
     @FormUrlEncoded

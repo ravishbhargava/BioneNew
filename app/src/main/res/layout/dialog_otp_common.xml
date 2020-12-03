@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/spacing_large">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:text="Phone Number*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPhoneNumber"
+                style="@style/signupEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Phone Number"
+                android:inputType="number"
+                android:maxLength="10" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/signupHeadingTextview"
+                android:layout_marginTop="0dp"
+                android:text="Mobile No. Without Country Code i.e 9898989898"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/font_xsmall" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSendOtp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:background="@drawable/drawable_border_accent"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="Send OTP"
+                android:textAlignment="center"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xlarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtp"
+                style="@style/signupHeadingTextview"
+                android:text="Enter One Time Password*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etOtp"
+                style="@style/signupEditText"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:background="@drawable/drawable_border"
+                android:gravity="center"
+                android:hint="OTP"
+                android:inputType="number"
+                android:maxLength="4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvVerify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:background="@drawable/drawable_border_accent"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="Verify"
+                android:textAlignment="center"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xlarge" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

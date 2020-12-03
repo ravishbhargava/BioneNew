@@ -42,6 +42,7 @@ public final class AppConstant {
     public static final String PARAM_STATUS = "status";
     public static final String PARAM_CANCELATION = "cancelation";
 
+    public static final String PARAM_CUSTOMERID = "customerid";
     public static final String PARAM_TPKEN_ID = "token_id";
 
 

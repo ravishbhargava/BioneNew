@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.db.CommonData;
 import com.bione.model.CrouselData;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.network.ApiError;
@@ -255,9 +256,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data.setHeadingTest("");
         data.setHeading("");
         data.setText("");
-        data.setIschecked(false);
+        data.setChecked(false);
         data.setNameCounsellor("");
         data.setTypeCounsellor("");
+        data.setUrl("");
 
         CrouselData data1 = new CrouselData();
         data1.setDrawable(R.mipmap.image_longevity);
@@ -265,9 +267,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data1.setHeadingTest("Longevity Plus\nTest");
         data1.setHeading("Longevity Plus Test");
         data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " + "affect various health aspects for " + "timely management");
-        data1.setIschecked(false);
+        data1.setChecked(false);
         data1.setNameCounsellor("Genetic Counsellor");
         data1.setTypeCounsellor("Longevity Plus Test");
+        data1.setUrl("https://www.bione.in/longevity-plus-test");
 
         CrouselData data2 = new CrouselData();
         data2.setDrawable(R.mipmap.image_microbiome);
@@ -275,9 +278,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data2.setHeadingTest("MyMicrobiome\nTest");
         data2.setHeading("MyMicrobiome Test");
         data2.setText("Discover & understand your gastrointestinal microbiota and best " + "suited personalised diet for a " + "healthy & happy life.");
-        data2.setIschecked(false);
+        data2.setChecked(false);
         data2.setNameCounsellor("Diet & Nutrition Counsellor");
         data2.setTypeCounsellor("MyMicrobiome Test");
+        data2.setUrl("https://www.bione.in/mymicrobiome-test");
 
         CrouselData data3 = new CrouselData();
         data3.setDrawable(R.mipmap.image_longifit);
@@ -285,9 +289,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data3.setHeadingTest("LongiFit\nTest");
         data3.setHeading("LongiFit");
         data3.setText("Get deep insight into DNA. Understand how your body " + "responds to sports, dietary needs, food reactions, skin health & " + "overall fitness.");
-        data3.setIschecked(false);
+        data3.setChecked(false);
         data3.setNameCounsellor("Genetic Counsellor");
         data3.setTypeCounsellor("LongiFit Test");
+        data3.setUrl("https://www.bione.in/longifit-test");
 
         CrouselData data4 = new CrouselData();
         data4.setDrawable(R.mipmap.imge_gene_chek);
@@ -295,9 +300,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data4.setHeadingTest("Gene-Check\nTest");
         data4.setHeading("Bione Gene-Check");
         data4.setText("Discover & understand how your " + "genes can be responsible for the susceptibility to viral infections like " + "SARS and Influenza.");
-        data4.setIschecked(false);
+        data4.setChecked(false);
         data4.setNameCounsellor("Genetic Counsellor");
         data4.setTypeCounsellor("Gene-Check Test");
+        data4.setUrl("https://www.bione.in/gene-chec-test");
 
         CrouselData data5 = new CrouselData();
         data5.setDrawable(R.mipmap.image_clinical);
@@ -305,9 +311,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data5.setHeadingTest("Genetic\nTest");
         data5.setHeading("Clinical \nGenetics Tests ");
         data5.setText("The genesis of elite\n" + "genetic testing");
-        data5.setIschecked(false);
+        data5.setChecked(false);
         data5.setNameCounsellor("Genetic Counsellor");
         data5.setTypeCounsellor("Genetic Test");
+        data5.setUrl("https://www.bione.in/genetics");
 
         CrouselData data6 = new CrouselData();
         data6.setDrawable(0);
@@ -315,9 +322,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         data6.setHeadingTest("");
         data6.setHeading("");
         data6.setText("");
-        data6.setIschecked(false);
+        data6.setChecked(false);
         data6.setNameCounsellor("");
         data6.setTypeCounsellor("");
+        data6.setUrl("");
 
         crouselDataArrayList.add(data);   //empty
         crouselDataArrayList.add(data2);   //My Micro Biome
@@ -451,8 +459,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "36")
+                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+//                .add(PARAM_CUSTOMER, "36")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {

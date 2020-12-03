@@ -85,7 +85,8 @@
                     android:id="@+id/etEmail"
                     style="@style/signupEditText"
                     android:background="@drawable/drawable_border"
-                    android:hint="Enter Email ID" />
+                    android:hint="Enter Email ID"
+                    android:inputType="textEmailAddress" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
@@ -95,7 +96,8 @@
                     android:id="@+id/etPassword"
                     style="@style/signupEditText"
                     android:background="@drawable/drawable_border"
-                    android:hint="Enter Password" />
+                    android:hint="Enter Password"
+                    android:inputType="textPassword" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
@@ -113,16 +115,17 @@ and 1 special character"
                     android:id="@+id/etConfirmPassword"
                     style="@style/signupEditText"
                     android:background="@drawable/drawable_border"
-                    android:hint="Enter Confirm Password" />
+                    android:hint="Enter Confirm Password"
+                    android:inputType="textPassword" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
@@ -132,7 +135,8 @@ and 1 special character"
                     android:id="@+id/etPhoneNumber"
                     style="@style/signupEditText"
                     android:background="@drawable/drawable_border"
-                    android:hint="Enter Phone Number" />
+                    android:hint="Enter Phone Number"
+                    android:maxLength="10" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
@@ -158,8 +162,10 @@ and 1 special character"
                     android:textSize="@dimen/font_xlarge" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOtpPassword"
                     style="@style/signupHeadingTextview"
-                    android:text="Enter One Time Password*" />
+                    android:text="Enter One Time Password*"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etOtp"
@@ -167,7 +173,9 @@ and 1 special character"
                     android:layout_marginBottom="@dimen/spacing_small"
                     android:background="@drawable/drawable_border"
                     android:gravity="center"
-                    android:hint="OTP" />
+                    android:hint="OTP"
+                    android:maxLength="4"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatCheckBox
