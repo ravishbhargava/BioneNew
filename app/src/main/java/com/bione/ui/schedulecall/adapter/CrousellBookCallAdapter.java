@@ -1,7 +1,6 @@
 package com.bione.ui.schedulecall.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
-import com.bione.ui.home.dashboard.craousel.PDFViewActivity;
-import com.bione.ui.mymicrobiome.MyMicroBiome;
 import com.bione.ui.schedulecall.CategorySelect;
 
 import java.util.ArrayList;
@@ -121,18 +118,18 @@ public class CrousellBookCallAdapter extends RecyclerView.Adapter<CrousellBookCa
         return checkedPosition;
     }
 
-    private void openMyMicroBiome() {
-        Intent intent = new Intent(mContext, MyMicroBiome.class);
-        mContext.startActivity(intent);
-    }
-
-    private void openPDFView(final int position) {
-        Intent intent = new Intent(mContext, PDFViewActivity.class);
-        intent.putExtra("position", position);
-        intent.putExtra("openType", openType);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
-    }
+//    private void openMyMicroBiome() {
+//        Intent intent = new Intent(mContext, MyMicroBiome.class);
+//        mContext.startActivity(intent);
+//    }
+//
+//    private void openPDFView(final int position) {
+//        Intent intent = new Intent(mContext, PDFViewActivity.class);
+//        intent.putExtra("position", position);
+//        intent.putExtra("openType", openType);
+////        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        mContext.startActivity(intent);
+//    }
 
 
 }

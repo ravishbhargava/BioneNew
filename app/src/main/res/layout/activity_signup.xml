@@ -49,7 +49,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Your First Name*" />
+                    android:text="@string/your_first_name" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etFirstName"
@@ -59,7 +59,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Your Middle Name*" />
+                    android:text="Your Middle Name" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etMiddleName"
@@ -69,7 +69,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Your Last Name*" />
+                    android:text="@string/your_last_name" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etLastName"
@@ -79,7 +79,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Email Address*" />
+                    android:text="@string/email_address" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEmail"
@@ -90,7 +90,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Password*" />
+                    android:text="@string/password" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etPassword"
@@ -109,7 +109,7 @@ and 1 special character"
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Confirm Password*" />
+                    android:text="@string/confirm_password" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etConfirmPassword"
@@ -129,7 +129,7 @@ and 1 special character"
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Phone Number*" />
+                    android:text="@string/phone_number" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etPhoneNumber"
@@ -164,7 +164,7 @@ and 1 special character"
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvOtpPassword"
                     style="@style/signupHeadingTextview"
-                    android:text="Enter One Time Password*"
+                    android:text="@string/enter_one_time_password"
                     android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -182,7 +182,7 @@ and 1 special character"
                 android:id="@+id/cbFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I would like to receive news and promotion email from Bione"
+                android:text="@string/i_would_like_to_receive_news_and_promotion_email_from_bione"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -190,7 +190,7 @@ and 1 special character"
                 android:id="@+id/cbSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I have read and agree to the Terms of Services*"
+                android:text="@string/i_have_read_and_agree_to_the_terms_of_services"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -198,7 +198,7 @@ and 1 special character"
                 android:id="@+id/cbThird"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I have read and agree to the Privacy Statement*"
+                android:text="@string/i_have_read_and_agree_to_the_privacy_statement"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -219,8 +219,9 @@ and 1 special character"
                 android:textSize="@dimen/font_xlarge" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLogin"
                 style="@style/signupHeadingTextview"
-                android:text="Already have an account? Login" />
+                android:text="@string/already_have_an_account_login" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

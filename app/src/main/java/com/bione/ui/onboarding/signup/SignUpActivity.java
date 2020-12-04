@@ -1,6 +1,12 @@
 package com.bione.ui.onboarding.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -16,6 +22,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
 
 import org.json.JSONArray;
@@ -41,6 +48,7 @@ public class SignUpActivity extends BaseActivity {
     private AppCompatTextView tvOtpPassword;
     private AppCompatTextView tvSendOtp;
     private AppCompatTextView tvRegister;
+    private AppCompatTextView tvLogin;
 
     private AppCompatCheckBox cbFirst;
     private AppCompatCheckBox cbSecond;
@@ -67,6 +75,65 @@ public class SignUpActivity extends BaseActivity {
         signUpViewModel.getData();
 
         initView();
+
+        SpannableString ssLogin = new SpannableString(tvLogin.getText().toString());
+        ClickableSpan spanLogin = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                // do some thing
+                finish();
+            }
+            @Override
+            public void updateDrawState(final TextPaint textPaint) {
+                textPaint.setColor(getResources().getColor(R.color.colorAccent));
+//                textPaint.setUnderlineText(true);
+            }
+        };
+
+        ssLogin.setSpan(spanLogin, tvLogin.getText().toString().length() - 5, tvLogin.getText().toString().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvLogin.setText(ssLogin);
+        tvLogin.setMovementMethod(LinkMovementMethod.getInstance());
+
+        SpannableString ssSecond = new SpannableString(cbSecond.getText().toString());
+        ClickableSpan spanSecond = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                // do some thing
+//                showErrorMessage("second clicked");
+                Intent intent = new Intent(SignUpActivity.this, WebviewActivity.class);
+                intent.putExtra("link","https://www.bione.in/terms-of-service");
+                startActivity(intent);
+            }
+            @Override
+            public void updateDrawState(final TextPaint textPaint) {
+                textPaint.setColor(getResources().getColor(R.color.colorPrimary));
+//                textPaint.setUnderlineText(true);
+            }
+        };
+
+        ssSecond.setSpan(spanSecond, cbSecond.getText().toString().length() - 18, cbSecond.getText().toString().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cbSecond.setText(ssSecond);
+        cbSecond.setMovementMethod(LinkMovementMethod.getInstance());
+
+        SpannableString ssThird = new SpannableString(cbThird.getText().toString());
+        ClickableSpan spanThird = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                // do some thing
+//                showErrorMessage("Third clicked");
+                Intent intent = new Intent(SignUpActivity.this, WebviewActivity.class);
+                intent.putExtra("link","https://www.bione.in/privacy-policy");
+                startActivity(intent);
+            }
+            @Override
+            public void updateDrawState(final TextPaint textPaint) {
+                textPaint.setColor(getResources().getColor(R.color.colorPrimary));
+//                textPaint.setUnderlineText(true);
+            }
+        };
+        ssThird.setSpan(spanThird, cbThird.getText().toString().length() - 19, cbThird.getText().toString().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cbThird.setText(ssThird);
+        cbThird.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void initView() {
@@ -84,6 +151,8 @@ public class SignUpActivity extends BaseActivity {
         tvSendOtp.setOnClickListener(this);
         tvRegister = findViewById(R.id.tvRegister);
         tvRegister.setOnClickListener(this);
+        tvLogin = findViewById(R.id.tvLogin);
+        tvLogin.setOnClickListener(this);
 
         cbFirst = findViewById(R.id.cbFirst);
         cbSecond = findViewById(R.id.cbSecond);
@@ -93,6 +162,10 @@ public class SignUpActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
+//            case R.id.tvLogin:
+//                finish();
+//                break;
 
             case R.id.tvSendOtp:
                 if (!etPhoneNumber.getText().toString().isEmpty()) {

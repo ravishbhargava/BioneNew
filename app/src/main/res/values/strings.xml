@@ -1,10 +1,10 @@
 <resources>
 
     <string name="app_name">Bione</string>
-<!--    <string name="facebook_app_id">295386748548112</string>&lt;!&ndash;//ravish&ndash;&gt;-->
-<!--    <string name="fb_login_protocol_scheme">fb295386748548112</string>&lt;!&ndash;// ravish &ndash;&gt;-->
-        <string name="facebook_app_id">637942996791077</string><!-- Office -->
-        <string name="fb_login_protocol_scheme">fb637942996791077</string><!-- office -->
+    <!--    <string name="facebook_app_id">295386748548112</string>&lt;!&ndash;//ravish&ndash;&gt;-->
+    <!--    <string name="fb_login_protocol_scheme">fb295386748548112</string>&lt;!&ndash;// ravish &ndash;&gt;-->
+    <string name="facebook_app_id">637942996791077</string><!-- Office -->
+    <string name="fb_login_protocol_scheme">fb637942996791077</string><!-- office -->
 
     <!-- Fcm service -->
     <string name="log_fcm_message_id">"FCM Message Id: "</string>
@@ -116,6 +116,18 @@
     <string name="facebook_link">https://business.facebook.com/bioneindia/</string>
     <string name="twitter_link">https://twitter.com/Bioneindia</string>
     <string name="youtube_link">https://www.youtube.com/channel/UC9_J3ElNoz2rKmnvdoTs4ow</string>
+    <string name="new_to_bione_create_account">New to Bione?  <font color='#3D44F0'>Create Account</font></string>
+    <string name="your_first_name">Your First Name<font color='#F02426'>*</font></string>
+    <string name="your_last_name">Your Last Name<font color='#F02426'>*</font></string>
+    <string name="email_address">Email Address<font color='#F02426'>*</font></string>
+    <string name="password">Password<font color='#F02426'>*</font></string>
+    <string name="confirm_password">Confirm Password<font color='#F02426'>*</font></string>
+    <string name="phone_number">Phone Number<font color='#F02426'>*</font></string>
+    <string name="enter_one_time_password">Enter One Time Password<font color='#F02426'>*</font></string>
+    <string name="i_would_like_to_receive_news_and_promotion_email_from_bione">I would like to receive news and promotion email from <b>Bione</b></string>
+    <string name="i_have_read_and_agree_to_the_terms_of_services">I have read and agree to the <b><font color='#3D44F0'>Terms of Services*</font></b></string>
+    <string name="i_have_read_and_agree_to_the_privacy_statement">I have read and agree to the <b><font color='#3D44F0'>Privacy Statement*</font></b></string>
+    <string name="already_have_an_account_login">Already have an account? <b><font color='#4EAF46'>Login</font></b></string>
 
 
 </resources>

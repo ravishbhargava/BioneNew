@@ -14,13 +14,17 @@ import com.bione.utils.Log;
 
 public class WebviewActivity extends BaseActivity {
 
-private String link = "https://www.bione.in/terms-of-service";
+    private String link = "https://www.bione.in/terms-of-service";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
 
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            link = extras.getString("link");
+        }
 
         WebView webView = findViewById(R.id.webView);
 

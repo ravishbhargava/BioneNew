@@ -522,6 +522,9 @@ public class MainActivity extends BaseActivity {
             public void onSuccess(List<CommonResponse> commonResponse) {
                 Log.d("onSuccess", "" + commonResponse);
                 if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    Customer customer = CommonData.getUserData();
+                    customer.setMobilenumber("91" + phoneNumber);
+                    CommonData.saveUserData(customer);
                     dialog.dismiss();
                 } else {
                     showErrorMessage(commonResponse.get(0).getMessage());

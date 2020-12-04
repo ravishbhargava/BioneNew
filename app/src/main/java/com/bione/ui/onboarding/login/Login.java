@@ -122,6 +122,24 @@ public class Login extends BaseActivity {
 //        createJsonObject();
         initGoogle();
         initFB();
+
+//        String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
+//        tvCreate.setText(Html.fromHtml(text));
+
+//        SpannableStringBuilder builder = new SpannableStringBuilder();
+//
+//        SpannableString str1 = new SpannableString("New to Bione? ");
+//        str1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)), 0, str1.length(), 0);
+//        builder.append(str1);
+//
+//        SpannableString str2 = new SpannableString("Create Account");
+//        str2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, str2.length(), 0);
+//        builder.append(str2);
+//
+////        TextView tv = (TextView) findViewById(android.R.id.text1);
+//        tvCreate.setText(builder, TextView.BufferType.SPANNABLE);
+
+
 //        callbackManager = CallbackManager.Factory.create();
 //        loginButton = (LoginButton) findViewById(R.id.login_button);
 //        loginButton.setReadPermissions(Arrays.asList(EMAIL));
@@ -318,6 +336,7 @@ public class Login extends BaseActivity {
 
             case R.id.tvTerm:
                 Intent intent = new Intent(Login.this, WebviewActivity.class);
+                intent.putExtra("link","https://www.bione.in/terms-of-service");
                 startActivity(intent);
                 break;
 

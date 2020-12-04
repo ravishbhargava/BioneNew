@@ -312,7 +312,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/spacing_small"
                 android:gravity="center"
-                android:text="New to Bione? Create Account"
+                android:text="@string/new_to_bione_create_account"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_small" />
 

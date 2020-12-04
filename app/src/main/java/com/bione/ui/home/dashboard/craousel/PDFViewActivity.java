@@ -76,51 +76,54 @@ public class PDFViewActivity extends BaseActivity {
         webView = findViewById(R.id.webView);
         bottom = findViewById(R.id.bottom);
 
-        if (filename != null) {
-            if (!filename.equals("")) {
-                webView.setVisibility(View.GONE);
-                pdfView.setVisibility(View.VISIBLE);
-                bottom.setVisibility(View.GONE);
-                openUrl();
-            }
-        } else if (position == 2) {
-            bottom.setVisibility(View.VISIBLE);
-            webView.setVisibility(View.GONE);
-            pdfView.setVisibility(View.VISIBLE);
-            pdfView.fromAsset("Bione-LongiFit.pdf").load();
-            tvTitle.setText("LongiFit");
+//        if (filename != null) {
+//            if (!filename.equals("")) {
+//                webView.setVisibility(View.GONE);
+//                pdfView.setVisibility(View.VISIBLE);
+//                bottom.setVisibility(View.GONE);
+//                openUrl();
+//            }
+//        } else if (position == 2) {
+//            bottom.setVisibility(View.VISIBLE);
+//            webView.setVisibility(View.GONE);
+//            pdfView.setVisibility(View.VISIBLE);
+//            pdfView.fromAsset("Bione-LongiFit.pdf").load();
+//            tvTitle.setText("LongiFit");
+//
+//        }else if (position == 3) {
+//            bottom.setVisibility(View.VISIBLE);
+//            webView.setVisibility(View.GONE);
+//            pdfView.setVisibility(View.VISIBLE);
+//            pdfView.fromAsset("Bione-Suspectibility.pdf").load();
+//            tvTitle.setText("Genetic Susceptibility Test");
+//
+//        } else {
 
-        }else if (position == 3) {
-            bottom.setVisibility(View.VISIBLE);
-            webView.setVisibility(View.GONE);
-            pdfView.setVisibility(View.VISIBLE);
-            pdfView.fromAsset("Bione-Suspectibility.pdf").load();
-            tvTitle.setText("Genetic Susceptibility Test");
+        webView.setVisibility(View.VISIBLE);
+        pdfView.setVisibility(View.GONE);
+        bottom.setVisibility(View.VISIBLE);
 
-        } else {
+        link = crouselDataArrayList.get(position).getUrl();
+        tvTitle.setText(crouselDataArrayList.get(position).getHeading());
 
-            webView.setVisibility(View.VISIBLE);
-            pdfView.setVisibility(View.GONE);
-            bottom.setVisibility(View.VISIBLE);
-
-            if (position == 4) {
-                link = "https://www.bione.in/longevity-plus-test";
-                tvTitle.setText("Longevity Plus Test");
-                geneticType = "Longevity";
-            } else if (position == 1) {
-                link = "https://www.bione.in/mymicrobiome-test";
-                tvTitle.setText("MyMicroBiome Test");
-                geneticType = "MyMicroBiome";
-            } else if (position == 5) {
-                link = "https://www.bione.in/genetics";
-                tvTitle.setText("Clinical Genetic Test");
-                geneticType = "Genetic";
-            } else {
-                link = "https://www.bione.in/";
-                tvTitle.setText("Bione");
-            }
-            openWebview();
-        }
+//            if (position == 4) {
+//                link = "https://www.bione.in/longevity-plus-test";
+//                tvTitle.setText("Longevity Plus Test");
+//                geneticType = "Longevity";
+//            } else if (position == 1) {
+//                link = "https://www.bione.in/mymicrobiome-test";
+//                tvTitle.setText("MyMicroBiome Test");
+//                geneticType = "MyMicroBiome";
+//            } else if (position == 5) {
+//                link = "https://www.bione.in/genetics";
+//                tvTitle.setText("Clinical Genetic Test");
+//                geneticType = "Genetic";
+//            } else {
+//                link = "https://www.bione.in/";
+//                tvTitle.setText("Bione");
+//            }
+        openWebview();
+//        }
 
         tvBook.setOnClickListener(new View.OnClickListener() {
             @Override
