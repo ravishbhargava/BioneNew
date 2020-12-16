@@ -37,7 +37,6 @@ import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
-import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.io.File;
 import java.util.List;
@@ -259,9 +258,11 @@ public class MainActivity extends BaseActivity {
 
             case 3:
                 // CHAT fragment
-                ZohoSalesIQ.Chat.show();
-                ChatFragment chatFragment = new ChatFragment();
-                return chatFragment;
+//                ZohoSalesIQ.Chat.show();
+//                ChatFragment chatFragment = new ChatFragment();
+//                return chatFragment;
+                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
+                return customerReceiptFragment;
 
             case 4:
                 // FAQ fragment

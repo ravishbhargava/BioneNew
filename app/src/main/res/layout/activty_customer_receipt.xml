@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/spacing_normal"
+        android:src="@mipmap/bione_logo" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ivLogo">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ivLogo"
+            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Patient First Name" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etFirstName"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Patient Last Name" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMiddleName"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Test Name" />
+
+                <com.bione.ui.home.MultiSelectionSpinner
+                    android:id="@+id/mySpinner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:visibility="gone"
+                    android:id="@+id/etTestNames"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Amount (in figure)" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAmountNumber"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border"
+                    android:inputType="number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Amount (in words)" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAmountWords"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Sales Person" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSalesPerson"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:checked="true"
+                        android:text="Towards Full payment"
+                        android:textSize="@dimen/font_small" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="PartPayment"
+                        android:textSize="@dimen/font_small" />
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Total Paid Amount" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etTotalAmount"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border"
+                    android:inputType="number" />
+
+                <LinearLayout
+                    android:id="@+id/llBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/signupHeadingTextview"
+                        android:text="Balance Amount" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etBalanceAmount"
+                        style="@style/signupEditText"
+                        android:background="@drawable/drawable_border"
+                        android:inputType="number" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/signupHeadingTextview"
+                        android:text="Balance Amount will be paid on date" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/etDate"
+                        style="@style/signupEditText"
+                        android:background="@drawable/drawable_border" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:background="@drawable/drawable_border_primary"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="Submit"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/CustomTextAppearance.Semibold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_xlarge" />
+            </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+</RelativeLayout>
