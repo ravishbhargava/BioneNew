@@ -141,8 +141,6 @@ public class MainActivity extends BaseActivity {
 
         if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
             openDialog();
-        } else {
-
         }
 
         // initializing navigation menu
