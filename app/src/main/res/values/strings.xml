@@ -82,6 +82,7 @@
     <string name="nav_dashboard">My Dashboard</string>
     <string name="nav_chat">Chat with us</string>
     <string name="nav_faq">FAQ\'s</string>
+    <string name="nav_receipt">Payment Receipt</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
@@ -94,8 +95,17 @@
         <item>My Session</item>
         <item>Chat with us</item>
         <item>FAQ\'s</item>
+        <item>Payment Receipt</item>
 
 
+    </string-array>
+
+    <string-array name="payment_modes">
+        <item>select payment mode</item>
+        <item>Cash</item>
+        <item>Cheque</item>
+        <item>Bank Transfer</item>
+        <item>Wallet Payment</item>
     </string-array>
 
 

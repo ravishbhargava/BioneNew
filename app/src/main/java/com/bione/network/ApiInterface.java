@@ -66,6 +66,9 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi-customersendotp/verifyotp")
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
 
+    @GET("/rest/V1/bione-salesapi/salesstatus")
+    Call<List<CommonResponse>> isSalesPerson(@QueryMap Map<String, String> map);
+
     @POST("/rest/V1/bione/signupapi")
     Call<List<CommonResponse>> sendOtpRegister(@QueryMap Map<String, String> map);
 
@@ -150,6 +153,15 @@ public interface ApiInterface {
                                  @QueryMap Map<String, String> map,
                                  @Body RequestBody json);
 
+    /**
+     * OTP verification
+     *
+     * @param map the map of params to go along with request
+     * @return parsed common response object
+     */
+    @FormUrlEncoded
+    @POST("/api/receiptapi")
+    Call<List<String>> customerReceiptSubmit(@FieldMap Map<String, String> map);
 
 
 

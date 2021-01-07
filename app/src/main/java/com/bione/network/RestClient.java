@@ -43,8 +43,10 @@ public final class RestClient {
     // Integer BKS_KEYSTORE_RAW_FILE_ID = R.raw.keystorebks;
     private static final Integer SSL_KEY_PASSWORD_STRING_ID = 0;
     private static Retrofit retrofit = null;
+    private static Retrofit retrofit2 = null;
     private static Retrofit retrofitWithIncreaseTimeout = null;
     //Integer SSL_KEY_PASSWORD_STRING_ID = R.string.sslKeyPassword;
+    private static boolean isBaseUrl = true;
 
     /**
      * Prevent instantiation
@@ -58,7 +60,7 @@ public final class RestClient {
      * @return object of ApiInterface
      */
     public static ApiInterface getApiInterface() {
-
+        isBaseUrl = true;
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
@@ -80,15 +82,20 @@ public final class RestClient {
      * @return object of ApiInterface
      */
     public static ApiInterface getApiInterface2() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-//                    .baseUrl("https://api.covid19india.org/")
-                    .addConverterFactory(GsonConverterFactory.create())
+        isBaseUrl = false;
+        if (retrofit2 == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofit2 = new Retrofit.Builder()
+                    .baseUrl("https://lims.bione.in/")
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(ScalarsConverterFactory.create())
                     .client(httpClient().build())
 //                    .client(secureConnection().build())
                     .build();
         }
-        return retrofit.create(ApiInterface.class);
+        return retrofit2.create(ApiInterface.class);
     }
 
 
@@ -126,15 +133,27 @@ public final class RestClient {
      * @return object of Retrofit
      */
     static Retrofit getRetrofitBuilder() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addConverterFactory(ScalarsConverterFactory.create())
-                    .client(httpClient().build())
-                    .build();
+        if (isBaseUrl) {
+            if (retrofit == null) {
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .client(httpClient().build())
+                        .build();
+            }
+            return retrofit;
+        } else {
+            if (retrofit2 == null) {
+                retrofit2 = new Retrofit.Builder()
+                        .baseUrl("https://lims.bione.in/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .client(httpClient().build())
+                        .build();
+            }
+            return retrofit2;
         }
-        return retrofit;
     }
 
     /**

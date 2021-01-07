@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,6 +38,7 @@ import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.io.File;
 import java.util.List;
@@ -44,6 +46,7 @@ import java.util.List;
 import io.paperdb.Paper;
 
 import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
+import static com.bione.utils.AppConstant.PARAM_EMAIL;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
 
@@ -67,6 +70,7 @@ public class MainActivity extends BaseActivity {
     private static final String TAG_CHAT = "Chat";
     private static final String TAG_FAQ = "Faq";
     private static final String TAG_SESSION = "Session";
+    private static final String TAG_CUSTOMER_RECEIPT = "Payment Receipt";
     //    private static final String TAG_SETTINGS = "settings";
     public static String CURRENT_TAG = TAG_DASH;
 
@@ -82,6 +86,8 @@ public class MainActivity extends BaseActivity {
     private Dialog dialog;
     private LinearLayout topView;
     private LinearLayout bottomView;
+
+    private int increment = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,8 +148,10 @@ public class MainActivity extends BaseActivity {
             openDialog();
         }
 
+        isSalesPerson();
         // initializing navigation menu
         setUpNavigationView();
+
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
@@ -159,6 +167,7 @@ public class MainActivity extends BaseActivity {
      * name, website, notifications action view (dot)
      */
     private void loadNavHeader() {
+
         // name, phone
         Customer customer = CommonData.getUserData();
         if (customer.getFirstname() != null) {
@@ -258,17 +267,22 @@ public class MainActivity extends BaseActivity {
 
             case 3:
                 // CHAT fragment
-//                ZohoSalesIQ.Chat.show();
-//                ChatFragment chatFragment = new ChatFragment();
-//                return chatFragment;
-                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
-                return customerReceiptFragment;
+                ZohoSalesIQ.Chat.show();
+                ChatFragment chatFragment = new ChatFragment();
+                return chatFragment;
+//                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
+//                return customerReceiptFragment;
 
             case 4:
                 // FAQ fragment
                 FaqFragment faqFragment = new FaqFragment();
                 return faqFragment;
 
+            case 5:
+                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
+                return customerReceiptFragment;
+//                Intent intent = new Intent(MainActivity.this, CustomerReceiptFragment.class);
+//                startActivity(intent);
 
             default:
                 return new DashboardFragment();
@@ -283,7 +297,14 @@ public class MainActivity extends BaseActivity {
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
     }
 
+    private void hideShowItem(boolean isShow) {
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_receipt).setVisible(isShow);
+    }
+
     private void setUpNavigationView() {
+
+
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -320,6 +341,11 @@ public class MainActivity extends BaseActivity {
                         CURRENT_TAG = TAG_FAQ;
                         break;
 
+                    case R.id.nav_receipt:
+                        navItemIndex = 5;
+                        CURRENT_TAG = TAG_CUSTOMER_RECEIPT;
+
+                        break;
 
                     default:
                         navItemIndex = 0;
@@ -540,6 +566,40 @@ public class MainActivity extends BaseActivity {
             public void onFailure(Throwable throwable) {
                 throwable.printStackTrace();
                 showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    public void isSalesPerson() {
+//        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
+                .build();
+
+        RestClient.getApiInterface().isSalesPerson(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    hideShowItem(true);
+                } else {
+//                    showErrorMessage(commonResponse.get(0).getMessage());
+                    hideShowItem(false);
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+                hideShowItem(false);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+                hideShowItem(false);
             }
         });
     }
