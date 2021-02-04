@@ -75,7 +75,17 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Test Amount (in figure)" />
+                    android:text="Test Amount" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etTestAmount"
+                    style="@style/signupEditText"
+                    android:background="@drawable/drawable_border"
+                    android:inputType="number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/signupHeadingTextview"
+                    android:text="Discount Amount" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etAmountNumber"

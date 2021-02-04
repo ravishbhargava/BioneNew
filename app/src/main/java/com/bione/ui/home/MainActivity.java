@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -38,6 +39,8 @@ import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.special.ResideMenu.ResideMenu;
+import com.special.ResideMenu.ResideMenuItem;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.io.File;
@@ -53,6 +56,7 @@ import static com.bione.utils.AppConstant.PARAM_OTP;
 
 public class MainActivity extends BaseActivity {
 
+    private static final Float END_SCALE = 0.7f;
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
@@ -88,6 +92,8 @@ public class MainActivity extends BaseActivity {
     private LinearLayout bottomView;
 
     private int increment = 0;
+
+    private ResideMenu resideMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +164,41 @@ public class MainActivity extends BaseActivity {
             CURRENT_TAG = TAG_DASH;
             loadHomeFragment();
         }
+//        residemenu();
+    }
 
+    private void residemenu() {
+        resideMenu = new ResideMenu(this);
+        resideMenu.setBackground(R.color.colorPrimary);
+        resideMenu.attachToActivity(this);
+        resideMenu.setScaleValue(0.6f);
+        resideMenu.setShadowVisible(false);
+
+        // create menu items;
+        String titles[] = {"Home", "Profile", "Calendar", "Settings"};
+        int icon[] = {R.drawable.ic_facebook,
+                R.drawable.ic_facebook,
+                R.drawable.ic_facebook,
+                R.drawable.ic_facebook};
+
+        for (int i = 0; i < titles.length; i++) {
+            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
+            item.setOnClickListener(this);
+            resideMenu.addMenuItem(item, ResideMenu.DIRECTION_RIGHT); // or  ResideMenu.DIRECTION_RIGHT
+        }
+
+        resideMenu.setMenuListener(new ResideMenu.OnMenuListener() {
+            @Override
+            public void openMenu() {
+                Toast.makeText(getApplicationContext(), "Menu is opened!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void closeMenu() {
+                Toast.makeText(getApplicationContext(), "Menu is closed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_LEFT);
     }
 
     /***
@@ -388,6 +428,26 @@ public class MainActivity extends BaseActivity {
 
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+
+//        CoordinatorLayout contentView = findViewById(R.id.contentView);
+//        drawer.setScrimColor(getResources().getColor(R.color.colorPrimary));
+//        drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+//            @Override
+//            public void onDrawerSlide(View drawerView, float slideOffset) {
+//                super.onDrawerSlide(drawerView, slideOffset);
+//
+//                final Float diffScaleFloat = slideOffset * (1 - END_SCALE);
+//                final Float offsetScale = 1 - diffScaleFloat;
+//                contentView.setScaleX(offsetScale);
+//                contentView.setScaleY(offsetScale);
+//
+//                final Float xOffset = drawerView.getWidth() * slideOffset;
+//                final Float xOffsetDiff = contentView.getWidth() * diffScaleFloat / 2;
+//                final Float xTranslation = xOffset - xOffsetDiff;
+//                contentView.setTranslationX(xTranslation);
+//
+//            }
+//        });
     }
 
     @Override

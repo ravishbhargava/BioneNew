@@ -2,6 +2,7 @@ package com.bione.network;
 
 
 import com.bione.model.CommonResponse;
+import com.bione.model.PaymentReceipt;
 import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
@@ -161,7 +162,7 @@ public interface ApiInterface {
      */
     @FormUrlEncoded
     @POST("/api/receiptapi")
-    Call<List<String>> customerReceiptSubmit(@FieldMap Map<String, String> map);
+    Call<PaymentReceipt> customerReceiptSubmit(@FieldMap Map<String, String> map);
 
 
 

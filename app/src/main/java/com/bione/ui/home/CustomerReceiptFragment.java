@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +29,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bione.R;
 import com.bione.db.CommonData;
+import com.bione.model.PaymentReceipt;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
@@ -37,7 +39,6 @@ import com.bione.utils.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class CustomerReceiptFragment extends BaseFragment {
 
@@ -51,6 +52,7 @@ public class CustomerReceiptFragment extends BaseFragment {
     private AppCompatTextView etSalesPerson;
     private AppCompatEditText etFirstName;
     private AppCompatEditText etLastName;
+    private AppCompatEditText etTestAmount;
     private AppCompatEditText etAmountNumber;
 
     private AppCompatEditText etTotalAmount;
@@ -146,6 +148,7 @@ public class CustomerReceiptFragment extends BaseFragment {
 
         etFirstName = rootView.findViewById(R.id.etFirstName);
         etLastName = rootView.findViewById(R.id.etLastName);
+        etTestAmount = rootView.findViewById(R.id.etTestAmount);
         etAmountNumber = rootView.findViewById(R.id.etAmountNumber);
         tvRemark = rootView.findViewById(R.id.tvRemark);
         etSalesPerson = rootView.findViewById(R.id.etSalesPerson);
@@ -179,7 +182,7 @@ public class CustomerReceiptFragment extends BaseFragment {
     private void setMultiSpinner() {
         // Multi spinner
 //        spinner = rootView.findViewById(R.id.mySpinner1);
-        String[] strArray = new String[30];
+        String[] strArray = new String[39];
         strArray[0] = "BioneXome";
         strArray[1] = "BioneMITO";
         strArray[2] = "BioneXome + MITO";
@@ -210,6 +213,16 @@ public class CustomerReceiptFragment extends BaseFragment {
         strArray[27] = "BioneHBB+MCC";
         strArray[28] = "BioneXome + ArrayCyto 750K + Fragile X";
         strArray[29] = "Clin-Microbiome";
+        strArray[30] = "BioneClinXome";
+        strArray[31] = "BioneClinXome + MITO";
+        strArray[32] = "BioneDMD+MCC";
+        strArray[33] = "BioneXome + MCC";
+        strArray[34] = "BioneClinXome  + ArrayCyto 750K";
+        strArray[35] = "BioneCFH";
+        strArray[36] = "BioneArrayCyto 350K";
+        strArray[37] = "BioneArrayCyto 350K+MCC+QFPCR";
+        strArray[38] = "BioneFriedreich's Ataxia";
+
 
 //        spinner.setItems(strArray);
 //        tvTestNames.setOnClickListener(new View.OnClickListener() {
@@ -314,36 +327,40 @@ public class CustomerReceiptFragment extends BaseFragment {
                 if (selectedTests.toString().isEmpty()) {
                     showErrorMessage("Please select test name");
                 } else {
-                    if (etAmountNumber.getText().toString().isEmpty()) {
-                        showErrorMessage("Please enter test amount in figures");
+                    if (etTestAmount.getText().toString().isEmpty()) {
+                        showErrorMessage("Please enter test amount");
                     } else {
-                        if (etSalesPerson.getText().toString().isEmpty()) {
-                            showErrorMessage("Please enter sales person");
+                        if (etAmountNumber.getText().toString().isEmpty()) {
+                            showErrorMessage("Please enter discount amount");
                         } else {
-                            if (radioText.toString().isEmpty()) {
-                                showErrorMessage("Please select payment type");
+                            if (etSalesPerson.getText().toString().isEmpty()) {
+                                showErrorMessage("Please enter sales person");
                             } else {
-                                if (etTotalAmount.getText().toString().isEmpty()) {
-                                    showErrorMessage("Please enter total paid amount");
+                                if (radioText.toString().isEmpty()) {
+                                    showErrorMessage("Please select payment type");
                                 } else {
-                                    if (spinner2.getSelectedItem().toString().equals("select payment mode")) {
-                                        showErrorMessage("Please select payment mode");
+                                    if (etTotalAmount.getText().toString().isEmpty()) {
+                                        showErrorMessage("Please enter total paid amount");
                                     } else {
-                                        if (tvRemark.getText().toString().isEmpty()) {
-                                            showErrorMessage("Please enter remark for the payment mode");
+                                        if (spinner2.getSelectedItem().toString().equals("select payment mode")) {
+                                            showErrorMessage("Please select payment mode");
                                         } else {
-                                            if (radioText.equals("PartPayment")) {// payment selcted
-                                                if (etBalanceAmount.getText().toString().isEmpty()) {
-                                                    showErrorMessage("Please enter balance amount");
-                                                } else {
-                                                    if (tvDate.getText().toString().isEmpty()) {
-                                                        showErrorMessage("Please select Date");
-                                                    } else {
-                                                        submit();
-                                                    }
-                                                }
+                                            if (tvRemark.getText().toString().isEmpty()) {
+                                                showErrorMessage("Please enter remark for the payment mode");
                                             } else {
-                                                submit();
+                                                if (radioText.equals("PartPayment")) {// payment selcted
+                                                    if (etBalanceAmount.getText().toString().isEmpty()) {
+                                                        showErrorMessage("Please enter balance amount");
+                                                    } else {
+                                                        if (tvDate.getText().toString().isEmpty()) {
+                                                            showErrorMessage("Please select Date");
+                                                        } else {
+                                                            submit();
+                                                        }
+                                                    }
+                                                } else {
+                                                    submit();
+                                                }
                                             }
                                         }
                                     }
@@ -365,6 +382,7 @@ public class CustomerReceiptFragment extends BaseFragment {
                 .add("sales_person", CommonData.getUserData().getFirstname() + " " + CommonData.getUserData().getLastname())
                 .add("sales_person_email", CommonData.getUserData().getEmail())
                 .add("amount", etAmountNumber.getText().toString())
+//                .add("test_amount", etTestAmount.getText().toString())
                 .add("paid_amount", etTotalAmount.getText().toString())
                 .add("amount_words", " " + spinner2.getSelectedItem())
                 .add("balance_amount", " " + etBalanceAmount.getText().toString())
@@ -374,12 +392,20 @@ public class CustomerReceiptFragment extends BaseFragment {
                 .add("remarks", "" + tvRemark.getText().toString())
                 .build();
 
-        RestClient.getApiInterface2().customerReceiptSubmit(commonParams.getMap()).enqueue(new ResponseResolver<List<String>>() {
+        RestClient.getApiInterface2().customerReceiptSubmit(commonParams.getMap()).enqueue(new ResponseResolver<PaymentReceipt>() {
             @Override
-            public void onSuccess(List<String> commonResponse) {
+            public void onSuccess(PaymentReceipt commonResponse) {
                 Log.d("onSuccess", "" + commonResponse);
-                showErrorMessage(commonResponse.get(0));
+//                showErrorMessage(commonResponse.getReceiptUrl());
                 clearData();
+                String link = commonResponse.getReceiptUrl();
+                link = link.replaceAll("\\/","/");
+                Log.d("link", "after slash removed------ " + link);
+//                link = "http://docs.google.com/gview?embedded=true&url=" +link ;
+//                Log.d("link", "after url embedded removed------ " + link);
+                Intent intent = new Intent(mContext, PaymentReceiptViewActivity.class);
+                intent.putExtra("link", link);
+                startActivity(intent);
             }
 
             @Override
@@ -400,7 +426,7 @@ public class CustomerReceiptFragment extends BaseFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             ArrayList selectedItems = new ArrayList();
-            final String[] strArray = new String[30];
+            final String[] strArray = new String[39];
             strArray[0] = "BioneXome";
             strArray[1] = "BioneMITO";
             strArray[2] = "BioneXome + MITO";
@@ -431,6 +457,16 @@ public class CustomerReceiptFragment extends BaseFragment {
             strArray[27] = "BioneHBB+MCC";
             strArray[28] = "BioneXome + ArrayCyto 750K + Fragile X";
             strArray[29] = "Clin-Microbiome";
+            strArray[30] = "BioneClinXome";
+            strArray[31] = "BioneClinXome + MITO";
+            strArray[32] = "BioneDMD+MCC";
+            strArray[33] = "BioneXome + MCC";
+            strArray[34] = "BioneClinXome  + ArrayCyto 750K";
+            strArray[35] = "BioneCFH";
+            strArray[36] = "BioneArrayCyto 350K";
+            strArray[37] = "BioneArrayCyto 350K+MCC+QFPCR";
+            strArray[38] = "BioneFriedreich's Ataxia";
+
 
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(getActivity());

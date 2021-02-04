@@ -124,5 +124,7 @@ dependencies {
 
     // zoho integration
     implementation 'com.zoho.salesiq:mobilisten:2.2'
+////reside menu
+    implementation 'com.specyci:residemenu:1.6+'
 
 }

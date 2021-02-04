@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/spacing_normal"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/header" />
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvExtra"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:gravity="center"
+            android:text="For more details"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textSize="@dimen/font_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:layout_marginHorizontal="@dimen/height_spacing_60"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="@drawable/drawable_border_primary"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:text="Share"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/CustomTextAppearance.Semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_xlarge" />
+    </LinearLayout>
+
+</RelativeLayout>

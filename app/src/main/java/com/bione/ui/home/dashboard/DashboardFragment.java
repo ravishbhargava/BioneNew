@@ -31,6 +31,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
+import com.bione.ui.home.PaymentReceiptViewActivity;
 import com.bione.ui.home.dashboard.craousel.CounsellorAdapter;
 import com.bione.ui.schedulecall.CategorySelect;
 import com.bione.utils.CenterZoomLayoutManager;
@@ -62,6 +63,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private int number = 0;
 
     private Context mContext;
+    private AppCompatTextView tvRefer;
     private AppCompatTextView tvCustomerSupport;
     private AppCompatTextView tvBookCounselling;
     private ArrayList<CrouselData> crouselDataArrayList;
@@ -150,6 +152,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         ivTwitter = view.findViewById(R.id.ivTwitter);
         ivYoutube = view.findViewById(R.id.ivYoutube);
         ivLinkedIn = view.findViewById(R.id.ivLinkedIn);
+        tvRefer = view.findViewById(R.id.tvRefer);
     }
 
     private void setListeners() {
@@ -158,6 +161,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         ivTwitter.setOnClickListener(this);
         ivYoutube.setOnClickListener(this);
         ivLinkedIn.setOnClickListener(this);
+        tvRefer.setOnClickListener(this);
     }
 
     private void openLink(final String url) {
@@ -169,6 +173,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case R.id.tvRefer:
+                startActivity(new Intent(mContext, PaymentReceiptViewActivity.class));
+                break;
+
             case R.id.tvCustomerSupport:
                 openDialog();
 //                if(number > 1){
