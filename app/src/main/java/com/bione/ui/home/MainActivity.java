@@ -27,6 +27,8 @@ import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.CommonResponse;
 import com.bione.model.customerdata.Customer;
+import com.bione.model.salesdetail.Data;
+import com.bione.model.salesdetail.SalesDetail;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
@@ -319,8 +321,8 @@ public class MainActivity extends BaseActivity {
                 return faqFragment;
 
             case 5:
-                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
-                return customerReceiptFragment;
+                PaymentReceiptFragment paymentReceiptFragment = new PaymentReceiptFragment();
+                return paymentReceiptFragment;
 //                Intent intent = new Intent(MainActivity.this, CustomerReceiptFragment.class);
 //                startActivity(intent);
 
@@ -636,12 +638,17 @@ public class MainActivity extends BaseActivity {
                 .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
                 .build();
 
-        RestClient.getApiInterface().isSalesPerson(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+        RestClient.getApiInterface().isSalesPerson(commonParams.getMap()).enqueue(new ResponseResolver<List<SalesDetail>>() {
             @Override
-            public void onSuccess(List<CommonResponse> commonResponse) {
+            public void onSuccess(List<SalesDetail> commonResponse) {
                 Log.d("onSuccess", "" + commonResponse);
-                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                if (commonResponse.get(0).getCode() == 200) {
+//                    if (commonResponse.get(0).getSalesDetails()) {
                     hideShowItem(true);
+                    CommonData.saveSalesData(commonResponse.get(0).toResponseModel(Data.class));
+//                    } else {
+//                        hideShowItem(false);
+//                    }
                 } else {
 //                    showErrorMessage(commonResponse.get(0).getMessage());
                     hideShowItem(false);

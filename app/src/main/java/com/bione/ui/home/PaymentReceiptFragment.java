@@ -40,7 +40,7 @@ import com.bione.utils.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CustomerReceiptFragment extends BaseFragment {
+public class PaymentReceiptFragment extends BaseFragment {
 
     private AppCompatTextView tvTitle;
     private AppCompatImageView ivBack;
@@ -379,10 +379,9 @@ public class CustomerReceiptFragment extends BaseFragment {
                 .add("first_name", etFirstName.getText().toString())
                 .add("last_name", etLastName.getText().toString())
                 .add("test_name", selectedTests.toString())
-                .add("sales_person", CommonData.getUserData().getFirstname() + " " + CommonData.getUserData().getLastname())
                 .add("sales_person_email", CommonData.getUserData().getEmail())
                 .add("amount", etAmountNumber.getText().toString())
-//                .add("test_amount", etTestAmount.getText().toString())
+                .add("test_amount", etTestAmount.getText().toString())
                 .add("paid_amount", etTotalAmount.getText().toString())
                 .add("amount_words", " " + spinner2.getSelectedItem())
                 .add("balance_amount", " " + etBalanceAmount.getText().toString())
@@ -390,6 +389,8 @@ public class CustomerReceiptFragment extends BaseFragment {
                 .add("payment_type", radioText)
                 .add("payment_mode", "" + spinner2.getSelectedItem().toString())
                 .add("remarks", "" + tvRemark.getText().toString())
+                .add("sales_person", CommonData.getUserData().getFirstname() + " " + CommonData.getUserData().getLastname())
+                .add("report_manager_email", "" + CommonData.getSalesData().getReportingManagerEmailId())
                 .build();
 
         RestClient.getApiInterface2().customerReceiptSubmit(commonParams.getMap()).enqueue(new ResponseResolver<PaymentReceipt>() {

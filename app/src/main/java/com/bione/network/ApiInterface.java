@@ -7,6 +7,7 @@ import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.customerkit.CustomerKit;
+import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.updateprofile.UpdateProfile;
 
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public interface ApiInterface {
     Call<List<SignInDatum>> verifyOtp(@QueryMap Map<String, String> map);
 
     @GET("/rest/V1/bione-salesapi/salesstatus")
-    Call<List<CommonResponse>> isSalesPerson(@QueryMap Map<String, String> map);
+    Call<List<SalesDetail>> isSalesPerson(@QueryMap Map<String, String> map);
 
     @POST("/rest/V1/bione/signupapi")
     Call<List<CommonResponse>> sendOtpRegister(@QueryMap Map<String, String> map);
