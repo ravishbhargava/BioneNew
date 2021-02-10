@@ -75,7 +75,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Test Amount" />
+                    android:text="Test Amount (INR)" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etTestAmount"
@@ -85,7 +85,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Discount Amount" />
+                    android:text="Discounted Amount (INR)" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etAmountNumber"
@@ -96,7 +96,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Sales Person" />
+                    android:text="Sales Person Name" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etSalesPerson"
@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:checked="true"
-                        android:text="Towards Full payment"
+                        android:text="Full Payment"
                         android:textSize="@dimen/font_small" />
 
                     <RadioButton
@@ -126,13 +126,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:text="PartPayment"
+                        android:text="Partial Payment"
                         android:textSize="@dimen/font_small" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/signupHeadingTextview"
-                    android:text="Total Paid Amount" />
+                    android:text="Total Paid Amount (INR)" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etTotalAmount"
@@ -170,7 +170,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/signupHeadingTextview"
-                        android:text="Balance Amount" />
+                        android:text="Balance Amount (INR)" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etBalanceAmount"

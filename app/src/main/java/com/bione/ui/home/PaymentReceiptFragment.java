@@ -61,7 +61,7 @@ public class PaymentReceiptFragment extends BaseFragment {
     private LinearLayout llBottom;
 
     private RadioGroup radioGroup;
-    private String radioText = "";
+    private String  radioText = "";
     //    private MultiSelectionSpinner spinner;
     private Spinner spinner2;
     private static StringBuilder selectedTests = new StringBuilder();
@@ -244,7 +244,7 @@ public class PaymentReceiptFragment extends BaseFragment {
 
     private void setRadio() {
         llBottom.setVisibility(View.GONE);
-        radioText = "Towards Full payment";
+        radioText = "Full Amount";;
         radioGroup = rootView.findViewById(R.id.radioGroup);
 //        radioGroup = findViewById(R.id.radioGroup);
         radioGroup.check(R.id.radio1);
@@ -265,6 +265,11 @@ public class PaymentReceiptFragment extends BaseFragment {
                 RadioButton rb = rootView.findViewById(checkedId);
 //                RadioButton rb = findViewById(checkedId);
                 radioText = rb.getText().toString();
+                if (radioText.contains("Full")) {
+                    radioText = "Full Amount";
+                } else {
+                    radioText = "Partial Amount";
+                }
             }
         });
     }
@@ -400,7 +405,7 @@ public class PaymentReceiptFragment extends BaseFragment {
 //                showErrorMessage(commonResponse.getReceiptUrl());
                 clearData();
                 String link = commonResponse.getReceiptUrl();
-                link = link.replaceAll("\\/","/");
+                link = link.replaceAll("\\/", "/");
                 Log.d("link", "after slash removed------ " + link);
 //                link = "http://docs.google.com/gview?embedded=true&url=" +link ;
 //                Log.d("link", "after url embedded removed------ " + link);
