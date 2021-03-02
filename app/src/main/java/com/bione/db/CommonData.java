@@ -13,13 +13,14 @@ import io.paperdb.Paper;
  */
 public final class CommonData {
 
+    private static final String PAPER_GUEST = "paper_guest";
     private static final String PAPER_DEVICE_TOKEN = "paper_device_token";
     private static final String PAPER_ADMIN_TOKEN = "paper_admin_token";
     private static final String PAPER_CUSTOMER_TOKEN = "paper_customer_token";
     private static final String PAPER_LOGIN_DATA = "paper_login_data";
     private static final String PAPER_USER_DATA = "paper_user_data";
-    private static final String PAPER_SALES_PERSON_DATA = "paper_sales_person_data";
     private static final String PAPER_USER_PHOTO = "paper_user_photo";
+    private static final String PAPER_SALES_PERSON_DATA = "paper_sales_person_data";
 
 
     /**
@@ -33,27 +34,6 @@ public final class CommonData {
         }
 
         Paper.book().write(PAPER_USER_DATA, mUserData);
-    }
-
-    /**
-     * Get sales data sales data.
-     *
-     * @return the sales data
-     */
-    public static Data getSalesData() {
-        return Paper.book().read(PAPER_SALES_PERSON_DATA);
-    }
-    /**
-     * Save sales data.
-     *
-     * @param mSalesData the m sales data
-     */
-    public static void saveSalesData(final Data mSalesData) {
-        if (mSalesData == null) {
-            return;
-        }
-
-        Paper.book().write(PAPER_SALES_PERSON_DATA, mSalesData);
     }
 
     /**
@@ -101,6 +81,23 @@ public final class CommonData {
     }
 
     /**
+     * Gets guest token.
+     *
+     * @return the guest token
+     */
+    public static boolean getGuest() {
+        return Paper.book().read(PAPER_GUEST);
+    }
+    /**
+     * Update guest token.
+     *
+     * @param isGuest the guest token
+     */
+    public static void updateGuest(final boolean isGuest) {
+        Paper.book().write(PAPER_GUEST, isGuest);
+    }
+
+    /**
      * Gets admin token.
      *
      * @return the admin token
@@ -108,6 +105,31 @@ public final class CommonData {
     public static String getAdminToken() {
         return Paper.book().read(PAPER_ADMIN_TOKEN);
     }
+
+
+
+    /**
+     * Get sales data sales data.
+     *
+     * @return the sales data
+     */
+    public static Data getSalesData() {
+        return Paper.book().read(PAPER_SALES_PERSON_DATA);
+    }
+    /**
+     * Save sales data.
+     *
+     * @param mSalesData the m sales data
+     */
+    public static void saveSalesData(final Data mSalesData) {
+        if (mSalesData == null) {
+            return;
+        }
+
+        Paper.book().write(PAPER_SALES_PERSON_DATA, mSalesData);
+    }
+
+
 
     /**
      * Update customer token.

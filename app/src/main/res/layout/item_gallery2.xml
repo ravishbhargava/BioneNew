@@ -1,99 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llVisible"
-    android:layout_width="@dimen/item_gallery_width"
-    android:layout_height="@dimen/item_gallery_height"
-    android:layout_marginHorizontal="-10dp"
-    android:layout_gravity="center"
-    android:layout_marginBottom="2dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:padding="@dimen/spacing_medium">
+
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            android:background="@color/dialog_bottom2" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorAccent" />
-    </LinearLayout>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/spacing_tiny"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-
-        <ImageView
-            android:id="@+id/image"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_xsmall"
-            android:src="@mipmap/image_longevity" />
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:elevation="@dimen/spacing_xsmall">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/bitmap" />
+        </androidx.cardview.widget.CardView>
 
-            android:gravity="center"
-            android:text="Genetic \nSusceptibility Test"
-            android:textAppearance="@style/CustomTextAppearance.Semibold"
-            android:textSize="@dimen/font_small" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginVertical="@dimen/spacing_tiny"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/spacing_tiny"
-            android:text="World's most comprehensive high-throughput DNA test - The best investment to know how your genes affect various health aspects for timely management"
-            android:textSize="@dimen/font_tiny" />
+            <LinearLayout
+                android:id="@+id/llLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDetail"
-            android:layout_width="@dimen/item_gallery_button_width"
-            android:layout_height="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_xsmall"
-            android:background="@drawable/drawable_border_primary"
-            android:gravity="center"
-            android:text="View Details"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textAppearance="@style/CustomTextAppearance.Semibold"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_tiny" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MyMicroBiome Test"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold" />
 
-        <View
-            android:id="@+id/viewShaded"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#403D44F0" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="120dp"
+                    android:singleLine="true"
+                    android:text="Discover &amp; understand your
+gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xsmall" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:layout_toRightOf="@+id/llLeft"
+                android:src="@drawable/ic_button_next_light" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

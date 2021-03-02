@@ -106,7 +106,9 @@ public final class RestClient {
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         // add your other interceptors …
         // add logging as last interceptor
-        httpClient.addInterceptor(getLoggingInterceptor());
+        httpClient.addInterceptor(getLoggingInterceptor())
+                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS);
         return httpClient;
     }
 

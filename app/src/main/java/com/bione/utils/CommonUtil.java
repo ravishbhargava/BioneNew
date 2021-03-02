@@ -22,8 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import static com.bione.utils.AppConstant.DATE_FORMAT;
-import static com.bione.utils.AppConstant.DATE_FORMAT_DAY_MONTH;
+
 
 /**
  * Developer: Bione
@@ -149,28 +148,28 @@ public final class CommonUtil {
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-    public static String getCurrentDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date today = Calendar.getInstance().getTime();
-        return dateFormat.format(today);
-    }
-
-    public static String getDayMonth(final String date) {
-
-        Date date1 = null;
-        try {
-            date1 = new SimpleDateFormat(DATE_FORMAT).parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println(date + "\t" + date1);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_DAY_MONTH);
+//    public static String getCurrentDate() {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 //        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date today = date1;
-        return dateFormat.format(today);
-    }
+//        Date today = Calendar.getInstance().getTime();
+//        return dateFormat.format(today);
+//    }
+//
+//    public static String getDayMonth(final String date) {
+//
+//        Date date1 = null;
+//        try {
+//            date1 = new SimpleDateFormat(DATE_FORMAT).parse(date);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(date + "\t" + date1);
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_DAY_MONTH);
+////        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+//        Date today = date1;
+//        return dateFormat.format(today);
+//    }
 
 
     public static void makeCall(Context mContext) {

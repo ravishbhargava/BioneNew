@@ -2,248 +2,301 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/spacing_small"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/cvBorder"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/spacing_normal"
-                android:src="@drawable/ic_ellipse" />
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/cvProfilePic"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_launcher_foreground"
-                android:visibility="visible" />
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivAddProfile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="-20dp"
-                android:layout_marginTop="70dp"
-                android:layout_toEndOf="@+id/cvBorder"
-                android:src="@drawable/ic_camera" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginEnd="@dimen/spacing_normal"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny">
+            android:layout_height="match_parent"
+            android:weightSum="5"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Name"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_large" />
+                android:layout_margin="@dimen/spacing_small"
+                android:paddingVertical="@dimen/spacing_large"
+                >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal">
+                <RelativeLayout
+                    android:id="@+id/rel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
 
-                <View
-                    android:id="@+id/vName"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/ic_edit"></View>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cvBorder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:src="@drawable/ic_profile_image" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cvProfilePic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_user_1_copy"
+                        android:visibility="visible" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivAddProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-20dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_toEndOf="@+id/cvBorder"
+                        android:src="@drawable/ic_change_image_button"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:enabled="false"
-                    android:text="John Smith"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_large" />
-            </LinearLayout>
-        </RelativeLayout>
+                    android:layout_below="@+id/rel"
+                    android:layout_centerHorizontal="true"
+                    android:text="Ravish Bhargava"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny">
+            </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Contact Number"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:orientation="vertical">
 
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_large" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/tvContactNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:inputType="number"
-                android:text="+91 9876543210"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_xlarge" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email Id"
-
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_large" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/vEmail"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/ic_edit"></View>
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/tvEmail"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:enabled="false"
-                    android:text="John@gmail.com"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_xlarge" />
-            </LinearLayout>
-        </RelativeLayout>
+                    android:padding="@dimen/spacing_normal">
 
+                    <LinearLayout
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textAppearance="@style/CustomTextAppearance"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="First Name"
+                            android:textColor="#801a1824"
+                            android:textSize="@dimen/font_small" />
 
-                android:textSize="@dimen/font_large" />
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etFirstName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="Ravish"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_normal" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="@color/transparent"
-                android:enabled="false"
-                android:text="Male"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_xlarge" />
-        </RelativeLayout>
+                    </LinearLayout>
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEditFirstName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Edit"
+                        android:textColor="#3d44f0"
+                        android:textSize="@dimen/font_normal" />
 
-        <RelativeLayout
-            android:id="@+id/relPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_tiny"
-            android:layout_marginBottom="@dimen/spacing_tiny">
+                </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textAppearance="@style/CustomTextAppearance"
-
-                android:textSize="@dimen/font_large" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/vPassword"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/ic_edit"></View>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPassword"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:background="@color/transparent"
-                    android:enabled="false"
-                    android:inputType="textPassword"
-                    android:text="John Smith"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_xlarge" />
-            </LinearLayout>
-        </RelativeLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:padding="@dimen/spacing_normal">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_xlarge"
-        android:layout_margin="@dimen/spacing_large"
-        android:background="@drawable/drawable_border_primary"
-        android:gravity="center"
+                    <LinearLayout
 
-        android:text="Update"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textAppearance="@style/CustomTextAppearance.Semibold"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_xlarge" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last Name"
+                            android:textColor="#801a1824"
+                            android:textSize="@dimen/font_small" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etLastName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="Bhargava"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_normal" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEditLastName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Edit"
+                        android:textColor="#3d44f0"
+                        android:textSize="@dimen/font_normal" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_normal">
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:textColor="#801a1824"
+                            android:textSize="@dimen/font_small" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="ravish@bione.in"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_normal" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEditEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Change"
+                        android:textColor="#3d44f0"
+                        android:textSize="@dimen/font_normal" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_normal">
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Number"
+                            android:textColor="#801a1824"
+                            android:textSize="@dimen/font_small" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_normal" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Edit"
+                        android:textColor="#3d44f0"
+                        android:textSize="@dimen/font_normal"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_normal">
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:textColor="#801a1824"
+                            android:textSize="@dimen/font_small" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:text="Ravish"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_normal" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEditPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Change"
+                        android:textColor="#3d44f0"
+                        android:textSize="@dimen/font_normal" />
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

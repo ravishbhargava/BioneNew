@@ -1,14 +1,14 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+//    buildToolsVersion "29.0.0"
 
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     /**
      * Define you Project Name here
@@ -24,8 +24,8 @@ android {
         applicationId "com.bione"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 10
-        versionName "1.9"
+        versionCode 13
+        versionName "1.12"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -70,40 +70,42 @@ android {
 //            }
 //        }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+//    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.google.firebase:firebase-auth:19.3.2'
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+//    def nav_version = "2.3.2"
+//    // Java language implementation
+//    implementation "androidx.navigation:navigation-fragment:$nav_version"
+//    implementation "androidx.navigation:navigation-ui:$nav_version"
 
+    // facebook signin integration
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
-    def nav_version = "2.3.0"
-    // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    implementation "androidx.navigation:navigation-ui:$nav_version"
-
-
-    // for Glide
-    implementation 'com.github.bumptech.glide:glide:4.4.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
-    // for multi picker
-    implementation 'com.kbeanie:multipicker:1.1.31@aar'
-    // for cropping
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
-    // for circle image view
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
-    // for circle indicator
-    implementation 'me.relex:circleindicator:2.1.4'
-
+    //google signin integration
+    implementation 'com.google.firebase:firebase-auth:19.3.2'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
@@ -123,8 +125,21 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
     // zoho integration
-    implementation 'com.zoho.salesiq:mobilisten:2.2'
-////reside menu
-    implementation 'com.specyci:residemenu:1.6+'
+//    implementation 'com.zoho.salesiq:mobilisten:2.2'
+
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    // for multi picker
+    implementation 'com.kbeanie:multipicker:1.1.31@aar'
+    // for cropping
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
+    // for circle image view
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+//    //slide menu
+//    implementation 'com.specyci:residemenu:1.6+'
+
+    // country picker
+    implementation 'com.hbb20:ccp:2.4.5'
 
 }

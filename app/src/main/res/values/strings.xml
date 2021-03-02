@@ -1,10 +1,21 @@
 <resources>
-
-    <string name="app_name">Bione</string>
+    <string name="app_name">BioneNew2</string>
     <!--    <string name="facebook_app_id">295386748548112</string>&lt;!&ndash;//ravish&ndash;&gt;-->
     <!--    <string name="fb_login_protocol_scheme">fb295386748548112</string>&lt;!&ndash;// ravish &ndash;&gt;-->
-    <string name="facebook_app_id">637942996791077</string><!-- Office -->
-    <string name="fb_login_protocol_scheme">fb637942996791077</string><!-- office -->
+<!--    <string name="facebook_app_id">637942996791077</string>&lt;!&ndash; old Office &ndash;&gt;-->
+<!--    <string name="fb_login_protocol_scheme">fb637942996791077</string>&lt;!&ndash; old office &ndash;&gt;-->
+    <string name="facebook_app_id">745276993059501</string><!-- Office -->
+    <string name="fb_login_protocol_scheme">fb745276993059501</string><!-- office -->
+
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <!-- Fcm service -->
     <string name="log_fcm_message_id">"FCM Message Id: "</string>
@@ -80,64 +91,48 @@
     <!-- Navigation Drawer menu labels -->
     <string name="nav_profile">My Profile</string>
     <string name="nav_dashboard">My Dashboard</string>
+    <string name="nav_mysessions">MySessions</string>
     <string name="nav_chat">Chat with us</string>
+    <string name="nav_logout">Log out</string>
     <string name="nav_faq">FAQ\'s</string>
     <string name="nav_receipt">Payment Receipt</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
-
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_terms_conditions">Terms &amp; Conditions</string>
+    <string name="nav_privacy_policy">Privacy Policy</string>
+    <string name="nav_faq_support">Faq &amp; Support</string>
 
     <string-array name="nav_item_activity_titles">
         <item>My Dashboard</item>
         <item>My Profile</item>
-        <item>My Session</item>
-        <item>Chat with us</item>
-        <item>FAQ\'s</item>
         <item>Payment Receipt</item>
-
+        <item>Chat with us</item>
+        <item>My Session</item>
+        <item>FAQ\'s</item>
 
     </string-array>
 
     <string-array name="payment_modes">
-        <item>select payment mode</item>
+        <item>Payment Mode</item>
         <item>Cash</item>
         <item>Cheque</item>
         <item>Bank Transfer</item>
         <item>Wallet Payment</item>
     </string-array>
 
+    <!-- splash text -->
+    <string name="splash_text">We are <b>Asia\'s 1st</b> direct-to-consumer \nmicrobiome and genetic testing organisation</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="login_with_email">Login with <b>Email</b></string>
+    <string name="login_with_mobile">Login with <b>Mobile</b></string>
 
-    <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-    <string name="by_signing_up_i_accept_the_terms_and_conditions">By signing up. I accept the <u>Terms and Conditions</u>></string>
-    <string name="get_started">Get Started</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
-    <string name="sign_in_with_facebook">Sign in with Facebook</string>
-    <string name="sign_in_with_email">Sign in with Email</string>
-    <string name="sign_in_with_phone_no">Sign in with Phone No.</string>
-    <string name="enter_your_email_id">Enter your Email ID</string>
-    <string name="enter_your_password">Enter your Password</string>
-    <string name="logout">Logout</string>
-    <string name="follow_us_on">Follow us on</string>
-    <string name="nav_mysessions">MySessions</string>
-    <string name="linkedin_link">https://www.linkedin.com/company/bioneindia/</string>
-    <string name="instagram_link">https://www.instagram.com/bioneindia/</string>
-    <string name="facebook_link">https://business.facebook.com/bioneindia/</string>
-    <string name="twitter_link">https://twitter.com/Bioneindia</string>
-    <string name="youtube_link">https://www.youtube.com/channel/UC9_J3ElNoz2rKmnvdoTs4ow</string>
-    <string name="new_to_bione_create_account">New to Bione?  <font color='#3D44F0'>Create Account</font></string>
-    <string name="your_first_name">Your First Name<font color='#F02426'>*</font></string>
-    <string name="your_last_name">Your Last Name<font color='#F02426'>*</font></string>
-    <string name="email_address">Email Address<font color='#F02426'>*</font></string>
-    <string name="password">Password<font color='#F02426'>*</font></string>
-    <string name="confirm_password">Confirm Password<font color='#F02426'>*</font></string>
-    <string name="phone_number">Phone Number<font color='#F02426'>*</font></string>
-    <string name="enter_one_time_password">Enter One Time Password<font color='#F02426'>*</font></string>
     <string name="i_would_like_to_receive_news_and_promotion_email_from_bione">I would like to receive news and promotion email from <b>Bione</b></string>
-    <string name="i_have_read_and_agree_to_the_terms_of_services">I have read and agree to the <b><font color='#3D44F0'>Terms of Services*</font></b></string>
-    <string name="i_have_read_and_agree_to_the_privacy_statement">I have read and agree to the <b><font color='#3D44F0'>Privacy Statement*</font></b></string>
-    <string name="already_have_an_account_login">Already have an account? <b><font color='#4EAF46'>Login</font></b></string>
-
+    <string name="i_have_read_and_agree_to_the_terms_of_services">I have read and agree to the <b>Terms of Services*</b></string>
+    <string name="i_have_read_and_agree_to_the_privacy_statement">I have read and agree to the <b>Privacy Statement*</b></string>
+    <string name="know_more"><u>Know More</u></string>
 
 </resources>

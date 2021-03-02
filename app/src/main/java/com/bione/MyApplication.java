@@ -3,7 +3,6 @@ package com.bione;
 import android.app.Application;
 import android.content.Context;
 
-import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.lang.ref.WeakReference;
 
@@ -11,7 +10,8 @@ import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.paperdb.Paper;
-//import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
+
 
 
 /**
@@ -54,7 +54,7 @@ public class MyApplication extends Application {
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());
-        ZohoSalesIQ.init(this, appKey, accessKey);
+//        ZohoSalesIQ.init(this, appKey, accessKey);
 
 
 //        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

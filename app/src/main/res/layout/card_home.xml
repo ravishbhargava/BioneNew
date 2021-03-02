@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="@dimen/spacing_large"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drawable_card_border_primary"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_small"
+                android:text="Your \nMyMircorbiome \nreport is ready"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xxxlarge"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_xlarge"
+                android:src="@drawable/ic_tick" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSmallText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_small"
+            android:text="Personalised reports &amp; diet recommendations for anytime-anywhere reference on your mobile"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_small" />
+
+
+    </LinearLayout>
+</LinearLayout>

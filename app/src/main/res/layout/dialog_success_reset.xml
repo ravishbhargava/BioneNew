@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80ffffff"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_large">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:src="@drawable/ic_mail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:text="Voila!"
+            android:textAppearance="@style/CustomTextAppearance.Bold"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please check your email to get\nreset your password"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textSize="@dimen/font_small" />
+
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/drawable_border_primary"
+        android:elevation="5dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="Ok"
+        android:layout_margin="@dimen/spacing_large"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large" />
+</RelativeLayout>

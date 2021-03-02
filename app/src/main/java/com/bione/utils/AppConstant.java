@@ -15,15 +15,18 @@ public final class AppConstant {
 
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_PASSWORD = "password";
-    public static final String PARAM_FIRSTNAME = "firstname";
+    public static final String PARAM_NEW_PASS = "newpass";
+    public static final String PARAM_CONFIRM_PASS = "confirmpass";
     public static final String PARAM_MIDDLENAME = "middlename";
     public static final String PARAM_LASTNAME = "lastname";
-//    public static final String PARAM_EMAIL = "email_signin";
+    //    public static final String PARAM_EMAIL = "email_signin";
     public static final String PARAM_CURRENTEMAIL = "currentemail";
     public static final String PARAM_NEWEMAIL = "newemail";
     public static final String PARAM_MOBILE = "mobile";
     public static final String PARAM_PHONE = "phone";
     public static final String PARAM_EMAIL = "email";
+    public static final String PARAM_TEMPLATE = "template";
+    public static final String PARAM_WEBSITEID = "websiteId";
     public static final String PARAM_MESSAGE = "message";
     public static final String PARAM_OTP = "otp";
     public static final String PARAM_CUSTOMER = "customer";

@@ -1,334 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_normal">
+    android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/spacing_normal"
-        android:src="@mipmap/bione_logo" />
-
-
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tvTerm"
-        android:layout_below="@+id/ivLogo">
+        android:padding="@dimen/spacing_normal">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/bottom"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/ivLogo"
-            android:layout_margin="@dimen/spacing_large"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
 
-
-            <!--        <com.facebook.login.widget.LoginButton-->
-            <!--            android:id="@+id/login_button"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_gravity="center_horizontal"-->
-            <!--            android:layout_marginTop="30dp"-->
-            <!--            android:layout_marginBottom="30dp" />-->
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llFBLogin"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginVertical="@dimen/spacing_xsmall"
-                android:background="@drawable/drawable_border"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/facebook_signin" />
-
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/drawable_border" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/sign_in_with_facebook"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_small" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llGoogleSignIn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginVertical="@dimen/spacing_xsmall"
-                android:background="@drawable/drawable_border"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/spacing_tiny"
-                    android:src="@mipmap/google_signin" />
-
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/drawable_border" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/google_background"
-                    android:gravity="center"
-                    android:text="@string/sign_in_with_google"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_small" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llEmail"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginVertical="@dimen/spacing_xsmall"
-                android:background="@drawable/drawable_border"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/spacing_tiny"
-                    android:src="@mipmap/email_signin" />
-
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/drawable_border" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:gravity="center"
-                    android:text="@string/sign_in_with_email"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_small" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llPhone"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginVertical="@dimen/spacing_xsmall"
-                android:background="@drawable/drawable_border"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/spacing_tiny"
-                    android:src="@mipmap/phone_signin" />
-
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/drawable_border" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/sign_in_with_phone_no"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_small" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <TextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="@dimen/spacing_small"
-                android:text="or"
+                android:src="@drawable/ic_bione_logo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="Hey!\nThe first steps\nto healthy living"
                 android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_normal" />
+                android:textSize="@dimen/font_xxxlarge"
+                android:textStyle="bold" />
 
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llPhoneView"
+            <LinearLayout
+                android:id="@+id/llPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_marginVertical="@dimen/spacing_xsmall"
-                android:background="@drawable/drawable_border"
-                android:gravity="center"
-                android:minHeight="40dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/llCountryCode"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.20"
                     android:gravity="center"
-                    android:padding="@dimen/spacing_small"
-                    android:text="+91"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_normal" />
+                    android:background="@drawable/drawable_border_top"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray_light" />
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:ccp_showNameCode="false" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                       android:background="@color/transparent"
+                        android:hint="9876543210"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="@dimen/spacing_medium"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_large" />
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="0dp"
+                    android:id="@+id/etOtp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.80"
-                    android:background="@color/transparent"
-                    android:gravity="start"
+                    android:background="@drawable/drawable_border_bottom"
+                    android:elevation="5dp"
+                    android:hint="1234"
                     android:inputType="number"
-                    android:maxLength="10"
-                    android:padding="@dimen/spacing_small"
-                    android:text=""
+                    android:maxLength="4"
+                    android:padding="@dimen/spacing_medium"
                     android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_normal" />
+                    android:textSize="@dimen/font_large"
+                    android:visibility="gone" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvResendOtp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="Resend OTP"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_small" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llMailView"
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/spacing_xsmall"
-                    android:background="@drawable/drawable_border"
-                    android:gravity="left|center"
-                    android:hint="@string/enter_your_email_id"
-                    android:minHeight="40dp"
-                    android:padding="@dimen/spacing_small"
+                    android:background="@drawable/drawable_border_top"
+                    android:hint="email"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/spacing_medium"
                     android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_normal" />
+                    android:textSize="@dimen/font_large" />
 
-
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView"
-                    android:layout_marginVertical="@dimen/spacing_xsmall"
-                    android:background="@drawable/drawable_border"
-                    android:gravity="center"
-                    android:minHeight="40dp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:background="@drawable/drawable_border_bottom"
+                    android:elevation="5dp"
+                    android:hint="password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/spacing_medium"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_large" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.80"
-                        android:background="@color/transparent"
-                        android:gravity="start"
-                        android:hint="@string/enter_your_password"
-                        android:inputType="textPassword"
-                        android:padding="@dimen/spacing_small"
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textSize="@dimen/font_normal" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="Forgot Password?"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_small" />
 
-                    <ImageView
-                        android:id="@+id/viewEye"
-                        android:layout_width="0dp"
-                        android:layout_height="15dp"
-                        android:layout_weight="0.20"
-                        android:src="@drawable/ic_hidden" />
+            </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvForgot"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.30"
-                        android:gravity="center"
-                        android:padding="@dimen/spacing_small"
-                        android:text="Forgot?"
-                        android:textAppearance="@style/CustomTextAppearance.Medium"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/font_normal"
-                        android:visibility="gone" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_medium"
+                android:text="Or log in using:"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="#525587"
+                android:textSize="@dimen/font_normal" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_small"
+                android:orientation="horizontal">
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivFB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_facebook" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivGoogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    app:srcCompat="@drawable/ic_google" />
+            </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_normal"
-                android:layout_marginTop="@dimen/spacing_normal"
-
+                android:layout_marginTop="@dimen/spacing_medium"
                 android:background="@drawable/drawable_border_primary"
+                android:drawableRight="@drawable/ic_login_next"
+                android:elevation="5dp"
                 android:gravity="center"
-                android:minHeight="40dp"
-                android:text="Login"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:padding="@dimen/spacing_small"
+                android:text="Log In"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_xlarge" />
+                android:textSize="@dimen/font_large" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCreate"
+                android:id="@+id/tvCreateAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@drawable/drawable_border"
                 android:gravity="center"
-                android:text="@string/new_to_bione_create_account"
+                android:padding="@dimen/spacing_normal"
+                android:text="Create an account"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_large" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:padding="@dimen/spacing_normal"
+                android:text="@string/login_with_email"
                 android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_small" />
+                android:textColor="@color/colorPrimary"
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                android:textSize="@dimen/font_normal" />
 
-    </ScrollView>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTerm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginVertical="@dimen/spacing_large"
-        android:gravity="center"
-        android:text="@string/by_signing_up_i_accept_the_terms_and_conditions"
-        android:textAppearance="@style/CustomTextAppearance"
-        android:textSize="@dimen/font_small" />
-
-</RelativeLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

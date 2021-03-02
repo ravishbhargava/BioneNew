@@ -1,143 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-<!--    &lt;!&ndash; font sizes &ndash;&gt;-->
-<!--    <dimen name="font_xxxlarge">24sp</dimen>-->
-<!--    <dimen name="font_xxlarge">20sp</dimen>-->
-<!--    <dimen name="font_xlarge">18sp</dimen>-->
-<!--    <dimen name="font_large">16sp</dimen>-->
-<!--    <dimen name="font_normal">14sp</dimen>-->
-<!--    <dimen name="font_small">12sp</dimen>-->
-<!--    <dimen name="font_xsmall">10sp</dimen>-->
-<!--    <dimen name="font_tiny">8sp</dimen>-->
-<!--    <dimen name="font_very_tiny">6sp</dimen>-->
-
-
-<!--    &lt;!&ndash; typical spacing between two views &ndash;&gt;-->
-<!--    <dimen name="spacing_xlarge">40dp</dimen>-->
-<!--    <dimen name="spacing_large">24dp</dimen>-->
-<!--    <dimen name="spacing_medium">20dp</dimen>-->
-<!--    <dimen name="spacing_normal">14dp</dimen>-->
-<!--    <dimen name="spacing_small">10dp</dimen>-->
-<!--    <dimen name="spacing_xsmall">8dp</dimen>-->
-<!--    <dimen name="spacing_tiny">4dp</dimen>-->
-<!--    <dimen name="spacing_very_tiny">2dp</dimen>-->
-
-
-<!--    &lt;!&ndash; Custom views dimen &ndash;&gt;-->
-<!--    <dimen name="dialog_progress_wheel_width_height">70dp</dimen>-->
-<!--    <dimen name="screen_padding">@dimen/spacing_normal</dimen>-->
-<!--    <dimen name="toolbar_elevation">4dp</dimen>-->
-<!--    <dimen name="recycler_progress_dimen">50dp</dimen>-->
-
-<!--    &lt;!&ndash;met editext&ndash;&gt;-->
-<!--    <dimen name="default_padding_top">8dp</dimen>-->
-<!--    <dimen name="default_padding_bottom">8dp</dimen>-->
-<!--    <dimen name="inner_padding_left">0dp</dimen>-->
-<!--    <dimen name="inner_padding_right">0dp</dimen>-->
-<!--    <dimen name="floating_label_text_size">12sp</dimen>-->
-<!--    <dimen name="bottom_text_size">12sp</dimen>-->
-<!--    <dimen name="inner_components_spacing">8dp</dimen>-->
-<!--    <dimen name="bottom_ellipsis_height">4dp</dimen>-->
-<!--    <dimen name="post_image_height">250dp</dimen>-->
-<!--    <dimen name="empty_nav_view_height">25dp</dimen>-->
-<!--    &lt;!&ndash;    <dimen name="fab_margin">16dp</dimen>&ndash;&gt;-->
-
-
-<!--    &lt;!&ndash; Default screen margins, per the Android Design guidelines. &ndash;&gt;-->
-<!--    <dimen name="nav_header_vertical_spacing">16dp</dimen>-->
-<!--    <dimen name="nav_header_height">160dp</dimen>-->
-
-<!--    &lt;!&ndash; Default screen margins, per the Android Design guidelines. &ndash;&gt;-->
-<!--    <dimen name="activity_horizontal_margin">16dp</dimen>-->
-<!--    <dimen name="activity_vertical_margin">16dp</dimen>-->
-<!--    <dimen name="fab_margin">16dp</dimen>-->
-<!--    <dimen name="profile_width">75dp</dimen>-->
-<!--    <dimen name="profile_height">75dp</dimen>-->
-
-
-<!--    &lt;!&ndash;  item gallery &ndash;&gt;-->
-<!--    <dimen name="item_gallery_height">200dp</dimen>-->
-<!--    <dimen name="item_gallery_width">150dp</dimen>-->
-<!--    <dimen name="item_gallery_button_width">100dp</dimen>-->
-<!--    <dimen name="height_spacing_50">50dp</dimen>-->
-
-<!--    &lt;!&ndash; dashboard screen size &ndash;&gt;-->
-<!--    <dimen name="height_spacing_150">150dp</dimen>-->
-<!--    <dimen name="height_spacing_80">80dp</dimen>-->
-
-
-
-
-
-
-
-
-
     <!-- font sizes -->
-    <dimen name="font_xxxlarge">20.4sp</dimen>
-    <dimen name="font_xxlarge">17sp</dimen>
-    <dimen name="font_xlarge">15.3sp</dimen>
-    <dimen name="font_large">13.6sp</dimen>
-    <dimen name="font_normal">11.9sp</dimen>
-    <dimen name="font_small">10.2sp</dimen>
-    <dimen name="font_xsmall">8.5sp</dimen>
-    <dimen name="font_tiny">6.8sp</dimen>
-    <dimen name="font_very_tiny">5.1sp</dimen>
+    <dimen name="font_xxxlarge">24sp</dimen>
+    <dimen name="font_xxlarge">20sp</dimen>
+    <dimen name="font_xlarge">18sp</dimen>
+    <dimen name="font_large">16sp</dimen>
+    <dimen name="font_normal">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_xsmall">10sp</dimen>
+    <dimen name="font_tiny">8sp</dimen>
+    <dimen name="font_very_tiny">6sp</dimen>
 
 
     <!-- typical spacing between two views -->
-    <dimen name="spacing_xlarge">34dp</dimen>
-    <dimen name="spacing_large">20.4dp</dimen>
-    <dimen name="spacing_medium">17dp</dimen>
-    <dimen name="spacing_normal">11.9dp</dimen>
-    <dimen name="spacing_small">8.5dp</dimen>
-    <dimen name="spacing_xsmall">6.8dp</dimen>
-    <dimen name="spacing_tiny">3.4dp</dimen>
-    <dimen name="spacing_very_tiny">1.7dp</dimen>
+    <dimen name="spacing_xlarge">40dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_medium">20dp</dimen>
+    <dimen name="spacing_normal">14dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_xsmall">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_very_tiny">2dp</dimen>
 
 
     <!-- Custom views dimen -->
-    <dimen name="dialog_progress_wheel_width_height">60.5dp</dimen>
+    <dimen name="dialog_progress_wheel_width_height">70dp</dimen>
     <dimen name="screen_padding">@dimen/spacing_normal</dimen>
-    <dimen name="toolbar_elevation">3.4dp</dimen>
-    <dimen name="recycler_progress_dimen">42.5dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="recycler_progress_dimen">50dp</dimen>
 
     <!--met editext-->
-    <dimen name="default_padding_top">6.8dp</dimen>
-    <dimen name="default_padding_bottom">6.8dp</dimen>
+    <dimen name="default_padding_top">8dp</dimen>
+    <dimen name="default_padding_bottom">8dp</dimen>
     <dimen name="inner_padding_left">0dp</dimen>
     <dimen name="inner_padding_right">0dp</dimen>
-    <dimen name="floating_label_text_size">10.2sp</dimen>
-    <dimen name="bottom_text_size">10.2sp</dimen>
-    <dimen name="inner_components_spacing">6.8dp</dimen>
-    <dimen name="bottom_ellipsis_height">3.4dp</dimen>
-    <dimen name="post_image_height">212.5dp</dimen>
-    <dimen name="empty_nav_view_height">21.25dp</dimen>
+    <dimen name="floating_label_text_size">12sp</dimen>
+    <dimen name="bottom_text_size">12sp</dimen>
+    <dimen name="inner_components_spacing">8dp</dimen>
+    <dimen name="bottom_ellipsis_height">4dp</dimen>
+    <dimen name="post_image_height">250dp</dimen>
+    <dimen name="empty_nav_view_height">25dp</dimen>
     <!--    <dimen name="fab_margin">16dp</dimen>-->
 
 
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="nav_header_vertical_spacing">13.6dp</dimen>
-    <dimen name="nav_header_height">136dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">13.6dp</dimen>
-    <dimen name="activity_vertical_margin">13.6dp</dimen>
-    <dimen name="fab_margin">13.6dp</dimen>
-    <dimen name="profile_width">64.25dp</dimen>
-    <dimen name="profile_height">64.25dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="profile_width">75dp</dimen>
+    <dimen name="profile_height">75dp</dimen>
+
 
     <!--  item gallery -->
-    <dimen name="item_gallery_height">170dp</dimen>
-    <dimen name="item_gallery_width">127.5dp</dimen>
-    <dimen name="item_gallery_button_width">85dp</dimen>
-    <dimen name="height_spacing_50">42.5dp</dimen>
-    <dimen name="height_spacing_60">51dp</dimen>
+    <dimen name="item_gallery_height">200dp</dimen>
+    <dimen name="item_gallery_width">150dp</dimen>
+    <dimen name="item_gallery_button_width">100dp</dimen>
+    <dimen name="height_spacing_50">50dp</dimen>
+    <dimen name="height_spacing_60">60dp</dimen>
 
     <!-- dashboard screen size -->
-    <dimen name="height_spacing_150">150dp</dimen>
-    <dimen name="height_spacing_80">68dp</dimen>
-
+    <dimen name="height_spacing_150">172.5dp</dimen>
+    <dimen name="height_spacing_80">80dp</dimen>
 </resources>

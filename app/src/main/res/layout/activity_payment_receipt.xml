@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_normal">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="Generate\nPayment Receipt"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxxlarge" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:hint="Patient First Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFirstName"
+                    style="@style/textInputEditText" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Patient Last Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLastName"
+                    style="@style/textInputEditText" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutTestNames"
+                style="@style/textInputLayout"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etTestName"
+                    style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:hint="Test Name" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutTest"
+                style="@style/textInputLayout"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etTestHeading"
+                    style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:hint="Test Names" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etTestList"
+                    style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:text="bione x6 bione x6 bione x6 bione x6 bione x6"
+                    android:visibility="gone" />
+
+                <View style="@style/viewLine" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Test Amount (INR)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTestAmount"
+                    style="@style/textInputEditText"
+                    android:inputType="number" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Discounted Amount (INR)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDiscountedAmount"
+                    style="@style/textInputEditText"
+                    android:inputType="number" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Sales Person Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSalesPersonName"
+                    style="@style/textInputEditText"
+                    android:enabled="false" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:checked="true"
+                    android:text="Full Payment"
+                    android:textSize="@dimen/font_small" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Partial Payment"
+                    android:textSize="@dimen/font_small" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Total Paid Amount (INR)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTotalAmount"
+                    style="@style/textInputEditText"
+                    android:inputType="number" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:clickable="true"
+                android:hint="Payment Mode">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPaymentMode"
+                    style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner"
+                    style="@style/textInputEditText"
+                    android:background="@color/white"
+                    android:drawableRight="@drawable/ic_down_primary" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Remarks for the payment">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRemarks"
+                    style="@style/textInputEditText" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutBalanceAmount"
+                style="@style/textInputLayout"
+                android:hint="Balance Amount (INR)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBalanceAmount"
+                    style="@style/textInputEditText"
+                    android:inputType="number" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDate"
+                style="@style/textInputLayout">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etDate"
+                    style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:hint="Balance Amount will be paid on date" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@drawable/drawable_border_primary"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

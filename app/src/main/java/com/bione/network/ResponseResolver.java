@@ -3,7 +3,7 @@ package com.bione.network;
 
 import androidx.annotation.NonNull;
 
-import com.bione.utils.ProgressDialog;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +47,7 @@ public abstract class ResponseResolver<T> implements Callback<T> {
     @Override
     public void onResponse(@NonNull final Call<T> t, @NonNull final Response<T> tResponse) {
 
-        ProgressDialog.dismissProgressDialog();
+//        ProgressDialog.dismissProgressDialog();
         if (tResponse.isSuccessful()) {
 //            Log.d("override onResponse 1111", " : " + tResponse.body().toString());
 //            Log.d("override onResponse 2222", " : " + new Gson().toJson(tResponse.body()));
@@ -62,7 +62,7 @@ public abstract class ResponseResolver<T> implements Callback<T> {
     @Override
     public void onFailure(@NonNull final Call<T> t, @NonNull final Throwable throwable) {
         onFailure(throwable);
-        ProgressDialog.dismissProgressDialog();
+//        ProgressDialog.dismissProgressDialog();
     }
 
 

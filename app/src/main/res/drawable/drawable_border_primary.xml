@@ -6,7 +6,7 @@
                 android:width="1dp" />
             <!--corners allow us to make the rounded corners button-->
             <corners
-                android:radius="20dp"
+                android:radius="10dp"
                 />
         </shape>
     </item>

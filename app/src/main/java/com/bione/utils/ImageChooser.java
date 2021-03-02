@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -26,7 +25,6 @@ import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
-
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 

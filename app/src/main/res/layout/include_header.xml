@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,7 +12,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/spacing_normal"
-        android:src="@drawable/ic_chevron_left"
+        android:src="@drawable/ic_close"
         android:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -23,8 +22,8 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/spacing_normal"
-        android:src="@drawable/ic_launcher_background"
-        android:visibility="gone" />
+        android:src="@drawable/ic_bione_logo_header"
+        android:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
@@ -35,8 +34,10 @@
         android:padding="@dimen/spacing_normal"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
+        android:textSize="@dimen/font_xlarge"
+        android:visibility="gone" />
+    <!--        android:textAppearance="@style/CustomTextAppearance.Medium"-->
+
 
     <RelativeLayout
         android:id="@+id/relProfile"
@@ -45,17 +46,15 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/spacing_tiny"
-        android:visibility="invisible"
-        >
+        android:visibility="invisible">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivProfile"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="@dimen/spacing_small"
-            android:src="@drawable/ic_share_icon"
-
-            />
+            android:src="@drawable/ic_icon_hamburger"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </RelativeLayout>

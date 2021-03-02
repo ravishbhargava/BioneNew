@@ -1,188 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_normal">
+    android:background="@color/white">
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/spacing_normal"
-        android:src="@mipmap/bione_logo" />
-
-
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ivLogo">
+        android:padding="@dimen/spacing_normal">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/ivLogo"
-            android:layout_marginHorizontal="@dimen/spacing_large"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHead"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="Get Started with \nGenomics Journey \nwith Bione"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxxlarge" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginVertical="@dimen/spacing_large"
-                    android:gravity="left"
-                    android:text="Get Started with Genomics Journey with Bione"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textSize="@dimen/font_xxxlarge" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:hint="First Name">
 
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/your_first_name" />
-
-                <androidx.appcompat.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFirstName"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter First Name" />
+                    style="@style/textInputEditText" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="Your Middle Name" />
+                <View style="@style/viewLine" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Middle Name">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etMiddleName"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Middle Name" />
+                    style="@style/textInputEditText" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/your_last_name" />
+                <View style="@style/viewLine" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Last Name">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLastName"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Last Name" />
+                    style="@style/textInputEditText" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/email_address" />
+                <View style="@style/viewLine" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Email Address">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Email ID"
+                    style="@style/textInputEditText"
                     android:inputType="textEmailAddress" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/password" />
+                <View style="@style/viewLine" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Password"
+                android:textColorHint="#797b7f"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Password"
+                    style="@style/textInputEditText"
                     android:inputType="textPassword" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:layout_marginTop="0dp"
-                    android:text="Passwords must be at least 6 characters containing 1-capital, 1- numeric
-and 1 special character"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/font_xsmall" />
+                <View style="@style/viewLine" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/confirm_password" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.appcompat.widget.AppCompatEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Confirm Password"
+                android:textColorHint="#797b7f"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPassword"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Confirm Password"
+                    style="@style/textInputEditText"
                     android:inputType="textPassword" />
 
+                <View style="@style/viewLine" />
 
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/llCountryCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:gravity="center"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/phone_number" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etPhoneNumber"
-                    style="@style/signupEditText"
-                    android:background="@drawable/drawable_border"
-                    android:hint="Enter Phone Number"
-                    android:maxLength="10" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/signupHeadingTextview"
-                    android:layout_marginTop="0dp"
-                    android:text="Mobile No. Without Country Code i.e 9898989898"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/font_xsmall" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvSendOtp"
-                    android:layout_width="match_parent"
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/spacing_large"
-                    android:layout_marginVertical="@dimen/spacing_small"
-                    android:background="@drawable/drawable_border_accent"
-                    android:gravity="center"
-                    android:minHeight="40dp"
-                    android:text="Send OTP"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/CustomTextAppearance.Semibold"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_xlarge" />
+                    app:ccp_showNameCode="false" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvOtpPassword"
-                    style="@style/signupHeadingTextview"
-                    android:text="@string/enter_one_time_password"
-                    android:visibility="gone" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:baselineAligned="true"
+                    android:hint="Phone Number"
+                    android:layout_marginTop="0dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxStrokeWidth="1dp">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etOtp"
-                    style="@style/signupEditText"
-                    android:layout_marginBottom="@dimen/spacing_small"
-                    android:background="@drawable/drawable_border"
-                    android:gravity="center"
-                    android:hint="OTP"
-                    android:maxLength="4"
-                    android:visibility="gone" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhone"
+                        style="@style/textInputEditText"
+                        android:maxLength="10" />
+
+                    <View style="@style/viewLine" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSendOtp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@drawable/drawable_border_button"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Send Otp"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutOtp"
+                style="@style/textInputLayout"
+                android:hint="Enter OTP here"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOtp"
+                    style="@style/textInputEditText"
+                    android:visibility="visible" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/cbFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
                 android:text="@string/i_would_like_to_receive_news_and_promotion_email_from_bione"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -191,6 +187,7 @@ and 1 special character"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/i_have_read_and_agree_to_the_terms_of_services"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -199,33 +196,81 @@ and 1 special character"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/i_have_read_and_agree_to_the_privacy_statement"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRegister"
+                android:id="@+id/tvSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/spacing_large"
-                android:layout_marginVertical="@dimen/spacing_small"
-                android:background="@drawable/drawable_border_accent"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@drawable/drawable_border_primary"
+                android:drawableRight="@drawable/ic_login_next"
+                android:elevation="5dp"
                 android:gravity="center"
-                android:minHeight="40dp"
+                android:padding="@dimen/spacing_small"
                 android:text="Verify &amp; Register"
-                android:textAlignment="center"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_xlarge" />
+                android:textSize="@dimen/font_large" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvLogin"
-                style="@style/signupHeadingTextview"
-                android:text="@string/already_have_an_account_login" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_medium"
+                android:text="Or log in using:"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="#525587"
+                android:textSize="@dimen/font_normal" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_tiny"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_facebook" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    app:srcCompat="@drawable/ic_google" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:gravity="center"
+                android:text="Already have an account?"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="#525587"
+                android:textSize="@dimen/font_large" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Log In"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_xlarge"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </ScrollView>
-
-</RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

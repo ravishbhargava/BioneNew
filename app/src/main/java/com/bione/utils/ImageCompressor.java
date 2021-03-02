@@ -14,10 +14,8 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 
-
 import androidx.annotation.IntRange;
 import androidx.core.content.ContextCompat;
-
 
 import java.io.File;
 import java.io.FileInputStream;

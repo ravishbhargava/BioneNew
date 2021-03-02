@@ -4,43 +4,57 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_dash"
+            android:icon="@drawable/ic_icon_my_orders"
             android:title="@string/nav_dashboard" />
 
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_user"
+            android:icon="@drawable/ic_icon_my_profile"
             android:title="@string/nav_profile" />
-
-        <item
-            android:id="@+id/nav_session"
-            android:icon="@drawable/ic_session"
-            android:title="@string/nav_mysessions" />
-        <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_chat"
-            android:title="@string/nav_chat" />
-
-        <item
-            android:id="@+id/nav_faq"
-            android:icon="@drawable/ic_faq"
-            android:title="@string/nav_faq" />
         <item
             android:id="@+id/nav_receipt"
             android:icon="@drawable/ic_payment_receipt"
             android:title="@string/nav_receipt" />
 
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_icon_contact"
+            android:title="@string/nav_chat" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_icon_log_out"
+            android:title="@string/nav_logout" />
+
+<!--        <item-->
+<!--            android:id="@+id/nav_faq"-->
+<!--            android:icon="@drawable/ic_icon_contact"-->
+<!--            android:title="@string/nav_faq" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_session"-->
+<!--            android:icon="@drawable/ic_icon_contact"-->
+<!--            android:title="@string/nav_mysessions" />-->
+
+
     </group>
 
-<!--        <item android:title="Other">-->
-<!--            <menu>-->
-<!--                <item-->
-<!--                    android:id="@+id/nav_about_us"-->
-<!--                    android:title="@string/nav_about_us" />-->
-<!--                <item-->
-<!--                    android:id="@+id/nav_privacy_policy"-->
-<!--                    android:title="@string/privacy_policy" />-->
-<!--            </menu>-->
-<!--        </item>-->
+    <item android:title="">
+        <menu>
+            <item
+                android:title="" />
+            <item
+                android:title="" />
+            <item
+                android:id="@+id/nav_term_condition"
+                android:title="@string/nav_terms_conditions" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:title="@string/nav_privacy_policy" />
+            <item
+                android:id="@+id/nav_faq_support"
+                android:title="@string/nav_faq_support" />
+        </menu>
+    </item>
 
 </menu>

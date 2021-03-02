@@ -11,49 +11,6 @@
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/topView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/signupHeadingTextview"
-                android:text="Phone Number*" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etPhoneNumber"
-                style="@style/signupEditText"
-                android:background="@drawable/drawable_border"
-                android:hint="Enter Phone Number"
-                android:inputType="number"
-                android:maxLength="10" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/signupHeadingTextview"
-                android:layout_marginTop="0dp"
-                android:text="Mobile No. Without Country Code i.e 9898989898"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/font_xsmall" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvSendOtp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/spacing_large"
-                android:layout_marginVertical="@dimen/spacing_small"
-                android:background="@drawable/drawable_border_accent"
-                android:gravity="center"
-                android:minHeight="40dp"
-                android:text="Send OTP"
-                android:textAlignment="center"
-                android:textAppearance="@style/CustomTextAppearance.Semibold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_xlarge" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/bottomView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,19 +18,20 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvOtp"
-                style="@style/signupHeadingTextview"
+                style="@style/textInputEditText"
                 android:text="Enter One Time Password*" />
-
+            <!--            style="@style/signupHeadingTextview"-->
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etOtp"
-                style="@style/signupEditText"
+                style="@style/textInputEditText"
                 android:layout_marginBottom="@dimen/spacing_small"
                 android:background="@drawable/drawable_border"
                 android:gravity="center"
                 android:hint="OTP"
                 android:inputType="number"
                 android:maxLength="4" />
-
+            <!--            style="@style/signupEditText"-->
+            <!--                android:background="@drawable/drawable_border_accent"-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvVerify"
                 android:layout_width="match_parent"
@@ -81,7 +39,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/spacing_large"
                 android:layout_marginVertical="@dimen/spacing_small"
-                android:background="@drawable/drawable_border_accent"
+                android:background="@drawable/drawable_border_primary"
                 android:gravity="center"
                 android:minHeight="40dp"
                 android:text="Verify"
@@ -89,6 +47,50 @@
                 android:textAppearance="@style/CustomTextAppearance.Semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_xlarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <!--            style="@style/signupHeadingTextview"-->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/textInputEditText"
+                android:text="Phone Number*" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPhoneNumber"
+                style="@style/textInputEditText"
+                android:background="@drawable/drawable_border"
+                android:hint="Enter Phone Number"
+                android:inputType="number"
+                android:maxLength="10" />
+            <!--            style="@style/signupEditText"-->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/textInputEditText"
+                android:layout_marginTop="0dp"
+                android:text="Mobile No. Without Country Code i.e 9898989898"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/font_xsmall" />
+            <!--            style="@style/signupHeadingTextview"-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSendOtp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginVertical="@dimen/spacing_small"
+                android:background="@drawable/drawable_border_primary"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:text="Send OTP"
+                android:textAlignment="center"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xlarge" />
+            <!--            android:background="@drawable/drawable_border_accent"-->
         </LinearLayout>
     </LinearLayout>
 

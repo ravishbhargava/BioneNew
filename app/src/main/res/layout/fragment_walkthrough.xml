@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="@drawable/image_01" />
+
+    <View
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:gravity="center"
+        android:textAppearance="@style/CustomTextAppearance"
+        android:padding="@dimen/spacing_small"
+        android:text="dummy text"
+        android:textSize="@dimen/font_normal" />
+
+</LinearLayout>

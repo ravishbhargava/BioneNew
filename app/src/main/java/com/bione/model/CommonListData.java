@@ -72,7 +72,7 @@ public class CommonListData implements Parcelable {
         this.isChecked = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<CommonListData> CREATOR = new Parcelable.Creator<CommonListData>() {
+    public static final Creator<CommonListData> CREATOR = new Creator<CommonListData>() {
         @Override
         public CommonListData createFromParcel(Parcel source) {
             return new CommonListData(source);

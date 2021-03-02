@@ -3,7 +3,7 @@
     android:id="@+id/view_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="100dp"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="@color/colorPrimary"
+        android:gravity="center"
         android:orientation="horizontal"
         android:padding="@dimen/activity_horizontal_margin">
 
@@ -21,7 +21,7 @@
             android:id="@+id/ivProfile"
             android:layout_width="@dimen/height_spacing_50"
             android:layout_height="@dimen/height_spacing_50"
-            android:src="@drawable/ic_nav_profile" />
+            android:src="@drawable/ic_user_1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white" />
 
             <TextView
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:textSize="@dimen/font_small"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/white" />
         </LinearLayout>

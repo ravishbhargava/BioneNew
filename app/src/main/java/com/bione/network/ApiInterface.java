@@ -7,7 +7,9 @@ import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.customerkit.CustomerKit;
+import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.salesdetail.SalesDetail;
+import com.bione.model.testNameList.TestNameList;
 import com.bione.model.updateprofile.UpdateProfile;
 
 import java.util.HashMap;
@@ -28,8 +30,8 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
-//import com.bione.model.counsellors.Counselling;
-//import com.bione.model.customerkit.CustomerKit;
+import com.bione.model.counsellors.Counselling;
+import com.bione.model.customerkit.CustomerKit;
 
 
 /**
@@ -78,10 +80,8 @@ public interface ApiInterface {
     Call<List<CommonResponse>> sendOtpVerify(@QueryMap Map<String, String> map);
 
 
-
     @POST("/rest/V1/bione/veryfyotp")
     Call<List<CommonResponse>> verifyMobile(@QueryMap Map<String, String> map);
-
 
 
     @GET("/rest/V1/customers/me")
@@ -117,6 +117,25 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi/kitorderlist")
     Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
 
+
+
+    @GET("/mobilelogin/index/ajaxforgot/")
+    Call<String> forgotSendOtp(@QueryMap Map<String, String> map);
+
+    @GET("/mobilelogin/index/ajaxforgototpverify")
+    Call<Boolean> forgotVerifyOtp(@QueryMap Map<String, String> map);
+
+    @GET("/mobilelogin/index/ajaxupdatepassotp")
+    Call<Boolean> forgotPasswordUpdate(@QueryMap Map<String, String> map);
+
+
+    @PUT("/rest/V1/customers/password")
+    Call<Boolean> emailReset(@QueryMap Map<String, String> map);
+
+    @GET("/rest/V1/bioneproduct/productitems")
+    Call<List<TestNameList>> testNames();
+
+
     /**
      * checkUnique call.
      *
@@ -143,6 +162,16 @@ public interface ApiInterface {
 
 
     /**
+     *
+     * @param map
+     * @return
+     */
+    @GET("/api/Receiptlist")
+    Call<ReceiptList> paymentReceiptList(@QueryMap Map<String, String> map);
+
+
+
+    /**
      * checkUnique call.
      *
      * @param headerMap  the header map
@@ -164,7 +193,6 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("/api/receiptapi")
     Call<PaymentReceipt> customerReceiptSubmit(@FieldMap Map<String, String> map);
-
 
 
     @POST("/rest/V1/bioneapi-customer/update")
@@ -202,8 +230,9 @@ public interface ApiInterface {
                                            @PartMap HashMap<String, RequestBody> partMap);
 
 
-//                                           @PartMap HashMap<String, RequestBody> partMap);
-
+//    @PartMap
+//    HashMap<String, RequestBody> partMap);
+//
 //    /**
 //     * * Fetch notifications data from server
 //     *
@@ -217,26 +246,24 @@ public interface ApiInterface {
 //    Call<NotificationsResponse> getNotifications(@Header(AUTHORIZATION) String authorization,
 //                                                 @Header(CONTENT_LANG) String contentlang,
 //                                                 @Query(LIMIT) int limit,
-//
-//
-//
-//
-////    @FormUrlEncoded
-////    @POST("rest/V1/integration/admin/token")
-////    Call<String> adminToken2(@FieldMap Map<String, String> map);
-////
-////
-////    @POST
-////    Call<String> adminToken3(@Query(PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password, @Url String fullUrl);
-////
-////    @POST("rest/V1/integration/admin/token")
-////    Call<String> adminToken4(@Query(value = PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password);@Query(SKIP) int skip);
-
-////  @Headers({"Content-Type: application/json; charset=utf-8"})
-//    @GET("/rest/V1/bioneapi/kitorderlist")
-//    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
 
 
+//    @FormUrlEncoded
+//    @POST("rest/V1/integration/admin/token")
+//    Call<String> adminToken2(@FieldMap Map<String, String> map);
+//
+//
+//    @POST
+//    Call<String> adminToken3(@Query(PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password, @Url String fullUrl);
+//
+//    @POST("rest/V1/integration/admin/token")
+//    Call<String> adminToken4(@Query(value = PARAM_USERNAME) String username, @Query(PARAM_PASSWORD) String password);@Query(SKIP) int skip);
+
+//  @Headers({"Content-Type: application/json; charset=utf-8"})
+//                                                 @GET("/rest/V1/bioneapi/kitorderlist")
+//                                                         Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String>map);
+//
+//
 //    @GET("/rest/V1/bioneapi/counsellorlist")
 //    Call<List<Counselling>> getCounsellings(@QueryMap Map<String, String> map);
 }

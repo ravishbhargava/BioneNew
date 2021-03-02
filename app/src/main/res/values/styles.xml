@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
@@ -7,14 +8,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!-- Customize your theme here. -->
-        <!--        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>-->
     </style>
-
-    <!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
-    <!--        <item name="android:textColorPrimary">TITLE_COLOR_GOES_HERE</item>-->
-    <!--        <item name="android:textColorSecondary">SUBTITLE_COLOR_GOES_HERE</item>-->
-    <!--    </style>-->
 
     <style name="MyActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">#fa0</item>
@@ -34,7 +28,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+    </style>
 
+
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">12sp</item><!-- text size in menu-->
+        <item name="android:textAppearance">@style/CustomTextAppearance</item><!-- text font in menu-->
+        <item name="android:listDivider">@color/colorPrimary</item>
+        <item name="divider">@color/colorPrimary</item>
+        <item name="android:dividerHeight">0dp</item>
+
+
+<!--        &lt;!&ndash;         item size in menu&ndash;&gt;-->
+<!--        <item name="android:listPreferredItemHeightSmall">40dp</item>-->
+<!--        <item name="listPreferredItemHeightSmall">40dp</item>-->
+
+        <!-- item padding left in menu-->
+        <item name="android:listPreferredItemPaddingLeft">35dp</item>
+        <item name="listPreferredItemPaddingLeft">35dp</item>
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">35dp</item>
+        <item name="listPreferredItemPaddingRight">35dp</item>
     </style>
 
 
@@ -44,8 +60,15 @@
         <item name="fontPath">fonts/Poppins-Regular.ttf</item>
     </style>
 
-    <!--Custom bold text appearance-->
+    <!--Custom medium text appearance-->
     <style name="CustomTextAppearance.Medium" parent="CustomTextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Poppins-Medium.ttf</item>
+        <!--        <item name="android:textStyle">bold</item>-->
+    </style>
+
+    <!--Custom bold text appearance-->
+    <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Poppins-Medium.ttf</item>
         <item name="android:textStyle">bold</item>
@@ -61,18 +84,8 @@
         <item name="fontPath">fonts/Poppins-Light.ttf</item>
     </style>
 
-    <style name="primary_button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <!--        <item name="android:background">@drawable/background_button_selector_primary_color</item>-->
-        <item name="android:textAppearance">@style/CustomTextAppearance</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/font_xlarge</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
 
-
-    <style name="signupHeadingTextview" parent="Widget.AppCompat.TextView">
+    <style name="normalText" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/spacing_small</item>
@@ -82,42 +95,29 @@
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
-    <style name="signupEditText" parent="Widget.AppCompat.EditText">
+    <style name="textInputLayout" parent="Widget.Design.TextInputLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="background">@drawable/drawable_border</item>
+        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
         <item name="android:textAppearance">@style/CustomTextAppearance</item>
-        <item name="android:textSize">@dimen/font_normal</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:padding">@dimen/spacing_small</item>
-        <item name="android:minHeight">40dp</item>
-        <item name="android:gravity">left|center</item>
     </style>
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="wrap_content"-->
-    <!--    android:layout_marginVertical="@dimen/spacing_xsmall"-->
-    <!--    android:background="@drawable/drawable_border"-->
-    <!--    android:gravity="left|center"-->
-    <!--    android:hint="@string/enter_your_email_id"-->
-    <!--    android:minHeight="40dp"-->
-    <!--    android:padding="@dimen/spacing_small"-->
-    <!--    android:textAppearance="@style/CustomTextAppearance"-->
-    <!--    android:textColor="@color/black"-->
-    <!--    android:textSize="@dimen/font_normal"-->
-
-
-    <style name="ratting_bar_selector" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/ratingbar_selector</item>
-        <item name="android:stepSize">1.0</item>
-        <item name="android:minHeight">19dp</item>
-        <item name="android:maxHeight">20dp</item>
+    <style name="textInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:minHeight">@dimen/height_spacing_50</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance.Medium</item>
+    </style>
+    <style name="viewLine" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray</item>
     </style>
 
-    <style name="ratting_bar_selector2" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/ratingbar_selector2</item>
-        <item name="android:minHeight">38dp</item>
-        <item name="android:maxHeight">40dp</item>
-    </style>
-
-
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@color/white"-->
+<!--    android:minHeight="@dimen/height_spacing_50"-->
+<!--    android:text=""-->
+<!--    android:textAppearance="@style/CustomTextAppearance.Medium"-->
 </resources>

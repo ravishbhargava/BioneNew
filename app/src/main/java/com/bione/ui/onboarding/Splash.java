@@ -1,10 +1,16 @@
 package com.bione.ui.onboarding;
 
-
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.bione.R;
 import com.bione.db.CommonData;
@@ -12,27 +18,29 @@ import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
+import com.bione.ui.dashboard.MainActivity;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.home.MainActivity;
-import com.bione.ui.onboarding.walkthrough.Walk;
+import com.bione.ui.walkthrough.WalkActivity;
 import com.bione.utils.Log;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import static com.bione.utils.AppConstant.PARAM_PASSWORD;
 import static com.bione.utils.AppConstant.PARAM_USERNAME;
 
+
 public class Splash extends BaseActivity {
 
+
     private Handler handler;
-    private static final String TAG = Splash.class.getName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Log.d("hash key", " : " + printKeyHash(this));
 
     }
 
@@ -59,13 +67,9 @@ public class Splash extends BaseActivity {
 
     }
 
-    // Method to encode a string value using `UTF-8` encoding scheme
-    private static String encodeValue(String value) {
-        try {
-            return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
-        } catch (UnsupportedEncodingException ex) {
-            throw new RuntimeException(ex.getCause());
-        }
+    @Override
+    public void onClick(View view) {
+
     }
 
     private void adminTokenAPI() {
@@ -86,9 +90,10 @@ public class Splash extends BaseActivity {
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
                 Intent intent;
                 if (CommonData.getUserData() != null) {
+                    CommonData.updateGuest(false);
                     intent = new Intent(Splash.this, MainActivity.class);
                 } else {
-                    intent = new Intent(Splash.this, Walk.class);
+                    intent = new Intent(Splash.this, WalkActivity.class);
                 }
                 startActivity(intent);
                 finish();
@@ -109,8 +114,36 @@ public class Splash extends BaseActivity {
         });
     }
 
-    @Override
-    public void onClick(View view) {
 
+    public static String printKeyHash(Activity context) {
+        PackageInfo packageInfo;
+        String key = null;
+        try {
+            //getting application package name, as defined in manifest
+            String packageName = context.getApplicationContext().getPackageName();
+
+            //Retriving package info
+            packageInfo = context.getPackageManager().getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+
+            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+
+            for (Signature signature : packageInfo.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                key = new String(Base64.encode(md.digest(), 0));
+
+                // String key = new String(Base64.encodeBytes(md.digest()));
+                Log.e("Key Hash=", key);
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("Name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("No such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("Exception", e.toString());
+        }
+
+        return key;
     }
 }
