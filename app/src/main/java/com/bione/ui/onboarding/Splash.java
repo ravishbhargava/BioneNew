@@ -57,9 +57,9 @@ public class Splash extends BaseActivity {
         final Runnable r = new Runnable() {
             public void run() {
 
+
                 adminTokenAPI();
-//                Intent intent = new Intent(Splash.this, MainActivity.class);
-//                startActivity(intent);
+
             }
         };
 
@@ -89,10 +89,15 @@ public class Splash extends BaseActivity {
                 CommonData.updateAdminToken(s);
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
                 Intent intent;
-                if (CommonData.getUserData() != null) {
+                if (CommonData.getUserData() == null) {
+                    Log.d("CommonData.getUserData() == null", "----------");
+                    intent = new Intent(Splash.this, WalkActivity.class);
+                } else if (CommonData.getUserData() != null) {
+                    Log.d("CommonData.getUserData() != null", "----------");
                     CommonData.updateGuest(false);
                     intent = new Intent(Splash.this, MainActivity.class);
                 } else {
+                    Log.d("else--++---", "----------");
                     intent = new Intent(Splash.this, WalkActivity.class);
                 }
                 startActivity(intent);

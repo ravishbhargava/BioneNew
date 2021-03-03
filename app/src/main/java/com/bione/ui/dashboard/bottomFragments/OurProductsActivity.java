@@ -6,13 +6,11 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
 import com.bione.ui.base.BaseActivity;
-
 import com.bione.ui.dashboard.bottomFragments.adapters.KitViewAllAdapter;
 
 import java.util.ArrayList;
@@ -55,18 +53,18 @@ public class OurProductsActivity extends BaseActivity {
         // Scroll to the position we want to snap to
 //        linearLayoutManager.scrollToPosition(1);
         // Wait until the RecyclerView is laid out.
-        recyclerViewCarousel.post(new Runnable() {
-            @Override
-            public void run() {
-                // Shift the view to snap  near the center of the screen.
-                // This does not have to be precise.
-                int dx = (recyclerViewCarousel.getWidth() - recyclerViewCarousel.getChildAt(0).getWidth()) / 2;
-                recyclerViewCarousel.scrollBy(-dx, 0);
-                // Assign the LinearSnapHelper that will initially snap the near-center view.
-                LinearSnapHelper snapHelper = new LinearSnapHelper();
-                snapHelper.attachToRecyclerView(recyclerViewCarousel);
-            }
-        });
+//        recyclerViewCarousel.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Shift the view to snap  near the center of the screen.
+//                // This does not have to be precise.
+//                int dx = (recyclerViewCarousel.getWidth() - recyclerViewCarousel.getChildAt(0).getWidth()) / 2;
+//                recyclerViewCarousel.scrollBy(-dx, 0);
+//                // Assign the LinearSnapHelper that will initially snap the near-center view.
+//                LinearSnapHelper snapHelper = new LinearSnapHelper();
+//                snapHelper.attachToRecyclerView(recyclerViewCarousel);
+//            }
+//        });
     }
 
     private void setArrayList() {

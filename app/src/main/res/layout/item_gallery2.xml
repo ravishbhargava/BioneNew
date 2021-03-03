@@ -5,12 +5,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:padding="@dimen/spacing_medium">
-
+    android:padding="@dimen/spacing_small">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="@dimen/spacing_small"
+                android:layout_margin="@dimen/spacing_small"
                 android:src="@drawable/bitmap" />
         </androidx.cardview.widget.CardView>
 
@@ -53,7 +53,7 @@
                     android:id="@+id/tvDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxWidth="120dp"
+                    android:maxWidth="100dp"
                     android:singleLine="true"
                     android:text="Discover &amp; understand your
 gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
@@ -67,7 +67,7 @@ gastrointestinal microbiodta and best suited personalised diet for a healthy &am
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_small"
-                android:layout_marginRight="@dimen/spacing_small"
+
                 android:layout_toRightOf="@+id/llLeft"
                 android:src="@drawable/ic_button_next_light" />
 

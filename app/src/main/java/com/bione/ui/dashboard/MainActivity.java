@@ -5,6 +5,23 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
 import com.bione.db.CommonData;
@@ -17,7 +34,6 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-
 import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
 import com.bione.ui.onboarding.LoginActivity;
 import com.bione.ui.onboarding.Splash;
@@ -26,26 +42,6 @@ import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
-//import com.special.ResideMenu.ResideMenu;
-
-import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.io.File;
 import java.util.List;
@@ -56,6 +52,8 @@ import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
 import static com.bione.utils.AppConstant.PARAM_EMAIL;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
+
+//import com.special.ResideMenu.ResideMenu;
 
 public class MainActivity extends BaseActivity {
 
@@ -95,6 +93,8 @@ public class MainActivity extends BaseActivity {
     private Dialog dialog;
     private LinearLayout topView;
     private LinearLayout bottomView;
+
+    private Menu nav_Menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,8 +145,8 @@ public class MainActivity extends BaseActivity {
      * name, website, notifications action view (dot)
      */
     private void loadNavHeader() {
+        nav_Menu = navigationView.getMenu();
 
-        hideShowItem(false);
         // name, phone
         Customer customer = CommonData.getUserData();
         if (customer != null) {
@@ -177,6 +177,13 @@ public class MainActivity extends BaseActivity {
 
             //logic for sales person screen
             isSalesPerson();
+
+            nav_Menu.findItem(R.id.nav_chat).setVisible(false);
+            nav_Menu.findItem(R.id.nav_logout).setVisible(true);
+        } else {
+            nav_Menu.findItem(R.id.nav_receipt).setVisible(false);
+            nav_Menu.findItem(R.id.nav_chat).setVisible(false);
+            nav_Menu.findItem(R.id.nav_logout).setVisible(false);
         }
     }
 
@@ -292,8 +299,7 @@ public class MainActivity extends BaseActivity {
     private void hideShowItem(boolean isShow) {
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.nav_receipt).setVisible(isShow);
-        nav_Menu.findItem(R.id.nav_chat).setVisible(isShow);
-        nav_Menu.findItem(R.id.nav_logout).setVisible(isShow);
+
     }
 
     private void setUpNavigationView() {
