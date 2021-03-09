@@ -18,7 +18,7 @@ import com.bione.R;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.dashboard.bottomFragments.HomeFragment;
 import com.bione.ui.dashboard.bottomFragments.MyReportFragment;
-import com.bione.ui.dashboard.bottomFragments.SessionsFragment;
+import com.bione.ui.dashboard.bottomFragments.session.MyCounsellingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -71,7 +71,8 @@ public class DashBoardFragment extends BaseFragment {
                             break;
 
                         case R.id.page_3:
-                            openFragment(new SessionsFragment());
+//                            openFragment(new SessionsFragment());
+                            openFragment(new MyCounsellingFragment());
                             break;
                     }
 

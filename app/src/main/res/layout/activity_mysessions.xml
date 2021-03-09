@@ -76,14 +76,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/drawable_border_primary_color"
-        android:layout_margin="@dimen/spacing_normal"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:minHeight="50dp"
         android:text="@string/text_schedule_counselling"
         android:textAlignment="center"
         android:textSize="@dimen/font_large"
-        android:textColor="@color/colorPrimary"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </RelativeLayout>
