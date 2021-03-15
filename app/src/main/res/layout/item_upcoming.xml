@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="110dp"
-   android:layout_marginTop="@dimen/spacing_small"
+    android:layout_marginTop="@dimen/spacing_small"
     android:background="@drawable/drawable_border"
     android:orientation="horizontal"
     tools:ignore="ContentDescription">
 
     <View
-        android:id="@+id/img_galleryPic2_delete"
+        android:id="@+id/viewLeft"
         android:layout_width="4dp"
         android:layout_height="match_parent"
         android:layout_marginVertical="@dimen/spacing_medium"
@@ -22,8 +22,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/spacing_small"
-        android:padding="@dimen/spacing_tiny">
+        android:padding="@dimen/spacing_tiny"
+        android:paddingBottom="@dimen/spacing_small">
 
         <RelativeLayout
             android:id="@+id/relTop"
@@ -65,7 +65,6 @@
                 android:id="@+id/relLeft"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:layout_weight="0.5"
@@ -95,13 +94,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/relRight"
+                android:id="@+id/relRightUpcoming"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="@dimen/spacing_xsmall"
                 android:layout_weight="0.5"
-                android:gravity="end">
+                android:gravity="end"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivNext"
@@ -144,6 +144,49 @@
                 </LinearLayout>
 
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relRightPast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="@dimen/spacing_xsmall"
+                android:layout_weight="0.5"
+                android:gravity="end"
+                android:visibility="visible">
+
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvType"
+                        android:layout_marginTop="@dimen/spacing_tiny"
+                        android:text="Got late for the call"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="#d0021b"
+                        android:visibility="gone"
+                        android:textSize="@dimen/font_xsmall" />
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/ratting_bar_selector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:numStars="5"
+                        android:rating="3" />
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

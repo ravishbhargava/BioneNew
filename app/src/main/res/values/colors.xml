@@ -11,8 +11,8 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-<!--    <color name="black">#FF000000</color>-->
-<!--    <color name="white">#FFFFFFFF</color>-->
+    <!--    <color name="black">#FF000000</color>-->
+    <!--    <color name="white">#FFFFFFFF</color>-->
 
     <!-- grayscale -->
     <color name="white">#FFFFFF</color>
@@ -25,6 +25,12 @@
     <color name="transparent">#0000</color>
     <color name="border_grey">#C3CAD9</color>
     <color name="border_light_grey">#E4E4E5</color>
+
+
+    <color name="rating_session_color">#f5a623</color>
+    <color name="cancel_session_color">#d0021b</color>
+    <color name="available_session_color">#4eaf46</color>
+    <color name="available_text_color">#34a853</color>
 
 
     <color name="button_color">#34a853</color>

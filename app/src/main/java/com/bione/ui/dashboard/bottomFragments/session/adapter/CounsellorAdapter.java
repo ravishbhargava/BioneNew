@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -40,14 +42,19 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
+        private View viewLeft;
         private AppCompatImageView ivNext;
         private AppCompatTextView tvName;
         private AppCompatTextView tvStatus;
+        private AppCompatTextView tvReason;
         private AppCompatTextView tvType;
         private AppCompatTextView tvDate;
         private AppCompatTextView tvReschedule;
         private AppCompatTextView tvCancel;
         private LinearLayout layoutCancel;
+        private RelativeLayout relRightUpcoming;
+        private RelativeLayout relRightPast;
+        private RatingBar ratingBar;
 
 
         public MyViewHolder(View v) {
@@ -57,10 +64,15 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
             tvName = v.findViewById(R.id.tvName);
             tvDate = v.findViewById(R.id.tvDate);
             tvType = v.findViewById(R.id.tvType);
+            tvReason = v.findViewById(R.id.tvReason);
+            viewLeft = v.findViewById(R.id.viewLeft);
             tvCancel = v.findViewById(R.id.tvCancel);
             tvReschedule = v.findViewById(R.id.tvReschedule);
             tvStatus = v.findViewById(R.id.tvStatus);
             layoutCancel = v.findViewById(R.id.layoutCancel);
+            relRightPast = v.findViewById(R.id.relRightPast);
+            relRightUpcoming = v.findViewById(R.id.relRightUpcoming);
+            ratingBar = v.findViewById(R.id.ratingBar);
 
         }
     }
@@ -84,33 +96,40 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
 //        holder.tvDate.setText(CommonUtil.getDayMonth(counsellorList.get(position).getDate()));
         holder.tvDate.setText(counsellorList.get(position).getTimeSlot());
 
-//        holder.ratingBar.setIsIndicator(true);
-//        if (counsellorList.get(position).getStarsRatings() == null) {
-//            holder.ratingBar.setVisibility(View.GONE);
-//        } else {
-//            String rating = counsellorList.get(position).getStarsRatings();
-//            holder.ratingBar.setVisibility(View.VISIBLE);
-//            holder.ratingBar.setRating(Float.parseFloat(rating));
-//        }
+        holder.ratingBar.setIsIndicator(true);
+        if (counsellorList.get(position).getStarsRatings() == null) {
+            holder.ratingBar.setVisibility(View.GONE);
+        } else {
+            String rating = counsellorList.get(position).getStarsRatings();
+            holder.ratingBar.setVisibility(View.VISIBLE);
+            holder.ratingBar.setRating(Float.parseFloat(rating));
+        }
 
         if (counsellorList.get(position).getStatus().equals("0")) {
             holder.tvStatus.setText("Pending");
-//            holder.tvReason.setVisibility(View.GONE);
+            holder.viewLeft.setBackgroundColor(mContext.getResources().getColor(R.color.available_session_color));
+            holder.tvReason.setVisibility(View.GONE);
         } else if (counsellorList.get(position).getStatus().equals("1")) {
             holder.tvStatus.setText("Completed");
-//            holder.tvReason.setVisibility(View.GONE);
+            holder.viewLeft.setBackgroundColor(mContext.getResources().getColor(R.color.rating_session_color));
+            holder.tvReason.setVisibility(View.GONE);
         } else {
             holder.tvStatus.setText("Cancelled");
-//            holder.tvReason.setVisibility(View.VISIBLE);
-//            holder.tvReason.setText(counsellorList.get(position).getReasonCancelation());
+            holder.viewLeft.setBackgroundColor(mContext.getResources().getColor(R.color.cancel_session_color));
+            holder.tvReason.setVisibility(View.VISIBLE);
+            holder.tvReason.setText(counsellorList.get(position).getReasonCancelation());
         }
 
         if (type.equals("Upcoming")) {
-            holder.layoutCancel.setVisibility(View.VISIBLE);
-//            holder.bottomRel.setVisibility(View.GONE);
+//            holder.layoutCancel.setVisibility(View.VISIBLE);
+            holder.relRightUpcoming.setVisibility(View.VISIBLE);
+            holder.relRightPast.setVisibility(View.GONE);
+
         } else {
-            holder.layoutCancel.setVisibility(View.GONE);
-//            holder.bottomRel.setVisibility(View.VISIBLE);
+//            holder.layoutCancel.setVisibility(View.GONE);
+            holder.relRightUpcoming.setVisibility(View.GONE);
+            holder.relRightPast.setVisibility(View.VISIBLE);
+
         }
 
         holder.view.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +165,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
             @Override
             public void onClick(View view) {
                 if (type.equals("Upcoming")) {
-                    Log.d("geneticType","----"+counsellorList.get(position).getGeneticType());
+                    Log.d("geneticType", "----" + counsellorList.get(position).getGeneticType());
 //                    Intent intent = new Intent(mContext, ScheduleNow.class);
 //                    intent.putExtra("bookingId", counsellorList.get(position).getMobilecounsellingId());
 //                    intent.putExtra("geneticType", counsellorList.get(position).getGeneticType());
