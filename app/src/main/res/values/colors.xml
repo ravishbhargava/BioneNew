@@ -43,7 +43,7 @@
 
     <color name="row_selected_color">#C4C7FA</color>
     <color name="available_color">#4EAF46</color>
-    <color name="not_available_color">#ED502D</color>
+    <color name="not_available_color">#ED9F2D</color>
     <color name="receipt_border_color">#383d44f0</color>
 
     <color name="button_color_normal">@color/colorPrimary</color>

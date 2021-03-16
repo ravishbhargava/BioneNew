@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_marginTop="@dimen/spacing_small"
+    android:background="@drawable/drawable_border"
+    android:orientation="horizontal"
+    tools:ignore="ContentDescription">
+
+    <View
+        android:id="@+id/viewLeft"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/spacing_normal"
+        android:layout_marginLeft="-2dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_tiny">
+
+        <RelativeLayout
+            android:id="@+id/relLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawablePadding="@dimen/spacing_xsmall"
+                android:text="10:00 - 10:20 AM"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAvailable"
+                android:layout_width="94dp"
+                android:layout_height="@dimen/spacing_large"
+                android:layout_below="@+id/tvDate"
+                android:layout_margin="@dimen/spacing_xsmall"
+                android:background="@drawable/background_available"
+                android:gravity="center"
+                android:text="Available"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xsmall" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:src="@drawable/ic_button_next_light" />
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
