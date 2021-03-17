@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard.bottomFragments.session;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.bione.R;
 import com.bione.model.counsellors.ListItem;
 import com.bione.ui.base.BaseFragment;
+import com.bione.ui.dashboard.bottomFragments.schedule.ScheduleCallActivity;
 import com.bione.ui.dashboard.bottomFragments.session.adapter.MyCounsellingPagerAdapter;
 import com.bione.utils.CustomViewPager;
 
@@ -82,8 +84,8 @@ public class MyCounsellingFragment extends BaseFragment {
             tvSchedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    Intent intent = new Intent(mContext, ScheduleNow.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(mContext, ScheduleCallActivity.class);
+                    startActivity(intent);
                 }
             });
         }
