@@ -70,7 +70,7 @@
     <!--Custom bold text appearance-->
     <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
         <!-- Custom Attr-->
-        <item name="fontPath">fonts/Poppins-Medium.ttf</item>
+        <item name="fontPath">fonts/Poppins-Bold.ttf</item>
         <item name="android:textStyle">bold</item>
     </style>
 

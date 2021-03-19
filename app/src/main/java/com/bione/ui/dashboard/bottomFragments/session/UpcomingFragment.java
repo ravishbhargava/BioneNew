@@ -1,15 +1,20 @@
 package com.bione.ui.dashboard.bottomFragments.session;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +56,8 @@ public class UpcomingFragment extends BaseFragment {
     private com.bione.ui.dashboard.bottomFragments.session.MyCounsellingFragment.getCounsellingListListener listener;
 
 
-    public UpcomingFragment(final com.bione.ui.dashboard.bottomFragments.session.MyCounsellingFragment.getCounsellingListListener listener, final ArrayList<ListItem> counsellorsList) {
+    public UpcomingFragment(final com.bione.ui.dashboard.bottomFragments.session.MyCounsellingFragment.getCounsellingListListener listener,
+                            final ArrayList<ListItem> counsellorsList) {
         this.listener = listener;
         this.counsellorsList = counsellorsList;
     }
@@ -104,7 +110,7 @@ public class UpcomingFragment extends BaseFragment {
                 if (actionType.equals("call")) {
                     callPhoneCHeckPermission();
                 } else if (actionType.equals("cancel")) {
-//                    openDialog(position);
+                    openDialog(position);
                 }
             }
         });
@@ -118,7 +124,7 @@ public class UpcomingFragment extends BaseFragment {
     }
 
     private void getCounsellingsAPI() {
-
+        showLoading();
         counsellorsList = new ArrayList<>();
 
         final CommonParams commonParams = new CommonParams.Builder()
@@ -227,39 +233,39 @@ public class UpcomingFragment extends BaseFragment {
         });
     }
 
-//    private void openDialog(int position) {
-//        // custom dialog
-//        final Dialog dialog = new Dialog(mContext);
-//        dialog.setContentView(R.layout.dialog_cancel_reason);
-////        dialog.getWindow().setBackgroundDrawable(null);
-//        dialog.setTitle("Title...");
-//
-//        // set the custom dialog components - text, image and button
-////        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
-//        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
-//
-//        RadioGroup radioGroup = dialog.findViewById(R.id.radioGroup);
-//        final RadioButton[] radioButton = new RadioButton[1];
-//
-//
-//        // if button is clicked, close the custom dialog
-//        tvOk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (radioGroup.getCheckedRadioButtonId() == -1) {
-//                    Toast.makeText(mContext, "Please select Reason", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    // get selected radio button from radioGroup
-//                    int selectedId = radioGroup.getCheckedRadioButtonId();
-//                    // find the radiobutton by returned id
-//                    radioButton[0] = (RadioButton) dialog.findViewById(selectedId);
-//                    dialog.dismiss();
-//                    call(position, radioButton[0].getText().toString());
-//                }
-//
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+    private void openDialog(int position) {
+        // custom dialog
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.dialog_cancel_reason);
+//        dialog.getWindow().setBackgroundDrawable(null);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+//        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+
+        RadioGroup radioGroup = dialog.findViewById(R.id.radioGroup);
+        final RadioButton[] radioButton = new RadioButton[1];
+
+
+        // if button is clicked, close the custom dialog
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(mContext, "Please select Reason", Toast.LENGTH_SHORT).show();
+                } else {
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    // find the radiobutton by returned id
+                    radioButton[0] = (RadioButton) dialog.findViewById(selectedId);
+                    dialog.dismiss();
+                    call(position, radioButton[0].getText().toString());
+                }
+
+            }
+        });
+
+        dialog.show();
+    }
 }

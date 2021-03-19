@@ -30,6 +30,7 @@ import com.bione.ui.dashboard.MainActivity;
 import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
+import com.bione.utils.ProgressDialog;
 
 import org.json.JSONObject;
 
@@ -159,17 +160,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     public void showLoading() {
-//        ProgressDialog.showProgressDialog(this);
+        ProgressDialog.showProgressDialog(this);
     }
 
     @Override
     public void showLoading(final String message) {
-//        ProgressDialog.showProgressDialog(this, message);
+        ProgressDialog.showProgressDialog(this, message);
     }
 
     @Override
     public void hideLoading() {
-//        ProgressDialog.dismissProgressDialog();
+        ProgressDialog.dismissProgressDialog();
     }
 
 

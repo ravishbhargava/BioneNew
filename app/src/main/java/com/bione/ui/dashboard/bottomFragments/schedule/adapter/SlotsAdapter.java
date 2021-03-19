@@ -93,19 +93,23 @@ public class SlotsAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.bo
         holder.tvSlotTime.setText(slots.get(position).name);
         if (slots.get(position).isSelected()) {
             holder.tvNotAvailable.setText("NOT AVAILABLE");
-//            holder.tvNotAvailable.setTextColor(mContext.getResources().getColor(R.color.not_available_color));
+            holder.tvNotAvailable.setBackground(mContext.getResources().getDrawable(R.drawable.background_not_available));
+            holder.viewLeft.setBackground(mContext.getResources().getDrawable(R.color.not_available_color));
+            holder.ivSelected.setImageResource(R.drawable.ic_next_disabled);
 //            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
 
         } else {
             holder.tvNotAvailable.setText("AVAILABLE");
-//            holder.tvNotAvailable.setTextColor(mContext.getResources().getColor(R.color.available_color));
+            holder.tvNotAvailable.setBackground(mContext.getResources().getDrawable(R.drawable.background_available));
+            holder.viewLeft.setBackground(mContext.getResources().getDrawable(R.color.available_color));
+            holder.ivSelected.setImageResource(R.drawable.ic_button_next_light);
 //            holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
 
-            if (checkedPosition == position) {
+//            if (checkedPosition == position) {
 //                holder.relRow.setBackgroundResource(R.drawable.drawable_border_selected_transparent);
-            } else {
+//            } else {
 //                holder.relRow.setBackgroundResource(R.drawable.drawable_border_transparent);
-            }
+//            }
         }
 
         holder.relSlot.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +139,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.bo
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         private View view;
+        private View viewLeft;
         private TextView tvSlotTime;
         private TextView tvNotAvailable;
         private ImageView ivSelected;
@@ -144,6 +149,7 @@ public class SlotsAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.bo
         public MyViewHolder(View v) {
             super(v);
             view = v;
+            viewLeft = v.findViewById(R.id.viewLeft);
             tvSlotTime = v.findViewById(R.id.tvSlotTime);
             tvNotAvailable = v.findViewById(R.id.tvAvailable);
             ivSelected = v.findViewById(R.id.ivNext);

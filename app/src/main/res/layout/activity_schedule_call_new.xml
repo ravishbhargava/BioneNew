@@ -31,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Schedule a Call"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_xxxlarge"
                     android:textStyle="bold" />
@@ -143,6 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:text="December 20"
+                    android:visibility="gone"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_normal" />

@@ -119,16 +119,16 @@
         </androidx.core.widget.NestedScrollView>
 
         <RelativeLayout
+            android:padding="@dimen/spacing_large"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="@dimen/spacing_xlarge"
-                android:layout_marginBottom="@dimen/spacing_large"
+                android:layout_marginHorizontal="@dimen/spacing_large"
                 android:background="@drawable/drawable_border_primary"
                 android:drawableRight="@drawable/ic_login_next"
                 android:elevation="5dp"

@@ -14,17 +14,7 @@
 
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:text="Sat"
-            android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_normal" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMonth"
@@ -34,7 +24,19 @@
             android:background="@color/white"
             android:gravity="center_vertical"
             android:text="Aug"
-            android:visibility="invisible"
+            android:visibility="visible"
+            android:textAppearance="@style/CustomTextAppearance.Bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:text="Sat"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/black"
             android:textSize="@dimen/font_normal" />

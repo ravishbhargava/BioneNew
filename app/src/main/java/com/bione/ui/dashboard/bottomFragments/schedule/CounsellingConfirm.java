@@ -1,5 +1,7 @@
 package com.bione.ui.dashboard.bottomFragments.schedule;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -34,13 +36,15 @@ public class CounsellingConfirm extends BaseActivity {
 
     private TextInputEditText tvDateTime;
     private AppCompatTextView tvConfirm;
-//    private AppCompatTextView tvCounsellorName;
+    private AppCompatTextView tvTitle;
+    //    private AppCompatTextView tvCounsellorName;
 //    private AppCompatTextView tvCounsellingType;
     private TextInputEditText etEmail;
     private TextInputEditText etName;
     private TextInputEditText etPhone;
 
     private AppCompatImageView ivBack;
+    private AppCompatImageView ivLogo;
 
     private String counsellorName = "counsellorName";
     private String geneticType = "Genetic";
@@ -66,10 +70,6 @@ public class CounsellingConfirm extends BaseActivity {
         if (extras == null) {
 //            newString= null;
         } else {
-//            intent.putExtra("geneticType", geneticType);
-//            intent.putExtra("selectedDateToPass", selectedDateToPass);
-//            intent.putExtra("timeToPass", tvSelectedSlot.getText().toString());
-//            intent.putExtra("selectedTimeSlot", arrayTimeSlots.get(mAdapter.getCheckedPosition()).name);
             category = extras.getString("category");
             bookingId = extras.getString("bookingId");
             dayToPass = extras.getString("dayToPass");
@@ -86,11 +86,13 @@ public class CounsellingConfirm extends BaseActivity {
         Log.d("geneticType", "---" + geneticType);
         Log.d("counsellorName", "---" + counsellorName);
         init();
-        setdata();
+        setData();
 
     }
 
     private void init() {
+
+
         etEmail = findViewById(R.id.etEmail);
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
@@ -99,11 +101,17 @@ public class CounsellingConfirm extends BaseActivity {
 //        tvCounsellorName = findViewById(R.id.tvCounsellorName);
 //        tvCounsellingType = findViewById(R.id.tvCounsellingType);
         ivBack = findViewById(R.id.ivBack);
-        tvConfirm.setOnClickListener(this);
         ivBack.setOnClickListener(this);
+        tvConfirm.setOnClickListener(this);
+
+        ivLogo = findViewById(R.id.ivLogo);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText(geneticType);
+        tvTitle.setVisibility(View.VISIBLE);
+        ivLogo.setVisibility(View.GONE);
     }
 
-    private void setdata() {
+    private void setData() {
 //        tvCounsellingType.setText("Counselling Type: " + geneticType);
 //        tvCounsellorName.setText(counsellorName);
         tvDateTime.setText(dayToPass + ", " + dateToPass + " " + monthToPass + " " + yearToPass + ", " + timeToPass);
@@ -111,7 +119,13 @@ public class CounsellingConfirm extends BaseActivity {
 
         etName.setText(customer.getFirstname());
         etEmail.setText(customer.getEmail());
-        etPhone.setText(customer.getMobilenumber());
+        if (customer.getMobilenumber().length() == 12) {
+            String number = customer.getMobilenumber();
+            number = number.substring(2, number.length());
+            etPhone.setText(number);
+        } else {
+            etPhone.setText(customer.getMobilenumber());
+        }
     }
 
     @Override
@@ -121,11 +135,12 @@ public class CounsellingConfirm extends BaseActivity {
 
             case R.id.tvConfirm:
 //                openDialog();
-//                if (bookingId != null) {
-//                    call();
-//                } else {
+                showLoading();
+                if (bookingId.equals("bookingId")) {
                     scheduleCallAPI();
-//                }
+                } else {
+                    call();
+                }
 
                 break;
 
@@ -140,7 +155,7 @@ public class CounsellingConfirm extends BaseActivity {
 
 
     private void scheduleCallAPI() {
-        showLoading();
+
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_CUSTOMER_NAME, etName.getText().toString())
                 .add(PARAM_COUNSELLOR_NAME, counsellorName)
@@ -157,7 +172,7 @@ public class CounsellingConfirm extends BaseActivity {
 
                 if (commonResponses.get(0).getStatusCode().equals("200")) {
 
-//                    openDialog();
+                    openDialog();
                 } else {
                     showErrorMessage(commonResponses.get(0).getMessage());
                 }
@@ -192,7 +207,7 @@ public class CounsellingConfirm extends BaseActivity {
             public void onSuccess(List<CommonResponse> commonResponses) {
 
                 if (commonResponses.get(0).getStatusCode().equals("200")) {
-//                    openDialog();
+                    openDialog();
                 } else {
                     showErrorMessage(commonResponses.get(0).getMessage());
                 }
@@ -212,38 +227,39 @@ public class CounsellingConfirm extends BaseActivity {
         });
     }
 
-//    private void openDialog() {
-//        // custom dialog
-//        final Dialog dialog = new Dialog(this);
-//        dialog.setContentView(R.layout.dialog_confirmed);
+    private void openDialog() {
+// custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_success_reset);
 //        dialog.getWindow().setBackgroundDrawable(null);
-//        dialog.setCanceledOnTouchOutside(false);
-//        dialog.setTitle("Title...");
-//        // set the custom dialog components - text, image and button
-////        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
-//        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
-//
-//        // if button is clicked, close the custom dialog
-//        tvOk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//
-//                Intent intent = new Intent();
-//                intent.putExtra("status", "Done");
-//                setResult(101, intent);
-//                finish();
-////                Intent intent;
-////                intent = new Intent(CounsellingConfirm.this, MainActivity.class);
-////                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-////                if (category.equals("category2"))
-////                    intent.putExtra("category",category);
-////
-////                startActivity(intent);
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setTitle("Title...");
+        // set the custom dialog components - text, image and button
+
+        AppCompatImageView ivSuccess = dialog.findViewById(R.id.ivSuccess);
+        AppCompatTextView tvOk = dialog.findViewById(R.id.tvOk);
+        AppCompatTextView tvSubHeading = dialog.findViewById(R.id.tvSubHeading);
+        AppCompatTextView tvHeading = dialog.findViewById(R.id.tvHeading);
+
+        tvHeading.setText("Your booking \n" + "has been confirmed");
+        tvSubHeading.setText("Our consultant will get in touch with you");
+        ivSuccess.setImageResource(R.drawable.ic_group_133);
+
+
+        // if button is clicked, close the custom dialog
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent();
+                intent.putExtra("status", "Done");
+                setResult(101, intent);
+                finish();
+            }
+        });
+
+        dialog.show();
+    }
+
 
 }

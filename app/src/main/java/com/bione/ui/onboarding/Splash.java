@@ -56,10 +56,7 @@ public class Splash extends BaseActivity {
 
         final Runnable r = new Runnable() {
             public void run() {
-
-
                 adminTokenAPI();
-
             }
         };
 

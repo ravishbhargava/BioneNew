@@ -77,6 +77,7 @@
                     android:drawablePadding="@dimen/spacing_xsmall"
                     android:text="Diet &amp; Nutrition"
                     android:textAppearance="@style/CustomTextAppearance.Bold"
+
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small" />
 
@@ -89,7 +90,7 @@
                     android:text="John Smith"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_xsmall" />
+                    android:textSize="@dimen/font_small" />
 
             </RelativeLayout>
 
@@ -101,7 +102,7 @@
                 android:layout_marginHorizontal="@dimen/spacing_xsmall"
                 android:layout_weight="0.5"
                 android:gravity="end"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivNext"
@@ -136,7 +137,7 @@
                         android:layout_marginLeft="@dimen/spacing_small"
                         android:layout_marginTop="@dimen/spacing_tiny"
                         android:background="@drawable/drawable_border_primary_color"
-                        android:padding="@dimen/spacing_tiny"
+                        android:padding="@dimen/spacing_xxsmall"
                         android:text="Re-schedule"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
@@ -154,7 +155,7 @@
                 android:layout_marginHorizontal="@dimen/spacing_xsmall"
                 android:layout_weight="0.5"
                 android:gravity="end"
-                android:visibility="visible">
+                android:visibility="gone">
 
 
                 <LinearLayout

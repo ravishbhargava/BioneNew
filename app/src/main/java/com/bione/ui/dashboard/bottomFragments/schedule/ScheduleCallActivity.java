@@ -1,13 +1,17 @@
 package com.bione.ui.dashboard.bottomFragments.schedule;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +26,7 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.dashboard.bottomFragments.schedule.adapter.CalendarAdapter;
 import com.bione.ui.dashboard.bottomFragments.schedule.adapter.SlotsAdapter;
+import com.bione.utils.CustomTypefaceSpan;
 import com.bione.utils.Log;
 
 import java.text.ParseException;
@@ -48,6 +53,8 @@ public class ScheduleCallActivity extends BaseActivity {
     private TextView tvSmartDiet;
     private TextView tvFood;
 
+    private AppCompatImageView ivBack;
+
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView recyclerViewHorizontal;
     private CalendarAdapter calendarAdapter;
@@ -72,18 +79,34 @@ public class ScheduleCallActivity extends BaseActivity {
     private String monthToPass;
     private String yearToPass;
 
+    private String counsellorName = "counsellorName";
     private String geneticType = "My Report";
+    private String bookingId = "bookingId";
+    private String category = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_call_new);
 
+
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+//            newString= null;
+        } else {
+            geneticType = extras.getString("geneticType");
+            counsellorName = extras.getString("counsellorName");
+            bookingId = extras.getString("bookingId");
+            category = extras.getString("category");
+
+        }
+
+
         init();
         // horizontal calendar code
         initHorizontalRecyclerView();
         prepareCalendarData();
-//        setScroll(mLayoutManager);
+        setScroll(mLayoutManager);
         setSelectedData(0);
         recyclerClick();
 
@@ -107,6 +130,9 @@ public class ScheduleCallActivity extends BaseActivity {
         relReport = findViewById(R.id.relReport);
         relSmartDiet = findViewById(R.id.relSmartDiet);
 
+        ivBack = findViewById(R.id.ivBack);
+        ivBack.setOnClickListener(this);
+
         llFood.setOnClickListener(this);
         llReport.setOnClickListener(this);
         llSmartDiet.setOnClickListener(this);
@@ -122,6 +148,19 @@ public class ScheduleCallActivity extends BaseActivity {
         recyclerViewHorizontal.setLayoutManager(mLayoutManager);
         calendarAdapter = new CalendarAdapter(this, calendarList);
         recyclerViewHorizontal.setAdapter(calendarAdapter);
+    }
+
+
+    private void setScroll(RecyclerView.LayoutManager mLayoutManager) {
+        recyclerViewHorizontal.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView,
+                                   int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                setCalendarUI(recyclerView, mLayoutManager);
+            }
+        });
     }
 
     private void recyclerClick() {
@@ -368,14 +407,14 @@ public class ScheduleCallActivity extends BaseActivity {
             public void onItemClick(String text) {
 //                tvSelectedSlot.setText(text);
                 Intent intent = new Intent(ScheduleCallActivity.this, CounsellingConfirm.class);
-//                intent.putExtra("category", category);
-//                intent.putExtra("bookingId", bookingId);
+                intent.putExtra("category", category);
+                intent.putExtra("bookingId", bookingId);
                 intent.putExtra("dayToPass", dayToPass);
                 intent.putExtra("dateToPass", dateToPass);
                 intent.putExtra("monthToPass", monthToPass);
                 intent.putExtra("yearToPass", yearToPass);
                 intent.putExtra("geneticType", geneticType);
-                intent.putExtra("counsellorName", "counsellorName");
+                intent.putExtra("counsellorName", counsellorName);
                 intent.putExtra("selectedDateToPass", selectedDateToPass);
                 intent.putExtra("timeToPass", text);
                 intent.putExtra("selectedTimeSlot", text);
@@ -411,6 +450,9 @@ public class ScheduleCallActivity extends BaseActivity {
                 selectTypeText(tvFood, tvReport, tvSmartDiet);
                 break;
 
+            case R.id.ivBack:
+                finish();
+
         }
 
     }
@@ -423,6 +465,22 @@ public class ScheduleCallActivity extends BaseActivity {
 
     private void selectTypeText(TextView tvSelected, TextView tvUnSelected1, TextView tvUnSelected2) {
         tvSelected.setTextColor(getResources().getColor(R.color.pure_black));
+
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "fonts/Poppins-Regular.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Poppins-Bold.ttf");
+
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tvSelected.getText().toString());
+        spannableStringBuilder.setSpan(new CustomTypefaceSpan("", font), 0, tvSelected.getText().length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        tvSelected.setText(spannableStringBuilder);
+
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tvUnSelected1.getText().toString());
+        spannableStringBuilder2.setSpan(new CustomTypefaceSpan("", font2), 0, tvUnSelected1.getText().length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        tvUnSelected1.setText(spannableStringBuilder2);
+
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(tvUnSelected2.getText().toString());
+        spannableStringBuilder3.setSpan(new CustomTypefaceSpan("", font2), 0, tvUnSelected2.getText().length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        tvUnSelected2.setText(spannableStringBuilder3);
+
         tvUnSelected1.setTextColor(getResources().getColor(R.color.text_black_opacity));
         tvUnSelected2.setTextColor(getResources().getColor(R.color.text_black_opacity));
 
@@ -525,6 +583,22 @@ public class ScheduleCallActivity extends BaseActivity {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            Log.d("" + getClass().getSimpleName(), "se aaya");
+            if (data != null) {
+                if (data.getStringExtra("status").equals("Done")) {
+                    Intent intent = new Intent();
+                    intent.putExtra("status", "Done");
+                    setResult(101, intent);
+                    finish();
+                }
+            }
+        }
     }
 
 }

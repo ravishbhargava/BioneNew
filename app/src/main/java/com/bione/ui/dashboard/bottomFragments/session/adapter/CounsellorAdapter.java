@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard.bottomFragments.session.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.counsellors.ListItem;
+import com.bione.ui.dashboard.bottomFragments.schedule.ScheduleCallActivity;
 import com.bione.ui.dashboard.bottomFragments.session.OnclickItemCounsellor;
 import com.bione.utils.Log;
 
@@ -94,7 +96,7 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         holder.tvType.setText(counsellorList.get(position).getGeneticType());
         holder.tvName.setText(counsellorList.get(position).getCustomerName());
 //        holder.tvDate.setText(CommonUtil.getDayMonth(counsellorList.get(position).getDate()));
-        holder.tvDate.setText(counsellorList.get(position).getTimeSlot());
+        holder.tvDate.setText(counsellorList.get(position).getDate() + " | " + counsellorList.get(position).getTimeSlot());
 
         holder.ratingBar.setIsIndicator(true);
         if (counsellorList.get(position).getStarsRatings() == null) {
@@ -164,13 +166,14 @@ public class CounsellorAdapter extends RecyclerView.Adapter<CounsellorAdapter.My
         holder.tvReschedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                listener.onItemClick(position, "Reschedule");
                 if (type.equals("Upcoming")) {
                     Log.d("geneticType", "----" + counsellorList.get(position).getGeneticType());
-//                    Intent intent = new Intent(mContext, ScheduleNow.class);
-//                    intent.putExtra("bookingId", counsellorList.get(position).getMobilecounsellingId());
-//                    intent.putExtra("geneticType", counsellorList.get(position).getGeneticType());
-//                    intent.putExtra("counsellorName", counsellorList.get(position).getCounsellorName());
-//                    mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, ScheduleCallActivity.class);
+                    intent.putExtra("bookingId", counsellorList.get(position).getMobilecounsellingId());
+                    intent.putExtra("geneticType", counsellorList.get(position).getGeneticType());
+                    intent.putExtra("counsellorName", counsellorList.get(position).getCounsellorName());
+                    mContext.startActivity(intent);
 
                 }
             }
