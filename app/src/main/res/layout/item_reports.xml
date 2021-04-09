@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_marginBottom="@dimen/spacing_normal"
+>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_tiny">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="96dp"
+            android:layout_margin="@dimen/spacing_xsmall"
+            android:backgroundTint="#083d44f0"
+            android:elevation="@dimen/spacing_xsmall"
+            app:cardCornerRadius="@dimen/spacing_large">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/bitmap" />
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Smith"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWhom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/spacing_tiny"
+                    android:singleLine="true"
+                    android:text="Self"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_xsmall" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_small">
+
+                <LinearLayout
+                    android:id="@+id/llLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvKitName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MyMicroBiome Test"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
+                        android:singleLine="true"
+                        android:text="Discover &amp; understand your
+gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xsmall" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_button_next_light" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvReported"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reported Date"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/report_date_color"
+                        android:textSize="@dimen/font_xsmall"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvReportedDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
+                        android:singleLine="true"
+                        android:text="22-02-2021"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPurchase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reported Date"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/report_date_color"
+                        android:textSize="@dimen/font_xsmall"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPurchaseDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
+                        android:singleLine="true"
+                        android:text="22-02-2021"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

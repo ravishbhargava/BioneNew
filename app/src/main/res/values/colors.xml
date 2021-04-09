@@ -33,6 +33,10 @@
     <color name="available_text_color">#34a853</color>
 
 
+    <color name="received_payment_color">#34a853</color>
+    <color name="pending_payment_color">#f5a623</color>
+
+    <color name="report_date_color">#525587</color>
     <color name="button_color">#34a853</color>
     <color name="google_background">#EB4132</color>
     <color name="text_black_opacity">#80333333</color>

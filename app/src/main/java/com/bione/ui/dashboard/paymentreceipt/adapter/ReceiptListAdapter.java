@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,9 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.model.CrouselData;
 import com.bione.model.paymentreceiptlist.Receipt;
-import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptActivity;
 import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptViewActivity;
 import com.bione.utils.Log;
 
@@ -44,11 +40,17 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<ReceiptListAdapter.
         public AppCompatTextView tvDate;
         public AppCompatTextView tvName;
         public AppCompatTextView tvTestName;
+        public AppCompatTextView tvAmount;
+        public AppCompatTextView tvBalanceAmount;
+        public AppCompatTextView tvStatus;
 
         public MyViewHolder(View v) {
             super(v);
             view = v;
 
+            tvBalanceAmount = v.findViewById(R.id.tvBalanceAmount);
+            tvStatus = v.findViewById(R.id.tvStatus);
+            tvAmount = v.findViewById(R.id.tvAmount);
             tvNumber = v.findViewById(R.id.tvNumber);
             tvDate = v.findViewById(R.id.tvDate);
             tvName = v.findViewById(R.id.tvName);
@@ -73,12 +75,25 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<ReceiptListAdapter.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
+        Receipt receipt = receiptArrayList.get(position);
 
-        holder.tvTestName.setText(receiptArrayList.get(position).getTestName());
-        holder.tvName.setText(receiptArrayList.get(position).getFirstName());
-        holder.tvDate.setText(receiptArrayList.get(position).getBalanceAmountPaidDate());
-        holder.tvNumber.setText("#" + receiptArrayList.get(position).getReceiptId());
+//        holder.tvAmount.setText("\u20B9" + receipt.getPaidAmount());
+        holder.tvTestName.setText(receipt.getTestName());
+        holder.tvName.setText(receipt.getFirstName());
+        holder.tvDate.setText(receipt.getCreatedAt());
+        holder.tvNumber.setText("#" + receipt.getReceiptId());
 
+        if (receipt.getBalanceAmount().trim().equals("") || receipt.getBalanceAmount().trim().equals("0")) {
+            holder.tvAmount.setText("\u20B9" + receipt.getPaidAmount());
+            holder.tvBalanceAmount.setText("Paid Amount");
+            holder.tvStatus.setText("Received");
+            holder.tvStatus.setBackground(mContext.getResources().getDrawable(R.drawable.background_received));
+        } else {
+            holder.tvAmount.setText("\u20B9" + receipt.getBalanceAmount());
+            holder.tvBalanceAmount.setText("Balance Amount");
+            holder.tvStatus.setText("Pending");
+            holder.tvStatus.setBackground(mContext.getResources().getDrawable(R.drawable.background_pending));
+        }
 
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +102,7 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<ReceiptListAdapter.
                 if (receiptArrayList.get(position).getReceiptUrl() != null) {
                     link = "https://lims.bione.in/pdfreceipts/" + receiptArrayList.get(position).getReceiptUrl();
 //                link = link.replaceAll("\\/", "/");
-                            Log.d("link", "after slash removed------ " + link);
+                    Log.d("link", "after slash removed------ " + link);
 
                     Intent intent = new Intent(mContext, PaymentReceiptViewActivity.class);
                     intent.putExtra("link", link);

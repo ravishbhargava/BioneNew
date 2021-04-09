@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,10 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
+import com.bione.db.CommonData;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.dashboard.bottomFragments.HomeFragment;
-import com.bione.ui.dashboard.bottomFragments.MyReportFragment;
+import com.bione.ui.dashboard.bottomFragments.report.MyReportFragment;
 import com.bione.ui.dashboard.bottomFragments.session.MyCounsellingFragment;
+import com.bione.ui.onboarding.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -67,12 +70,22 @@ public class DashBoardFragment extends BaseFragment {
                             break;
 
                         case R.id.page_2:
-                            openFragment(new MyReportFragment());
+                            if (CommonData.getGuest()) {
+                                Intent intent = new Intent(mContext, LoginActivity.class);
+                                startActivity(intent);
+                            } else {
+                                openFragment(new MyReportFragment());
+                            }
                             break;
 
                         case R.id.page_3:
 //                            openFragment(new SessionsFragment());
-                            openFragment(new MyCounsellingFragment());
+                            if (CommonData.getGuest()) {
+                                Intent intent = new Intent(mContext, LoginActivity.class);
+                                startActivity(intent);
+                            } else {
+                                openFragment(new MyCounsellingFragment());
+                            }
                             break;
                     }
 

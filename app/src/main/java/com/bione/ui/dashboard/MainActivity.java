@@ -605,8 +605,8 @@ public class MainActivity extends BaseActivity {
                     hideShowItem(true);
                     CommonData.saveSalesData(commonResponse.get(0).toResponseModel(Data.class));
                 } else {
-                    hideShowItem(false);
-//                    hideShowItem(true);
+//                    hideShowItem(false);
+                    hideShowItem(true);
                 }
             }
 
