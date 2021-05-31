@@ -34,7 +34,8 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
+import com.bione.ui.dashboard.orderfragment.MyOrdersFragment;
+import com.bione.ui.dashboard.sales.SalesModuleFragment;
 import com.bione.ui.onboarding.LoginActivity;
 import com.bione.ui.onboarding.Splash;
 import com.bione.ui.onboarding.WebviewActivity;
@@ -71,6 +72,7 @@ public class MainActivity extends BaseActivity {
 
     // tags used to attach the fragments
     private static final String TAG_DASH = "Dashboard";
+    private static final String TAG_ORDER = "My Orders";
     private static final String TAG_PROFILE = "Profile";
     private static final String TAG_CHAT = "Chat";
     private static final String TAG_FAQ = "Faq";
@@ -250,18 +252,24 @@ public class MainActivity extends BaseActivity {
                 return dashboardFragment;
 
             case 1:
+
+                // Otrders fragment
+                MyOrdersFragment myOrdersFragment = new MyOrdersFragment();
+                return myOrdersFragment;
+
+            case 2:
                 // PROFILE fragment
                 ProfileFragment profileFragment = new ProfileFragment();
                 return profileFragment;
 
-            case 2:
+            case 3:
 
                 // Payment Receipt
-                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
+                SalesModuleFragment customerReceiptFragment = new SalesModuleFragment();
 //                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
                 return customerReceiptFragment;
 
-            case 3:
+            case 4:
                 // CHAT fragment
 //                ZohoSalesIQ.Chat.show();
                 ChatFragment chatFragment = new ChatFragment();
@@ -269,12 +277,12 @@ public class MainActivity extends BaseActivity {
 //                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
 //                return customerReceiptFragment;
 
-            case 4:
+            case 5:
                 // FAQ fragment
                 FaqFragment faqFragment = new FaqFragment();
                 return faqFragment;
 
-            case 5:
+            case 6:
                 // Session fragment
                 MyCounsellingFragment sessionFragment = new MyCounsellingFragment();
                 return sessionFragment;
@@ -321,13 +329,18 @@ public class MainActivity extends BaseActivity {
                         CURRENT_TAG = TAG_DASH;
                         break;
 
+                    case R.id.nav_orders:
+                        navItemIndex = 1;
+                        CURRENT_TAG = TAG_ORDER;
+                        break;
+
                     case R.id.nav_profile:
                         if (CommonData.getGuest()) {
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             startActivity(intent);
                             drawer.closeDrawers();
                         } else {
-                            navItemIndex = 1;
+                            navItemIndex = 2;
                             CURRENT_TAG = TAG_PROFILE;
                         }
                         break;
@@ -338,7 +351,7 @@ public class MainActivity extends BaseActivity {
 //                        break;
 
                     case R.id.nav_chat:
-                        navItemIndex = 3;
+                        navItemIndex = 4;
                         CURRENT_TAG = TAG_CHAT;
                         break;
 
@@ -348,7 +361,7 @@ public class MainActivity extends BaseActivity {
 //                        break;
 
                     case R.id.nav_receipt:
-                        navItemIndex = 2;
+                        navItemIndex = 3;
                         CURRENT_TAG = TAG_CUSTOMER_RECEIPT;
 
                         break;

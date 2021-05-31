@@ -27,12 +27,16 @@
     <color name="border_light_grey">#E4E4E5</color>
 
 
+    <color name="pending_status_color">#d0021b</color>
+    <color name="activated_status_color">#249234</color>
+
     <color name="rating_session_color">#f5a623</color>
     <color name="cancel_session_color">#d0021b</color>
     <color name="available_session_color">#4eaf46</color>
     <color name="available_text_color">#34a853</color>
 
 
+    <color name="item_sales_module_background_color">#f3f4f8</color>
     <color name="received_payment_color">#34a853</color>
     <color name="pending_payment_color">#f5a623</color>
 

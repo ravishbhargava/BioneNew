@@ -51,16 +51,22 @@ android {
 //            buildConfigField 'String', 'BASE_URL', '"https://reqres.in"'
 //            buildConfigField 'String', 'BASE_URL', '"https://staging.bione.in/"'
             buildConfigField 'String', 'BASE_URL', '"https://bione.in/"'
+            buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
         qa {
             buildConfigField 'String', 'BASE_URL', '"YOUR TEST URL"'
+            buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
         live {
             buildConfigField 'String', 'BASE_URL', '"https://bione.in/"'
+            buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
         }
 //        applicationVariants.all { variant ->

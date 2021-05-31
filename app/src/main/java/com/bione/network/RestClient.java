@@ -29,6 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static com.bione.BuildConfig.BASE_URL;
+import static com.bione.BuildConfig.BASE_URL_LIMBS;
+import static com.bione.BuildConfig.BASE_URL_MYMICRO;
 
 
 /**
@@ -44,9 +46,10 @@ public final class RestClient {
     private static final Integer SSL_KEY_PASSWORD_STRING_ID = 0;
     private static Retrofit retrofit = null;
     private static Retrofit retrofit2 = null;
+    private static Retrofit retrofit3 = null;
     private static Retrofit retrofitWithIncreaseTimeout = null;
     //Integer SSL_KEY_PASSWORD_STRING_ID = R.string.sslKeyPassword;
-    private static boolean isBaseUrl = true;
+    private static int isBaseUrl = 0;
 
     /**
      * Prevent instantiation
@@ -60,7 +63,7 @@ public final class RestClient {
      * @return object of ApiInterface
      */
     public static ApiInterface getApiInterface() {
-        isBaseUrl = true;
+        isBaseUrl = 0;
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
@@ -82,13 +85,13 @@ public final class RestClient {
      * @return object of ApiInterface
      */
     public static ApiInterface getApiInterface2() {
-        isBaseUrl = false;
+        isBaseUrl = 1;
         if (retrofit2 == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
             retrofit2 = new Retrofit.Builder()
-                    .baseUrl("https://lims.bione.in/")
+                    .baseUrl(BASE_URL_LIMBS)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .client(httpClient().build())
@@ -98,6 +101,27 @@ public final class RestClient {
         return retrofit2.create(ApiInterface.class);
     }
 
+    /**
+     * Gets api interface.
+     *
+     * @return object of ApiInterface
+     */
+    public static ApiInterface getApiInterface3() {
+        isBaseUrl = 2;
+        if (retrofit3 == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofit3 = new Retrofit.Builder()
+                    .baseUrl(BASE_URL_MYMICRO)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .client(httpClient().build())
+//                    .client(secureConnection().build())
+                    .build();
+        }
+        return retrofit3.create(ApiInterface.class);
+    }
 
     /**
      * @return object of OkHttpClient.Builder
@@ -135,7 +159,7 @@ public final class RestClient {
      * @return object of Retrofit
      */
     static Retrofit getRetrofitBuilder() {
-        if (isBaseUrl) {
+        if (isBaseUrl == 0) {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
@@ -145,16 +169,26 @@ public final class RestClient {
                         .build();
             }
             return retrofit;
-        } else {
+        } else if (isBaseUrl == 1) {
             if (retrofit2 == null) {
                 retrofit2 = new Retrofit.Builder()
-                        .baseUrl("https://lims.bione.in/")
+                        .baseUrl(BASE_URL_LIMBS)
                         .addConverterFactory(GsonConverterFactory.create())
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .client(httpClient().build())
                         .build();
             }
             return retrofit2;
+        } else {
+            if (retrofit3 == null) {
+                retrofit3 = new Retrofit.Builder()
+                        .baseUrl(BASE_URL_MYMICRO)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .client(httpClient().build())
+                        .build();
+            }
+            return retrofit3;
         }
     }
 

@@ -91,6 +91,7 @@
     <!-- Navigation Drawer menu labels -->
     <string name="nav_profile">My Profile</string>
     <string name="nav_dashboard">My Dashboard</string>
+    <string name="nav_orders">My Orders</string>
     <string name="nav_mysessions">MySessions</string>
     <string name="nav_chat">Chat with us</string>
     <string name="nav_logout">Log out</string>
@@ -108,6 +109,7 @@
 
     <string-array name="nav_item_activity_titles">
         <item>My Dashboard</item>
+        <item>My Orders</item>
         <item>My Profile</item>
         <item>Payment Receipt</item>
         <item>Chat with us</item>

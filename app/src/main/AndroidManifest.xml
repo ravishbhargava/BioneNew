@@ -79,7 +79,10 @@
             android:name=".ui.dashboard.bottomFragments.schedule.CounsellingConfirm"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-
+        <activity
+            android:name=".ui.dashboard.orderfragment.KitDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
 
 

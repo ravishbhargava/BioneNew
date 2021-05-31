@@ -30,9 +30,6 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
-import com.bione.model.counsellors.Counselling;
-import com.bione.model.customerkit.CustomerKit;
-
 
 /**
  * Developer: Bione
@@ -116,6 +113,9 @@ public interface ApiInterface {
 
     @GET("/rest/V1/bioneapi/kitorderlist")
     Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+
+//    @POST("/rest//V1/customers")
+//    Call<UpdateProfile> createAccount(@Body RequestBody json);
 
 
 

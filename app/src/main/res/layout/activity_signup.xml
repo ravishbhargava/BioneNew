@@ -10,7 +10,9 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/spacing_normal">
+        android:padding="@dimen/spacing_normal"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -113,8 +115,8 @@
                 android:id="@+id/llCountryCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/spacing_tiny"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.hbb20.CountryCodePicker
@@ -125,9 +127,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/textInputLayout"
+                    android:layout_marginTop="0dp"
                     android:baselineAligned="true"
                     android:hint="Phone Number"
-                    android:layout_marginTop="0dp"
                     app:boxStrokeColor="@color/colorPrimary"
                     app:boxStrokeWidth="1dp">
 

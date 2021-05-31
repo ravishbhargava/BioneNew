@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+
+    <include layout="@layout/include_header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="Hi John \nKit Status"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_xxxlarge"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_normal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitNameHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:padding="@dimen/spacing_small"
+            android:paddingEnd="0dp"
+            android:text="Kit Name"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@+id/tvKitNameHeader"
+            android:layout_weight="0.55"
+            android:padding="@dimen/spacing_small"
+            android:text="MyMicrobiome Kit"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/spacing_normal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitStatusHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:gravity="start"
+            android:padding="@dimen/spacing_small"
+            android:text="Kit Status"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@+id/tvKitStatusHeader"
+            android:layout_weight="0.55"
+            android:background="@drawable/background_available"
+            android:gravity="center"
+            android:padding="@dimen/spacing_small"
+            android:text="Activated"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_xxlarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_normal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitSampleIdHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:padding="@dimen/spacing_small"
+            android:text="Sample Id"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSampleId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@+id/tvKitSampleIdHeader"
+            android:layout_weight="0.55"
+            android:padding="@dimen/spacing_small"
+
+            android:text="MMUTSU8738"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_normal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_normal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvKitSampleStatusHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:padding="@dimen/spacing_small"
+            android:text="Sample Status"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_xxlarge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSampleStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvKitSampleStatusHeader"
+            android:layout_weight="0.55"
+            android:background="@drawable/background_not_available"
+            android:gravity="center"
+            android:padding="@dimen/spacing_small"
+            android:text="Pending"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_xxlarge" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTrack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/drawable_border_primary"
+
+        android:elevation="5dp"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="Track Your Report"
+
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large" />
+
+</LinearLayout>

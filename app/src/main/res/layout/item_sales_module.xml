@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/sales_module_item_background"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_small" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="Sample\nRequest Form"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:src="@drawable/ic_sample_form" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/sales_module_item_background"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_small" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="TRF"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:src="@drawable/ic_trf" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/sales_module_item_background"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_small" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="Payment\nReceipt"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingRight="@dimen/spacing_large"
+                    android:src="@drawable/ic_payment_receipt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/sales_module_item_background"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/font_small" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="Sales Team"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+
+
+                    android:src="@drawable/ic_sales_team" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

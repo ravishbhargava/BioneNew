@@ -6,6 +6,10 @@
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_icon_my_orders"
             android:title="@string/nav_dashboard" />
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_icon_my_orders"
+            android:title="@string/nav_orders" />
 
         <item
             android:id="@+id/nav_profile"
