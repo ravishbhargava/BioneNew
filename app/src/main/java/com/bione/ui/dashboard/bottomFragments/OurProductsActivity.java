@@ -82,7 +82,7 @@ public class OurProductsActivity extends BaseActivity {
         data.setUrl("");
 
         CrouselData data1 = new CrouselData();
-        data1.setDrawable(R.drawable.image_longevity);
+        data1.setDrawable(R.drawable.longivity_3d);
 //        data1.setDrawableTest(R.drawable.bitmap);
         data1.setHeadingTest("Longevity Plus\nTest");
         data1.setHeading("Longevity Plus Test");
@@ -93,7 +93,7 @@ public class OurProductsActivity extends BaseActivity {
         data1.setUrl("https://www.bione.in/longevity-plus-test");
 
         CrouselData data2 = new CrouselData();
-        data2.setDrawable(R.drawable.image_microbiome);
+        data2.setDrawable(R.drawable.mymicrobiome_3d);
 //        data2.setDrawableTest(R.drawable.bitmap);
         data2.setHeadingTest("MyMicrobiome\nTest");
         data2.setHeading("MyMicrobiome Test");
@@ -104,7 +104,7 @@ public class OurProductsActivity extends BaseActivity {
         data2.setUrl("https://www.bione.in/mymicrobiome-test");
 
         CrouselData data3 = new CrouselData();
-        data3.setDrawable(R.drawable.image_longifit);
+        data3.setDrawable(R.drawable.longifit_3d);
 //        data3.setDrawableTest(R.drawable.bitmap);
         data3.setHeadingTest("LongiFit\nTest");
         data3.setHeading("LongiFit");
@@ -150,9 +150,9 @@ public class OurProductsActivity extends BaseActivity {
 //        crouselDataArrayList.add(data);   //empty
         crouselDataArrayList.add(data2);   //My Micro Biome
         crouselDataArrayList.add(data3);   //LongiFit
-        crouselDataArrayList.add(data4);   //Gene-Check
         crouselDataArrayList.add(data1);   //Longevity Plus
-        crouselDataArrayList.add(data5);   //Clinical Genetic test
+//        crouselDataArrayList.add(data4);   //Gene-Check
+//        crouselDataArrayList.add(data5);   //Clinical Genetic test
 //        crouselDataArrayList.add(data6);   //empty
     }
 }

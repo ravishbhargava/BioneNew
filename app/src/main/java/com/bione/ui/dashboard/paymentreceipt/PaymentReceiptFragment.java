@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.db.CommonData;
 import com.bione.model.paymentreceiptlist.Receipt;
 import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.network.ApiError;
@@ -73,8 +74,8 @@ public class PaymentReceiptFragment extends BaseFragment {
 
     public void receiptList() {
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
-                .add(PARAM_EMAIL, "vipin@bione.in")
+                .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
+//                .add(PARAM_EMAIL, "vipin@bione.in")
                 .build();
 
         RestClient.getApiInterface2().paymentReceiptList(commonParams.getMap()).enqueue(new ResponseResolver<ReceiptList>() {

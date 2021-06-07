@@ -35,7 +35,7 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.dashboard.orderfragment.MyOrdersFragment;
-import com.bione.ui.dashboard.sales.SalesModuleFragment;
+import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
 import com.bione.ui.onboarding.LoginActivity;
 import com.bione.ui.onboarding.Splash;
 import com.bione.ui.onboarding.WebviewActivity;
@@ -265,8 +265,8 @@ public class MainActivity extends BaseActivity {
             case 3:
 
                 // Payment Receipt
-                SalesModuleFragment customerReceiptFragment = new SalesModuleFragment();
-//                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
+//                SalesModuleFragment customerReceiptFragment = new SalesModuleFragment();
+                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
                 return customerReceiptFragment;
 
             case 4:
@@ -618,8 +618,8 @@ public class MainActivity extends BaseActivity {
                     hideShowItem(true);
                     CommonData.saveSalesData(commonResponse.get(0).toResponseModel(Data.class));
                 } else {
-//                    hideShowItem(false);
-                    hideShowItem(true);
+                    hideShowItem(false);
+//                    hideShowItem(true);
                 }
             }
 
