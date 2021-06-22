@@ -145,7 +145,7 @@ public class HomeFragment extends BaseFragment {
         data.setUrl("");
 
         CrouselData data1 = new CrouselData();
-        data1.setDrawable(R.drawable.longivity_3d);
+        data1.setDrawable(R.drawable.lp);
 //        data1.setDrawableTest(R.drawable.bitmap);
         data1.setHeadingTest("Longevity Plus\nTest");
         data1.setHeading("Longevity Plus Test");
@@ -156,7 +156,7 @@ public class HomeFragment extends BaseFragment {
         data1.setUrl("https://www.bione.in/longevity-plus-test");
 
         CrouselData data2 = new CrouselData();
-        data2.setDrawable(R.drawable.mymicrobiome_3d);
+        data2.setDrawable(R.drawable.mmb);
 //        data2.setDrawableTest(R.drawable.bitmap);
         data2.setHeadingTest("MyMicrobiome\nTest");
         data2.setHeading("MyMicrobiome Test");
@@ -167,7 +167,7 @@ public class HomeFragment extends BaseFragment {
         data2.setUrl("https://www.bione.in/mymicrobiome-test");
 
         CrouselData data3 = new CrouselData();
-        data3.setDrawable(R.drawable.longifit_3d);
+        data3.setDrawable(R.drawable.lf);
 //        data3.setDrawableTest(R.drawable.bitmap);
         data3.setHeadingTest("LongiFit\nTest");
         data3.setHeading("LongiFit");

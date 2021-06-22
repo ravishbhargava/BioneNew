@@ -23,6 +23,7 @@ public final class AppConstant {
     public static final String PARAM_CURRENTEMAIL = "currentemail";
     public static final String PARAM_NEWEMAIL = "newemail";
     public static final String PARAM_MOBILE = "mobile";
+    public static final String PARAM_COUNTRY_CODE = "countrycode";
     public static final String PARAM_PHONE = "phone";
     public static final String PARAM_EMAIL = "email";
     public static final String PARAM_TEMPLATE = "template";

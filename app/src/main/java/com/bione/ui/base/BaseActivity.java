@@ -40,6 +40,7 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import static com.bione.utils.AppConstant.PARAM_COUNTRY_CODE;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 //import com.bione.db.CommonData;
 //import com.bione.model.CommonResponse;
@@ -221,10 +222,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return super.onOptionsItemSelected(item);
     }
 
-    public void callSendOtp(final String phoneNumber, final boolean resend) {
+    public void callSendOtp(final String phoneNumber,  final String countryCode,final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+                .add(PARAM_COUNTRY_CODE, "" + countryCode)
+                .add(PARAM_MOBILE, "" + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override

@@ -8,7 +8,6 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.db.CommonData;
-import com.bione.model.counsellors.ListItem;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.customerkit.KitOrder;
 import com.bione.network.ApiError;
@@ -27,9 +25,7 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
-import com.bione.ui.dashboard.orderfragment.adapter.MyOrderPagerAdapter;
 import com.bione.utils.CustomTypefaceSpan;
-import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
@@ -38,23 +34,24 @@ import java.util.List;
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER;
 import static com.bione.utils.AppConstant.SUCCESS;
 
-public class MyOrdersFragment extends BaseFragment {
+public class MyOrderListFragment extends BaseFragment {
 
     private Context mContext;
     private View rootView;
     private AppCompatTextView tvHead;
     private AppCompatImageView noItemImage;
 
-    private CustomViewPager viewPager;
-    private TextView tvUpcoming;
-    private TextView tvPast;
-    private ArrayList<ListItem> counsellorsList = new ArrayList<>();
 
     private KitAdapter mAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
     private ArrayList<KitOrder> kitOrders = new ArrayList<>();
+    private MyOrdersFragment.getCounsellingListListener listener;
+
+    public MyOrderListFragment(MyOrdersFragment.getCounsellingListListener listener) {
+        this.listener = listener;
+    }
 
 
     @Override
@@ -73,33 +70,12 @@ public class MyOrdersFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_my_orders, container, false);
+            rootView = inflater.inflate(R.layout.fragment_my_order_list, container, false);
 
             tvHead = rootView.findViewById(R.id.tvHead);
             noItemImage = rootView.findViewById(R.id.noItemImage);
 
-            tvUpcoming = rootView.findViewById(R.id.tvUpcoming);
-            tvPast = rootView.findViewById(R.id.tvPast);
-
-            initViewPager();
             callAPI();
-
-            tvUpcoming.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewPager.setCurrentItem(0);
-                    upcomingSelected(tvUpcoming, tvPast);
-                }
-            });
-
-
-            tvPast.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewPager.setCurrentItem(1);
-                    pastSelected(tvPast, tvUpcoming);
-                }
-            });
         }
         return rootView;
     }
@@ -107,39 +83,6 @@ public class MyOrdersFragment extends BaseFragment {
     @Override
     public void onClick(View view) {
 
-    }
-
-    private void initViewPager() {
-        viewPager = rootView.findViewById(R.id.viewpager);
-        viewPager.setOffscreenPageLimit(2);
-        viewPager.setPagingEnabled(false);
-
-
-        // setting viewPager's pages
-        final MyOrderPagerAdapter adapter = new MyOrderPagerAdapter(getChildFragmentManager(), 2, new getCounsellingListListener() {
-            @Override
-            public void onItemClick(String text) {
-
-            }
-        });
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0);
-    }
-
-    private void upcomingSelected(final TextView tvPressed, final TextView tvUnPressed) {
-        tvPressed.setBackgroundResource(R.drawable.drawable_left_border_selected);
-        tvPressed.setTextColor(getResources().getColor(R.color.white));
-
-        tvUnPressed.setBackgroundResource(R.drawable.drawable_right_border_unselected);
-        tvUnPressed.setTextColor(getResources().getColor(R.color.colorPrimary));
-    }
-
-    private void pastSelected(final TextView tvPressed, final TextView tvUnPressed) {
-        tvPressed.setBackgroundResource(R.drawable.drawable_right_border_selected);
-        tvPressed.setTextColor(getResources().getColor(R.color.white));
-
-        tvUnPressed.setBackgroundResource(R.drawable.drawable_left_border_unselected);
-        tvUnPressed.setTextColor(getResources().getColor(R.color.colorPrimary));
     }
 
     private void setHeadText(Boolean haveItems) {
@@ -239,9 +182,5 @@ public class MyOrdersFragment extends BaseFragment {
                 showErrorMessage(throwable.getMessage());
             }
         });
-    }
-
-    public interface getCounsellingListListener {
-        void onItemClick(final String text);
     }
 }

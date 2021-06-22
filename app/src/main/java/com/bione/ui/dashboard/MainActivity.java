@@ -539,7 +539,8 @@ public class MainActivity extends BaseActivity {
     public void callVerifyMobile(final String phoneNumber, final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+//                .add(PARAM_COUNTRY_CODE, "91")
+                .add(PARAM_MOBILE,  "91"+phoneNumber).build();
 
         RestClient.getApiInterface().sendOtpRegister(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override

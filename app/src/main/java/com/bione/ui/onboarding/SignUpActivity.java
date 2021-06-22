@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import static com.bione.utils.AppConstant.PARAM_COUNTRY_CODE;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
 
@@ -148,7 +149,7 @@ public class SignUpActivity extends BaseActivity {
 
             case R.id.tvSendOtp:
                 if (!etPhoneNumber.getText().toString().isEmpty()) {
-                    callSendOtp(etPhoneNumber.getText().toString(), false);
+                    callSendOtp(etPhoneNumber.getText().toString(), ccp.getSelectedCountryCode(), false);
                 } else {
                     showErrorMessage("Please enter mobile number");
                 }
@@ -288,11 +289,12 @@ public class SignUpActivity extends BaseActivity {
     }
 
 
-    public void callSendOtp(final String phoneNumber, final boolean resend) {
+    public void callSendOtp(final String phoneNumber, final String countryCode, final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "" + phoneNumber).build();
-                .add(PARAM_MOBILE, ccp.getSelectedCountryCode() + phoneNumber).build();
+                .add(PARAM_COUNTRY_CODE, "" + countryCode)
+                .add(PARAM_MOBILE, "" + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtpRegister(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override

@@ -54,6 +54,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.bione.utils.AppConstant.PARAM_COUNTRY_CODE;
 import static com.bione.utils.AppConstant.PARAM_EMAIL;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
@@ -212,7 +213,7 @@ public class LoginActivity extends BaseActivity {
 
             case R.id.tvResendOtp:
                 if (ValidationUtil.checkPhone(phoneNumber)) {
-                    callSendOtp(phoneNumber, false);
+                    callSendOtp(phoneNumber,ccp.getSelectedCountryCode(), false);
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
                 }
@@ -240,7 +241,7 @@ public class LoginActivity extends BaseActivity {
                     phoneNumber = etMobile.getText().toString();
                     if (tvLogin.getText().equals("GET OTP")) {
                         if (ValidationUtil.checkPhone(phoneNumber)) {
-                            callSendOtp(phoneNumber, false);
+                            callSendOtp(phoneNumber, ccp.getSelectedCountryCode(),false);
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
                         }
@@ -478,11 +479,12 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    public void callSendOtp(final String phoneNumber, final boolean resend) {
+    public void callSendOtp(final String phoneNumber,final String countryCode, final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "" + phoneNumber).build();
-                .add(PARAM_MOBILE, "" + ccp.getSelectedCountryCode() + phoneNumber).build();
+                .add(PARAM_COUNTRY_CODE, "" + countryCode)
+                        .add(PARAM_MOBILE, "" + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override
