@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bione.R;
 import com.bione.db.CommonData;
+import com.bione.model.BarCodeStatus;
 import com.bione.model.CommonResponse;
 import com.bione.model.customerdata.Customer;
 import com.bione.model.updateprofile.UpdateProfile;
@@ -27,11 +28,13 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.dashboard.MainActivity;
+import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
 import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 import com.bione.utils.ProgressDialog;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -222,7 +225,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return super.onOptionsItemSelected(item);
     }
 
-    public void callSendOtp(final String phoneNumber,  final String countryCode,final boolean resend) {
+    public void callSendOtp(final String phoneNumber, final String countryCode, final boolean resend) {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_COUNTRY_CODE, "" + countryCode)
@@ -259,6 +262,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         });
 
     }
+
+
 
     public void createAccountSignUp(final Activity activity, final JSONObject jsonObject, final boolean isSocialSignUp) {
         showLoading();

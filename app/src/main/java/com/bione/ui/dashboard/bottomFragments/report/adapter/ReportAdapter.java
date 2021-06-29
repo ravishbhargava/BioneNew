@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard.bottomFragments.report.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,21 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.model.BarCodeStatus;
 import com.bione.model.customerOrders.KitOrder;
+import com.bione.network.ApiError;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
+import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
+import com.bione.utils.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.bottomFragments.report.adapter.ReportAdapter.MyViewHolder> {
 
@@ -65,18 +78,7 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
             holder.llMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    if (customerKits.get(position).getReportUrl() != null) {
-//                        if (!customerKits.get(position).getReportUrl().equals("")) {
-////                            Intent intent = new Intent(mContext, ReportPDFViewActivity.class);
-////                            intent.putExtra("barCode", customerKits.get(position).getBarCode());
-////                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                            mContext.startActivity(intent);
-//                        } else {
-//                            callDummy();
-//                        }
-//                    } else {
-//                        callDummy();
-//                    }
+                   barCodeStatusAPI(customerKits.get(position).getBarCode());
                 }
             });
         }
@@ -126,6 +128,47 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
             ivKit = v.findViewById(R.id.ivKit);
             llMain = v.findViewById(R.id.llMain);
         }
+    }
+
+    public void barCodeStatusAPI( final String barcode) {
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", barcode);
+//            jsonObject.put("id", "MMFEA1ZZZ161");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface3().barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+            @Override
+            public void onSuccess(BarCodeStatus commonResponse) {
+
+                Log.d("onSuccess ----- aaya ", "ki nhi???");
+                Log.d("getReportUrl ----- aaya ", commonResponse.getReportUrl());
+                if (commonResponse.getReportUrl() != null) {
+                    Intent intent = new Intent(mContext, ReportPdfViewActivity.class);
+                    intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                Toast.makeText(mContext, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                Toast.makeText(mContext, "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -1,181 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_normal">
+    android:background="#f4f4fa"
+    android:orientation="vertical">
 
 
     <include layout="@layout/include_header" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:text="Hi John \nKit Status"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_xxxlarge"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/header"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivKit"
+            android:layout_width="250dp"
+            android:layout_height="220dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bitmap" />
+    </RelativeLayout>
+
 
     <LinearLayout
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_normal"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/drawable_border_top"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xlarge"
+        android:paddingBottom="@dimen/spacing_xlarge">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitNameHeader"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:padding="@dimen/spacing_small"
-            android:paddingEnd="0dp"
-            android:text="Kit Name"
-            android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_toRightOf="@+id/tvKitNameHeader"
-            android:layout_weight="0.55"
-            android:padding="@dimen/spacing_small"
-            android:text="MyMicrobiome Kit"
-            android:textAppearance="@style/CustomTextAppearance.Medium"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_margin="@dimen/spacing_normal"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitStatusHeader"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:gravity="start"
-            android:padding="@dimen/spacing_small"
-            android:text="Kit Status"
-            android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_toRightOf="@+id/tvKitStatusHeader"
-            android:layout_weight="0.55"
-            android:background="@drawable/background_available"
-            android:gravity="center"
-            android:padding="@dimen/spacing_small"
+            android:background="@drawable/background_received"
+            android:padding="@dimen/spacing_tiny"
             android:text="Activated"
-            android:textAppearance="@style/CustomTextAppearance.Medium"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_xxlarge" />
-    </LinearLayout>
+            android:textSize="@dimen/font_small"
+            android:visibility="gone" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/spacing_normal"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activated"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textColor="#249234"
+                android:textSize="@dimen/font_small" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small">
+
+            <LinearLayout
+                android:id="@+id/llLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKitName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MyMicroBiome Test"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xlarge"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKitId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:maxWidth="100dp"
+                    android:singleLine="true"
+                    android:text="MMBFVD1ZZ121"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="#801a1824"
+                    android:textSize="@dimen/font_small" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/spacing_normal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvReported"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Activated By"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="#801a1824"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvActivatedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maria"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_normal" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSecondStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registered"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textColor="#458bfe"
+                android:textSize="@dimen/font_normal" />
+
+        </RelativeLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitSampleIdHeader"
-            android:layout_width="0dp"
+            android:id="@+id/tvTrack"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:padding="@dimen/spacing_small"
-            android:text="Sample Id"
-            android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSampleId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_toRightOf="@+id/tvKitSampleIdHeader"
-            android:layout_weight="0.55"
-            android:padding="@dimen/spacing_small"
-
-            android:text="MMUTSU8738"
-            android:textAppearance="@style/CustomTextAppearance.Medium"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/spacing_normal"
-        android:orientation="horizontal"
-        android:weightSum="1">
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/spacing_normal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvKitSampleStatusHeader"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:padding="@dimen/spacing_small"
-            android:text="Sample Status"
-            android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/report_date_color"
-            android:textSize="@dimen/font_xxlarge" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSampleStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tvKitSampleStatusHeader"
-            android:layout_weight="0.55"
-            android:background="@drawable/background_not_available"
+            android:layout_margin="@dimen/spacing_xlarge"
+            android:background="@drawable/drawable_border_primary"
+            android:drawableRight="@drawable/ic_arrow_right_primary"
+            android:elevation="5dp"
             android:gravity="center"
             android:padding="@dimen/spacing_small"
-            android:text="Pending"
-            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:text="Track Your Report"
+            android:textAppearance="@style/CustomTextAppearance.Bold"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_xxlarge" />
+            android:textSize="@dimen/font_large"
+            app:textAllCaps="true" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTrack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:background="@drawable/drawable_border_primary"
 
-        android:elevation="5dp"
-        android:gravity="center"
-        android:padding="@dimen/spacing_small"
-        android:text="Track Your Report"
-
-        android:textAppearance="@style/CustomTextAppearance.Bold"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_large" />
-
-</LinearLayout>
+</RelativeLayout>

@@ -99,7 +99,7 @@ public class MyKitListFragment extends BaseFragment {
             noItemImage.setVisibility(View.GONE);
         } else {
             second = "You have placed no \norders";
-            noItemImage.setVisibility(View.VISIBLE);
+            noItemImage.setVisibility(View.GONE);
         }
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Poppins-Regular.ttf");
@@ -129,8 +129,8 @@ public class MyKitListFragment extends BaseFragment {
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "585")
+                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+//                .add(PARAM_CUSTOMER, "585")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {

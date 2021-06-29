@@ -1,6 +1,7 @@
 package com.bione.network;
 
 
+import com.bione.model.BarCodeStatus;
 import com.bione.model.CommonResponse;
 import com.bione.model.PaymentReceipt;
 import com.bione.model.availableSlots.Slot;
@@ -79,6 +80,9 @@ public interface ApiInterface {
 
     @POST("/rest/V1/bione/veryfyotp")
     Call<List<CommonResponse>> verifyMobile(@QueryMap Map<String, String> map);
+
+    @POST("/barcodestatus/")
+    Call<BarCodeStatus> barcodeStatus(@Body RequestBody json);
 
 
     @GET("/rest/V1/customers/me")

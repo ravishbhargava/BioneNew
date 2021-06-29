@@ -14,7 +14,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-
 import com.bione.model.customerOrders.KitOrder;
 import com.bione.ui.dashboard.orderfragment.KitDetailActivity;
 
@@ -88,6 +87,7 @@ public class KitListAdapter extends RecyclerView.Adapter<KitListAdapter.MyViewHo
                 intent.putExtra("kitName", customerKits.get(position).getKitName());
                 intent.putExtra("kiStatus", customerKits.get(position).getActivationStatus());
                 intent.putExtra("sampleId", customerKits.get(position).getBarCode());
+                intent.putExtra("data",  (KitOrder)customerKits.get(position));
                 mContext.startActivity(intent);
             }
         });

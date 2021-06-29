@@ -3,8 +3,10 @@ package com.bione.model.customerOrders;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class KitOrder {
+
+public class KitOrder implements Serializable {
 
 @SerializedName("bioneorders_id")
 @Expose

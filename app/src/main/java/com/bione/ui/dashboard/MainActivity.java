@@ -330,8 +330,14 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.nav_orders:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_ORDER;
+                        if (CommonData.getGuest()) {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            drawer.closeDrawers();
+                        } else {
+                            navItemIndex = 1;
+                            CURRENT_TAG = TAG_ORDER;
+                        }
                         break;
 
                     case R.id.nav_profile:

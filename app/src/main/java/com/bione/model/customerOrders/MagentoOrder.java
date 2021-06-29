@@ -4,8 +4,10 @@ package com.bione.model.customerOrders;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class MagentoOrder {
+
+public class MagentoOrder implements Serializable {
 
 @SerializedName("increment_id")
 @Expose
