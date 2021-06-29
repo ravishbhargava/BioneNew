@@ -9,11 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.model.customerkit.KitOrder;
+import com.bione.model.customerOrders.KitOrder;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,6 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
     private Context mContext;
     private ArrayList<KitOrder> customerKits;
 
-    public ReportAdapter(final Context context) {
-        this.mContext = context;
-    }
 
     public ReportAdapter(final Context context, final ArrayList<KitOrder> customerKits) {
         this.mContext = context;
@@ -53,21 +51,32 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
         } else {
 //            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
             holder.tvDetail.setText("Bar Code: " + customerKits.get(position).getBarCode());
+
+            if (customerKits.get(position).getSkuCode().equals("LP")) {
+                holder.ivKit.setImageResource(R.drawable.lp);
+            } else if (customerKits.get(position).getSkuCode().equals("LF")) {
+                holder.ivKit.setImageResource(R.drawable.lf);
+            } else if (customerKits.get(position).getSkuCode().equals("MM")) {
+                holder.ivKit.setImageResource(R.drawable.mmb);
+            } else {
+                holder.ivKit.setImageResource(R.drawable.mmb);
+            }
+
             holder.llMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (customerKits.get(position).getReportUrl() != null) {
-                        if (!customerKits.get(position).getReportUrl().equals("")) {
-//                            Intent intent = new Intent(mContext, ReportPDFViewActivity.class);
-//                            intent.putExtra("barCode", customerKits.get(position).getBarCode());
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            mContext.startActivity(intent);
-                        } else {
-                            callDummy();
-                        }
-                    } else {
-                        callDummy();
-                    }
+//                    if (customerKits.get(position).getReportUrl() != null) {
+//                        if (!customerKits.get(position).getReportUrl().equals("")) {
+////                            Intent intent = new Intent(mContext, ReportPDFViewActivity.class);
+////                            intent.putExtra("barCode", customerKits.get(position).getBarCode());
+////                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                            mContext.startActivity(intent);
+//                        } else {
+//                            callDummy();
+//                        }
+//                    } else {
+//                        callDummy();
+//                    }
                 }
             });
         }
@@ -100,8 +109,8 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
         private AppCompatTextView tvReportedDate;
         private AppCompatTextView tvPurchaseDate;
         private TextView tvKitName;
-//        private TextView tvKitId;
-//        private AppCompatImageView ivKit;
+        //        private TextView tvKitId;
+        private AppCompatImageView ivKit;
         private LinearLayout llMain;
 
         public MyViewHolder(View v) {
@@ -114,7 +123,7 @@ public class ReportAdapter extends RecyclerView.Adapter<com.bione.ui.dashboard.b
             tvReportedDate = v.findViewById(R.id.tvReportedDate);
             tvPurchaseDate = v.findViewById(R.id.tvPurchaseDate);
 //            tvKitId = v.findViewById(R.id.tvKitId);
-//            ivKit = v.findViewById(R.id.ivKit);
+            ivKit = v.findViewById(R.id.ivKit);
             llMain = v.findViewById(R.id.llMain);
         }
     }

@@ -18,13 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.db.CommonData;
-import com.bione.model.customerkit.CustomerKit;
-import com.bione.model.customerkit.KitOrder;
+import com.bione.model.customerOrders.CustomerOrder;
+
+import com.bione.model.customerOrders.MagentoOrder;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
+import com.bione.ui.dashboard.orderfragment.adapter.OrderListAdapter;
 import com.bione.utils.CustomTypefaceSpan;
 import com.bione.utils.Log;
 
@@ -42,11 +44,11 @@ public class MyOrderListFragment extends BaseFragment {
     private AppCompatImageView noItemImage;
 
 
-    private KitAdapter mAdapter;
+    private OrderListAdapter mAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
-    private ArrayList<KitOrder> kitOrders = new ArrayList<>();
+    private ArrayList<MagentoOrder> magentoOrders = new ArrayList<>();
     private MyOrdersFragment.getCounsellingListListener listener;
 
     public MyOrderListFragment(MyOrdersFragment.getCounsellingListListener listener) {
@@ -119,7 +121,7 @@ public class MyOrderListFragment extends BaseFragment {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new KitAdapter(mContext, kitOrders);
+        mAdapter = new OrderListAdapter(mContext, magentoOrders);
         recyclerView.setAdapter(mAdapter);
 
     }
@@ -128,29 +130,29 @@ public class MyOrderListFragment extends BaseFragment {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "36")
+                .add(PARAM_CUSTOMER, "585")
                 .build();
 
-        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
+        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {
             @Override
-            public void onSuccess(List<CustomerKit> customerKits) {
+            public void onSuccess(List<CustomerOrder> customerKits) {
 
                 if (customerKits.get(0).getCode() == SUCCESS) {
                     try {
 
-                        Log.d("customer kit ordered", " size :: " + customerKits.get(0).getKitOrders().size());
+                        Log.d("customer magento ordered", " size :: " + customerKits.get(0).getMagentoOrders().size());
                         // specify an adapter (see also next example)
-                        ArrayList<KitOrder> newKitorders = new ArrayList<>();
-                        newKitorders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
-                        for (int i = 0; i < newKitorders.size(); i++) {
-                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
-                                kitOrders.add(newKitorders.get(i));
-                            }
+                        ArrayList<MagentoOrder> newMagentoOrder = new ArrayList<>();
+                        newMagentoOrder = (ArrayList<MagentoOrder>) customerKits.get(0).getMagentoOrders();
+                        for (int i = 0; i < newMagentoOrder.size(); i++) {
+//                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
+                                magentoOrders.add(newMagentoOrder.get(i));
+//                            }
                         }
-                        Log.d("newKitorders", "---" + newKitorders.size());
-                        Log.d("kitOrders", "----" + kitOrders.size());
+                        Log.d("newMagentoOrder", "---" + newMagentoOrder.size());
+                        Log.d("magentoOrders", "----" + magentoOrders.size());
 
-                        if (kitOrders.size() > 0) {
+                        if (magentoOrders.size() > 0) {
                             setHeadText(true);
                         } else {
                             setHeadText(false);

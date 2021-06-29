@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_marginBottom="@dimen/spacing_normal"
->
+    android:layout_marginBottom="@dimen/spacing_normal">
 
 
     <LinearLayout
@@ -20,12 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_xsmall"
             android:backgroundTint="#083d44f0"
-            android:layout_gravity="center"
             android:elevation="@dimen/spacing_xsmall"
+            android:layout_gravity="center"
             app:cardCornerRadius="@dimen/spacing_large">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivKit"
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="100dp"
                 android:layout_height="96dp"
                 android:background="@color/white"
@@ -57,7 +56,7 @@
                     android:textSize="@dimen/font_small" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvWhom"
+                    android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -83,6 +82,17 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMagentoId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
+                        android:singleLine="true"
+                        android:text="00020302"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xsmall" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvKitName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -92,17 +102,6 @@
                         android:textSize="@dimen/font_small"
                         android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxWidth="100dp"
-                        android:singleLine="true"
-                        android:text="Discover &amp; understand your
-gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/font_xsmall" />
 
                 </LinearLayout>
 
@@ -128,14 +127,14 @@ gastrointestinal microbiodta and best suited personalised diet for a healthy &am
                         android:id="@+id/tvReported"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reported Date"
+                        android:text="Total Amount"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/report_date_color"
                         android:textSize="@dimen/font_xsmall"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvReportedDate"
+                        android:id="@+id/tvTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="100dp"
@@ -157,14 +156,14 @@ gastrointestinal microbiodta and best suited personalised diet for a healthy &am
                         android:id="@+id/tvPurchase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reported Date"
+                        android:text="Order Date"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/report_date_color"
                         android:textSize="@dimen/font_xsmall"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPurchaseDate"
+                        android:id="@+id/tvOrderedDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="100dp"

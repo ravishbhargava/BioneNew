@@ -5,8 +5,8 @@ import com.bione.model.CommonResponse;
 import com.bione.model.PaymentReceipt;
 import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
+import com.bione.model.customerOrders.CustomerOrder;
 import com.bione.model.customerdata.SignInDatum;
-import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.testNameList.TestNameList;
@@ -112,7 +112,7 @@ public interface ApiInterface {
     Call<List<CommonResponse>> contactUs(@QueryMap Map<String, String> map);
 
     @GET("/rest/V1/bioneapi/kitorderlist")
-    Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
+    Call<List<CustomerOrder>> kitOrders(@QueryMap Map<String, String> map);
 
 //    @POST("/rest//V1/customers")
 //    Call<UpdateProfile> createAccount(@Body RequestBody json);

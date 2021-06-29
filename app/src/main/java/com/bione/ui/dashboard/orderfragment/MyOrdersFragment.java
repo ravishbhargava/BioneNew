@@ -20,13 +20,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.counsellors.ListItem;
-import com.bione.model.customerkit.CustomerKit;
-import com.bione.model.customerkit.KitOrder;
+import com.bione.model.customerOrders.CustomerOrder;
+
+import com.bione.model.customerOrders.KitOrder;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
+import com.bione.ui.dashboard.orderfragment.adapter.KitListAdapter;
 import com.bione.ui.dashboard.orderfragment.adapter.MyOrderPagerAdapter;
 import com.bione.utils.CustomTypefaceSpan;
 import com.bione.utils.CustomViewPager;
@@ -50,7 +52,7 @@ public class MyOrdersFragment extends BaseFragment {
     private TextView tvPast;
     private ArrayList<ListItem> counsellorsList = new ArrayList<>();
 
-    private KitAdapter mAdapter;
+    private KitListAdapter mAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -176,7 +178,7 @@ public class MyOrdersFragment extends BaseFragment {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new KitAdapter(mContext, kitOrders);
+        mAdapter = new KitListAdapter(mContext, kitOrders);
         recyclerView.setAdapter(mAdapter);
 
     }
@@ -185,12 +187,12 @@ public class MyOrdersFragment extends BaseFragment {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "36")
+                .add(PARAM_CUSTOMER, "585")
                 .build();
 
-        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
+        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {
             @Override
-            public void onSuccess(List<CustomerKit> customerKits) {
+            public void onSuccess(List<CustomerOrder> customerKits) {
 
                 if (customerKits.get(0).getCode() == SUCCESS) {
                     try {
@@ -200,9 +202,9 @@ public class MyOrdersFragment extends BaseFragment {
                         ArrayList<KitOrder> newKitorders = new ArrayList<>();
                         newKitorders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
                         for (int i = 0; i < newKitorders.size(); i++) {
-                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
+//                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
                                 kitOrders.add(newKitorders.get(i));
-                            }
+//                            }
                         }
                         Log.d("newKitorders", "---" + newKitorders.size());
                         Log.d("kitOrders", "----" + kitOrders.size());

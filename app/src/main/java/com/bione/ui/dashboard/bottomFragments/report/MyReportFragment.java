@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.model.customerkit.CustomerKit;
-import com.bione.model.customerkit.KitOrder;
+import com.bione.model.customerOrders.CustomerOrder;
+import com.bione.model.customerOrders.KitOrder;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
@@ -27,6 +27,8 @@ import java.util.List;
 
 import static com.bione.utils.AppConstant.PARAM_CUSTOMER;
 import static com.bione.utils.AppConstant.SUCCESS;
+
+//import com.bione.model.customerkit.KitOrder;
 
 
 public class MyReportFragment extends BaseFragment {
@@ -109,12 +111,12 @@ callAPI();
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "36")
+                .add(PARAM_CUSTOMER, "585")
                 .build();
 
-        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerKit>>() {
+        RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {
             @Override
-            public void onSuccess(List<CustomerKit> customerKits) {
+            public void onSuccess(List<CustomerOrder> customerKits) {
 
                 if (customerKits.get(0).getCode() == SUCCESS) {
                     try {
@@ -124,9 +126,9 @@ callAPI();
                         ArrayList<KitOrder> newKitorders = new ArrayList<>();
                         newKitorders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
                         for (int i = 0; i < newKitorders.size(); i++) {
-                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
+//                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
                                 kitOrders.add(newKitorders.get(i));
-                            }
+//                            }
                         }
                         Log.d("newKitorders", "---" + newKitorders.size());
                         Log.d("kitOrders", "----" + kitOrders.size());
