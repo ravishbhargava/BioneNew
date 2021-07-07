@@ -130,7 +130,7 @@ public class MyKitListFragment extends BaseFragment {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-//                .add(PARAM_CUSTOMER, "585")
+                .add(PARAM_CUSTOMER, "585")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {
@@ -145,7 +145,7 @@ public class MyKitListFragment extends BaseFragment {
                         ArrayList<KitOrder> newKitorders = new ArrayList<>();
                         newKitorders = (ArrayList<KitOrder>) customerKits.get(0).getKitOrders();
                         for (int i = 0; i < newKitorders.size(); i++) {
-//                            if (newKitorders.get(i).getSkuCode().equals("MM")) {
+//                            if (newKitorders.get(i)._code().equals("MM")) {
                                 kitOrders.add(newKitorders.get(i));
 //                            }
                         }

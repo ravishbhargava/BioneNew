@@ -90,11 +90,13 @@ public class KitDetailActivity extends BaseActivity {
             tvSecondStatus.setText("Registered");
             tvStatus.setTextColor(R.color.activated_status_color);
             tvActivatedBy.setText(customerKits.getFirstName());
+            tvTrack.setText("Track Your Report");
         } else {
             tvStatus.setText("Pending");
             tvSecondStatus.setText("Register");
             tvStatus.setTextColor(R.color.pending_status_color);
             tvActivatedBy.setText("-");
+            tvTrack.setText("Register");
         }
 
         if (customerKits.getSkuCode().equals("LP")) {

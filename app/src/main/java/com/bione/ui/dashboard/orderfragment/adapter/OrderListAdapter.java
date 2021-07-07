@@ -13,10 +13,11 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.model.customerOrders.Item;
 import com.bione.model.customerOrders.MagentoOrder;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyViewHolder> {
 
@@ -46,7 +47,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.tvName.setText(customerKits.get(position).getCustomerFirstname());
+        holder.tvName.setText(customerKits.get(position).getCustomerFirstname() + customerKits.get(position).getCustomerLastname());
         holder.tvStatus.setText(customerKits.get(position).getStatus());
 
         holder.tvMagentoId.setText(customerKits.get(position).getIncrementId());
@@ -54,6 +55,19 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         holder.tvTotal.setText("" + customerKits.get(position).getBaseGrandTotal());
         holder.tvOrderedDate.setText("" + customerKits.get(position).getCreatedAt());
 
+
+        List<Item> item = customerKits.get(position).getItems();
+        String items = "";
+        for (int i = 0; i < item.size(); i++) {
+            if (i == 0) {
+                items = items + "" + item.get(i).getSku();
+//                items = items + "" + item.get(i).getSku() + "*" + item.get(i).getQty();
+            } else {
+                items = items + ",\n" + item.get(i).getSku();
+//                items = items + ",\n" + item.get(i).getSku() + "*" + item.get(i).getQty();
+            }
+        }
+        holder.tvKitName.setText("" + items);
 //        if (customerKits.get(position).getSkuCode().equals("LP")) {
 //            holder.ivKit.setImageResource(R.drawable.lp);
 //        } else if (customerKits.get(position).getSkuCode().equals("LF")) {
