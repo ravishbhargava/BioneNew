@@ -279,7 +279,7 @@ public class ScheduleCallActivity extends BaseActivity {
 
     private void getCurrentTimeSlot() {
         SimpleDateFormat slotTime = new SimpleDateFormat("hh:mma");
-        SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-MM-d");
+        SimpleDateFormat slotDate = new SimpleDateFormat("yyyy-M-d");
 //        String timeValue = "2020-10-30T01:42:04.899+05:30";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         try {
