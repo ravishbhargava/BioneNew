@@ -186,8 +186,8 @@ public class MyOrdersFragment extends BaseFragment {
     private void callAPI() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-//                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "585")
+                .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
+//                .add(PARAM_CUSTOMER, "585")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {

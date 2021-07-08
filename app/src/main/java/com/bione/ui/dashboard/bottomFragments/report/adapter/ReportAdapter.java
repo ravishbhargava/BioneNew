@@ -2,6 +2,7 @@ package com.bione.ui.dashboard.bottomFragments.report.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +57,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-//        holder.tvOrderId.setText(customerKits.get(position).getId());
+        holder.tvName.setText(customerKits.get(position).getFirstName() + customerKits.get(position).getLastName());
         holder.tvKitName.setText(customerKits.get(position).getKitName());
 
         if (customerKits.get(position).getBarCode().equals("")) {
@@ -76,9 +78,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             }
 
             holder.llMain.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View view) {
-                    barCodeStatusAPI(customerKits.get(position).getBarCode());
+                    barCodeStatusAPI(customerKits.get(position).getBarCode(), "");
                 }
             });
         }
@@ -131,7 +134,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     }
 
-    public void barCodeStatusAPI(final String barcode) {
+    public void barCodeStatusAPI(final String barcode, final String password) {
 
 
         JSONObject jsonObject = new JSONObject();
@@ -152,6 +155,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                 if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(mContext, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+                    intent.putExtra("password", password);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }

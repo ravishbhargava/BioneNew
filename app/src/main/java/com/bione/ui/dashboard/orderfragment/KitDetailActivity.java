@@ -118,7 +118,7 @@ public class KitDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tvTrack:
-                barCodeStatusAPI(KitDetailActivity.this,customerKits.getBarCode());
+                barCodeStatusAPI(KitDetailActivity.this, customerKits.getBarCode(),"Vipin@28");
                 break;
 
             default:
@@ -126,7 +126,7 @@ public class KitDetailActivity extends BaseActivity {
         }
     }
 
-    public void barCodeStatusAPI(final Activity activity, final String barcode) {
+    public void barCodeStatusAPI(final Activity activity, final String barcode, final String password) {
         showLoading();
 
         JSONObject jsonObject = new JSONObject();
@@ -147,6 +147,7 @@ public class KitDetailActivity extends BaseActivity {
                 if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(activity, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+                    intent.putExtra("password", password);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }

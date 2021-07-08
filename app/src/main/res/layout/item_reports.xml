@@ -96,10 +96,9 @@
                         android:id="@+id/tvDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxWidth="100dp"
+
                         android:singleLine="true"
-                        android:text="Discover &amp; understand your
-gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
+                        android:text=""
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_xsmall" />

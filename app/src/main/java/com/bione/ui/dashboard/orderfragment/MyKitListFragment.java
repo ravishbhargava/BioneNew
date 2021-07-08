@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.customerOrders.CustomerOrder;
-
 import com.bione.model.customerOrders.KitOrder;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
@@ -130,7 +129,7 @@ public class MyKitListFragment extends BaseFragment {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
                 .add(PARAM_CUSTOMER, "" + CommonData.getUserData().getEntityId())
-                .add(PARAM_CUSTOMER, "585")
+//                .add(PARAM_CUSTOMER, "585")
                 .build();
 
         RestClient.getApiInterface().kitOrders(commonParams.getMap()).enqueue(new ResponseResolver<List<CustomerOrder>>() {
