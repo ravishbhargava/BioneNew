@@ -153,7 +153,8 @@ public class HomeFragment extends BaseFragment {
         data1.setChecked(false);
         data1.setNameCounsellor("Genetic Counsellor");
         data1.setTypeCounsellor("Longevity Plus Test");
-        data1.setUrl("https://www.bione.in/longevity-plus-test");
+        data1.setUrl("https://www.bionegenetics.com/longevity-plus-test");
+//        data1.setUrl("https://www.bione.in/longevity-plus-test");
 
         CrouselData data2 = new CrouselData();
         data2.setDrawable(R.drawable.mmb);
@@ -164,7 +165,8 @@ public class HomeFragment extends BaseFragment {
         data2.setChecked(false);
         data2.setNameCounsellor("Diet & Nutrition Counsellor");
         data2.setTypeCounsellor("MyMicrobiome Test");
-        data2.setUrl("https://www.bione.in/mymicrobiome-test");
+//        data2.setUrl("https://www.bione.in/mymicrobiome-test");
+        data2.setUrl("https://www.bionegenetics.com/mymicrobiome-test");
 
         CrouselData data3 = new CrouselData();
         data3.setDrawable(R.drawable.lf);
@@ -176,6 +178,7 @@ public class HomeFragment extends BaseFragment {
         data3.setNameCounsellor("Genetic Counsellor");
         data3.setTypeCounsellor("LongiFit Test");
         data3.setUrl("https://www.bione.in/longifit-test");
+        data3.setUrl("https://www.bionegenetics.com/longifit-test");
 
         CrouselData data4 = new CrouselData();
         data4.setDrawable(R.drawable.imge_gene_chek);
@@ -186,7 +189,8 @@ public class HomeFragment extends BaseFragment {
         data4.setChecked(false);
         data4.setNameCounsellor("Genetic Counsellor");
         data4.setTypeCounsellor("Gene-Check Test");
-        data4.setUrl("https://www.bione.in/gene-chec-test");
+        data4.setUrl("https://www.bionegenetics.com/gene-chec-test");
+//        data4.setUrl("https://www.bione.in/gene-chec-test");
 
         CrouselData data5 = new CrouselData();
         data5.setDrawable(R.drawable.image_clinical);
@@ -197,7 +201,8 @@ public class HomeFragment extends BaseFragment {
         data5.setChecked(false);
         data5.setNameCounsellor("Genetic Counsellor");
         data5.setTypeCounsellor("Genetic Test");
-        data5.setUrl("https://www.bione.in/genetics");
+//        data5.setUrl("https://www.bione.in/genetics");
+        data5.setUrl("https://www.bionegenetics.com/genetics");
 
         CrouselData data6 = new CrouselData();
         data6.setDrawable(0);

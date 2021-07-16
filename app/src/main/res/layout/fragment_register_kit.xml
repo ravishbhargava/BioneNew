@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4fa"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/include_header" />
+
+
+    <RelativeLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:gravity="center"
+        android:padding="@dimen/spacing_large"
+        android:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivKit"
+            android:layout_width="250dp"
+            android:layout_height="220dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/bitmap" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageLayout"
+        android:background="@drawable/drawable_border_top"
+        android:paddingBottom="@dimen/spacing_xlarge">
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvKitName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:paddingTop="@dimen/spacing_xlarge"
+                android:text="Register Your Kit"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xlarge"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:hint="Enter your barcode*"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:textColorHint="#797b7f"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    style="@style/textInputEditText"
+                    android:inputType="text"
+                    android:text="MMVDHJHGJHGJHG"
+                    android:textAllCaps="true"
+                    android:textColor="#525587" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:paddingVertical="@dimen/spacing_tiny"
+                android:text="@string/error_barcode"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="#F3233D"
+                android:textSize="@dimen/font_small"
+                android:textStyle="italic"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cbAccept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:text="@string/text_i_accept_resgister_kit"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/drawable_border_primary"
+                android:drawableRight="@drawable/ic_arrow_right_primary"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Continue"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:textAllCaps="true" />
+
+            <LinearLayout
+                android:id="@+id/secondLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/drawable_border_top"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:paddingTop="@dimen/spacing_xlarge"
+                android:visibility="gone">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Who will be using this kit?"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_normal"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTestNames"
+                    style="@style/textInputLayout"
+                    android:hint="Relation"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/etTestName"
+                        style="@style/textInputEditText"
+                        android:drawableRight="@drawable/ic_down_primary"
+                        android:hint="self" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:hint="First Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFirstName"
+                        style="@style/textInputEditText" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Middle Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMiddleName"
+                        style="@style/textInputEditText" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Last Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLastName"
+                        style="@style/textInputEditText" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTestNames2"
+                    style="@style/textInputLayout"
+                    android:hint="Gender"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/etTestName2"
+                        style="@style/textInputEditText"
+                        android:drawableRight="@drawable/ic_down_primary"
+                        android:hint="Male" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Email Address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        style="@style/textInputEditText"
+                        android:inputType="textEmailAddress" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCountryCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:ccp_showNameCode="false" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/textInputLayout"
+                        android:layout_marginTop="0dp"
+                        android:baselineAligned="true"
+                        android:hint="Phone Number"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:boxStrokeWidth="1dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPhone"
+                            style="@style/textInputEditText"
+                            android:maxLength="10" />
+
+                        <View style="@style/viewLine" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSendOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@drawable/drawable_border_button"
+                    android:elevation="5dp"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_small"
+                    android:text="Send Otp"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_large" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

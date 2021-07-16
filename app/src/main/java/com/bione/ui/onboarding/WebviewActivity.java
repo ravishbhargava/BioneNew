@@ -14,7 +14,8 @@ import com.bione.utils.Log;
 
 public class WebviewActivity extends BaseActivity {
 
-    private String link = "https://www.bione.in/terms-of-service";
+    private String link = "https://www.bionegenetics.com/terms-of-service";
+//    private String link = "https://www.bione.in/terms-of-service";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

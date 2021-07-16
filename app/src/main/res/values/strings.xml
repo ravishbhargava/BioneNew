@@ -136,5 +136,7 @@
     <string name="i_have_read_and_agree_to_the_terms_of_services">I have read and agree to the <b>Terms of Services*</b></string>
     <string name="i_have_read_and_agree_to_the_privacy_statement">I have read and agree to the <b>Privacy Statement*</b></string>
     <string name="know_more"><u>Know More</u></string>
+    <string name="text_i_accept_resgister_kit"><![CDATA[I hereby declare that from the past 14 days (from date of saliva sample collection), I am not suffering from symptoms (Fever, cough, shortness of breath, breathing difficulties & pneumonia) which can be related to coronavirus infection.]]></string>
+    <string name="error_barcode">The enter barcode is invalid. Please enter a valid code.Need help call Bione customer support number +91 63667 54050</string>
 
 </resources>

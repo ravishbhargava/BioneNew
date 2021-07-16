@@ -100,7 +100,8 @@ public class ReceiptListAdapter extends RecyclerView.Adapter<ReceiptListAdapter.
             public void onClick(View view) {
                 String link = "";
                 if (receiptArrayList.get(position).getReceiptUrl() != null) {
-                    link = "https://lims.bione.in/pdfreceipts/" + receiptArrayList.get(position).getReceiptUrl();
+//                    link = "https://lims.bione.in/pdfreceipts/" + receiptArrayList.get(position).getReceiptUrl();
+                    link = "https://lims.bionegenetics.com/pdfreceipts/" + receiptArrayList.get(position).getReceiptUrl();
 //                link = link.replaceAll("\\/", "/");
                     Log.d("link", "after slash removed------ " + link);
 

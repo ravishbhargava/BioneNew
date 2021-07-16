@@ -26,7 +26,8 @@ import java.net.URL;
 public class PaymentReceiptViewActivity extends BaseActivity {
 
     private AppCompatTextView tvShare;
-    private String link = "https://www.bione.in/terms-of-service";
+    private String link = "https://www.bionegenetics.com/terms-of-service";
+//    private String link = "https://www.bione.in/terms-of-service";
     private String pdfUrl = "";
     private PDFView pdfView;
 

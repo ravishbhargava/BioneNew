@@ -77,7 +77,8 @@ public class SignUpActivity extends BaseActivity {
                 // do some thing
 //                showErrorMessage("second clicked");
                 Intent intent = new Intent(SignUpActivity.this, WebviewActivity.class);
-                intent.putExtra("link", "https://www.bione.in/terms-of-service");
+//                intent.putExtra("link", "https://www.bione.in/terms-of-service");
+                intent.putExtra("link", "https://www.bionegenetics.com/terms-of-service");
                 startActivity(intent);
             }
 
@@ -99,7 +100,8 @@ public class SignUpActivity extends BaseActivity {
                 // do some thing
 //                showErrorMessage("Third clicked");
                 Intent intent = new Intent(SignUpActivity.this, WebviewActivity.class);
-                intent.putExtra("link", "https://www.bione.in/privacy-policy");
+//                intent.putExtra("link", "https://www.bione.in/privacy-policy");
+                intent.putExtra("link", "https://www.bionegenetics.com/privacy-policy");
                 startActivity(intent);
             }
 

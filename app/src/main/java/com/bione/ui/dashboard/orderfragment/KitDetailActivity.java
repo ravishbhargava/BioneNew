@@ -118,7 +118,12 @@ public class KitDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tvTrack:
-                barCodeStatusAPI(KitDetailActivity.this, customerKits.getBarCode(),"Vipin@28");
+                if ("1".equalsIgnoreCase(customerKits.getActivationStatus())) {
+                    barCodeStatusAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+                } else {
+//                    Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
+//                    startActivity(intent);
+                }
                 break;
 
             default:

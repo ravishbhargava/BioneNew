@@ -399,21 +399,24 @@ public class MainActivity extends BaseActivity {
                     case R.id.nav_term_condition:
                         // launch new intent instead of loading fragment
                         Intent intent = new Intent(MainActivity.this, WebviewActivity.class);
-                        intent.putExtra("link", "https://www.bione.in/terms-of-service");
+//                        intent.putExtra("link", "https://www.bione.in/terms-of-service");
+                        intent.putExtra("link", "https://www.bionegenetics.com/terms-of-service");
                         startActivity(intent);
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_privacy_policy:
                         // launch new intent instead of loading fragment
                         Intent intent2 = new Intent(MainActivity.this, WebviewActivity.class);
-                        intent2.putExtra("link", "https://www.bione.in/privacy-policy");
+//                        intent2.putExtra("link", "https://www.bione.in/privacy-policy");
+                        intent2.putExtra("link", "https://www.bionegenetics.com/privacy-policy");
                         startActivity(intent2);
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_faq_support:
                         // launch new intent instead of loading fragment
                         Intent intent3 = new Intent(MainActivity.this, WebviewActivity.class);
-                        intent3.putExtra("link", "https://www.bione.in/faqs");
+//                        intent3.putExtra("link", "https://www.bione.in/faqs");
+                        intent3.putExtra("link", "https://www.bionegenetics.com/faqs");
                         startActivity(intent3);
                         drawer.closeDrawers();
                         return true;
