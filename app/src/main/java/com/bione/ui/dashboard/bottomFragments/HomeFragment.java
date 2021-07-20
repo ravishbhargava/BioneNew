@@ -177,7 +177,7 @@ public class HomeFragment extends BaseFragment {
         data3.setChecked(false);
         data3.setNameCounsellor("Genetic Counsellor");
         data3.setTypeCounsellor("LongiFit Test");
-        data3.setUrl("https://www.bione.in/longifit-test");
+//        data3.setUrl("https://www.bione.in/longifit-test");
         data3.setUrl("https://www.bionegenetics.com/longifit-test");
 
         CrouselData data4 = new CrouselData();
