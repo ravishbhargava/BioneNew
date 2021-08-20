@@ -22,7 +22,11 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Credentials;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -47,6 +51,7 @@ public final class RestClient {
     private static Retrofit retrofit = null;
     private static Retrofit retrofit2 = null;
     private static Retrofit retrofit3 = null;
+    private static Retrofit retrofit4 = null;
     private static Retrofit retrofitWithIncreaseTimeout = null;
     //Integer SSL_KEY_PASSWORD_STRING_ID = R.string.sslKeyPassword;
     private static int isBaseUrl = 0;
@@ -123,6 +128,30 @@ public final class RestClient {
         return retrofit3.create(ApiInterface.class);
     }
 
+
+
+    /**
+     * Gets api interface.
+     *
+     * @return object of ApiInterface
+     */
+    public static ApiInterface getApiInterface4() {
+        isBaseUrl = 3;
+        if (retrofit4 == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofit4 = new Retrofit.Builder()
+                    .baseUrl("https://mymicrobiome.bione.in/")
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .client(httpClient2().build())
+//                    .client(secureConnection().build())
+                    .build();
+        }
+        return retrofit4.create(ApiInterface.class);
+    }
+
     /**
      * @return object of OkHttpClient.Builder
      */
@@ -136,6 +165,20 @@ public final class RestClient {
         return httpClient;
     }
 
+
+    /**
+     * @return object of OkHttpClient.Builder
+     */
+    private static OkHttpClient.Builder httpClient2() {
+        final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+        // add logging as last interceptor
+        httpClient.addInterceptor(getLoggingInterceptor())
+                .addInterceptor(new BasicAuthInterceptor("admin", "1234"))
+                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+        return httpClient;
+    }
 
     /**
      * Method to get object of HttpLoggingInterceptor
@@ -179,6 +222,16 @@ public final class RestClient {
                         .build();
             }
             return retrofit2;
+        } else if (isBaseUrl == 3) {
+            if (retrofit4 == null) {
+                retrofit4 = new Retrofit.Builder()
+                        .baseUrl("https://mymicrobiome.bione.in/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .client(httpClient2().build())
+                        .build();
+            }
+            return retrofit4;
         } else {
             if (retrofit3 == null) {
                 retrofit3 = new Retrofit.Builder()
@@ -266,4 +319,26 @@ public final class RestClient {
         client3.addInterceptor(getLoggingInterceptor());
         return client3;
     }
+
+
+    public static class BasicAuthInterceptor implements Interceptor {
+
+        private String credentials;
+
+        public BasicAuthInterceptor(String Username, String Password) {
+            this.credentials = Credentials.basic(Username, Password);
+        }
+
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            Request authenticatedRequest = request.newBuilder()
+                    .header("Authorization", credentials).build();
+            return chain.proceed(authenticatedRequest);
+        }
+
+    }
 }
+//    OkHttpClient client = new OkHttpClient.Builder()
+//            .addInterceptor(new BasicAuthInterceptor(username, password))
+//            .build();

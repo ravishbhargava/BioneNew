@@ -18,8 +18,8 @@ import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
-import com.bione.ui.dashboard.MainActivity;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.dashboard.MainActivity;
 import com.bione.ui.walkthrough.WalkActivity;
 import com.bione.utils.Log;
 
@@ -41,6 +41,7 @@ public class Splash extends BaseActivity {
         setContentView(R.layout.activity_splash);
 
         Log.d("hash key", " : " + printKeyHash(this));
+
 
     }
 
@@ -116,6 +117,35 @@ public class Splash extends BaseActivity {
         });
     }
 
+//    private void adminToken2API() {
+//
+//        final CommonParams commonParams = new CommonParams.Builder()
+//                .add("id", "585")
+//                .build();
+//
+//        Log.d("code ", "map :: " + commonParams.getMap());
+//
+//        RestClient.getApiInterface4().admintoken2(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+//
+//            @Override
+//            public void onSuccess(List<CommonResponse> commonResponses) {
+//                Log.d("admin ", "token :: " + commonResponses.get(0).getMessage());
+//            }
+//
+//            @Override
+//            public void onError(ApiError error) {
+//                Log.d("onError", "" + error);
+//                showErrorMessage(error.getMessage());
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable throwable) {
+//                throwable.printStackTrace();
+//                showErrorMessage(throwable.getMessage());
+//            }
+//        });
+//    }
+
 
     public static String printKeyHash(Activity context) {
         PackageInfo packageInfo;
@@ -148,4 +178,5 @@ public class Splash extends BaseActivity {
 
         return key;
     }
+
 }

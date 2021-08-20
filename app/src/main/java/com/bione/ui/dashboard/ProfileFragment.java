@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
@@ -30,13 +28,9 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
 import com.bione.utils.Log;
 import com.bione.utils.ValidationUtil;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.File;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;

@@ -1,6 +1,7 @@
 package com.bione.network;
 
 
+import com.bione.model.BannerArray;
 import com.bione.model.BarCodeStatus;
 import com.bione.model.CommonResponse;
 import com.bione.model.PaymentReceipt;
@@ -51,6 +52,15 @@ public interface ApiInterface {
 
     String GET_NOTIFICATIONS = "/driver/getNotifications";
 
+//    @POST("microbiome_sample_status")
+//    Call<String> adminToken2(@QueryMap(encoded = true) Map<String, String> map,@QueryMap(encoded = true) Map<String, String> map2);
+
+
+//    @POST("/microbiome_sample_status")
+//    Call<List<CommonResponse>> admintoken2(@QueryMap Map<String, String> map, @Query("id") String id);
+
+    @POST("/microbiome_sample_status")
+    Call<List<BannerArray>> bannerAPI(@QueryMap Map<String, String> map);
 
     @POST("rest/V1/integration/admin/token")
     Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);

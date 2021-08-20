@@ -16,15 +16,25 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bione.R;
 import com.bione.db.CommonData;
+import com.bione.model.BannerArray;
 import com.bione.model.CrouselData;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
 import com.bione.ui.dashboard.bottomFragments.adapters.KitDetailsAdapter;
+import com.bione.ui.dashboard.bottomFragments.adapters.ViewPagerAdapter;
 import com.bione.utils.CustomTypefaceSpan;
+import com.bione.utils.CustomViewPager;
+import com.bione.utils.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends BaseFragment {
@@ -36,6 +46,9 @@ public class HomeFragment extends BaseFragment {
     private AppCompatTextView tvViewAll;
     private AppCompatTextView tvBoldText;
     private AppCompatImageView ivHead;
+
+    private ArrayList<BannerArray> bannerArray;
+    private CustomViewPager viewPager;
 
     private ArrayList<CrouselData> crouselDataArrayList;
     private RecyclerView recyclerViewCarousel;
@@ -75,6 +88,8 @@ public class HomeFragment extends BaseFragment {
             setHeadText();
             setArrayList();
             onSetRecyclerView();
+
+
         }
         return rootView;
     }
@@ -222,6 +237,82 @@ public class HomeFragment extends BaseFragment {
 //        crouselDataArrayList.add(data4);   //Gene-Check
 //        crouselDataArrayList.add(data5);   //Clinical Genetic test
 //        crouselDataArrayList.add(data6);   //empty
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BannerAPI();
+    }
+
+    private void initViewPager() {
+        viewPager = rootView.findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setPagingEnabled(true);
+
+
+        // setting viewPager's pages
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(mContext, bannerArray);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(0);
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+//                setPosition();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+
+    private void BannerAPI() {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("id", "585")
+                .build();
+
+        Log.d("code ", "map :: " + commonParams.getMap());
+
+        RestClient.getApiInterface4().bannerAPI(commonParams.getMap()).enqueue(new ResponseResolver<List<BannerArray>>() {
+
+            @Override
+            public void onSuccess(List<BannerArray> commonResponses) {
+
+                bannerArray = new ArrayList<>();
+                Log.d("BannerArray ", " :: " + commonResponses.size());
+                for (int i =0; i<commonResponses.size(); i++){
+                    bannerArray.add(commonResponses.get(i));
+                    bannerArray.add(commonResponses.get(i));
+                    bannerArray.add(commonResponses.get(i));
+                }
+
+                Log.d("banner array ", "------ " + bannerArray.size());
+                initViewPager();
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
     }
 }
 
