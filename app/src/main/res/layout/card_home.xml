@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/spacing_small"
                 android:text="Your \nMyMircorbiome \nreport is ready"
-                android:textAppearance="@style/CustomTextAppearance"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_xxxlarge"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:padding="@dimen/spacing_small"
             android:text="Personalised reports &amp; diet recommendations for anytime-anywhere reference on your mobile"
             android:textAppearance="@style/CustomTextAppearance"
-            android:textColor="@color/white"
+            android:textColor="#80ffffff"
             android:textSize="@dimen/font_small" />
 
 

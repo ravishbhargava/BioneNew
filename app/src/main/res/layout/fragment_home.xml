@@ -33,17 +33,20 @@
                 android:textStyle="bold" />
 
             <include layout="@layout/card_home"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
             <com.bione.utils.CustomViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:srcCompat="@drawable/group_3" />
 
             <RelativeLayout

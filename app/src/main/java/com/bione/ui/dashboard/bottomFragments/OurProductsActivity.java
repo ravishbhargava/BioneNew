@@ -156,7 +156,7 @@ public class OurProductsActivity extends BaseActivity {
 //        crouselDataArrayList.add(data);   //empty
         crouselDataArrayList.add(data2);   //My Micro Biome
         crouselDataArrayList.add(data3);   //LongiFit
-        crouselDataArrayList.add(data1);   //Longevity Plus
+//        crouselDataArrayList.add(data1);   //Longevity Plus
 //        crouselDataArrayList.add(data4);   //Gene-Check
 //        crouselDataArrayList.add(data5);   //Clinical Genetic test
 //        crouselDataArrayList.add(data6);   //empty

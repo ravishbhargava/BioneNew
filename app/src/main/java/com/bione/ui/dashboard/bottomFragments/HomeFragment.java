@@ -46,6 +46,7 @@ public class HomeFragment extends BaseFragment {
     private AppCompatTextView tvViewAll;
     private AppCompatTextView tvBoldText;
     private AppCompatImageView ivHead;
+    private AppCompatImageView ivCard;
 
     private ArrayList<BannerArray> bannerArray;
     private CustomViewPager viewPager;
@@ -74,9 +75,14 @@ public class HomeFragment extends BaseFragment {
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
             tvHead = rootView.findViewById(R.id.tvHead);
+            ivCard = rootView.findViewById(R.id.ivCard);
             tvViewAll = rootView.findViewById(R.id.tvViewAll);
             tvBoldText = rootView.findViewById(R.id.tvBoldText);
 
+            viewPager = rootView.findViewById(R.id.viewpager);
+
+            viewPager.setVisibility(View.GONE);
+            ivCard.setVisibility(View.VISIBLE);
 
             tvViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -233,7 +239,7 @@ public class HomeFragment extends BaseFragment {
 //        crouselDataArrayList.add(data);   //empty
         crouselDataArrayList.add(data2);   //My Micro Biome
         crouselDataArrayList.add(data3);   //LongiFit
-        crouselDataArrayList.add(data1);   //Longevity Plus
+//        crouselDataArrayList.add(data1);   //Longevity Plus
 //        crouselDataArrayList.add(data4);   //Gene-Check
 //        crouselDataArrayList.add(data5);   //Clinical Genetic test
 //        crouselDataArrayList.add(data6);   //empty
@@ -242,11 +248,20 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        BannerAPI();
+        if (CommonData.getGuest()) {
+            viewPager.setVisibility(View.GONE);
+            ivCard.setVisibility(View.VISIBLE);
+        } else {
+
+            BannerAPI();
+        }
     }
 
     private void initViewPager() {
         viewPager = rootView.findViewById(R.id.viewpager);
+        viewPager.setVisibility(View.VISIBLE);
+        ivCard.setVisibility(View.GONE);
+
         viewPager.setOffscreenPageLimit(2);
         viewPager.setPagingEnabled(true);
 
@@ -279,7 +294,8 @@ public class HomeFragment extends BaseFragment {
     private void BannerAPI() {
 
         final CommonParams commonParams = new CommonParams.Builder()
-                .add("id", "585")
+                .add("id", ""+ CommonData.getUserData().getEntityId()) //1260 585
+//                .add("id", "585") //1260 585
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
@@ -291,20 +307,25 @@ public class HomeFragment extends BaseFragment {
 
                 bannerArray = new ArrayList<>();
                 Log.d("BannerArray ", " :: " + commonResponses.size());
-                for (int i =0; i<commonResponses.size(); i++){
+                for (int i = 0; i < commonResponses.size(); i++) {
                     bannerArray.add(commonResponses.get(i));
-                    bannerArray.add(commonResponses.get(i));
-                    bannerArray.add(commonResponses.get(i));
+//                    bannerArray.add(commonResponses.get(i));
+//                    bannerArray.add(commonResponses.get(i));
                 }
 
                 Log.d("banner array ", "------ " + bannerArray.size());
-                initViewPager();
+
+                if (bannerArray.size() > 0) {
+                    initViewPager();
+                }
             }
 
             @Override
             public void onError(ApiError error) {
-                Log.d("onError", "" + error);
-                showErrorMessage(error.getMessage());
+                Log.d("onError", "code" + error.getStatusCode());
+                Log.d("onError", "message" + error.getMessage());
+//                showErrorMessage(error.getMessage());
+
             }
 
             @Override

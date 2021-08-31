@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 //@Generated("jsonschema2pojo")
 public class BannerArray {
 
+//@SerializedName("code")
+//@Expose
+//private String code;
 @SerializedName("bar_code")
 @Expose
 private String barCode;
@@ -57,6 +60,14 @@ private String reportStatus;
 @SerializedName("report_url")
 @Expose
 private String reportUrl;
+
+//public String getCode() {
+//return code;
+//}
+//
+//public void setCode(String code) {
+//this.code = code;
+//}
 
 public String getBarCode() {
 return barCode;

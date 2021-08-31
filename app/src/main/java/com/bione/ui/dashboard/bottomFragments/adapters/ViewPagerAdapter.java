@@ -28,7 +28,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private LayoutInflater mLayoutInflater;
 
 
-    public ViewPagerAdapter (Context context, ArrayList<BannerArray> bannerArrays){
+    public ViewPagerAdapter(Context context, ArrayList<BannerArray> bannerArrays) {
         this.bannerArrays = bannerArrays;
         this.context = context;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -56,11 +56,116 @@ public class ViewPagerAdapter extends PagerAdapter {
         TextView tvBoldText = (TextView) itemView.findViewById(R.id.tvBoldText);
 
         // setting the image in the imageView
-        tvBoldText.setText("---"+position);
+        tvBoldText.setText("---" + position);
+        setData(position, tvBoldText);
 
         // Adding the View
         Objects.requireNonNull(container).addView(itemView);
 
         return itemView;
     }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+//        super.destroyItem(container, position, object);
+        container.removeView((LinearLayout) object);
+    }
+
+    private void setData(final int position, final TextView tvBoldText) {
+        String kitName = "";
+        String stageName = "";
+        String status = "";
+//        boolean stop = false;
+
+        BannerArray banner = bannerArrays.get(position);
+
+        kitName = banner.getKitName();
+
+        if (banner.getActivationStatus().equals("0")) {
+            stageName = "Activation";
+            status = "pending";
+//            stop = true;
+        } else {
+//            stop = false;
+            stageName = "Activation";
+            status = "completed";
+
+            if (banner.getSampleRegistrationDate() != null && !banner.getSampleRegistrationDate().equals("")) {
+                stageName = "registration";
+                status = "completed";
+                if (banner.getKitShippedDate() != null && !banner.getKitShippedDate().equals("")) {
+                    stageName = "shipping";
+                    status = "completed";
+                    if (banner.getDateOfSampleReceipt() != null && !banner.getDateOfSampleReceipt().equals("")) {
+                        stageName = "sample receipt";
+                        status = "completed";
+                        if (banner.getSampleProcessingDate() != null && !banner.getSampleProcessingDate().equals("")) {
+                            stageName = "processing";
+                            status = "completed";
+                            if (banner.getAnalysis().equals("Approved")) {
+                                stageName = "analysis";
+                                status = "completed";
+                                if (banner.getFoodRecommendation().equals("Approved")) {
+                                    stageName = "food recommendation";
+                                    status = "completed";
+                                    if (banner.getTips().equals("Approved")) {
+                                        stageName = "report tips";
+                                        status = "completed";
+                                        if (banner.getFoodSupplements().equals("Approved")) {
+                                            stageName = "food supplement";
+                                            status = "completed";
+                                            if (banner.getGutrestoration().equals("Approved")) {
+                                                stageName = "gutrestoration diet chart";
+                                                status = "completed";
+                                                if (banner.getGutmaintenance().equals("Approved")) {
+                                                    stageName = "gutmaintenance diet chart";
+                                                    status = "completed";
+                                                    if (banner.getReportStatus().equals("Approved")) {
+                                                        stageName = "report status";
+                                                        status = "completed";
+                                                        if (banner.getReleasedDateOfReport() != null && !banner.getReleasedDateOfReport().equals("")) {
+                                                            stageName = "report";
+                                                            status = "released";
+                                                        } else {
+                                                            //return;
+                                                        }
+                                                    } else {
+                                                        //return;
+                                                    }
+                                                } else {
+                                                    //return;
+                                                }
+                                            } else {
+                                                //return;
+                                            }
+                                        } else {
+                                            //return;
+                                        }
+                                    } else {
+                                        //return;
+                                    }
+                                } else {
+                                    //return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        tvBoldText.setText("Your " + kitName + " " + stageName + " is " + status);
+    }
+
+//    private void setText() {
+//        String first = "Hi " + name + " \n";
+//        String second = "We understand how \npriceless your health is!";
+//        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/Poppins-Regular.ttf");
+//        Typeface font2 = Typeface.createFromAsset(context.getAssets(), "fonts/Poppins-Bold.ttf");
+//        tvHead.setText(first + second);
+//        SpannableStringBuilder SS = new SpannableStringBuilder(tvHead.getText().toString());
+//        SS.setSpan(new CustomTypefaceSpan("", font), 0, tvHead.getText().toString().length() - 27, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+//        SS.setSpan(new CustomTypefaceSpan("", font2), tvHead.getText().toString().length() - 27, tvHead.getText().toString().length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+//        tvHead.setText(SS);
+//    }
 }
