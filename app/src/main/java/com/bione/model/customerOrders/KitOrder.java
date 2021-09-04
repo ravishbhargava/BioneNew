@@ -67,7 +67,7 @@ private String termsAndCondition;
 private String acceptConsent;
 @SerializedName("sample_registration_date")
 @Expose
-private Object sampleRegistrationDate;
+private String sampleRegistrationDate;
 @SerializedName("created_at")
 @Expose
 private String createdAt;
@@ -224,11 +224,11 @@ public void setAcceptConsent(String acceptConsent) {
 this.acceptConsent = acceptConsent;
 }
 
-public Object getSampleRegistrationDate() {
+public String getSampleRegistrationDate() {
 return sampleRegistrationDate;
 }
 
-public void setSampleRegistrationDate(Object sampleRegistrationDate) {
+public void setSampleRegistrationDate(String sampleRegistrationDate) {
 this.sampleRegistrationDate = sampleRegistrationDate;
 }
 

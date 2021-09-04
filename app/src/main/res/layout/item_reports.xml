@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_marginBottom="@dimen/spacing_normal"
->
+    android:layout_marginBottom="@dimen/spacing_normal">
 
 
     <LinearLayout
@@ -18,9 +17,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/spacing_xsmall"
             android:backgroundTint="#083d44f0"
-            android:layout_gravity="center"
             android:elevation="@dimen/spacing_xsmall"
             app:cardCornerRadius="@dimen/spacing_large">
 
@@ -124,17 +123,17 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvReported"
+                        android:id="@+id/tvPurchase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reported Date"
+                        android:text="Registration Date"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/report_date_color"
                         android:textSize="@dimen/font_xsmall"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvReportedDate"
+                        android:id="@+id/tvPurchaseDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="100dp"
@@ -153,7 +152,7 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPurchase"
+                        android:id="@+id/tvReported"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Reported Date"
@@ -163,7 +162,7 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPurchaseDate"
+                        android:id="@+id/tvReportedDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxWidth="100dp"

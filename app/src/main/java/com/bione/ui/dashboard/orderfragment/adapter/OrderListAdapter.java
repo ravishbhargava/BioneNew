@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.model.customerOrders.Item;
 import com.bione.model.customerOrders.MagentoOrder;
+import com.bione.utils.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         holder.tvMagentoId.setText(customerKits.get(position).getIncrementId());
 
         holder.tvTotal.setText("" + customerKits.get(position).getBaseGrandTotal());
-        holder.tvOrderedDate.setText("" + customerKits.get(position).getCreatedAt());
+        holder.tvOrderedDate.setText("" + CommonUtil.dateformat(customerKits.get(position).getCreatedAt()));
 
 
         List<Item> item = customerKits.get(position).getItems();

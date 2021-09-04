@@ -135,14 +135,14 @@ public final class RestClient {
      *
      * @return object of ApiInterface
      */
-    public static ApiInterface getApiInterface4() {
+    public static ApiInterface getApiInterface4(String baseurl) {
         isBaseUrl = 3;
         if (retrofit4 == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
             retrofit4 = new Retrofit.Builder()
-                    .baseUrl("https://mymicrobiome.bione.in/")
+                    .baseUrl(BASE_URL_MYMICRO)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .client(httpClient2().build())

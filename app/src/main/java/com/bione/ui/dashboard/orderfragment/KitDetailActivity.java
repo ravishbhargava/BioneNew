@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -143,18 +144,24 @@ public class KitDetailActivity extends BaseActivity {
         }
         RequestBody body =
                 RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
-        RestClient.getApiInterface3().barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
             @Override
             public void onSuccess(BarCodeStatus commonResponse) {
 
-                Log.d("onSuccess ----- aaya ", "ki nhi???");
-                Log.d("getReportUrl ----- aaya ", commonResponse.getReportUrl());
-                if (commonResponse.getReportUrl() != null) {
+                Log.d("onSuccess -----  ", "--");
+                Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
+                Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
+                if(commonResponse.getReportStatus().equals("Approved")){
+
+//                }
+//                if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(activity, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
                     intent.putExtra("password", password);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Report in progress.", Toast.LENGTH_SHORT).show();
                 }
 
             }

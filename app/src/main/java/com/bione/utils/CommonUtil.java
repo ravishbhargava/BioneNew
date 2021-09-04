@@ -19,9 +19,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-
+import java.util.Date;
 
 
 /**
@@ -171,6 +173,19 @@ public final class CommonUtil {
 //        return dateFormat.format(today);
 //    }
 
+    public static String dateformat(String dateString){
+        // 2021-07-30 00:00:00
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = null;
+        try {
+            date = fmt.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
+        return fmtOut.format(date);
+    }
 
     public static void makeCall(Context mContext) {
         try {

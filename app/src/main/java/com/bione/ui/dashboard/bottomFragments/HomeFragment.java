@@ -295,12 +295,12 @@ public class HomeFragment extends BaseFragment {
 
         final CommonParams commonParams = new CommonParams.Builder()
                 .add("id", ""+ CommonData.getUserData().getEntityId()) //1260 585
-//                .add("id", "585") //1260 585
+//                .add("id", "1260") //1260 585
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
 
-        RestClient.getApiInterface4().bannerAPI(commonParams.getMap()).enqueue(new ResponseResolver<List<BannerArray>>() {
+        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").bannerAPI(commonParams.getMap()).enqueue(new ResponseResolver<List<BannerArray>>() {
 
             @Override
             public void onSuccess(List<BannerArray> commonResponses) {

@@ -23,6 +23,7 @@ import com.bione.network.ApiError;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
+import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;
 
 import org.json.JSONException;
@@ -59,6 +60,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvName.setText(customerKits.get(position).getFirstName() + customerKits.get(position).getLastName());
         holder.tvKitName.setText(customerKits.get(position).getKitName());
+        holder.tvReportedDate.setText(CommonUtil.dateformat(customerKits.get(position).getCreatedAt()));
+        holder.tvPurchaseDate.setText(CommonUtil.dateformat(customerKits.get(position).getSampleRegistrationDate()));
 
         if (customerKits.get(position).getBarCode().equals("")) {
 //            holder.tvReport.setTextColor(mContext.getResources().getColor(R.color.gray));
@@ -146,18 +149,24 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         }
         RequestBody body =
                 RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
-        RestClient.getApiInterface3().barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
             @Override
             public void onSuccess(BarCodeStatus commonResponse) {
 
-                Log.d("onSuccess ----- aaya ", "ki nhi???");
-                Log.d("getReportUrl ----- aaya ", commonResponse.getReportUrl());
-                if (commonResponse.getReportUrl() != null) {
+                Log.d("onSuccess -----  ", "--");
+                Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
+                Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
+                if (commonResponse.getReportStatus().equals("Approved")) {
+
+//                }
+//                if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(mContext, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
                     intent.putExtra("password", password);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "Report in progress.", Toast.LENGTH_SHORT).show();
                 }
 
             }
