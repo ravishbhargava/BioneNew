@@ -30,6 +30,9 @@ private String reportStatus;
 @SerializedName("report_url")
 @Expose
 private String reportUrl;
+@SerializedName("password")
+@Expose
+private String password;
 
 public Integer getCode() {
 return code;
@@ -93,6 +96,13 @@ return reportUrl;
 
 public void setReportUrl(String reportUrl) {
 this.reportUrl = reportUrl;
+}
+public String getPassword() {
+return password;
+}
+
+public void setPassword(String password) {
+this.password = password;
 }
 
 }

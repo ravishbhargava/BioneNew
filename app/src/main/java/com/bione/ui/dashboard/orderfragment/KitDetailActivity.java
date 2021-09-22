@@ -137,6 +137,7 @@ public class KitDetailActivity extends BaseActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
+//            jsonObject.put("id", "MMBFTD1ZZZ84");
             jsonObject.put("id", barcode);
 //            jsonObject.put("id", "MMFEA1ZZZ161");
         } catch (JSONException e) {
@@ -157,7 +158,7 @@ public class KitDetailActivity extends BaseActivity {
 //                if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(activity, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
-                    intent.putExtra("password", password);
+                    intent.putExtra("password", commonResponse.getPassword());
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }else{

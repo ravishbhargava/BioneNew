@@ -142,6 +142,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
         JSONObject jsonObject = new JSONObject();
         try {
+//            jsonObject.put("id", "MMBFTD1ZZZ84");
             jsonObject.put("id", barcode);
 //            jsonObject.put("id", "MMFEA1ZZZ161");
         } catch (JSONException e) {
@@ -162,7 +163,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 //                if (commonResponse.getReportUrl() != null) {
                     Intent intent = new Intent(mContext, ReportPdfViewActivity.class);
                     intent.putExtra("pdfUrl", commonResponse.getReportUrl());
-                    intent.putExtra("password", password);
+                    intent.putExtra("password", commonResponse.getPassword());
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 } else {

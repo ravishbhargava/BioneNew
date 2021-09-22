@@ -46,8 +46,8 @@ public class ReportPdfViewActivity extends BaseActivity {
         pdfView = findViewById(R.id.pdfView);
         tvShare = findViewById(R.id.tvShare);
 //        pdfView.fromUri(Uri.parse(pdfUrl));
-//        openUrl();
-        openDialog();
+        openUrl(pdfPassword);
+//        openDialog();
 
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class ReportPdfViewActivity extends BaseActivity {
 
 
     public void openUrl(final String password) {
-        dialog.dismiss();
+//        dialog.dismiss();
         pdfPassword = password;
         Log.d("pdfUrl---", "    ----- " + pdfUrl);
         try {
