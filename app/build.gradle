@@ -54,6 +54,7 @@ android {
 //            buildConfigField 'String', 'BASE_URL', '"https://bione.in/"'
             buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
             buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_LONGIFIT', '"https://longifit.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
@@ -61,6 +62,7 @@ android {
             buildConfigField 'String', 'BASE_URL', '"YOUR TEST URL"'
             buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
             buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_LONGIFIT', '"https://longifit.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
@@ -69,6 +71,7 @@ android {
 //            buildConfigField 'String', 'BASE_URL', '"https://bione.in/"'
             buildConfigField 'String', 'BASE_URL_LIMBS', '"https://lims.bione.in/"'
             buildConfigField 'String', 'BASE_URL_MYMICRO', '"https://mymicrobiome.bione.in/"'
+            buildConfigField 'String', 'BASE_URL_LONGIFIT', '"https://longifit.bione.in/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
         }
 //        applicationVariants.all { variant ->

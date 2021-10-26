@@ -84,7 +84,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View view) {
-                    barCodeStatusAPI(customerKits.get(position).getBarCode(), "");
+                    if (customerKits.get(position).getSkuCode().equals("MM")) {
+                        barCodeStatusMMAPI(customerKits.get(position).getBarCode(), "");
+                    } else if (customerKits.get(position).getSkuCode().equals("LF")) {
+                        barCodeStatusLFAPI(customerKits.get(position).getBarCode(), "");
+                    }
                 }
             });
         }
@@ -137,8 +141,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     }
 
-    public void barCodeStatusAPI(final String barcode, final String password) {
-
+    public void barCodeStatusMMAPI(final String barcode, final String password) {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -186,6 +189,53 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         });
     }
 
+    public void barCodeStatusLFAPI(final String barcode, final String password) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+//            jsonObject.put("id", "MMBFTD1ZZZ84");
+            jsonObject.put("id", barcode);
+//            jsonObject.put("id", "MMFEA1ZZZ161");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface5("https://longifit.bione.in/").barcodeStatusLongifit(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+            @Override
+            public void onSuccess(BarCodeStatus commonResponse) {
+
+                Log.d("onSuccess -----  ", "--");
+                Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
+                Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
+                if (commonResponse.getReportStatus().equals("Approved")) {
+
+//                }
+//                if (commonResponse.getReportUrl() != null) {
+                    Intent intent = new Intent(mContext, ReportPdfViewActivity.class);
+                    intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+                    intent.putExtra("password", commonResponse.getPassword());
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "Report in progress.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                Toast.makeText(mContext, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                Toast.makeText(mContext, "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
 
 

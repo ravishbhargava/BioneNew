@@ -252,8 +252,9 @@ public class HomeFragment extends BaseFragment {
             viewPager.setVisibility(View.GONE);
             ivCard.setVisibility(View.VISIBLE);
         } else {
-
+            bannerArray = new ArrayList<>();
             BannerAPI();
+            BannerAPILF();
         }
     }
 
@@ -294,7 +295,7 @@ public class HomeFragment extends BaseFragment {
     private void BannerAPI() {
 
         final CommonParams commonParams = new CommonParams.Builder()
-                .add("id", ""+ CommonData.getUserData().getEntityId()) //1260 585
+                .add("id", "" + CommonData.getUserData().getEntityId()) //1260 585
 //                .add("id", "1260") //1260 585
                 .build();
 
@@ -305,7 +306,51 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onSuccess(List<BannerArray> commonResponses) {
 
-                bannerArray = new ArrayList<>();
+//                bannerArray = new ArrayList<>();
+                Log.d("BannerArray ", " :: " + commonResponses.size());
+                for (int i = 0; i < commonResponses.size(); i++) {
+                    bannerArray.add(commonResponses.get(i));
+//                    bannerArray.add(commonResponses.get(i));
+//                    bannerArray.add(commonResponses.get(i));
+                }
+
+                Log.d("banner array ", "------ " + bannerArray.size());
+
+                if (bannerArray.size() > 0) {
+                    initViewPager();
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "code" + error.getStatusCode());
+                Log.d("onError", "message" + error.getMessage());
+//                showErrorMessage(error.getMessage());
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+    private void BannerAPILF() {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("id", "" + CommonData.getUserData().getEntityId()) //1260 585
+//                .add("id", "1260") //1260 585
+                .build();
+
+        Log.d("code ", "map :: " + commonParams.getMap());
+
+        RestClient.getApiInterface5("https://longifit.bione.in/").bannerAPILF(commonParams.getMap()).enqueue(new ResponseResolver<List<BannerArray>>() {
+
+            @Override
+            public void onSuccess(List<BannerArray> commonResponses) {
+
+//                bannerArray = new ArrayList<>();
                 Log.d("BannerArray ", " :: " + commonResponses.size());
                 for (int i = 0; i < commonResponses.size(); i++) {
                     bannerArray.add(commonResponses.get(i));

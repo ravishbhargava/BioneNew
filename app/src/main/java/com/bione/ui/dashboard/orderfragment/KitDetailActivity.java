@@ -120,7 +120,12 @@ public class KitDetailActivity extends BaseActivity {
                 break;
             case R.id.tvTrack:
                 if ("1".equalsIgnoreCase(customerKits.getActivationStatus())) {
-                    barCodeStatusAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+                    if (customerKits.getSkuCode().equals("MM")) {
+                        barCodeStatusMMAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+                    }
+                    else if (customerKits.getSkuCode().equals("LF")) {
+                        barCodeStatusLFAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+                    }
                 } else {
 //                    Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
 //                    startActivity(intent);
@@ -132,7 +137,7 @@ public class KitDetailActivity extends BaseActivity {
         }
     }
 
-    public void barCodeStatusAPI(final Activity activity, final String barcode, final String password) {
+    public void barCodeStatusMMAPI(final Activity activity, final String barcode, final String password) {
         showLoading();
 
         JSONObject jsonObject = new JSONObject();
@@ -181,5 +186,52 @@ public class KitDetailActivity extends BaseActivity {
         });
     }
 
+    public void barCodeStatusLFAPI(final Activity activity, final String barcode, final String password) {
+        showLoading();
 
+        JSONObject jsonObject = new JSONObject();
+        try {
+//            jsonObject.put("id", "MMBFTD1ZZZ84");
+            jsonObject.put("id", barcode);
+//            jsonObject.put("id", "MMFEA1ZZZ161");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface5("https://longifit.bione.in/").barcodeStatusLongifit(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+            @Override
+            public void onSuccess(BarCodeStatus commonResponse) {
+
+                Log.d("onSuccess -----  ", "--");
+                Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
+                Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
+                if(commonResponse.getReportStatus().equals("Approved")){
+
+//                }
+//                if (commonResponse.getReportUrl() != null) {
+                    Intent intent = new Intent(activity, ReportPdfViewActivity.class);
+                    intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+                    intent.putExtra("password", commonResponse.getPassword());
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Report in progress.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
 }

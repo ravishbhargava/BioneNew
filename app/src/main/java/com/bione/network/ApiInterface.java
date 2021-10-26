@@ -61,6 +61,10 @@ public interface ApiInterface {
 
     @POST("/microbiome_sample_status")
     Call<List<BannerArray>> bannerAPI(@QueryMap Map<String, String> map);
+    @POST("/longifit_sample_status")
+    Call<List<BannerArray>> bannerAPILF(@QueryMap Map<String, String> map);
+
+
 
     @POST("rest/V1/integration/admin/token")
     Call<String> adminToken(@QueryMap(encoded = true) Map<String, String> map);
@@ -91,8 +95,11 @@ public interface ApiInterface {
     @POST("/rest/V1/bione/veryfyotp")
     Call<List<CommonResponse>> verifyMobile(@QueryMap Map<String, String> map);
 
-    @POST("/barcodestatus/")
+    @POST("/barcodestatus/") // MyMicroBiome
     Call<BarCodeStatus> barcodeStatus(@Body RequestBody json);
+
+    @POST("/barcode_status/") // Longifit
+    Call<BarCodeStatus> barcodeStatusLongifit(@Body RequestBody json);
 
 
     @GET("/rest/V1/customers/me")
