@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4fa"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/include_header" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageLayout"
+        android:background="@drawable/drawable_border_top"
+        android:paddingBottom="@dimen/spacing_xlarge">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/firstLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvKitName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_xlarge"
+                    android:text="Research Consent"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge"
+                    android:textStyle="bold" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLongText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:text="@string/research_consent"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You must have legal \nauthorization consent for:"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxlarge"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:hint="Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etName"
+                        style="@style/textInputEditText"
+                        android:enabled="false" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Birth Date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDOB"
+                        style="@style/textInputEditText"
+                        android:enabled="false" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTestNames2"
+                    style="@style/textInputLayout"
+                    android:hint="Gender"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/etTestName2"
+                        style="@style/textInputEditText"
+                        android:enabled="false"
+                        android:hint="Male" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:paddingHorizontal="@dimen/spacing_xlarge"
+                    android:text="Yes, I have read this document &amp; authorized to give consent"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xsmall"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:paddingHorizontal="@dimen/spacing_xlarge"
+                    android:text="No, I don't want to participate in the research study."
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xsmall"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_xlarge"
+                    android:text="Review and Submit"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge"
+                    android:textStyle="bold" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:text="Your Kit Registration is not completed unlit you click submit"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="visible" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:hint="Barcode*"
+                    android:textColorHint="#797b7f"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBarcode"
+                        style="@style/textInputEditText"
+                        android:enabled="false"
+                        android:inputType="text"
+                        android:text="MMVDHJHGJHGJHG"
+                        android:textAllCaps="true"
+                        android:textColor="#525587" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:hint="Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNameSecond"
+                        style="@style/textInputEditText"
+                        android:enabled="false" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Birth Date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDOBSecond"
+                        style="@style/textInputEditText"
+                        android:enabled="false" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/textInputLayout"
+                    android:hint="Gender"
+                    android:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/etGenderSecond"
+                        style="@style/textInputEditText"
+                        android:enabled="false"
+                        android:hint="Male" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:text="Allow other user to find me by name, and show my name to my matches in our Genealogical tool"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xsmall"
+                    android:visibility="visible" />
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/drawable_border_primary"
+                android:drawableRight="@drawable/ic_arrow_right_primary"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Continue"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:textAllCaps="true" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

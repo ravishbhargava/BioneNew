@@ -54,68 +54,58 @@
                 android:textSize="@dimen/font_xlarge"
                 android:textStyle="bold" />
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputLayout"
-                android:layout_marginTop="@dimen/spacing_large"
-                android:hint="Enter your barcode*"
-                android:paddingHorizontal="@dimen/spacing_xlarge"
-                android:textColorHint="#797b7f"
-                app:endIconMode="custom">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    style="@style/textInputEditText"
-                    android:inputType="text"
-                    android:text="MMVDHJHGJHGJHG"
-                    android:textAllCaps="true"
-                    android:textColor="#525587" />
-
-                <View style="@style/viewLine" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/spacing_xlarge"
-                android:paddingVertical="@dimen/spacing_tiny"
-                android:text="@string/error_barcode"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textColor="#F3233D"
-                android:textSize="@dimen/font_small"
-                android:textStyle="italic"
-                android:visibility="visible" />
-
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/cbAccept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:paddingHorizontal="@dimen/spacing_xlarge"
-                android:text="@string/text_i_accept_resgister_kit"
-                android:textAppearance="@style/CustomTextAppearance"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_small"
-                android:visibility="visible" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvContinue"
+            <LinearLayout
+                android:id="@+id/firstLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_large"
-                android:layout_marginTop="@dimen/spacing_large"
-                android:background="@drawable/drawable_border_primary"
-                android:drawableRight="@drawable/ic_arrow_right_primary"
-                android:elevation="5dp"
-                android:gravity="center"
-                android:padding="@dimen/spacing_small"
-                android:text="Continue"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_large"
-                app:textAllCaps="true" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:hint="Enter your barcode*"
+                    android:paddingHorizontal="@dimen/spacing_xlarge"
+                    android:textColorHint="#797b7f"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBarcode"
+                        style="@style/textInputEditText"
+                        android:inputType="text"
+                        android:text="MMVDHJHGJHGJHG"
+                        android:textAllCaps="true"
+                        android:textColor="#525587" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/spacing_xlarge"
+                    android:paddingVertical="@dimen/spacing_tiny"
+                    android:text="@string/error_barcode"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="#F3233D"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="italic"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:paddingHorizontal="@dimen/spacing_xlarge"
+                    android:text="@string/text_i_accept_resgister_kit"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="visible" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/secondLayout"
@@ -170,6 +160,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/textInputLayout"
+                    android:visibility="gone"
                     android:hint="Middle Name">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -193,6 +184,22 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Birth Date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDOB"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        style="@style/textInputEditText" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutTestNames2"
                     style="@style/textInputLayout"
                     android:hint="Gender"
@@ -208,18 +215,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/textInputLayout"
-                    android:hint="Email Address">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmail"
-                        style="@style/textInputEditText"
-                        android:inputType="textEmailAddress" />
-
-                    <View style="@style/viewLine" />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:id="@+id/llCountryCode"
@@ -269,8 +264,38 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_large" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:hint="Email Address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        style="@style/textInputEditText"
+                        android:inputType="textEmailAddress" />
+
+                    <View style="@style/viewLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/drawable_border_primary"
+                android:drawableRight="@drawable/ic_arrow_right_primary"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Continue"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_large"
+                app:textAllCaps="true" />
 
 
         </LinearLayout>

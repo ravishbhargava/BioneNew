@@ -354,7 +354,7 @@ public final class RestClient {
         return client3;
     }
 
-
+// Basic auth interceptor
     public static class BasicAuthInterceptor implements Interceptor {
 
         private String credentials;

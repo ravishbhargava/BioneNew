@@ -19,6 +19,7 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
+import com.bione.ui.dashboard.kitRegistration.KitRegisterActivity;
 import com.bione.utils.Log;
 
 import org.json.JSONException;
@@ -127,8 +128,8 @@ public class KitDetailActivity extends BaseActivity {
                         barCodeStatusLFAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
                     }
                 } else {
-//                    Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
+                    startActivity(intent);
                 }
                 break;
 
