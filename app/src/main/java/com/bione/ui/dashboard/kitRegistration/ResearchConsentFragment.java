@@ -1,19 +1,25 @@
 package com.bione.ui.dashboard.kitRegistration;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.bione.R;
-import com.bione.ui.base.BaseActivity;
+import com.bione.ui.base.BaseFragment;
 
 import static com.bione.utils.CommonUtil.makeTextViewResizable;
 
-public class ResearchConsent extends BaseActivity {
+public class ResearchConsentFragment extends BaseFragment {
 
+    private Context mContext;
+    private View rootView;
 
     private LinearLayout firstLayout;
     private LinearLayout secondLayout;
@@ -23,21 +29,37 @@ public class ResearchConsent extends BaseActivity {
     private boolean isClicked = true;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_research_consent);
+//        setContentView(R.layout.activity_research_consent);
 
-        init();
-        setListeners();
+    }
 
-        makeTextViewResizable(tvLongText, 5, "See More", true);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_research_consent, container, false);
+
+            init();
+            setListeners();
+
+            makeTextViewResizable(tvLongText, 5, "See More", true);
+        }
+        return rootView;
     }
 
     private void init() {
-        firstLayout = findViewById(R.id.firstLayout);
-        secondLayout = findViewById(R.id.secondLayout);
-        tvLongText = findViewById(R.id.tvLongText);
-        tvContinue = findViewById(R.id.tvContinue);
+        firstLayout = rootView.findViewById(R.id.firstLayout);
+        secondLayout = rootView.findViewById(R.id.secondLayout);
+        tvLongText = rootView.findViewById(R.id.tvLongText);
+        tvContinue = rootView.findViewById(R.id.tvContinue);
     }
 
     private void setListeners() {

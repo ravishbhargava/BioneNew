@@ -88,11 +88,19 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.dashboard.kitRegistration.KitRegisterActivity"
+            android:name=".ui.dashboard.kitRegistration.BarcodeFragment"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.dashboard.kitRegistration.ResearchConsent"
+            android:name=".ui.dashboard.kitRegistration.ResearchConsentFragment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.dashboard.kitRegistration.QuestionnaireActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.dashboard.kitRegistration.KitRegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
