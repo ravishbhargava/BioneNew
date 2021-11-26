@@ -24,11 +24,15 @@ public class KitRegisterActivity extends BaseActivity {
     private StepsView mStepsView;
     String[] steps = {"one", "two", "three", "four"};
 
+    private List<DataUpdateListener> mListeners;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kit_register);
 
+        mListeners = new ArrayList<>();
         mStepsView = findViewById(R.id.stepsView);
         mStepsView.setLabels(steps)
                 .setBarColorIndicator(getResources().getColor(R.color.black))
@@ -40,8 +44,6 @@ public class KitRegisterActivity extends BaseActivity {
         viewPager = (CustomViewPager) findViewById(R.id.viewpager);
         addTabs(viewPager);
 
-
-
     }
 
 
@@ -49,6 +51,7 @@ public class KitRegisterActivity extends BaseActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new BarcodeFragment(), "BARCODE");
         adapter.addFrag(new ResearchConsentFragment(), "RESEARCH");
+        adapter.addFrag(new QuestionnaireFragment(), "QUEST");
         adapter.addFrag(new OrangeFragment(), "ORANGE");
         adapter.addFrag(new AppleFragment(), "APPLE");
 
@@ -107,5 +110,8 @@ public class KitRegisterActivity extends BaseActivity {
         }
     }
 
+    public interface DataUpdateListener {
+        void onDataUpdate();
+    }
 
 }

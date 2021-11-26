@@ -1,12 +1,16 @@
 package com.bione.ui.dashboard.kitRegistration;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,27 +18,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.Data;
-import com.bione.ui.base.BaseActivity;
+import com.bione.ui.base.BaseFragment;
 import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class QuestionnaireActivity extends BaseActivity {
+public class QuestionnaireFragment extends BaseFragment {
 
-    RecyclerView recyclerView;
-    //    private ActivityEntryBinding binding;
+    private View rootView;
+    private Context mContext;
+
+    private RecyclerView recyclerView;
     private ArrayList optionsViews = new ArrayList();
     private int count = 3;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questionnaire);
 
-        createNewOptionEntry();
-//        setRadioButton();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
+
+//            createNewOptionEntry();
+            setRecyclerView();
+
+        }
+        return rootView;
     }
 
     @Override
@@ -48,18 +71,18 @@ public class QuestionnaireActivity extends BaseActivity {
 
     private void createNewOptionEntry() {
 
-        View parent = (View) findViewById(R.id.root);
+        View parent = (View) rootView.findViewById(R.id.root);
 
         LinearLayout.LayoutParams fLayout = (LinearLayout.LayoutParams) parent.getLayoutParams();
 
-        TextInputLayout textInputLayout = new TextInputLayout(this);
+        TextInputLayout textInputLayout = new TextInputLayout(mContext);
         textInputLayout.setLayoutParams(fLayout);
         textInputLayout.setHint(count++ + ". Option");
 
         LinearLayout.LayoutParams lLayout = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        final TextInputEditText editText = new TextInputEditText(this);
+        final TextInputEditText editText = new TextInputEditText(mContext);
         editText.setLayoutParams(lLayout);
         int id = View.generateViewId();
         optionsViews.add(id);
@@ -75,11 +98,11 @@ public class QuestionnaireActivity extends BaseActivity {
         int buttons = 5;
         AppCompatRadioButton[] rb = new AppCompatRadioButton[buttons];
 
-        RadioGroup rgp = (RadioGroup) findViewById(R.id.radio_group);
+        RadioGroup rgp = (RadioGroup) rootView.findViewById(R.id.radio_group);
         rgp.setOrientation(LinearLayout.VERTICAL);
 
         for (int i = 1; i <= buttons; i++) {
-            RadioButton rbn = new RadioButton(this);
+            RadioButton rbn = new RadioButton(mContext);
             rbn.setId(View.generateViewId());
             rbn.setText("RadioButton" + i);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -91,8 +114,8 @@ public class QuestionnaireActivity extends BaseActivity {
         rgp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                Toast.makeText(getApplicationContext(), radioButton.getText(), Toast.LENGTH_LONG).show();
+                RadioButton radioButton = (RadioButton) rootView.findViewById(checkedId);
+                Toast.makeText(mContext, radioButton.getText(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -112,10 +135,10 @@ public class QuestionnaireActivity extends BaseActivity {
         dataList.add(new Data(1, "3. Hi! I am in View 3"));
         dataList.add(new Data(2, "4. Hi! I am in View 4"));
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, dataList);
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mContext, dataList);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager =
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         recyclerView.setAdapter(adapter);

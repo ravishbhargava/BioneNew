@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -19,6 +22,7 @@ import com.bione.ui.base.BaseFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -39,6 +43,8 @@ public class BarcodeFragment extends BaseFragment {
 
     private boolean isClicked = true;
     private Calendar myCalendar;
+
+    private Spinner spinner;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +69,8 @@ public class BarcodeFragment extends BaseFragment {
             myCalendar = Calendar.getInstance();
             init(rootView);
             setListeners();
-
+            setSpinner();
+//            setSpa();
 
             DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -115,6 +122,49 @@ public class BarcodeFragment extends BaseFragment {
     private void setListeners() {
         tvContinue.setOnClickListener(this);
     }
+
+    private void setSpa(){
+        String[] type = new String[] {"Bed-sitter", "Single", "1- Bedroom", "2- Bedroom","3- Bedroom"};
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        mContext,
+                        R.layout.item_test,
+                        type);
+
+        AppCompatAutoCompleteTextView editTextFilledExposedDropdown =
+                rootView.findViewById(R.id.filled_exposed_dropdown);
+        adapter.setDropDownViewResource(R.layout.item_test);
+        editTextFilledExposedDropdown.setAdapter(adapter);
+        editTextFilledExposedDropdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.setDropDownViewResource(R.layout.item_test);
+            }
+        });
+    }
+
+    private void setSpinner() {
+
+        spinner = (Spinner) rootView.findViewById(R.id.spinner);
+
+        ArrayList<String> contacts = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            contacts.add("one");
+            contacts.add("two");
+            contacts.add("three");
+            contacts.add("four");
+        }
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(mContext,  android.R.layout.simple_spinner_dropdown_item, contacts);
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+    }
+
 
     @Override
     public void onClick(View view) {

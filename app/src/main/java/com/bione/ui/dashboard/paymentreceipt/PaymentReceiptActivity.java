@@ -3,22 +3,18 @@ package com.bione.ui.dashboard.paymentreceipt;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
@@ -27,8 +23,6 @@ import androidx.fragment.app.FragmentManager;
 import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.PaymentReceipt;
-import com.bione.model.salesdetail.Data;
-import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.testNameList.Product;
 import com.bione.model.testNameList.TestNameList;
 import com.bione.network.ApiError;
@@ -36,7 +30,6 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.base.BaseFragment;
 import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -44,8 +37,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import static com.bione.utils.AppConstant.PARAM_EMAIL;
 
 public class PaymentReceiptActivity extends BaseActivity {
 
@@ -176,6 +167,8 @@ public class PaymentReceiptActivity extends BaseActivity {
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter);
 
+        etPaymentMode.setText(spinner2.getSelectedItem().toString());
+
     }
 
     private void init() {
@@ -183,6 +176,7 @@ public class PaymentReceiptActivity extends BaseActivity {
         tvSubmit = findViewById(R.id.tvSubmit);
 
 
+        etPaymentMode = findViewById(R.id.etPaymentMode);
         etTestName = findViewById(R.id.etTestName);
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
