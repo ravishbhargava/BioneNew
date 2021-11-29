@@ -13,8 +13,8 @@
         android:layout_height="match_parent"
         android:visibility="visible" />
 
-    <include layout="@layout/item_option_select" />
+    <include layout="@layout/item_view_radio" />
 
-    <include layout="@layout/item_edit_text" />
+    <include layout="@layout/item_view_edit_text" />
 
 </LinearLayout>

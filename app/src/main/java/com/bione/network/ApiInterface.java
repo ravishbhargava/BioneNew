@@ -10,6 +10,7 @@ import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerOrders.CustomerOrder;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.paymentreceiptlist.ReceiptList;
+import com.bione.model.questionnaire.Questionnaire;
 import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.testNameList.TestNameList;
 import com.bione.model.updateprofile.UpdateProfile;
@@ -75,6 +76,9 @@ public interface ApiInterface {
      * @param map the map of params to go along with reqquest
      * @return parsed common response object
      */
+
+    @POST("/rest/V1/bioneapi/showquestionnaire")
+    Call<Questionnaire> quest(@QueryMap Map<String, String> map);
 
     @POST("/rest/V1/bioneapi-customersendotp/sendotp")
     Call<List<CommonResponse>> sendOtp(@QueryMap Map<String, String> map);

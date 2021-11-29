@@ -17,7 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.model.Data;
+import com.bione.model.questionnaire.Datum;
+import com.bione.model.questionnaire.Questionnaire;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseFragment;
 import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,6 +38,8 @@ public class QuestionnaireFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private ArrayList optionsViews = new ArrayList();
     private int count = 3;
+
+    private ArrayList<Datum> datumArrayList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +60,10 @@ public class QuestionnaireFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
 
+            datumArrayList = new ArrayList<>();
 //            createNewOptionEntry();
-            setRecyclerView();
+
+            CallAPI();
 
         }
         return rootView;
@@ -93,9 +102,9 @@ public class QuestionnaireFragment extends BaseFragment {
 //        return textInputLayout;
     }
 
-    private void setRadioButton() {
+    private void setRadioButton(final int buttons) {
         //Defining 5 buttons.
-        int buttons = 5;
+
         AppCompatRadioButton[] rb = new AppCompatRadioButton[buttons];
 
         RadioGroup rgp = (RadioGroup) rootView.findViewById(R.id.radio_group);
@@ -121,26 +130,49 @@ public class QuestionnaireFragment extends BaseFragment {
     }
 
     private void setRecyclerView() {
-        ArrayList<Data> dataList = new ArrayList<>();
-        dataList.add(new Data(1, "1. Hi! I am in View 1"));
-        dataList.add(new Data(2, "2. Hi! I am in View 2"));
-        dataList.add(new Data(1, "3. Hi! I am in View 3"));
-        dataList.add(new Data(2, "4. Hi! I am in View 4"));
-        dataList.add(new Data(1, "1. Hi! I am in View 1"));
-        dataList.add(new Data(2, "2. Hi! I am in View 2"));
-        dataList.add(new Data(1, "3. Hi! I am in View 3"));
-        dataList.add(new Data(2, "4. Hi! I am in View 4"));
-        dataList.add(new Data(1, "1. Hi! I am in View 1"));
-        dataList.add(new Data(2, "2. Hi! I am in View 2"));
-        dataList.add(new Data(1, "3. Hi! I am in View 3"));
-        dataList.add(new Data(2, "4. Hi! I am in View 4"));
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mContext, dataList);
+        ParentItemAdapter adapter = new ParentItemAdapter(datumArrayList);
+//        ParentRecyclerViewAdapter adapter = new ParentRecyclerViewAdapter(mContext, datumArrayList);
         recyclerView = rootView.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         recyclerView.setAdapter(adapter);
+    }
+
+
+    private void CallAPI() {
+
+        final CommonParams commonParams = new CommonParams.Builder()
+                .build();
+
+        RestClient.getApiInterface().quest(commonParams.getMap()).enqueue(new ResponseResolver<Questionnaire>() {
+            @Override
+            public void onSuccess(Questionnaire commonResponses) {
+
+                if (commonResponses.getCode().equals("200")) {
+                    Log.d("onSuccess", "-----" + commonResponses.getCode());
+                    Log.d("list size", "-----" + commonResponses.getData().size());
+                    datumArrayList = (ArrayList) commonResponses.getData();
+                    Log.d("datumArrayList", "-----" + datumArrayList.size());
+                    setRecyclerView();
+                } else {
+                    showErrorMessage(commonResponses.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
     }
 }

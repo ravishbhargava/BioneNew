@@ -52,8 +52,6 @@ public class KitRegisterActivity extends BaseActivity {
         adapter.addFrag(new BarcodeFragment(), "BARCODE");
         adapter.addFrag(new ResearchConsentFragment(), "RESEARCH");
         adapter.addFrag(new QuestionnaireFragment(), "QUEST");
-        adapter.addFrag(new OrangeFragment(), "ORANGE");
-        adapter.addFrag(new AppleFragment(), "APPLE");
 
         viewPager.setAdapter(adapter);
         viewPager.setPagingEnabled(true);
