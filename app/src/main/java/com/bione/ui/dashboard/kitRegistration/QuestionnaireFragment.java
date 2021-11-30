@@ -63,6 +63,7 @@ public class QuestionnaireFragment extends BaseFragment {
             datumArrayList = new ArrayList<>();
 //            createNewOptionEntry();
 
+//            setRecyclerView();
             CallAPI();
 
         }
@@ -137,8 +138,9 @@ public class QuestionnaireFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
+        recyclerView.setItemViewCacheSize(datumArrayList.size());
         recyclerView.setAdapter(adapter);
+
     }
 
 

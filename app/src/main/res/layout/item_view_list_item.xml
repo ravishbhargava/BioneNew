@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/drawable_border_list_item"
+    android:gravity="center"
+    android:padding="@dimen/spacing_tiny"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvQsn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_xsmall"
-        android:text="Hint"
-        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:gravity="center"
+        android:textAppearance="@style/CustomTextAppearance"
         android:textColor="@color/black"
         android:textSize="@dimen/font_large"
-        android:textStyle="bold" />
+         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

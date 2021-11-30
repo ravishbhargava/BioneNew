@@ -1,11 +1,13 @@
 package com.bione.ui.dashboard.kitRegistration;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
@@ -17,6 +19,9 @@ import java.util.List;
 public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.OptionViewHolder> {
 
     private List<Option> OptionItemList;
+    // if checkedPosition = -1, there is no default selection
+    // if checkedPosition = 0, 1st item is selected by default
+    private int checkedPosition = -1;
 
     // Constructor
     OptionItemAdapter(List<Option> optionItemList) {
@@ -28,7 +33,7 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
     public OptionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         // Here we inflate the corresponding// layout of the child item
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_view_recycler, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_view_list_item, viewGroup, false);
 
         return new OptionViewHolder(view);
     }
@@ -41,21 +46,36 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
 
         // For the created instance, set title.// No need to set the image for// the ImageViews because we have//
         // provided the source for the images// in the layout file itself
-        optionViewHolder.OptionItemTitle.setText("option : " + optionItem.getName());
+        optionViewHolder.OptionItemTitle.setText("" + optionItem.getName());
+//        optionViewHolder.OptionItemTitle.setText("option : " + optionItem.getName());
 
-        optionViewHolder.OptionItemTitle.setOnClickListener(new View.OnClickListener() {
+        if (checkedPosition == -1) {
+            optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
+        } else {
+            if (checkedPosition == position) {
+                optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
+            } else {
+                optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
+            }
+        }
+
+        optionViewHolder.root.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 Log.d("option item clicked", "-----" + optionItem.getName());
+                optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
+                if (checkedPosition != position) {
+                    notifyItemChanged(checkedPosition);
+                    checkedPosition = position;
+                }
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-
-        // This method returns the number// of items we have added// in the ChildItemList// i.e. the number of instances//
-        // of the ChildItemList// that have been created
         return OptionItemList.size();
     }
 
@@ -67,11 +87,13 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
     // This class is to initialize// the Views present// in the child RecyclerView
     class OptionViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView OptionItemTitle;
+        private AppCompatTextView OptionItemTitle;
+        private LinearLayout root;
 
         OptionViewHolder(View itemView) {
             super(itemView);
             OptionItemTitle = itemView.findViewById(R.id.tvQsn);
+            root = itemView.findViewById(R.id.root);
         }
     }
 }

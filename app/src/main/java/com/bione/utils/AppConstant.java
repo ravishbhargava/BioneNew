@@ -6,6 +6,11 @@ package com.bione.utils;
  */
 public final class AppConstant {
 
+    public static final int VIEW_TYPE_ONE = 1; //field
+    public static final int VIEW_TYPE_TWO = 2; // option
+    public static final int VIEW_TYPE_THREE = 3; // edittext
+
+
     // notification related
     public static final String NOTIFICATION_RECEIVED = "notification_received";
     public static final String MESSAGE = "message";

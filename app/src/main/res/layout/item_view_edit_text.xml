@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/spacing_small"
-    android:paddingHorizontal="@dimen/spacing_xlarge"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/spacing_tiny">
 
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvQsn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Height &amp; Body Weight"
+        android:text="Hint"
         android:textAppearance="@style/CustomTextAppearance.Bold"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_xxlarge"
+        android:textSize="@dimen/font_large"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/textInputLayout"
-        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginTop="0dp"
         android:hint="">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText"
-            style="@style/textInputEditText"
-            android:enabled="false" />
+
+            android:minHeight="40dp"
+            style="@style/textInputEditText" />
 
         <View style="@style/viewLine" />
 
