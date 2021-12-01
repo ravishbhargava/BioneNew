@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.anton46.stepsview.StepsView
         android:id="@+id/stepsView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <com.bione.utils.CustomViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/tvContinue"
+        android:layout_below="@+id/stepsView" />
 
-        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/drawable_border_primary"
+        android:drawableRight="@drawable/ic_arrow_right_primary"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="Continue"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large"
+        android:visibility="gone"
+        app:textAllCaps="true" />
 
-</LinearLayout>
+</RelativeLayout>

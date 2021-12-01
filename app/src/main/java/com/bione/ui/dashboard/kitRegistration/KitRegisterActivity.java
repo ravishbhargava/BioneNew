@@ -22,17 +22,26 @@ public class KitRegisterActivity extends BaseActivity {
     //    private TabLayout tabLayout;
     private CustomViewPager viewPager;
     private StepsView mStepsView;
-    String[] steps = {"one", "two", "three", "four"};
+    String[] steps = {"Barcode", "Consents", "Questionnaire", "Finish"};
 
-    private List<DataUpdateListener> mListeners;
+    private OnButtonClicked mOnButtonClicked;
 
+
+    public static String kitBarcode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kit_register);
 
-        mListeners = new ArrayList<>();
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+//            newString= null;
+        } else {
+            kitBarcode = extras.getString("barcode");
+        }
+
+
         mStepsView = findViewById(R.id.stepsView);
         mStepsView.setLabels(steps)
                 .setBarColorIndicator(getResources().getColor(R.color.black))
@@ -41,7 +50,25 @@ public class KitRegisterActivity extends BaseActivity {
                 .setCompletedPosition(0)
                 .drawView();
 
-        viewPager = (CustomViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
+
+        mOnButtonClicked = new OnButtonClicked() {
+            @Override
+            public void submit(int position, String name) {
+                if(position==1){
+                    String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
+                    ResearchConsentFragment f = (ResearchConsentFragment) getSupportFragmentManager().findFragmentByTag(tag);
+                    f.setFirstViewData(name);
+                }else if(position==2){
+                    String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
+                    QuestionnaireFragment f = (QuestionnaireFragment) getSupportFragmentManager().findFragmentByTag(tag);
+//                    f.setFirstViewData(name);
+                }
+                viewPager.setCurrentItem(position);
+                mStepsView.setCompletedPosition(position).drawView();
+            }
+        };
+
         addTabs(viewPager);
 
     }
@@ -49,12 +76,13 @@ public class KitRegisterActivity extends BaseActivity {
 
     private void addTabs(CustomViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new BarcodeFragment(), "BARCODE");
-        adapter.addFrag(new ResearchConsentFragment(), "RESEARCH");
+        adapter.addFrag(new BarcodeFragment(mOnButtonClicked), "BARCODE");
+        adapter.addFrag(new ResearchConsentFragment(mOnButtonClicked), "RESEARCH");
         adapter.addFrag(new QuestionnaireFragment(), "QUEST");
 
         viewPager.setAdapter(adapter);
         viewPager.setPagingEnabled(true);
+        viewPager.setCurrentItem(0);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -108,8 +136,9 @@ public class KitRegisterActivity extends BaseActivity {
         }
     }
 
-    public interface DataUpdateListener {
-        void onDataUpdate();
+    public interface OnButtonClicked {
+        void submit(final int position, final String name);
     }
+
 
 }

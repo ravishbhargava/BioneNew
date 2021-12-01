@@ -109,30 +109,52 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cbYes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:paddingHorizontal="@dimen/spacing_xlarge"
-                    android:text="Yes, I have read this document &amp; authorized to give consent"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_xsmall"
-                    android:visibility="visible" />
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cbNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:paddingHorizontal="@dimen/spacing_xlarge"
-                    android:text="No, I don't want to participate in the research study."
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_xsmall"
-                    android:visibility="visible" />
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:paddingHorizontal="@dimen/spacing_xlarge"
+                        android:text="Yes, I have read this document &amp; authorized to give consent"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xsmall"
+                        android:visibility="visible" />
 
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:paddingHorizontal="@dimen/spacing_xlarge"
+                        android:text="No, I don't want to participate in the research study."
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xsmall"
+                        android:visibility="visible" />
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:background="@drawable/drawable_border_primary"
+                    android:drawableRight="@drawable/ic_arrow_right_primary"
+                    android:elevation="5dp"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_small"
+                    android:text="Continue"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_large"
+                    app:textAllCaps="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -244,26 +266,23 @@
                     android:textSize="@dimen/font_xsmall"
                     android:visibility="visible" />
 
-
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvContinue2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:background="@drawable/drawable_border_primary"
+                    android:drawableRight="@drawable/ic_arrow_right_primary"
+                    android:elevation="5dp"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_small"
+                    android:text="Continue"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_large"
+                    app:textAllCaps="true" />
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvContinue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_large"
-                android:layout_marginTop="@dimen/spacing_large"
-                android:background="@drawable/drawable_border_primary"
-                android:drawableRight="@drawable/ic_arrow_right_primary"
-                android:elevation="5dp"
-                android:gravity="center"
-                android:padding="@dimen/spacing_small"
-                android:text="Continue"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_large"
-                app:textAllCaps="true" />
-
 
         </LinearLayout>
     </ScrollView>

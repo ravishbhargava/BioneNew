@@ -129,6 +129,7 @@ public class KitDetailActivity extends BaseActivity {
                     }
                 } else {
                     Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
+                    intent.putExtra("barcode",""+customerKits.getBarCode());
                     startActivity(intent);
                 }
                 break;
