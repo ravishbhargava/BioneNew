@@ -85,9 +85,15 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-  @Override
+    @Override
     public int getItemCount() {
         return itemList.size();
+    }
+
+    public void setArrayList(List<Datum> list) {
+        itemList.clear();
+        itemList.addAll(list);
+        notifyDataSetChanged();
     }
 
     class ParentViewHolder extends RecyclerView.ViewHolder {
@@ -146,12 +152,19 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             // For the created instance, set title.// No need to set the image for// the ImageViews because we have//
             // provided the source for the images// in the layout file itself
-            ChildItemTitle.setText("" + childItem.getQuestion());
+            ChildItemTitle.setText(childItem.getType() + "" + childItem.getQuestion());
 //            ChildItemTitle.setText("parent option : " + childItem.getQuestion());
 
+            LinearLayoutManager layoutManager;
+//            if (childItem.getType().equals("radio")) {
+//                layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
+//                        LinearLayoutManager.HORIZONTAL, false);
+//            } else {
             // Here we have assigned the layout// as LinearLayout with vertical orientation
-            LinearLayoutManager layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
+            layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
                     LinearLayoutManager.VERTICAL, false);
+//            }
+
             if (childItem.getOptions() != null) {
                 // Since this is a nested layout, so// to define how many child items// should be prefetched when the
                 // child RecyclerView is nested// inside the parent RecyclerView,// we use the following method

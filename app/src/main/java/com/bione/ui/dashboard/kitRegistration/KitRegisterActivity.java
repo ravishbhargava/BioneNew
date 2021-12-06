@@ -59,11 +59,12 @@ public class KitRegisterActivity extends BaseActivity {
                     String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
                     ResearchConsentFragment f = (ResearchConsentFragment) getSupportFragmentManager().findFragmentByTag(tag);
                     f.setFirstViewData(name);
-                }else if(position==2){
-                    String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
-                    QuestionnaireFragment f = (QuestionnaireFragment) getSupportFragmentManager().findFragmentByTag(tag);
-//                    f.setFirstViewData(name);
                 }
+//                else if(position==2){
+//                    String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
+//                    QuestionnaireFragment f = (QuestionnaireFragment) getSupportFragmentManager().findFragmentByTag(tag);
+////                    f.setFirstViewData(name);
+//                }
                 viewPager.setCurrentItem(position);
                 mStepsView.setCompletedPosition(position).drawView();
             }

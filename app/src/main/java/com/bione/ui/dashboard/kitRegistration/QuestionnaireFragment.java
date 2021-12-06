@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,10 @@ public class QuestionnaireFragment extends BaseFragment {
     private int count = 3;
 
     private ArrayList<Datum> datumArrayList;
+    private ParentItemAdapter adapter;
+
+    private AppCompatTextView tvContinue;
+    private int listSize = 1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,10 +65,13 @@ public class QuestionnaireFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_questionnaire, container, false);
 
+            tvContinue = rootView.findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
             datumArrayList = new ArrayList<>();
 //            createNewOptionEntry();
 
-//            setRecyclerView();
+            setRecyclerView();
+
             CallAPI();
 
         }
@@ -72,7 +80,19 @@ public class QuestionnaireFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.tvContinue:
+                if (listSize == 1) {
+                    adapter.setArrayList(datumArrayList.subList(0, 7));
+                    listSize++;
+                } else if (listSize == 2) {
+                    adapter.setArrayList(datumArrayList.subList(8, 15));
+                    listSize++;
+                } else {
+                    adapter.setArrayList(datumArrayList.subList(15, datumArrayList.size()));
+                }
+                break;
+        }
     }
 
     private void setEditText() {
@@ -131,8 +151,8 @@ public class QuestionnaireFragment extends BaseFragment {
     }
 
     private void setRecyclerView() {
-
-        ParentItemAdapter adapter = new ParentItemAdapter(datumArrayList);
+        datumArrayList = new ArrayList<>();
+        adapter = new ParentItemAdapter(datumArrayList);
 //        ParentRecyclerViewAdapter adapter = new ParentRecyclerViewAdapter(mContext, datumArrayList);
         recyclerView = rootView.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager =
@@ -158,7 +178,9 @@ public class QuestionnaireFragment extends BaseFragment {
                     Log.d("list size", "-----" + commonResponses.getData().size());
                     datumArrayList = (ArrayList) commonResponses.getData();
                     Log.d("datumArrayList", "-----" + datumArrayList.size());
-                    setRecyclerView();
+                    adapter.setArrayList(datumArrayList);
+
+//                    setRecyclerView();
                 } else {
                     showErrorMessage(commonResponses.getMessage());
                 }

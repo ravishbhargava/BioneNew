@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/spacing_normal"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/spacing_xlarge">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/tvContinue"
         android:visibility="visible" />
 
-    <include layout="@layout/item_view_radio" />
+    <include
+        layout="@layout/item_view_radio"
+        android:visibility="gone" />
 
-    <include layout="@layout/item_view_edit_text" />
+    <include
+        layout="@layout/item_view_edit_text"
+        android:visibility="gone" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/drawable_border_primary"
+        android:drawableRight="@drawable/ic_arrow_right_primary"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="Continue"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large"
+        app:textAllCaps="true" />
+
+</RelativeLayout>
