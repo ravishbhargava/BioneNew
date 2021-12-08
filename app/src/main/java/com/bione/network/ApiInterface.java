@@ -77,7 +77,8 @@ public interface ApiInterface {
      * @return parsed common response object
      */
 
-    @POST("/rest/V1/bioneapi/showquestionnaire")
+//    @POST("/rest/V1/bioneapi/showquestionnaire")
+    @POST("/rest/V1/bioneapi/showquestionnairewithid")
     Call<Questionnaire> quest(@QueryMap Map<String, String> map);
 
     @POST("/rest/V1/bioneapi-customersendotp/sendotp")

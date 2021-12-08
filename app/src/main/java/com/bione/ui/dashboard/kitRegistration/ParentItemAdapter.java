@@ -1,5 +1,7 @@
 package com.bione.ui.dashboard.kitRegistration;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.questionnaire.Datum;
+import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,15 +23,20 @@ import static com.bione.utils.AppConstant.VIEW_TYPE_ONE;
 import static com.bione.utils.AppConstant.VIEW_TYPE_THREE;
 import static com.bione.utils.AppConstant.VIEW_TYPE_TWO;
 
-public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OptionItemAdapter.OnOptionListener {
 
     // An object of RecyclerView.RecycledViewPool is created to share the Views between the child and the parent RecyclerViews
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private RecyclerView.RecycledViewPool viewPool2 = new RecyclerView.RecycledViewPool();
     private List<Datum> itemList;
+    private OnNoteListener onNoteListener;
+    private OnEditTextChanged onEditTextChanged;
 
-    ParentItemAdapter(List<Datum> itemList) {
+
+    ParentItemAdapter(List<Datum> itemList, OnNoteListener onNoteListener, OnEditTextChanged onEditTextChanged) {
         this.itemList = itemList;
+        this.onNoteListener = onNoteListener;
+        this.onEditTextChanged = onEditTextChanged;
     }
 
     @Override
@@ -46,7 +54,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             case VIEW_TYPE_THREE:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_edit_text, parent, false);
-                return new TextTypeViewHolder(view);
+                return new TextTypeViewHolder(view, new MyCustomEditTextListener());
 
         }
         return null;
@@ -93,7 +101,18 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void setArrayList(List<Datum> list) {
         itemList.clear();
         itemList.addAll(list);
+
         notifyDataSetChanged();
+
+    }
+
+    public List<Datum> getArrayList() {
+        return itemList;
+    }
+
+    @Override
+    public void onOptionClick(int position) {
+        Log.d("onOptionClick", "----" + position);
     }
 
     class ParentViewHolder extends RecyclerView.ViewHolder {
@@ -116,17 +135,27 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ParentItemTitle.setText("" + parentItem.getQuestion());
 //            ParentItemTitle.setText("parent : " + parentItem.getQuestion());
 
-            // Create a layout manager// to assign a layout// to the RecyclerView.
-            // Here we have assigned the layout// as LinearLayout with vertical orientation
             LinearLayoutManager layoutManager = new LinearLayoutManager(ChildRecyclerView.getContext(),
                     LinearLayoutManager.VERTICAL, false);
+
             if (parentItem.getFields() != null) {
-                // Since this is a nested layout, so// to define how many child items// should be prefetched when the
-                // child RecyclerView is nested// inside the parent RecyclerView,// we use the following method
+
                 layoutManager.setInitialPrefetchItemCount(parentItem.getFields().size());
 
                 // Create an instance of the child// item view adapter and set its// adapter, layout manager and RecyclerViewPool
-                ChildItemAdapter childItemAdapter = new ChildItemAdapter(parentItem.getFields());
+                ChildItemAdapter childItemAdapter = new ChildItemAdapter(parentItem.getFields(), new ChildItemAdapter.OnChildListener() {
+                    @Override
+                    public void onChildClick(int childPosition, String value) {
+                        Log.d("child onTextChanged" + childPosition, "-----" + value);
+                        itemList.get(position).setAnswer(value);
+                    }
+                }, new ChildItemAdapter.OnEditTextChanged() {
+                    @Override
+                    public void onTextChanged(int childPosition, String charSeq) {
+                        Log.d("child onTextChanged" + childPosition, "-----" + charSeq);
+                        itemList.get(position).setAnswer(charSeq);
+                    }
+                });
                 ChildRecyclerView.setLayoutManager(layoutManager);
                 ChildRecyclerView.setAdapter(childItemAdapter);
                 ChildRecyclerView.setRecycledViewPool(viewPool2);
@@ -139,6 +168,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private TextView ChildItemTitle;
         private RecyclerView OptionRecyclerView;
 
+
         OptionViewHolder(final View itemView) {
             super(itemView);
 
@@ -150,31 +180,29 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             // Create an instance of the ChildItem// class for the given position
             Datum childItem = itemList.get(position);
 
-            // For the created instance, set title.// No need to set the image for// the ImageViews because we have//
-            // provided the source for the images// in the layout file itself
             ChildItemTitle.setText(childItem.getType() + "" + childItem.getQuestion());
 //            ChildItemTitle.setText("parent option : " + childItem.getQuestion());
 
-            LinearLayoutManager layoutManager;
-//            if (childItem.getType().equals("radio")) {
-//                layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
-//                        LinearLayoutManager.HORIZONTAL, false);
-//            } else {
             // Here we have assigned the layout// as LinearLayout with vertical orientation
-            layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
+            LinearLayoutManager layoutManager = new LinearLayoutManager(OptionRecyclerView.getContext(),
                     LinearLayoutManager.VERTICAL, false);
-//            }
 
             if (childItem.getOptions() != null) {
-                // Since this is a nested layout, so// to define how many child items// should be prefetched when the
-                // child RecyclerView is nested// inside the parent RecyclerView,// we use the following method
+
                 layoutManager.setInitialPrefetchItemCount(childItem.getOptions().size());
 
                 // Create an instance of the child// item view adapter and set its// adapter, layout manager and RecyclerViewPool
-                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions());
+                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions(), new OptionItemAdapter.OnOptionListener() {
+                    @Override
+                    public void onOptionClick(int positionOption) {
+                        Log.d("parent onOptionClick", "------" + positionOption);
+                        itemList.get(position).setAnswer(childItem.getOptions().get(positionOption).getName());
+                    }
+                });
                 OptionRecyclerView.setLayoutManager(layoutManager);
                 OptionRecyclerView.setAdapter(optionItemAdapter);
                 OptionRecyclerView.setRecycledViewPool(viewPool);
+
             }
 
         }
@@ -186,14 +214,17 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         AppCompatTextView tvQsn;
         TextInputLayout textInputLayout;
         TextInputEditText editText;
+        public MyCustomEditTextListener myCustomEditTextListener;
 
 
-        public TextTypeViewHolder(View itemView) {
+        public TextTypeViewHolder(View itemView, MyCustomEditTextListener myCustomEditTextListener) {
             super(itemView);
 
             this.tvQsn = (AppCompatTextView) itemView.findViewById(R.id.tvQsn);
             this.textInputLayout = (TextInputLayout) itemView.findViewById(R.id.textInputLayout);
             this.editText = (TextInputEditText) itemView.findViewById(R.id.editText);
+            this.myCustomEditTextListener = myCustomEditTextListener;
+            this.editText.addTextChangedListener(myCustomEditTextListener);
 
         }
 
@@ -201,7 +232,79 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             Datum qsnList = itemList.get(position);
             tvQsn.setText(qsnList.getQuestion());
             textInputLayout.setHint(qsnList.getQuestion());
+            myCustomEditTextListener.updatePosition(getAdapterPosition());
 
+            if (qsnList.getAnswer() != null) {
+                if (qsnList.getAnswer().equals("")) {
+                    editText.setText("");
+                } else {
+                    editText.setText(qsnList.getAnswer());
+                }
+            } else {
+                editText.setText("");
+            }
+
+
+//            editText.setText("");
+
+//            editText.addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+////                    Log.d("position", "----" + position);
+////                    Log.d("charSequence", "----" + charSequence.toString());
+//                    onEditTextChanged.onTextChanged(position, charSequence.toString());
+////                    itemList.get(position).setAnswer(charSequence.toString());
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable editable) {
+////                    Log.d("position", "----" + position);
+////                    Log.d("editable", "----" + editable.toString());
+//
+//
+//                }
+//            });
+
+        }
+    }
+
+    public interface OnNoteListener {
+        void onNoteClick(int position);
+    }
+
+    public interface OnEditTextChanged {
+        void onTextChanged(int position, String charSeq);
+    }
+
+    // we make TextWatcher to be aware of the position it currently works with
+    // this way, once a new item is attached in onBindViewHolder, it will
+    // update current position MyCustomEditTextListener, reference to which is kept by ViewHolder
+    private class MyCustomEditTextListener implements TextWatcher {
+        private int position;
+
+        public void updatePosition(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            // no op
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            itemList.get(position).setAnswer(charSequence.toString());
+            onEditTextChanged.onTextChanged(position, charSequence.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            // no op
         }
     }
 }

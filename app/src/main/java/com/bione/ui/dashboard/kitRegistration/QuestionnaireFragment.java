@@ -30,8 +30,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class QuestionnaireFragment extends BaseFragment {
+public class QuestionnaireFragment extends BaseFragment implements ParentItemAdapter.OnNoteListener {
 
     private View rootView;
     private Context mContext;
@@ -40,11 +41,12 @@ public class QuestionnaireFragment extends BaseFragment {
     private ArrayList optionsViews = new ArrayList();
     private int count = 3;
 
-    private ArrayList<Datum> datumArrayList;
+    private List<Datum> datumArrayList;
     private ParentItemAdapter adapter;
 
     private AppCompatTextView tvContinue;
-    private int listSize = 1;
+    private int listSize = 0;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,18 +80,68 @@ public class QuestionnaireFragment extends BaseFragment {
         return rootView;
     }
 
+    private boolean checkAllAnswers(ArrayList<Datum> list, int starting, int last) {
+        int end = 0;
+        end = last - starting;
+        Log.d("size of list :","----" + list.size());
+        for (int i = 0; i < end; i++) {
+            if (list.get(i).getAnswer() != null) {
+                if (list.get(i).getAnswer().equals("")) {
+                    Toast.makeText(mContext, "Please select all answers blank : "+i, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    Log.d("answer " + i, "---" + list.get(i).getAnswer());
+                }
+            } else {
+
+                Toast.makeText(mContext, "Please select all answers : "+i, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvContinue:
+
+
+                Log.d("listSize", "----" + listSize);
+//                if (listSize == 0) {
+//                    adapter.setArrayList(datumArrayList.subList(0, 8));
+////                    recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 8).size());
+//                    listSize++;
+//
+//                } else
                 if (listSize == 1) {
-                    adapter.setArrayList(datumArrayList.subList(0, 7));
-                    listSize++;
+//                    if (checkAllAnswers((ArrayList<Datum>) datumArrayList, 0, 8)) {
+                    if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 0, 13)) {
+                        listSize++;
+                        recyclerView.removeAllViews();
+                        recyclerView.setItemViewCacheSize(datumArrayList.subList(13, 26).size());
+                        adapter.setArrayList(datumArrayList.subList(13, 26));
+                        adapter.notifyDataSetChanged();
+                    }
                 } else if (listSize == 2) {
-                    adapter.setArrayList(datumArrayList.subList(8, 15));
-                    listSize++;
-                } else {
-                    adapter.setArrayList(datumArrayList.subList(15, datumArrayList.size()));
+                    if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 13, 26)) {
+                        listSize++;
+                        recyclerView.removeAllViews();
+                        recyclerView.setItemViewCacheSize(datumArrayList.subList(26, datumArrayList.size()).size());
+                        adapter.setArrayList(datumArrayList.subList(26, datumArrayList.size()));
+                        adapter.notifyDataSetChanged();
+
+                    }
+                } else if (listSize == 3) {
+                    if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 26, datumArrayList.size())) {
+                        Toast.makeText(mContext, "Questionnaire completed", Toast.LENGTH_SHORT).show();
+                        listSize = 0;
+                        recyclerView.removeAllViews();
+                        recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 13).size());
+                        adapter.setArrayList(datumArrayList.subList(0, 13));
+                        adapter.notifyDataSetChanged();
+                        listSize++;
+                    }
                 }
                 break;
         }
@@ -152,7 +204,13 @@ public class QuestionnaireFragment extends BaseFragment {
 
     private void setRecyclerView() {
         datumArrayList = new ArrayList<>();
-        adapter = new ParentItemAdapter(datumArrayList);
+        adapter = new ParentItemAdapter(datumArrayList, this::onNoteClick, new ParentItemAdapter.OnEditTextChanged() {
+            @Override
+            public void onTextChanged(int position, String charSeq) {
+                Log.d("onTextChanged " + position, "----" + charSeq);
+                datumArrayList.get(position).setAnswer(charSeq);
+            }
+        });
 //        ParentRecyclerViewAdapter adapter = new ParentRecyclerViewAdapter(mContext, datumArrayList);
         recyclerView = rootView.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager =
@@ -178,8 +236,12 @@ public class QuestionnaireFragment extends BaseFragment {
                     Log.d("list size", "-----" + commonResponses.getData().size());
                     datumArrayList = (ArrayList) commonResponses.getData();
                     Log.d("datumArrayList", "-----" + datumArrayList.size());
-                    adapter.setArrayList(datumArrayList);
-
+//                    recyclerView.setItemViewCacheSize(datumArrayList.size());
+//                    adapter.setArrayList(datumArrayList);
+                    listSize = 0;
+                    adapter.setArrayList(datumArrayList.subList(0, 13));
+                    recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 13).size());
+                    listSize++;
 //                    setRecyclerView();
                 } else {
                     showErrorMessage(commonResponses.getMessage());
@@ -199,4 +261,11 @@ public class QuestionnaireFragment extends BaseFragment {
             }
         });
     }
+
+    @Override
+    public void onNoteClick(int position) {
+        Log.d("onNoteClick", "------" + position);
+    }
+
+
 }

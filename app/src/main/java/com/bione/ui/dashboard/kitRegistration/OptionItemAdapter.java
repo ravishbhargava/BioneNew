@@ -22,10 +22,12 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
     // if checkedPosition = -1, there is no default selection
     // if checkedPosition = 0, 1st item is selected by default
     private int checkedPosition = -1;
+    private OnOptionListener onOptionListener;
 
     // Constructor
-    OptionItemAdapter(List<Option> optionItemList) {
+    OptionItemAdapter(List<Option> optionItemList, OnOptionListener onOptionListener) {
         this.OptionItemList = optionItemList;
+        this.onOptionListener = onOptionListener;
     }
 
     @NonNull
@@ -64,6 +66,7 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
             @Override
             public void onClick(View view) {
                 Log.d("option item clicked", "-----" + optionItem.getName());
+                onOptionListener.onOptionClick(position);
                 optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
                 if (checkedPosition != position) {
                     notifyItemChanged(checkedPosition);
@@ -95,5 +98,9 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
             OptionItemTitle = itemView.findViewById(R.id.tvQsn);
             root = itemView.findViewById(R.id.root);
         }
+    }
+
+    public interface OnOptionListener {
+        void onOptionClick(int position);
     }
 }

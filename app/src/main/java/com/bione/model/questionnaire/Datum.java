@@ -8,49 +8,69 @@ import java.util.List;
 
 public class Datum {
 
-@SerializedName("question")
-@Expose
-private String question;
-@SerializedName("options")
-@Expose
-private List<Option> options = null;
-@SerializedName("type")
-@Expose
-private String type;
-@SerializedName("fields")
-@Expose
-private List<Field> fields = null;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("question")
+    @Expose
+    private String question;
+    @SerializedName("options")
+    @Expose
+    private List<Option> options = null;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("fields")
+    @Expose
+    private List<Field> fields = null;
 
-public String getQuestion() {
-return question;
-}
+    private String answer;
 
-public void setQuestion(String question) {
-this.question = question;
-}
+    public String getQuestion() {
+        return question;
+    }
 
-public List<Option> getOptions() {
-return options;
-}
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 
-public void setOptions(List<Option> options) {
-this.options = options;
-}
+    public List<Option> getOptions() {
+        return options;
+    }
 
-public String getType() {
-return type;
-}
+    public void setOptions(List<Option> options) {
+        this.options = options;
+    }
 
-public void setType(String type) {
-this.type = type;
-}
+    public String getType() {
+        return type;
+    }
 
-public List<Field> getFields() {
-return fields;
-}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-public void setFields(List<Field> fields) {
-this.fields = fields;
-}
+    public List<Field> getFields() {
+        return fields;
+    }
 
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 }
