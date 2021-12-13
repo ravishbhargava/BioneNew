@@ -19,8 +19,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:padding="@dimen/spacing_normal">
 
             <RelativeLayout
@@ -61,7 +61,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/relDescription"
+                android:id="@+id/llDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -148,6 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -202,6 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -209,7 +211,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="Free Delivery &amp;\nReturn"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -221,7 +223,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Free domestic shipping both ways"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
@@ -264,6 +266,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -271,7 +274,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="Complimentary \n1-1 Consultation"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -283,7 +286,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Talk to our fitness experts"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
@@ -318,6 +321,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -325,7 +329,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="Private and \nSecure"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -337,7 +341,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Your data is never shared &amp; ISO9001: 2015 adherence"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
@@ -460,6 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -467,7 +472,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="What you provide"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -479,7 +484,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Your Samples"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
@@ -514,6 +519,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -521,7 +527,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="What we do"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -533,7 +539,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Gut DNA Analysis + Artificial Intelligence"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
@@ -568,6 +574,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -575,7 +582,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Comprehensive\nDNA Report"
+                                android:text="What you get"
                                 android:textAppearance="@style/CustomTextAppearance.Medium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_small"
@@ -587,7 +594,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:maxWidth="100dp"
-                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:text="Report &amp; personalised fitness recommendations"
                                 android:textAppearance="@style/CustomTextAppearance"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_xsmall" />
