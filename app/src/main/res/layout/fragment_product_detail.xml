@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_normal">
+
+    <include layout="@layout/include_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvBuyNow"
+        android:layout_below="@+id/header"
+
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/spacing_normal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bottom"
+                android:layout_below="@+id/header"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivKit"
+                    android:layout_width="250dp"
+                    android:layout_height="220dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/bitmap" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvKitName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longifit Test"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xxxlarge"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="Rs 11,999"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xxlarge"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/relDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:text="Description"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge"
+                    android:textStyle="bold" />
+
+                <View style="@style/viewLine" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/longifit_description"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_large"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
+                    android:background="#F5F6FE"
+                    android:drawableLeft="@drawable/ic_arrow_right_primary"
+                    android:drawableRight="@drawable/ic_arrow_right_primary"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_normal"
+                    android:text="Is your energy level during workout matching your fitness goals?"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxlarge"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F5F6FE"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_normal"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="When it comes to choosing the best fitness plan for your body, don't guess.\nTest!"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_large"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Our powerful AI engine &amp; science team help connects the dots between the patterns in your unique DNA and the fitness pattern that your body needs."
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_large" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Get Fit, Improve Energy"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/getfit"
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_large"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="250dp"
+                    android:layout_height="220dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/bitmap" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:text="How it Works"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_xxxlarge"
+                    android:textStyle="bold" />
+
+                <View style="@style/viewLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_medium"
+                            android:elevation="@dimen/spacing_xsmall">
+
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_small"
+                                android:background="@color/white"
+                                android:src="@drawable/ic_calendar" />
+                        </androidx.cardview.widget.CardView>
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comprehensive\nDNA Report"
+                                android:textAppearance="@style/CustomTextAppearance.Medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxWidth="100dp"
+                                android:text="Detailed reports on exercise, fitness, nutrition &amp; more"
+                                android:textAppearance="@style/CustomTextAppearance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_xsmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBuyNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/drawable_border_primary"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="Buy Now"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large" />
+</RelativeLayout>

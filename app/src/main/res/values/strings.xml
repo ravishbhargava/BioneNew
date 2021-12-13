@@ -136,7 +136,8 @@
     <string name="i_have_read_and_agree_to_the_terms_of_services">I have read and agree to the <b>Terms of Services*</b></string>
     <string name="i_have_read_and_agree_to_the_privacy_statement">I have read and agree to the <b>Privacy Statement*</b></string>
     <string name="know_more"><u>Know More</u></string>
-    <string name="research_consent"><![CDATA[
+    <string name="research_consent">
+        <![CDATA[
         Bione aims to make and support scientific discoveries in the area of Genetic and Gut Microbiome for human health and welfare. Some of these discoveries will be published in scientific journals to spread the scientific knowledge at global level for the benefit of humankind. We invite you to take part in this project, which we call Bione MyMicroBiome and Genetic Research Study and to participate you must agree to the research consent described below:
         <br /><br />Your personal information will not be used for research and your MyMicrobiome &amp; Genetic data will be de-identified
         <br /><br />Your de-identified MyMicroBiome and Genetic data and any other personal information provided by you may be analyzed in the research.
@@ -146,9 +147,31 @@
         <br /><br />The decision to participate in this study is voluntary
         <br /><br />If Yes, it indicates that you have decided to allow your de-identified sample and data in Bione MyMicroBiome and Genetic Research Study
         <br /><br />If No, it indicates that you have decided to opt out yourself from voluntary participation in scientific research in such case your leftover sample and de-identified data will not be used for the Bione MyMicroBiome and Genetic Research Study.
-]]>
+        ]]>
     </string>
     <string name="text_i_accept_resgister_kit"><![CDATA[I hereby declare that from the past 14 days (from date of saliva sample collection), I am not suffering from symptoms (Fever, cough, shortness of breath, breathing difficulties & pneumonia) which can be related to coronavirus infection.]]></string>
     <string name="error_barcode">The enter barcode is invalid. Please enter a valid code.Need help call Bione customer support number +91 63667 54050</string>
+
+    <string name="longifit_description">
+        <![CDATA[
+        Bione’s LongiFIT is designed to help you achieve your true fitness goals and make them truly personal by knowing what impacts your body, backed by science.
+         <br /><br />A DNA test that can be taken in the comfort of your home can reveal gene mutations which can increase your risk for diseases like diabetes, obesity, Alzheimer’s and cardiovascular conditions. Based on the report and free counselling sessions with our experts, you can make smarter lifestyle choices to prevent such diseases and achieve optimal health.
+
+         <br /><br />DNA test – Scans 175+ functionally important genes
+         <br /><br />100+ parameters reported across 15 categories
+         <br /><br />Plan to get the best out of your workouts
+         <br /><br />One-to-one consultation with experienced counselors
+        ]]>
+    </string>
+
+    <string name="getfit">
+         <![CDATA[
+        <br /><br />Fighting obesity? Get personalized fitness recommendations based on your DNA for you
+        <br /><br />Change your eating habits and improve your endurance by assessing 100+ parameters
+        <br /><br />Know the probability of major diseases affecting you early to prevent them
+        <br /><br />Improve your overall lifestyle and optimize your life by using insights backed by science
+    ]]>
+    </string>
+
 
 </resources>

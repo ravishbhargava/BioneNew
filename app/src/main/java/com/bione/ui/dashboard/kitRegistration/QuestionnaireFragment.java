@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.model.CommonResponse;
 import com.bione.model.questionnaire.Datum;
 import com.bione.model.questionnaire.Questionnaire;
 import com.bione.network.ApiError;
@@ -29,8 +30,15 @@ import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class QuestionnaireFragment extends BaseFragment implements ParentItemAdapter.OnNoteListener {
 
@@ -76,6 +84,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
 
             CallAPI();
 
+
         }
         return rootView;
     }
@@ -83,19 +92,19 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
     private boolean checkAllAnswers(ArrayList<Datum> list, int starting, int last) {
         int end = 0;
         end = last - starting;
-        Log.d("size of list :","----" + list.size());
+        Log.d("size of list :", "----" + list.size());
         for (int i = 0; i < end; i++) {
             if (list.get(i).getAnswer() != null) {
                 if (list.get(i).getAnswer().equals("")) {
-                    Toast.makeText(mContext, "Please select all answers blank : "+i, Toast.LENGTH_SHORT).show();
-                    return false;
+//                    Toast.makeText(mContext, "Please select all answers blank : " + i, Toast.LENGTH_SHORT).show();
+//                    return false;
                 } else {
                     Log.d("answer " + i, "---" + list.get(i).getAnswer());
                 }
             } else {
 
-                Toast.makeText(mContext, "Please select all answers : "+i, Toast.LENGTH_SHORT).show();
-                return false;
+                Toast.makeText(mContext, "Please select all answers : " + i, Toast.LENGTH_SHORT).show();
+//                return false;
             }
         }
         return true;
@@ -133,6 +142,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
 
                     }
                 } else if (listSize == 3) {
+//                    Log.d("createJson", "----" + createJson().toString());
                     if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 26, datumArrayList.size())) {
                         Toast.makeText(mContext, "Questionnaire completed", Toast.LENGTH_SHORT).show();
                         listSize = 0;
@@ -141,6 +151,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                         adapter.setArrayList(datumArrayList.subList(0, 13));
                         adapter.notifyDataSetChanged();
                         listSize++;
+                        Log.d("createJson", "----" + createJson().toString());
                     }
                 }
                 break;
@@ -242,7 +253,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                     adapter.setArrayList(datumArrayList.subList(0, 13));
                     recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 13).size());
                     listSize++;
-//                    setRecyclerView();
+
                 } else {
                     showErrorMessage(commonResponses.getMessage());
                 }
@@ -262,10 +273,80 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
         });
     }
 
+    public void answerAPI() {
+        showLoading();
+
+
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), createJson().toString());
+        RestClient.getApiInterface().answer(body).enqueue(new ResponseResolver<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse commonResponse) {
+
+                Log.d("onSuccess -----  ", "--");
+                Log.d("commonResponse -----  ", commonResponse.toString());
+
+                if (commonResponse.getStatusCode().equals("200")) {
+
+                } else {
+                    Toast.makeText(mContext, "Error.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+
     @Override
     public void onNoteClick(int position) {
         Log.d("onNoteClick", "------" + position);
     }
 
+    private JSONObject createJson() {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+
+        try {
+            for (int i = 0; i < datumArrayList.size(); i++) {
+                JSONObject jsonObject1 = new JSONObject();
+
+                jsonObject1.put("que_id", datumArrayList.get(i).getId());
+
+                if (datumArrayList.get(i).getAnswer() != null) {
+                    jsonObject1.put("ans", datumArrayList.get(i).getAnswer());
+                } else {
+                    jsonObject1.put("ans", "");
+                }
+
+                if (datumArrayList.get(i).getOptions() != null && datumArrayList.get(i).getOptions().size() != 0) {
+                    Log.d("datumArrayList", "----" + datumArrayList.get(i).getQuestion());
+                    jsonObject1.put("option_id", datumArrayList.get(i).getOptions().get(0).getValue());
+                } else {
+                    jsonObject1.put("option_id", "");
+                }
+                jsonArray.put(jsonObject1);
+            }
+
+            jsonObject.put("data", jsonArray);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
 
 }

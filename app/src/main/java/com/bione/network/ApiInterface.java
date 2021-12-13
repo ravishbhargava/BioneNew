@@ -187,6 +187,10 @@ public interface ApiInterface {
     Call<UpdateProfile> createAccount(@Body RequestBody json);
 
 
+    @POST("/rest/V1/bioneapi/addquestionnairebyids")
+    Call<CommonResponse> answer(@Body RequestBody json);
+
+
     /**
      *
      * @param map
