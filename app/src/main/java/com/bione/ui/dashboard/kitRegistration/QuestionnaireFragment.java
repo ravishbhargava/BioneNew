@@ -103,7 +103,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                 }
             } else {
 
-                Toast.makeText(mContext, "Please select all answers : " + i, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, "Please select all answers : " + i, Toast.LENGTH_SHORT).show();
 //                return false;
             }
         }
@@ -218,7 +218,7 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
         adapter = new ParentItemAdapter(datumArrayList, this::onNoteClick, new ParentItemAdapter.OnEditTextChanged() {
             @Override
             public void onTextChanged(int position, String charSeq) {
-                Log.d("onTextChanged " + position, "----" + charSeq);
+//                Log.d("onTextChanged " + position, "----" + charSeq);
                 datumArrayList.get(position).setAnswer(charSeq);
             }
         });

@@ -128,6 +128,9 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         void onBind(int position) {
+            Log.d("position", "----------" + position);
+
+
             // Create an instance of the ParentItem class for the given position
             Datum parentItem = itemList.get(position);
 
@@ -139,26 +142,30 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     LinearLayoutManager.VERTICAL, false);
 
             if (parentItem.getFields() != null) {
-
+                Log.d("itemList.get(position)", "----------" + itemList.get(position).getFields().get(0).getOptions().size());
+                Log.d("parentItem", "----------" + parentItem.getFields().get(0).getOptions().size());
                 layoutManager.setInitialPrefetchItemCount(parentItem.getFields().size());
 
                 // Create an instance of the child// item view adapter and set its// adapter, layout manager and RecyclerViewPool
-                ChildItemAdapter childItemAdapter = new ChildItemAdapter(parentItem.getFields(), new ChildItemAdapter.OnChildListener() {
-                    @Override
-                    public void onChildClick(int childPosition, String value) {
-                        Log.d("child onTextChanged" + childPosition, "-----" + value);
-                        itemList.get(position).setAnswer(value);
-                    }
-                }, new ChildItemAdapter.OnEditTextChanged() {
-                    @Override
-                    public void onTextChanged(int childPosition, String charSeq) {
-                        Log.d("child onTextChanged" + childPosition, "-----" + charSeq);
-                        itemList.get(position).setAnswer(charSeq);
-                    }
-                });
+                ChildItemAdapter childItemAdapter = new ChildItemAdapter(parentItem.getFields(),
+                        new ChildItemAdapter.OnChildListener() {
+                            @Override
+                            public void onChildClick(int childPosition, String value) {
+                                Log.d("child option click" + childPosition, "-----" + value);
+                                itemList.get(position).setAnswer(value);
+                            }
+                        },
+                        new ChildItemAdapter.OnEditTextChanged() {
+                            @Override
+                            public void onTextChanged(int childPosition, String charSeq) {
+//                                Log.d("child onTextChanged" + childPosition, "-----" + charSeq);
+                                itemList.get(position).setAnswer(charSeq);
+                            }
+                        });
                 ChildRecyclerView.setLayoutManager(layoutManager);
                 ChildRecyclerView.setAdapter(childItemAdapter);
                 ChildRecyclerView.setRecycledViewPool(viewPool2);
+
             }
         }
     }
@@ -192,7 +199,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 layoutManager.setInitialPrefetchItemCount(childItem.getOptions().size());
 
                 // Create an instance of the child// item view adapter and set its// adapter, layout manager and RecyclerViewPool
-                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions(), new OptionItemAdapter.OnOptionListener() {
+                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions(), childItem.getType(), new OptionItemAdapter.OnOptionListener() {
                     @Override
                     public void onOptionClick(int positionOption) {
                         Log.d("parent onOptionClick", "------" + positionOption);

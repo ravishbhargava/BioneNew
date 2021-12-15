@@ -25,7 +25,7 @@ public class ChildItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private List<Field> ChildItemList;
     // An object of RecyclerView.RecycledViewPool is created to share the Views between the child and the parent RecyclerViews
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    private RecyclerView.RecycledViewPool viewPool3 = new RecyclerView.RecycledViewPool();
 
     private OnEditTextChanged onEditTextChanged;
     private OnChildListener onChildListener;
@@ -120,10 +120,12 @@ public class ChildItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
             if (childItem.getOptions() != null) {
+                Log.d("ChildItemList.get(position)", "----------" + ChildItemList.get(position).getOptions().size());
+                Log.d("childItem", "----------" + childItem.getOptions().size());
                 layoutManager.setInitialPrefetchItemCount(childItem.getOptions().size());
 
                 // Create an instance of the child// item view adapter and set its// adapter, layout manager and RecyclerViewPool
-                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions(), new OptionItemAdapter.OnOptionListener() {
+                OptionItemAdapter optionItemAdapter = new OptionItemAdapter(childItem.getOptions(), childItem.getType(), new OptionItemAdapter.OnOptionListener() {
                     @Override
                     public void onOptionClick(int position) {
                         Log.d(" child onOptionClick", "------" + position);
@@ -132,7 +134,7 @@ public class ChildItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 });
                 OptionRecyclerView.setLayoutManager(layoutManager);
                 OptionRecyclerView.setAdapter(optionItemAdapter);
-                OptionRecyclerView.setRecycledViewPool(viewPool);
+                OptionRecyclerView.setRecycledViewPool(viewPool3);
             }
         }
     }
@@ -198,7 +200,7 @@ public class ChildItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void onChildClick(int childPosition, String value);
     }
 
-    void setArrayList(List<Field> childItemList){
+    void setArrayList(List<Field> childItemList) {
         ChildItemList.clear();
         ChildItemList.addAll(childItemList);
         notifyDataSetChanged();

@@ -14,6 +14,7 @@ import com.bione.R;
 import com.bione.model.questionnaire.Option;
 import com.bione.utils.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.OptionViewHolder> {
@@ -21,13 +22,15 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
     private List<Option> OptionItemList;
     // if checkedPosition = -1, there is no default selection
     // if checkedPosition = 0, 1st item is selected by default
-    private int checkedPosition = -1;
+//    private int checkedPosition = -1;
     private OnOptionListener onOptionListener;
+    private String selectionType;
 
     // Constructor
-    OptionItemAdapter(List<Option> optionItemList, OnOptionListener onOptionListener) {
+    OptionItemAdapter(List<Option> optionItemList, String selectionType, OnOptionListener onOptionListener) {
         this.OptionItemList = optionItemList;
         this.onOptionListener = onOptionListener;
+        this.selectionType = selectionType;
     }
 
     @NonNull
@@ -51,28 +54,39 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
         optionViewHolder.OptionItemTitle.setText("" + optionItem.getName());
 //        optionViewHolder.OptionItemTitle.setText("option : " + optionItem.getName());
 
-        if (checkedPosition == -1) {
-            optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
+        if (optionItem.getSelected()) {
+            optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
         } else {
-            if (checkedPosition == position) {
-                optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
-            } else {
-                optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
-            }
+            optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
         }
+//        if (checkedPosition == -1) {
+//            optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
+//        } else {
+//            if (checkedPosition == position) {
+//                optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
+//            } else {
+//                optionViewHolder.root.setBackgroundResource(R.drawable.drawable_border_list_item);
+//            }
+//        }
 
         optionViewHolder.root.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 Log.d("option item clicked", "-----" + optionItem.getName());
-                onOptionListener.onOptionClick(position);
-                optionViewHolder.root.setBackgroundResource(R.color.available_session_color);
-                if (checkedPosition != position) {
-                    notifyItemChanged(checkedPosition);
-                    checkedPosition = position;
+//                if (checkedPosition != position) {
+//                    notifyItemChanged(checkedPosition);
+//                    checkedPosition = position;
+//                }
+                if(selectionType!=null) {
+                    if (selectionType.equals("multiselect")) {
+                        multiClicked(position, optionViewHolder.root);
+                    } else {
+                        singleClicked(position, optionViewHolder.root);
+                    }
+                }else{
+                    singleClicked(position, optionViewHolder.root);
                 }
-
             }
         });
     }
@@ -102,5 +116,42 @@ public class OptionItemAdapter extends RecyclerView.Adapter<OptionItemAdapter.Op
 
     public interface OnOptionListener {
         void onOptionClick(int position);
+    }
+
+    public void multiClicked(int position, View view) {
+        onOptionListener.onOptionClick(position);
+        if (OptionItemList.get(position).getSelected()) {
+            OptionItemList.get(position).setSelected(false);
+            view.setBackgroundResource(R.drawable.drawable_border_list_item);
+        } else {
+            OptionItemList.get(position).setSelected(true);
+            view.setBackgroundResource(R.color.available_session_color);
+        }
+        notifyItemChanged(position);
+    }
+
+    public void singleClicked(int position, View view) {
+        onOptionListener.onOptionClick(position);
+
+        for (int i = 0; i < OptionItemList.size(); i++) {
+            if (i == position) {
+                OptionItemList.get(i).setSelected(true);
+                view.setBackgroundResource(R.color.available_session_color);
+            } else {
+                OptionItemList.get(i).setSelected(false);
+                view.setBackgroundResource(R.drawable.drawable_border_list_item);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Option> getSelectedItem() {
+        ArrayList<Option> selectedArray = new ArrayList<>();
+        for (int i = 0; i < OptionItemList.size(); i++) {
+            if (OptionItemList.get(i).getSelected()) {
+                selectedArray.add(OptionItemList.get(i));
+            }
+        }
+        return selectedArray;
     }
 }
