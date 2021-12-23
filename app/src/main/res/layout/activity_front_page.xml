@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:src="@color/white"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:hint="Customer Detail"
+                android:paddingHorizontal="@dimen/spacing_xlarge"
+                android:textColorHint="@color/black"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBarcode"
+                    style="@style/textInputEditText"
+                    android:inputType="text"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textColor="#525587" />
+
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

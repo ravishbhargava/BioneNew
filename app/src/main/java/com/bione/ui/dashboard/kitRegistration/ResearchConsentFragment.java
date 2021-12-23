@@ -32,6 +32,13 @@ public class ResearchConsentFragment extends BaseFragment {
     private AppCompatTextView tvContinue2;
 
     private TextInputEditText etName;
+    private TextInputEditText etDOB;
+    private TextInputEditText etGender;
+
+    private TextInputEditText etBarcode;
+    private TextInputEditText etNameSecond;
+    private TextInputEditText etDOBSecond;
+    private TextInputEditText etGenderSecond;
 
     private RadioGroup radioGroup;
     private RadioButton radioButton;
@@ -67,6 +74,7 @@ public class ResearchConsentFragment extends BaseFragment {
 
             init();
             setListeners();
+            setFirstViewData("");
 
             makeTextViewResizable(tvLongText, 5, "See More", true);
         }
@@ -83,6 +91,13 @@ public class ResearchConsentFragment extends BaseFragment {
         rbYes = rootView.findViewById(R.id.rbYes);
         rbNo = rootView.findViewById(R.id.rbNo);
         etName = rootView.findViewById(R.id.etName);
+        etDOB = rootView.findViewById(R.id.etDOB);
+        etGender = rootView.findViewById(R.id.etGender);
+
+        etBarcode = rootView.findViewById(R.id.etBarcode);
+        etNameSecond = rootView.findViewById(R.id.etNameSecond);
+        etDOBSecond = rootView.findViewById(R.id.etDOBSecond);
+        etGenderSecond = rootView.findViewById(R.id.etGenderSecond);
 
         cbAccept = rootView.findViewById(R.id.cbAccept);
 
@@ -103,7 +118,7 @@ public class ResearchConsentFragment extends BaseFragment {
             case R.id.tvContinue2:
                 if (cbAccept.isChecked()) {
 //                    setFirstViewData();
-                    listener.submit(2, "ravish");
+                    listener.submit(2, "");
                 } else {
                     showErrorMessage("Please tick the check box.");
                 }
@@ -112,12 +127,20 @@ public class ResearchConsentFragment extends BaseFragment {
     }
 
     public void setFirstViewData(String name) {
-        etName.setText(name);
+        etName.setText(KitRegisterActivity.firstName + " " + KitRegisterActivity.lastName);
+        etDOB.setText(KitRegisterActivity.birthDate);
+        etGender.setText(KitRegisterActivity.gender);
+
         secondLayout.setVisibility(View.GONE);
         firstLayout.setVisibility(View.VISIBLE);
     }
 
     private void setSecondViewData() {
+        etBarcode.setText(KitRegisterActivity.kitBarcode);
+        etNameSecond.setText(KitRegisterActivity.firstName + " "+KitRegisterActivity.lastName);
+        etDOBSecond.setText(KitRegisterActivity.birthDate);
+        etGenderSecond.setText(KitRegisterActivity.gender);
+
         secondLayout.setVisibility(View.VISIBLE);
         firstLayout.setVisibility(View.GONE);
     }
@@ -130,10 +153,14 @@ public class ResearchConsentFragment extends BaseFragment {
         radioButton = (RadioButton) rootView.findViewById(selectedId);
 
 //        Toast.makeText(mContext, ""+radioButton.getText(), Toast.LENGTH_SHORT).show();
-        if (radioButton.getText().toString().equals(rbYes.getText().toString())) {
-            setSecondViewData();
+        if (radioButton.getText().toString() != null) {
+            if (radioButton.getText().toString().equals(rbYes.getText().toString())) {
+                setSecondViewData();
+            } else {
+                showErrorMessage("You need to agree to move forward");
+            }
         } else {
-            showErrorMessage("Please choose Yes to move forward.");
+            showErrorMessage("Please choose one option");
         }
 
     }

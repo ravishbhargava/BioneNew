@@ -73,6 +73,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etName"
                         style="@style/textInputEditText"
+                        android:textColor="#525587"
                         android:enabled="false" />
 
                     <View style="@style/viewLine" />
@@ -87,6 +88,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDOB"
                         style="@style/textInputEditText"
+                        android:textColor="#525587"
                         android:enabled="false" />
 
                     <View style="@style/viewLine" />
@@ -99,10 +101,11 @@
                     android:hint="Gender"
                     android:visibility="visible">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/etTestName2"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etGender"
                         style="@style/textInputEditText"
                         android:enabled="false"
+                        android:textColor="#525587"
                         android:hint="Male" />
 
                     <View style="@style/viewLine" />
@@ -123,6 +126,7 @@
                         android:text="Yes, I have read this document &amp; authorized to give consent"
                         android:textAppearance="@style/CustomTextAppearance"
                         android:textColor="@color/black"
+                        android:checked="true"
                         android:textSize="@dimen/font_xsmall"
                         android:visibility="visible" />
 
@@ -218,6 +222,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNameSecond"
                         style="@style/textInputEditText"
+                        android:textColor="#525587"
                         android:enabled="false" />
 
                     <View style="@style/viewLine" />
@@ -232,6 +237,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDOBSecond"
                         style="@style/textInputEditText"
+                        android:textColor="#525587"
                         android:enabled="false" />
 
                     <View style="@style/viewLine" />
@@ -244,10 +250,11 @@
                     android:hint="Gender"
                     android:visibility="visible">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etGenderSecond"
                         style="@style/textInputEditText"
                         android:enabled="false"
+                        android:textColor="#525587"
                         android:hint="Male" />
 
                     <View style="@style/viewLine" />

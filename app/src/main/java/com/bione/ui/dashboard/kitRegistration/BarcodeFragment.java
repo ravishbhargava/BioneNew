@@ -29,7 +29,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static com.bione.ui.dashboard.kitRegistration.KitRegisterActivity.birthDate;
+import static com.bione.ui.dashboard.kitRegistration.KitRegisterActivity.firstName;
+import static com.bione.ui.dashboard.kitRegistration.KitRegisterActivity.gender;
 import static com.bione.ui.dashboard.kitRegistration.KitRegisterActivity.kitBarcode;
+import static com.bione.ui.dashboard.kitRegistration.KitRegisterActivity.lastName;
 
 public class BarcodeFragment extends BaseFragment {
 
@@ -137,7 +141,8 @@ public class BarcodeFragment extends BaseFragment {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+//        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         etDOB.setText(sdf.format(myCalendar.getTime()));
@@ -345,16 +350,21 @@ public class BarcodeFragment extends BaseFragment {
                             if (etPhone.getText().toString().equals("")) {
                                 showErrorMessage("Please enter phone number");
                             } else {
-                                if (etOtp.getText().toString().equals("")) {
-                                    showErrorMessage("Please enter Otp");
+//                                if (etOtp.getText().toString().equals("")) {
+//                                    showErrorMessage("Please enter Otp");
+//                                } else {
+                                if (etEmail.getText().toString().equals("")) {
+                                    showErrorMessage("Please enter email id");
                                 } else {
-                                    if (etEmail.getText().toString().equals("")) {
-                                        showErrorMessage("Please enter email id");
-                                    } else {
 //                                        setFirstViewData();
-                                        mListeners.submit(1, etFirstName.getText().toString());
-                                    }
+                                    firstName = etFirstName.getText().toString();
+                                    lastName = etLastName.getText().toString();
+                                    gender = spinner2.getSelectedItem().toString();
+                                    birthDate = etDOB.getText().toString();
+//                                    createObject();
+                                    mListeners.submit(1, "");
                                 }
+//                                }
                             }
                         }
                     }
@@ -362,4 +372,15 @@ public class BarcodeFragment extends BaseFragment {
             }
         }
     }
+
+    private void createObject() {
+
+//        BarcodeData barcodeData = new BarcodeData(etFirstName.getText().toString(),
+//                etLastName.getText().toString(),
+//                etDOB.getText().toString(),
+//                spinner2.getSelectedItem().toString(),
+//                etBarcode.getText().toString());
+//        return barcodeData;
+    }
 }
+

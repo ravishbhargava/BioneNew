@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.db.CommonData;
 import com.bione.model.CommonResponse;
 import com.bione.model.questionnaire.Datum;
 import com.bione.model.questionnaire.Questionnaire;
@@ -55,6 +56,12 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
     private AppCompatTextView tvContinue;
     private int listSize = 0;
 
+    private KitRegisterActivity.OnButtonClicked listener;
+
+    public QuestionnaireFragment(KitRegisterActivity.OnButtonClicked mOnButtonClicked) {
+        super();
+        listener = mOnButtonClicked;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,15 +103,15 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
         for (int i = 0; i < end; i++) {
             if (list.get(i).getAnswer() != null) {
                 if (list.get(i).getAnswer().equals("")) {
-//                    Toast.makeText(mContext, "Please select all answers blank : " + i, Toast.LENGTH_SHORT).show();
-//                    return false;
+                    Toast.makeText(mContext, "Please select all answers blank : " + i, Toast.LENGTH_SHORT).show();
+                    return false;
                 } else {
                     Log.d("answer " + i, "---" + list.get(i).getAnswer());
                 }
             } else {
 
-//                Toast.makeText(mContext, "Please select all answers : " + i, Toast.LENGTH_SHORT).show();
-//                return false;
+                Toast.makeText(mContext, "Please select all answers : " + i, Toast.LENGTH_SHORT).show();
+                return false;
             }
         }
         return true;
@@ -143,16 +150,17 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                     }
                 } else if (listSize == 3) {
 //                    Log.d("createJson", "----" + createJson().toString());
-                    if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 26, datumArrayList.size())) {
-                        Toast.makeText(mContext, "Questionnaire completed", Toast.LENGTH_SHORT).show();
-                        listSize = 0;
-                        recyclerView.removeAllViews();
-                        recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 13).size());
-                        adapter.setArrayList(datumArrayList.subList(0, 13));
-                        adapter.notifyDataSetChanged();
-                        listSize++;
-                        Log.d("createJson", "----" + createJson().toString());
-                    }
+//                    if (checkAllAnswers((ArrayList<Datum>) adapter.getArrayList(), 26, datumArrayList.size())) {
+
+                    answerAPI();
+//                        listSize = 0;
+//                        recyclerView.removeAllViews();
+//                        recyclerView.setItemViewCacheSize(datumArrayList.subList(0, 13).size());
+//                        adapter.setArrayList(datumArrayList.subList(0, 13));
+//                        adapter.notifyDataSetChanged();
+//                        listSize++;
+                    Log.d("createJson", "----" + createJson().toString());
+//                    }
                 }
                 break;
         }
@@ -218,8 +226,8 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
         adapter = new ParentItemAdapter(datumArrayList, this::onNoteClick, new ParentItemAdapter.OnEditTextChanged() {
             @Override
             public void onTextChanged(int position, String charSeq) {
-//                Log.d("onTextChanged " + position, "----" + charSeq);
-                datumArrayList.get(position).setAnswer(charSeq);
+                Log.d("onTextChanged " + position, "----" + charSeq);
+//                datumArrayList.get(position).setAnswer(charSeq);
             }
         });
 //        ParentRecyclerViewAdapter adapter = new ParentRecyclerViewAdapter(mContext, datumArrayList);
@@ -287,6 +295,8 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                 Log.d("commonResponse -----  ", commonResponse.toString());
 
                 if (commonResponse.getStatusCode().equals("200")) {
+                    Toast.makeText(mContext, "Questionnaire completed", Toast.LENGTH_SHORT).show();
+                    listener.submit(3, "");
 
                 } else {
                     Toast.makeText(mContext, "Error.", Toast.LENGTH_SHORT).show();
@@ -339,6 +349,8 @@ public class QuestionnaireFragment extends BaseFragment implements ParentItemAda
                 jsonArray.put(jsonObject1);
             }
 
+            jsonObject.put("customer_id", "" + CommonData.getUserData().getEntityId());
+            jsonObject.put("kit_id", "123");
             jsonObject.put("data", jsonArray);
 
 

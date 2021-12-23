@@ -28,6 +28,10 @@ public class KitRegisterActivity extends BaseActivity {
 
 
     public static String kitBarcode = "";
+    public static String firstName = "";
+    public static String lastName = "";
+    public static String birthDate = "";
+    public static String gender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +59,34 @@ public class KitRegisterActivity extends BaseActivity {
         mOnButtonClicked = new OnButtonClicked() {
             @Override
             public void submit(int position, String name) {
-                if(position==1){
+                if (position == 1) {
                     String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
                     ResearchConsentFragment f = (ResearchConsentFragment) getSupportFragmentManager().findFragmentByTag(tag);
                     f.setFirstViewData(name);
+                    viewPager.setCurrentItem(position);
+                    mStepsView.setCompletedPosition(position).drawView();
+                } else if (position == 2 || position == 3) {
+                    viewPager.setCurrentItem(position);
+                    mStepsView.setCompletedPosition(position).drawView();
                 }
+//                else if (position == 3) {
+//                    viewPager.setCurrentItem(position);
+//                    mStepsView.setCompletedPosition(position).drawView();
+//                }
+                else if (position == 4) {
+                    finish();
+                }
+//                else if(position==3){
+//                    finish();
+//                }
 //                else if(position==2){
 //                    String tag = "android:switcher:" + R.id.viewpager + ":" + 1;
 //                    QuestionnaireFragment f = (QuestionnaireFragment) getSupportFragmentManager().findFragmentByTag(tag);
 ////                    f.setFirstViewData(name);
 //                }
-                viewPager.setCurrentItem(position);
-                mStepsView.setCompletedPosition(position).drawView();
+
+//                viewPager.setCurrentItem(position);
+//                mStepsView.setCompletedPosition(position).drawView();
             }
         };
 
@@ -79,10 +99,11 @@ public class KitRegisterActivity extends BaseActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new BarcodeFragment(mOnButtonClicked), "BARCODE");
         adapter.addFrag(new ResearchConsentFragment(mOnButtonClicked), "RESEARCH");
-        adapter.addFrag(new QuestionnaireFragment(), "QUEST");
+        adapter.addFrag(new QuestionnaireFragment(mOnButtonClicked), "QUEST");
+        adapter.addFrag(new CompleteFragment(mOnButtonClicked), "COMPLETE");
 
         viewPager.setAdapter(adapter);
-        viewPager.setPagingEnabled(true);
+        viewPager.setPagingEnabled(false);
         viewPager.setCurrentItem(0);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -306,6 +306,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             itemList.get(position).setAnswer(charSequence.toString());
+
             onEditTextChanged.onTextChanged(position, charSequence.toString());
         }
 
