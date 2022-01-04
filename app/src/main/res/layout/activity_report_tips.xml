@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="Hey User Name"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textSize="@dimen/font_xxlarge" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="Here is your MyMicrobiome Report"
+        android:textAppearance="@style/CustomTextAppearance"
+        android:textSize="@dimen/font_xlarge" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:paddingHorizontal="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/drawable_border_primary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="03"
+            android:textColor="@color/white"
+            android:textSize="48sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="80dp"
+            android:text="Food and Diet is specially recommended based on your Unique Gut Microbiome . Your Food recomme..."
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_xxlarge" />
+
+    </RelativeLayout>
+
+    <com.bione.utils.CustomViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
+</LinearLayout>

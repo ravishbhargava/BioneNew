@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="Hey User Name"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textSize="@dimen/font_xxlarge" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="Here is your MyMicrobiome Report"
+        android:textAppearance="@style/CustomTextAppearance"
+        android:textSize="@dimen/font_xlarge" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gut_dummy_image" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="MyGutMicrobiomeIndex (MGMI)"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
+        android:textSize="@dimen/font_normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:paddingHorizontal="@dimen/spacing_small"
+        android:text="Your MyGutMicrobiomeIndex (MGMI) score of 4.1 indicates that your gut microbiota is diverse, however it can be further supported by implementation of MySmart Diet recommendations in order to make it more healthy."
+        android:textAppearance="@style/CustomTextAppearance"
+        android:textSize="@dimen/font_normal" />
+
+</LinearLayout>

@@ -2,43 +2,154 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/border_light_grey">
 
-    <ScrollView
+
+    <include layout="@layout/include_header" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:src="@color/transparent" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:src="@color/white"/>
+        android:layout_below="@+id/header"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_xlarge">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputLayout"
-                android:layout_marginTop="@dimen/spacing_large"
-                android:hint="Customer Detail"
-                android:paddingHorizontal="@dimen/spacing_xlarge"
-                android:textColorHint="@color/black"
-                app:endIconMode="custom">
+        <androidx.appcompat.widget.AppCompatTextView
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etBarcode"
-                    style="@style/textInputEditText"
-                    android:inputType="text"
-                    android:text=""
-                    android:textAllCaps="true"
-                    android:textColor="#525587" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MyMicroBiome Test"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_xxxlarge"
+            android:textStyle="bold" />
 
-                <View style="@style/viewLine" />
+        <androidx.appcompat.widget.AppCompatTextView
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="With Personalised MySmart Diet"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+    </LinearLayout>
 
 
-    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_xlarge">
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Details"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_small"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MMBFTD1ZZZZZ"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="Customer"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_small"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XYZ"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="Gender"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_small"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="38"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_large" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="Sample Registration Date"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_small"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRegDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="38"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_large" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="Reported Date"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_small"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReportDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="38"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/report_date_color"
+            android:textSize="@dimen/font_large" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

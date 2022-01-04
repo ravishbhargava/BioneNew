@@ -13,7 +13,7 @@ public class FrontPageActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_address);
+        setContentView(R.layout.activity_front_page);
 
     }
 
@@ -21,4 +21,6 @@ public class FrontPageActivity extends BaseActivity {
     public void onClick(View view) {
 
     }
+
+
 }

@@ -25,6 +25,7 @@
     <color name="transparent">#0000</color>
     <color name="border_grey">#C3CAD9</color>
     <color name="border_light_grey">#E4E4E5</color>
+    <color name="index_circle">#90caf9</color>
 
 
     <color name="pending_status_color">#d0021b</color>
