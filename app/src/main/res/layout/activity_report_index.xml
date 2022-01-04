@@ -16,6 +16,21 @@
         android:textSize="@dimen/font_xxlarge" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFrontPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:drawableLeft="@drawable/background_oval_index"
+        android:drawableRight="@drawable/background_oval_primary_25dp"
+        android:drawablePadding="@dimen/spacing_normal"
+        android:gravity="center|left"
+        android:padding="@dimen/spacing_small"
+        android:text="Front page"
+        android:textAppearance="@style/CustomTextAppearance.Medium"
+        android:textSize="@dimen/font_xlarge" />
+
+    <View style="@style/viewLine" />
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvIntroduction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +47,7 @@
     <View style="@style/viewLine" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvBioneTips"
+        android:id="@+id/tvTips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_normal"

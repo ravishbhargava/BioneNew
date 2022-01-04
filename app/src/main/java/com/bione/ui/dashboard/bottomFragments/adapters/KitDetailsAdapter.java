@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
-import com.bione.ui.dashboard.ecommerce.ProductDetailFragment;
+import com.bione.ui.dashboard.report.ReportIndexActivity;
 
 import java.util.ArrayList;
 
@@ -80,7 +80,9 @@ public class KitDetailsAdapter extends RecyclerView.Adapter<KitDetailsAdapter.My
             public void onClick(View view) {
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(crouselDataArrayList.get(position).getUrl()));
 //                mContext.startActivity(browserIntent);
-                Intent intent = new Intent(mContext, ProductDetailFragment.class);
+                Intent intent = new Intent(mContext, ReportIndexActivity.class);
+//                Intent intent = new Intent(mContext, ReportFrontPageActivity.class);
+//                Intent intent = new Intent(mContext, ProductDetailFragment.class);
                 mContext.startActivity(intent);
             }
         });

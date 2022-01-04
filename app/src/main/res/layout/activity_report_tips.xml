@@ -6,12 +6,14 @@
     android:orientation="vertical"
     android:padding="@dimen/spacing_normal">
 
+    <include layout="@layout/include_header" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_normal"
         android:paddingHorizontal="@dimen/spacing_small"
-        android:text="Hey User Name"
+        android:text="Hey Manish Kheterpal"
         android:textAppearance="@style/CustomTextAppearance.Bold"
         android:textSize="@dimen/font_xxlarge" />
 
@@ -27,9 +29,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:paddingHorizontal="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@drawable/drawable_border_primary">
+        android:background="@drawable/drawable_border_primary"
+        android:paddingHorizontal="@dimen/spacing_large"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,9 +54,9 @@
     </RelativeLayout>
 
     <com.bione.utils.CustomViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -11,6 +11,8 @@ import com.bione.model.customerOrders.CustomerOrder;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.questionnaire.Questionnaire;
+import com.bione.model.reportMyMicro.MyMicrobiomeAuthLoginData;
+import com.bione.model.reportMyMicro.tips.ReportTips;
 import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.testNameList.TestNameList;
 import com.bione.model.updateprofile.UpdateProfile;
@@ -62,9 +64,9 @@ public interface ApiInterface {
 
     @POST("/microbiome_sample_status")
     Call<List<BannerArray>> bannerAPI(@QueryMap Map<String, String> map);
+
     @POST("/longifit_sample_status")
     Call<List<BannerArray>> bannerAPILF(@QueryMap Map<String, String> map);
-
 
 
     @POST("rest/V1/integration/admin/token")
@@ -100,10 +102,27 @@ public interface ApiInterface {
     @POST("/rest/V1/bione/veryfyotp")
     Call<List<CommonResponse>> verifyMobile(@QueryMap Map<String, String> map);
 
-    @POST("/barcodestatus/") // MyMicroBiome
+    @POST("/auth_login/")
+        // MyMicroBiome
+    Call<MyMicrobiomeAuthLoginData> myMicroBiomeAuth(@Body RequestBody json);
+
+    @GET("/report_customer_details/")// MyMicroBiome
+    Call<CommonResponse> reportCustomerDetail(
+            @HeaderMap HashMap<String, String> headerMap,
+            @QueryMap Map<String, String> map);
+
+    @GET("/report_tips/")// MyMicroBiome
+    Call<ReportTips> reportTips(
+            @HeaderMap HashMap<String, String> headerMap,
+            @QueryMap Map<String, String> map);
+
+
+    @POST("/barcodestatus/")
+        // MyMicroBiome
     Call<BarCodeStatus> barcodeStatus(@Body RequestBody json);
 
-    @POST("/barcode_status/") // Longifit
+    @POST("/barcode_status/")
+        // Longifit
     Call<BarCodeStatus> barcodeStatusLongifit(@Body RequestBody json);
 
 
@@ -142,7 +161,6 @@ public interface ApiInterface {
 
 //    @POST("/rest//V1/customers")
 //    Call<UpdateProfile> createAccount(@Body RequestBody json);
-
 
 
     @GET("/mobilelogin/index/ajaxforgot/")
@@ -192,13 +210,11 @@ public interface ApiInterface {
 
 
     /**
-     *
      * @param map
      * @return
      */
     @GET("/api/Receiptlist")
     Call<ReceiptList> paymentReceiptList(@QueryMap Map<String, String> map);
-
 
 
     /**

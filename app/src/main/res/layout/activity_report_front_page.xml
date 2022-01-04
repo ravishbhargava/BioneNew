@@ -31,10 +31,10 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatTextView
-
+            android:id="@+id/tvText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="With Personalised MySmart Diet"
+            android:text="@string/with_personalised_mysmart_diet"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/black"
             android:textSize="@dimen/font_large" />
@@ -83,7 +83,7 @@
             android:id="@+id/tvCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XYZ"
+            android:text="Manish Kheterpal"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/report_date_color"
             android:textSize="@dimen/font_large" />
@@ -103,7 +103,7 @@
             android:id="@+id/tvGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="38"
+            android:text="46 Years"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/report_date_color"
             android:textSize="@dimen/font_large" />
@@ -124,7 +124,7 @@
             android:id="@+id/tvRegDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="38"
+            android:text="2021-08-28 00:00:00"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/report_date_color"
             android:textSize="@dimen/font_large" />
@@ -144,7 +144,7 @@
             android:id="@+id/tvReportDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="38"
+            android:text="24th September 2021"
             android:textAppearance="@style/CustomTextAppearance"
             android:textColor="@color/report_date_color"
             android:textSize="@dimen/font_large" />
