@@ -12,6 +12,9 @@ import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.questionnaire.Questionnaire;
 import com.bione.model.reportMyMicro.MyMicrobiomeAuthLoginData;
+import com.bione.model.reportMyMicro.foodsupplements.FoodSuppl;
+import com.bione.model.reportMyMicro.frontpage.FrontPage;
+import com.bione.model.reportMyMicro.mygut.MyGut;
 import com.bione.model.reportMyMicro.tips.ReportTips;
 import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.testNameList.TestNameList;
@@ -107,7 +110,7 @@ public interface ApiInterface {
     Call<MyMicrobiomeAuthLoginData> myMicroBiomeAuth(@Body RequestBody json);
 
     @GET("/report_customer_details/")// MyMicroBiome
-    Call<CommonResponse> reportCustomerDetail(
+    Call<FrontPage> reportCustomerDetail(
             @HeaderMap HashMap<String, String> headerMap,
             @QueryMap Map<String, String> map);
 
@@ -116,10 +119,20 @@ public interface ApiInterface {
             @HeaderMap HashMap<String, String> headerMap,
             @QueryMap Map<String, String> map);
 
+    @GET("/report_foodsupplements/")// MyMicroBiome
+    Call<FoodSuppl> reportFood(
+            @HeaderMap HashMap<String, String> headerMap,
+            @QueryMap Map<String, String> map);
+
+    @GET("/report_sheets/")// MyMicroBiome
+    Call<MyGut> reportGut(
+            @HeaderMap HashMap<String, String> headerMap,
+            @QueryMap Map<String, String> map);
 
     @POST("/barcodestatus/")
         // MyMicroBiome
-    Call<BarCodeStatus> barcodeStatus(@Body RequestBody json);
+    Call<BarCodeStatus> barcodeStatus(@HeaderMap HashMap<String, String> headerMap,
+                                      @Body RequestBody json);
 
     @POST("/barcode_status/")
         // Longifit

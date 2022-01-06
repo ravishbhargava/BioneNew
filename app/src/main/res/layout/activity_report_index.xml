@@ -15,117 +15,146 @@
         android:textAppearance="@style/CustomTextAppearance.Bold"
         android:textSize="@dimen/font_xxlarge" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvFrontPage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="Front page"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
+        android:layout_height="wrap_content">
 
-    <View style="@style/viewLine" />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvIntroduction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="Introduction"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
-
-    <View style="@style/viewLine" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTips"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="Bione Tips"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
-
-    <View style="@style/viewLine" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvFood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="Food Supplements"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
-
-    <View style="@style/viewLine" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvGut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="MyGut Microbiome Index"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
-
-    <View style="@style/viewLine" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDisease"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="Microbiome Based Disease Risk"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFrontPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Front page"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
 
-    <View style="@style/viewLine" />
+            <View style="@style/viewLine" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvSmartDiet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:drawableLeft="@drawable/background_oval_index"
-        android:drawableRight="@drawable/background_oval_primary_25dp"
-        android:drawablePadding="@dimen/spacing_normal"
-        android:gravity="center|left"
-        android:padding="@dimen/spacing_small"
-        android:text="My Smart Diet"
-        android:textAppearance="@style/CustomTextAppearance.Medium"
-        android:textSize="@dimen/font_xlarge" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvIntroduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Introduction"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
 
-    <View style="@style/viewLine" />
+            <View style="@style/viewLine" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Bione Tips"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Food Supplements"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="MyGut Microbiome Index"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDisease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Microbiome Based Disease Risk"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSmartDiet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="My Smart Diet"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFoodSupplements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Food Supplements"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View style="@style/viewLine" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

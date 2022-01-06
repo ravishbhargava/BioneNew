@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bione.R;
 import com.bione.model.BarCodeStatus;
 import com.bione.model.customerOrders.KitOrder;
+import com.bione.model.reportMyMicro.MyMicrobiomeAuthLoginData;
 import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
@@ -38,7 +40,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
 
     private Context mContext;
     private ArrayList<KitOrder> customerKits;
-
+    private String authToken = "";
 
     public ReportAdapter(final Context context, final ArrayList<KitOrder> customerKits) {
         this.mContext = context;
@@ -85,7 +87,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                 @Override
                 public void onClick(View view) {
                     if (customerKits.get(position).getSkuCode().equals("MM")) {
-                        barCodeStatusMMAPI(customerKits.get(position).getBarCode(), "");
+                        myMicroBiomeAuth(customerKits.get(position).getBarCode());
+
                     } else if (customerKits.get(position).getSkuCode().equals("LF")) {
                         barCodeStatusLFAPI(customerKits.get(position).getBarCode(), "");
                     }
@@ -142,7 +145,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
     }
 
     public void barCodeStatusMMAPI(final String barcode, final String password) {
-
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("Authorization", "Bearer " + authToken)
+                .add("Content-Type", "application/json")
+//                .add("Content-Type", "text/plain")
+                .build();
         JSONObject jsonObject = new JSONObject();
         try {
 //            jsonObject.put("id", "MMBFTD1ZZZ84");
@@ -153,7 +160,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         }
         RequestBody body =
                 RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
-        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+        RestClient.getApiInterface3().barcodeStatus(commonParams.getMap(), body).enqueue(new ResponseResolver<BarCodeStatus>() {
             @Override
             public void onSuccess(BarCodeStatus commonResponse) {
 
@@ -221,6 +228,40 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
                     Toast.makeText(mContext, "Report in progress.", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                Toast.makeText(mContext, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                Toast.makeText(mContext, "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void myMicroBiomeAuth(final String barcode) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("user", "BioneApp");
+            jsonObject.put("password", "BiONe@21fSRp");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").myMicroBiomeAuth(body).enqueue(new ResponseResolver<MyMicrobiomeAuthLoginData>() {
+            @Override
+            public void onSuccess(MyMicrobiomeAuthLoginData commonResponse) {
+                Log.d("onSuccess -----  ", "--");
+                authToken = commonResponse.getToken().toString();
+                Toast.makeText(mContext, "Auth generated.", Toast.LENGTH_SHORT).show();
+                barCodeStatusMMAPI(barcode, "");
             }
 
             @Override

@@ -28,6 +28,9 @@
     <color name="index_circle">#90caf9</color>
 
 
+    <color name="high_color">#d0021b</color>
+    <color name="low_color">#f5a623</color>
+
     <color name="pending_status_color">#d0021b</color>
     <color name="activated_status_color">#249234</color>
 

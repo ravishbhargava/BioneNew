@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <include layout="@layout/include_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Hey Manish Kheterpal"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxlarge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Here is your MyMicrobiome Report"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_xlarge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Various food items are available which provide required elements for a healthy gut microbiome. These elements can further be enhanced with dietary supplements. Find below the supplements with following attributes - "
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Food Supplements"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxlarge" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/spacing_small">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProbiotics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toLeftOf="@+id/right"
+                        android:drawableRight="@drawable/ic_drop_down_arrow"
+                        android:drawablePadding="@dimen/spacing_normal"
+                        android:gravity="center|left"
+                        android:padding="@dimen/spacing_small"
+                        android:text="Probiotics"
+                        android:textAppearance="@style/CustomTextAppearance.Medium"
+                        android:textSize="@dimen/font_xlarge" />
+
+                    <ImageView
+                        android:id="@+id/right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_rectangle_primary" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/viewLine"
+                    android:layout_marginHorizontal="@dimen/spacing_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/spacing_small">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPrebiotics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toLeftOf="@+id/right2"
+                        android:drawableRight="@drawable/ic_drop_down_arrow"
+                        android:drawablePadding="@dimen/spacing_normal"
+                        android:gravity="center|left"
+                        android:padding="@dimen/spacing_small"
+                        android:text="Prebiotics"
+                        android:textAppearance="@style/CustomTextAppearance.Medium"
+                        android:textSize="@dimen/font_xlarge" />
+
+                    <ImageView
+                        android:id="@+id/right2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_rectangle_primary" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/viewLine"
+                    android:layout_marginHorizontal="@dimen/spacing_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/spacing_small">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPolyphenols"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toLeftOf="@+id/right3"
+                        android:drawableRight="@drawable/ic_drop_down_arrow"
+                        android:drawablePadding="@dimen/spacing_normal"
+                        android:gravity="center|left"
+                        android:padding="@dimen/spacing_small"
+                        android:text="Polyphenols"
+                        android:textAppearance="@style/CustomTextAppearance.Medium"
+                        android:textSize="@dimen/font_xlarge" />
+
+                    <ImageView
+                        android:id="@+id/right3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_rectangle_primary" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/viewLine"
+                    android:layout_marginHorizontal="@dimen/spacing_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/spacing_small">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDigestive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toLeftOf="@+id/right4"
+                        android:drawableRight="@drawable/ic_drop_down_arrow"
+                        android:drawablePadding="@dimen/spacing_normal"
+                        android:gravity="center|left"
+                        android:padding="@dimen/spacing_small"
+                        android:text="Digestive Support"
+                        android:textAppearance="@style/CustomTextAppearance.Medium"
+                        android:textSize="@dimen/font_xlarge" />
+
+                    <ImageView
+                        android:id="@+id/right4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_rectangle_primary" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/viewLine"
+                    android:layout_marginHorizontal="@dimen/spacing_normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

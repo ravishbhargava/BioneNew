@@ -14,12 +14,15 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.bione.R;
 import com.bione.model.BarCodeStatus;
 import com.bione.model.customerOrders.KitOrder;
+import com.bione.model.reportMyMicro.MyMicrobiomeAuthLoginData;
 import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.dashboard.bottomFragments.report.ReportPdfViewActivity;
 import com.bione.ui.dashboard.kitRegistration.KitRegisterActivity;
+import com.bione.ui.dashboard.report.ReportIndexActivity;
 import com.bione.utils.Log;
 
 import org.json.JSONException;
@@ -46,6 +49,8 @@ public class KitDetailActivity extends BaseActivity {
     private String kitStatus = "";
     private String sampleId = "";
     private String sampleStatus = "";
+
+    private String authToken = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,14 +127,14 @@ public class KitDetailActivity extends BaseActivity {
             case R.id.tvTrack:
                 if ("1".equalsIgnoreCase(customerKits.getActivationStatus())) {
                     if (customerKits.getSkuCode().equals("MM")) {
-                        barCodeStatusMMAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
-                    }
-                    else if (customerKits.getSkuCode().equals("LF")) {
+                        myMicroBiomeAuth();
+
+                    } else if (customerKits.getSkuCode().equals("LF")) {
                         barCodeStatusLFAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
                     }
                 } else {
                     Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
-                    intent.putExtra("barcode",""+customerKits.getBarCode());
+                    intent.putExtra("barcode", "" + customerKits.getBarCode());
                     startActivity(intent);
                 }
                 break;
@@ -142,6 +147,18 @@ public class KitDetailActivity extends BaseActivity {
     public void barCodeStatusMMAPI(final Activity activity, final String barcode, final String password) {
         showLoading();
 
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add("Authorization", "Bearer " + authToken)
+                .add("Content-Type", "application/json")
+//                .add("Content-Type", "text/plain")
+                .build();
+//        final CommonParams commonParams2 = new CommonParams.Builder()
+//                .add("id", "MM2019231362")
+//                .build();
+
+        Log.d("headers", " data :: " + commonParams.getMap().toString());
+//        Log.d("params", " data :: " + commonParams2.getMap().toString());
+
         JSONObject jsonObject = new JSONObject();
         try {
 //            jsonObject.put("id", "MMBFTD1ZZZ84");
@@ -152,24 +169,24 @@ public class KitDetailActivity extends BaseActivity {
         }
         RequestBody body =
                 RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
-        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").barcodeStatus(body).enqueue(new ResponseResolver<BarCodeStatus>() {
+        RestClient.getApiInterface3().barcodeStatus(commonParams.getMap(), body).enqueue(new ResponseResolver<BarCodeStatus>() {
             @Override
             public void onSuccess(BarCodeStatus commonResponse) {
 
                 Log.d("onSuccess -----  ", "--");
                 Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
                 Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
-                if(commonResponse.getReportStatus().equals("Approved")){
+                if (commonResponse.getReportStatus().equals("Approved")) {
 
-//                }
-//                if (commonResponse.getReportUrl() != null) {
-                    Intent intent = new Intent(activity, ReportPdfViewActivity.class);
-                    intent.putExtra("pdfUrl", commonResponse.getReportUrl());
-                    intent.putExtra("password", commonResponse.getPassword());
+//                    Intent intent = new Intent(activity, ReportPdfViewActivity.class);
+//                    intent.putExtra("pdfUrl", commonResponse.getReportUrl());
+//                    intent.putExtra("password", commonResponse.getPassword());
+
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(activity, ReportIndexActivity.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Report in progress.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Report in progress.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -208,7 +225,7 @@ public class KitDetailActivity extends BaseActivity {
                 Log.d("onSuccess -----  ", "--");
                 Log.d("getReportStatus -----  ", commonResponse.getReportStatus());
                 Log.d("getReportUrl -----  ", commonResponse.getReportUrl());
-                if(commonResponse.getReportStatus().equals("Approved")){
+                if (commonResponse.getReportStatus().equals("Approved")) {
 
 //                }
 //                if (commonResponse.getReportUrl() != null) {
@@ -217,8 +234,8 @@ public class KitDetailActivity extends BaseActivity {
                     intent.putExtra("password", commonResponse.getPassword());
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Report in progress.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Report in progress.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -233,6 +250,42 @@ public class KitDetailActivity extends BaseActivity {
             public void onFailure(Throwable throwable) {
                 throwable.printStackTrace();
                 showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    public void myMicroBiomeAuth() {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("user", "BioneApp");
+            jsonObject.put("password", "BiONe@21fSRp");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body =
+                RequestBody.create(MediaType.parse("application/json"), jsonObject.toString());
+        RestClient.getApiInterface4("https://mymicrobiome.bione.in/").myMicroBiomeAuth(body).enqueue(new ResponseResolver<MyMicrobiomeAuthLoginData>() {
+            @Override
+            public void onSuccess(MyMicrobiomeAuthLoginData commonResponse) {
+                Log.d("onSuccess -----  ", "--");
+                authToken = commonResponse.getToken().toString();
+                Toast.makeText(getApplicationContext(), "Auth generated.", Toast.LENGTH_SHORT).show();
+//                barCodeStatusMMAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+                barCodeStatusMMAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+//MMBFTD1ZZZ84
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                Toast.makeText(getApplicationContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                Toast.makeText(getApplicationContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

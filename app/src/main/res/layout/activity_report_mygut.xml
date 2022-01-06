@@ -1,52 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/spacing_normal">
 
     <include layout="@layout/include_header" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:paddingHorizontal="@dimen/spacing_small"
-        android:text="Hey Manish Kheterpal"
-        android:textAppearance="@style/CustomTextAppearance.Bold"
-        android:textSize="@dimen/font_xxlarge" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:paddingHorizontal="@dimen/spacing_small"
-        android:text="Here is your MyMicrobiome Report"
-        android:textAppearance="@style/CustomTextAppearance"
-        android:textSize="@dimen/font_xlarge" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/gut_dummy_image" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:paddingHorizontal="@dimen/spacing_small"
-        android:text="MyGutMicrobiomeIndex (MGMI)"
-        android:textAppearance="@style/CustomTextAppearance.Bold"
-        android:textSize="@dimen/font_normal" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Hey Manish Kheterpal"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxlarge" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:paddingHorizontal="@dimen/spacing_small"
-        android:text="Your MyGutMicrobiomeIndex (MGMI) score of 4.1 indicates that your gut microbiota is diverse, however it can be further supported by implementation of MySmart Diet recommendations in order to make it more healthy."
-        android:textAppearance="@style/CustomTextAppearance"
-        android:textSize="@dimen/font_normal" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Here is your MyMicrobiome Report"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_xlarge" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gut_dummy_image" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="MyGutMicrobiomeIndex (MGMI)"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMGMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Your MyGutMicrobiomeIndex (MGMI) score of 4.1 indicates that your gut microbiota is diverse, however it can be further supported by implementation of MySmart Diet recommendations in order to make it more healthy."
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="List of top bacterial pathogens"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mgmiRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_gut_mgmi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="List of top bacterial pathogens"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pathogenRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:listitem="@layout/item_gut_mgmi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Conclusion"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPathConclusion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text=""
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="List of top signature microbes"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/microbeRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:listitem="@layout/item_gut_microbes" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

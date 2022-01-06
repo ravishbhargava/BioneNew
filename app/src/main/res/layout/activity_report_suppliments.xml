@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_normal">
+
+    <include layout="@layout/include_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Hey Manish Kheterpal"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
+                android:textSize="@dimen/font_xxlarge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Here is your MyMicrobiome Report"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_xlarge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:text="Various food items are available which provide required elements for a healthy gut microbiome. These elements can further be enhanced with dietary supplements. Find below the supplements with following attributes - "
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textSize="@dimen/font_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bitmap_1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Digestive Support"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textSize="@dimen/font_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Natural items such as peppermint, psyllium, spices which helps in digestion or act as laxatives"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bitmap_2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Digestive enzyme"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textSize="@dimen/font_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Food items such as Dandelion, Ginger and bitters which stimulate secretion "
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_normal" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bitmap_3"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Polyphenols"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textSize="@dimen/font_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Micronutrients mostly found in colorful plant based foods being packed with antioxidants"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bitmap_4"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Probiotics"
+                        android:textAppearance="@style/CustomTextAppearance.Bold"
+                        android:textSize="@dimen/font_normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:text="Naturally found in fermented foods, these are live organisms which are good for your digestive system."
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_normal" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
