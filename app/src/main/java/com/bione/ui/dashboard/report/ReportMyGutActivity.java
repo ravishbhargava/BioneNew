@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
+import com.bione.model.reportMyMicro.mygut.Mgmi1;
 import com.bione.model.reportMyMicro.mygut.Microbe;
 import com.bione.model.reportMyMicro.mygut.MyGut;
 import com.bione.model.reportMyMicro.mygut.Pathogen;
@@ -19,8 +20,9 @@ import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
-import com.bione.ui.dashboard.report.adapter.PathogenAdapter;
+import com.bione.ui.dashboard.report.adapter.MgmiAdapter;
 import com.bione.ui.dashboard.report.adapter.MicrobesAdapter;
+import com.bione.ui.dashboard.report.adapter.PathogenAdapter;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class ReportMyGutActivity extends BaseActivity {
     private AppCompatTextView tvMGMI;
     private AppCompatTextView tvPathConclusion;
     private String authToken = "";
+
+    private RecyclerView mgmiRecyclerview;
+    private ArrayList<Mgmi1> mgmi1ArrayList = new ArrayList<>();
 
     private RecyclerView pathogenRecyclerView;
     private ArrayList<Pathogen> pathogenArrayList = new ArrayList<>();
@@ -57,6 +62,8 @@ public class ReportMyGutActivity extends BaseActivity {
     private void init() {
         tvPathConclusion = findViewById(R.id.tvPathConclusion);
         tvMGMI = findViewById(R.id.tvMGMI);
+
+        mgmiRecyclerview = findViewById(R.id.mgmiRecyclerview);
         pathogenRecyclerView = findViewById(R.id.pathogenRecyclerView);
         microbeRecyclerView = findViewById(R.id.microbeRecyclerView);
     }
@@ -100,11 +107,15 @@ public class ReportMyGutActivity extends BaseActivity {
 //                        tips = commonResponse.getTips();
 //                        Log.d("getTips", "----" + commonResponse.getTips().toString());
 
+                        mgmi1ArrayList = (ArrayList<Mgmi1>) commonResponse.getMgmi1();
+                        Log.d("mgmi1ArrayList", "---" + mgmi1ArrayList.size());
+                        setMgmiRecyclerview();
                         pathogenArrayList = (ArrayList<Pathogen>) commonResponse.getBacterialPathogen().getPathogen();
                         Log.d("pathogenArrayList", "---" + pathogenArrayList.size());
                         microbeArrayList = (ArrayList<Microbe>) commonResponse.getSignatureMicrobes().getMicrobes();
                         Log.d("microbeArrayList", "---" + microbeArrayList.size());
-                        tvMGMI.setText(commonResponse.getMgmi1().getMGMIScore() + " " + Html.fromHtml(commonResponse.getMgmi1().getMgmiConclusion()));
+                        tvMGMI.setText(commonResponse.getMgmi1().get(commonResponse.getMgmi1().size() - 2).getMgmiScore()
+                                + " " + Html.fromHtml(commonResponse.getMgmi1().get(commonResponse.getMgmi1().size() - 1).getMgmiConclusion()));
                         setPathogenRecyclerview();
                         tvPathConclusion.setText(Html.fromHtml(commonResponse.getBacterialPathogen().getPathConclusion()));
                         setMicrobesRecyclerview();
@@ -125,8 +136,18 @@ public class ReportMyGutActivity extends BaseActivity {
                 });
     }
 
-    private void setPathogenRecyclerview() {
 
+    private void setMgmiRecyclerview() {
+        MgmiAdapter adapter = new MgmiAdapter(mgmi1ArrayList);
+        mgmiRecyclerview = findViewById(R.id.mgmiRecyclerview);
+        mgmiRecyclerview.setNestedScrollingEnabled(false);
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mgmiRecyclerview.setLayoutManager(linearLayoutManager);
+        mgmiRecyclerview.setAdapter(adapter);
+    }
+
+    private void setPathogenRecyclerview() {
         PathogenAdapter adapter = new PathogenAdapter(pathogenArrayList);
         pathogenRecyclerView = findViewById(R.id.pathogenRecyclerView);
         pathogenRecyclerView.setNestedScrollingEnabled(false);
@@ -134,12 +155,9 @@ public class ReportMyGutActivity extends BaseActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         pathogenRecyclerView.setLayoutManager(linearLayoutManager);
         pathogenRecyclerView.setAdapter(adapter);
-
     }
 
     private void setMicrobesRecyclerview() {
-
-
         MicrobesAdapter adapter = new MicrobesAdapter(microbeArrayList);
         microbeRecyclerView = findViewById(R.id.microbeRecyclerView);
         microbeRecyclerView.setNestedScrollingEnabled(false);
@@ -147,6 +165,5 @@ public class ReportMyGutActivity extends BaseActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         microbeRecyclerView.setLayoutManager(linearLayoutManager);
         microbeRecyclerView.setAdapter(adapter);
-
     }
 }

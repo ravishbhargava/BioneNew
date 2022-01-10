@@ -3,6 +3,7 @@ package com.bione.ui.dashboard.report;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class TipsFragment extends Fragment {
 //            ivHead = rootView.findViewById(R.id.ivHead);
             tvPos.setText(pos);
             tvText.setText(Html.fromHtml(text));
+            tvText.setMovementMethod(new ScrollingMovementMethod());
         }
         return rootView;
     }

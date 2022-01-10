@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard.report.adapter;
 
 import android.annotation.SuppressLint;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +12,19 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
-import com.bione.model.reportMyMicro.mygut.Pathogen;
+import com.bione.model.reportMyMicro.mygut.Mgmi1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.bione.R.drawable.drawable_rectangle_high;
-import static com.bione.R.drawable.drawable_rectangle_low;
 import static com.bione.R.drawable.drawable_rectangle_nd;
 
-public class PathogenAdapter extends RecyclerView.Adapter<PathogenAdapter.SelectViewHolder> {
+public class MgmiAdapter extends RecyclerView.Adapter<MgmiAdapter.SelectViewHolder> {
 
-    private List<Pathogen> pathogenList;
+    private List<Mgmi1> pathogenList;
 
     // Constructor
-    public PathogenAdapter(ArrayList<Pathogen> selectedProductDataList) {
+    public MgmiAdapter(ArrayList<Mgmi1> selectedProductDataList) {
         this.pathogenList = selectedProductDataList;
 
     }
@@ -35,7 +34,7 @@ public class PathogenAdapter extends RecyclerView.Adapter<PathogenAdapter.Select
     public SelectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         // Here we inflate the corresponding// layout of the child item
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_gut_pathogen, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_gut_mgmi, viewGroup, false);
 
         return new SelectViewHolder(view);
     }
@@ -44,27 +43,21 @@ public class PathogenAdapter extends RecyclerView.Adapter<PathogenAdapter.Select
     @Override
     public void onBindViewHolder(@NonNull SelectViewHolder selectViewHolder, int position) {
 
-        if (pathogenList.get(position).getOutcome().equals("HIGH")) {
-            selectViewHolder.tvRight.setTextColor(R.color.high_color);
-            selectViewHolder.left.setBackgroundResource(drawable_rectangle_high);
-        } else if (pathogenList.get(position).getOutcome().equals("LOW")) {
-            selectViewHolder.tvRight.setTextColor(R.color.low_color);
-            selectViewHolder.left.setBackgroundResource(drawable_rectangle_low);
-        } else {
-            selectViewHolder.tvRight.setTextColor(R.color.colorPrimary);
-            selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
-        }
 
-        selectViewHolder.tvLeft.setText("" + pathogenList.get(position).getAbPercentage() + "%");
-        selectViewHolder.tvCenter.setText("" + pathogenList.get(position).getPathogen());
-        selectViewHolder.tvRight.setText("" + pathogenList.get(position).getOutcome());
+        selectViewHolder.tvRight.setTextColor(R.color.colorPrimary);
+        selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
+
+
+        selectViewHolder.tvLeft.setText("" + pathogenList.get(position).getValue());
+        selectViewHolder.tvCenter.setText("" + Html.fromHtml(pathogenList.get(position).getName()));
+        selectViewHolder.tvRight.setText("" + Html.fromHtml(pathogenList.get(position).getReport()));
 
 
     }
 
     @Override
     public int getItemCount() {
-        return pathogenList.size();
+        return pathogenList.size() - 2;
     }
 
     @Override

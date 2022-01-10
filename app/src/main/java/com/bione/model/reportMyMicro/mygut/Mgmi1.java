@@ -6,38 +6,60 @@ import com.google.gson.annotations.SerializedName;
 
 public class Mgmi1 {
 
-@SerializedName("firmicutes")
-@Expose
-private Firmicutes firmicutes;
-@SerializedName("MGMI_score")
-@Expose
-private String mGMIScore;
-@SerializedName("mgmi_conclusion")
-@Expose
-private String mgmiConclusion;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("value")
+    @Expose
+    private String value;
+    @SerializedName("report")
+    @Expose
+    private String report;
+    @SerializedName("mgmi_score")
+    @Expose
+    private String mgmiScore;
+    @SerializedName("mgmi_conclusion")
+    @Expose
+    private String mgmiConclusion;
 
-public Firmicutes getFirmicutes() {
-return firmicutes;
-}
+    public String getName() {
+        return name;
+    }
 
-public void setFirmicutes(Firmicutes firmicutes) {
-this.firmicutes = firmicutes;
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public String getMGMIScore() {
-return mGMIScore;
-}
+    public String getValue() {
+        return value;
+    }
 
-public void setMGMIScore(String mGMIScore) {
-this.mGMIScore = mGMIScore;
-}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-public String getMgmiConclusion() {
-return mgmiConclusion;
-}
+    public String getReport() {
+        return report;
+    }
 
-public void setMgmiConclusion(String mgmiConclusion) {
-this.mgmiConclusion = mgmiConclusion;
-}
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    public String getMgmiScore() {
+        return mgmiScore;
+    }
+
+    public void setMgmiScore(String mgmiScore) {
+        this.mgmiScore = mgmiScore;
+    }
+
+    public String getMgmiConclusion() {
+        return mgmiConclusion;
+    }
+
+    public void setMgmiConclusion(String mgmiConclusion) {
+        this.mgmiConclusion = mgmiConclusion;
+    }
 
 }

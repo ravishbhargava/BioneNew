@@ -59,6 +59,7 @@ public class ReportIndexActivity extends BaseActivity {
         tvTips.setOnClickListener(this);
         tvFood.setOnClickListener(this);
         tvGut.setOnClickListener(this);
+        tvSmartDiet.setOnClickListener(this);
         tvFoodSupplements.setOnClickListener(this);
     }
 

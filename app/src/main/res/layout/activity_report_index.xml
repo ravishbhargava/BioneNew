@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_intro"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -39,14 +39,16 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvIntroduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_intro"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -55,14 +57,16 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_tips"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -71,14 +75,16 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_supplements"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -87,14 +93,16 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvGut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_mygut"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -103,7 +111,9 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -111,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_disease"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -120,14 +130,16 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSmartDiet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_bionemethod"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"
@@ -136,7 +148,9 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -144,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:drawableLeft="@drawable/background_oval_index"
+                android:drawableLeft="@drawable/ic_report_supplements"
                 android:drawableRight="@drawable/ic_button_next_light"
                 android:drawablePadding="@dimen/spacing_normal"
                 android:gravity="center|left"

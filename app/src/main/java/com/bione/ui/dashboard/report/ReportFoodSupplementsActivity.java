@@ -18,6 +18,8 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.utils.Log;
 
+import java.util.List;
+
 public class ReportFoodSupplementsActivity extends BaseActivity {
 
     private AppCompatTextView tvProbiotics;
@@ -25,7 +27,7 @@ public class ReportFoodSupplementsActivity extends BaseActivity {
     private AppCompatTextView tvPolyphenols;
     private AppCompatTextView tvDigestive;
     private String authToken = "";
-    private Foodsupplements foodsupplements;
+    private List<Foodsupplements> foodsupplements;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,16 +65,16 @@ public class ReportFoodSupplementsActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.tvProbiotics:
-                openScreen("Probiotics",foodsupplements.getFoodsupplement1());
+                openScreen("Probiotics", foodsupplements.get(0).getFoodsupplement());
                 break;
             case R.id.tvPrebiotics:
-                openScreen("Prebiotics",foodsupplements.getFoodsupplement2());
+                openScreen("Prebiotics", foodsupplements.get(1).getFoodsupplement());
                 break;
             case R.id.tvPolyphenols:
-                openScreen("Polyphenols",foodsupplements.getFoodsupplement3());
+                openScreen("Polyphenols", foodsupplements.get(2).getFoodsupplement());
                 break;
             case R.id.tvDigestive:
-                openScreen("Digestive Support",foodsupplements.getFoodsupplement4());
+                openScreen("Digestive Support", foodsupplements.get(3).getFoodsupplement());
                 break;
         }
     }

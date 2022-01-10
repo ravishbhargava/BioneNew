@@ -10,27 +10,31 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bione.R;
 import com.bione.model.reportMyMicro.tips.ReportTips;
-import com.bione.model.reportMyMicro.tips.Tips;
+import com.bione.model.reportMyMicro.tips.Tip;
+
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.dashboard.report.adapter.TipsPagerAdapter;
 import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
+
+import java.util.ArrayList;
 
 public class ReportTipsActivity extends BaseActivity {
 
     private CustomViewPager viewPager;
     private AppCompatTextView tvIntroduction;
     private String authToken = "";
-    private Tips tips;
+    private ArrayList<Tip> tips;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_tips);
-        tips = new Tips();
+        tips = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
 
 
@@ -59,7 +63,7 @@ public class ReportTipsActivity extends BaseActivity {
 
 
         // setting viewPager's pages
-        final TipsPagerAdapter adapter = new TipsPagerAdapter(getSupportFragmentManager(), 6, tips);
+        final TipsPagerAdapter adapter = new TipsPagerAdapter(this, tips);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
 
@@ -116,7 +120,7 @@ public class ReportTipsActivity extends BaseActivity {
                     public void onSuccess(ReportTips commonResponse) {
                         Log.d("onSuccess -----  ", "--");
 //                        Toast.makeText(getApplicationContext(), "Auth generated.", Toast.LENGTH_SHORT).show();
-                        tips = commonResponse.getTips();
+                        tips = (ArrayList<Tip>) commonResponse.getTips();
                         Log.d("getTips", "----" + commonResponse.getTips().toString());
                         initViewPager();
 

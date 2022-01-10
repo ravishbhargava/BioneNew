@@ -6,30 +6,31 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:layout_marginTop="@dimen/spacing_large"
-        android:background="@drawable/drawable_border_primary"
+        android:background="@drawable/ic_tip_bg"
         android:paddingHorizontal="@dimen/spacing_large">
 
         <TextView
             android:id="@+id/tvPos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="30dp"
             android:text="03"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="48sp" />
 
         <TextView
             android:id="@+id/tvText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="80dp"
-            android:ellipsize="end"
-            android:maxLines="4"
+            android:layout_marginBottom="100dp"
+            android:padding="@dimen/spacing_normal"
+            android:scrollbars="vertical"
             android:text="Food and Diet and Diet is and Diet is specially recommended based on your Unique Gut Microbiome .specially recommended based on your Unique Gut Microbiome . is specially recommended based on your Unique Gut Microbiome . Your Food recomme..."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/font_large" />
 
     </RelativeLayout>

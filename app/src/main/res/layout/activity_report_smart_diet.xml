@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,7 +9,7 @@
 
     <include layout="@layout/include_header" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -42,160 +43,234 @@
                 android:paddingHorizontal="@dimen/spacing_small"
                 android:text="Various food items are available which provide required elements for a healthy gut microbiome. These elements can further be enhanced with dietary supplements. Find below the supplements with following attributes - "
                 android:textAppearance="@style/CustomTextAppearance"
-                android:textSize="@dimen/font_normal" />
+                android:textSize="@dimen/font_normal"
+                android:visibility="visible" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/font_tiny"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_border"
+                            android:gravity="bottom|start"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_normal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="24"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_xxxlarge" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="Super Food"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_normal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/font_tiny"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_border"
+                            android:gravity="bottom|start"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_normal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="24"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_xxxlarge" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="Super Food"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_normal" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/font_tiny"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_border"
+                            android:gravity="bottom|start"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_normal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="24"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_xxxlarge" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="Super Food"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_normal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/font_tiny"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_border"
+                            android:gravity="bottom|start"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_normal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_normal"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="24"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_xxxlarge" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="@dimen/spacing_small"
+                                android:text="Super Food"
+                                android:textAppearance="@style/CustomTextAppearance.Bold"
+                                android:textSize="@dimen/font_normal" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/smart_diet_image" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horizRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_smart_diet_horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:padding="@dimen/spacing_small">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSuper"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="@drawable/drawable_border"
+                    android:padding="@dimen/spacing_small"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:text="Super"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textSize="@dimen/font_normal" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bitmap_1" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Digestive Support"
-                        android:textAppearance="@style/CustomTextAppearance.Bold"
-                        android:textSize="@dimen/font_normal" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Natural items such as peppermint, psyllium, spices which helps in digestion or act as laxatives"
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textSize="@dimen/font_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGood"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="@drawable/drawable_border"
+                    android:padding="@dimen/spacing_small"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:text="Good"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textSize="@dimen/font_normal" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bitmap_2" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drawable_border"
+                    android:padding="@dimen/spacing_small"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:text="Minimize"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textSize="@dimen/font_normal" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Digestive enzyme"
-                        android:textAppearance="@style/CustomTextAppearance.Bold"
-                        android:textSize="@dimen/font_normal" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drawable_border"
+                    android:padding="@dimen/spacing_small"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:text="Avoid"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                    android:textSize="@dimen/font_normal" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Food items such as Dandelion, Ginger and bitters which stimulate secretion "
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textSize="@dimen/font_normal" />
-
-                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bitmap_3"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Polyphenols"
-                        android:textAppearance="@style/CustomTextAppearance.Bold"
-                        android:textSize="@dimen/font_normal" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Micronutrients mostly found in colorful plant based foods being packed with antioxidants"
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textSize="@dimen/font_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bitmap_4"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Probiotics"
-                        android:textAppearance="@style/CustomTextAppearance.Bold"
-                        android:textSize="@dimen/font_normal" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_normal"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/spacing_small"
-                        android:text="Naturally found in fermented foods, these are live organisms which are good for your digestive system."
-                        android:textAppearance="@style/CustomTextAppearance"
-                        android:textSize="@dimen/font_normal" />
-
-                </LinearLayout>
-            </LinearLayout>
+                tools:itemCount="5"
+                tools:listitem="@layout/item_smart_diet" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

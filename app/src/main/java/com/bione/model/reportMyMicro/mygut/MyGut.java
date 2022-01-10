@@ -16,7 +16,7 @@ public class MyGut {
     private String message;
     @SerializedName("MGMI_1")
     @Expose
-    private Mgmi1 mgmi1;
+    private List<Mgmi1> mgmi1 = null;
     @SerializedName("bacterial_pathogen")
     @Expose
     private BacterialPathogen bacterialPathogen;
@@ -43,11 +43,11 @@ public class MyGut {
         this.message = message;
     }
 
-    public Mgmi1 getMgmi1() {
+    public List<Mgmi1> getMgmi1() {
         return mgmi1;
     }
 
-    public void setMgmi1(Mgmi1 mgmi1) {
+    public void setMgmi1(List<Mgmi1> mgmi1) {
         this.mgmi1 = mgmi1;
     }
 
