@@ -29,8 +29,10 @@ public class ReportIndexActivity extends BaseActivity {
     private AppCompatTextView tvTips;
     private AppCompatTextView tvFood;
     private AppCompatTextView tvGut;
+    private AppCompatTextView tvDisease;
     private AppCompatTextView tvSmartDiet;
     private AppCompatTextView tvFoodSupplements;
+    private AppCompatTextView tvGutRestoration;
     private String authToken = "";
 
     @Override
@@ -49,8 +51,10 @@ public class ReportIndexActivity extends BaseActivity {
         tvTips = findViewById(R.id.tvTips);
         tvFood = findViewById(R.id.tvFood);
         tvGut = findViewById(R.id.tvGut);
+        tvDisease = findViewById(R.id.tvDisease);
         tvSmartDiet = findViewById(R.id.tvSmartDiet);
         tvFoodSupplements = findViewById(R.id.tvFoodSupplements);
+        tvGutRestoration = findViewById(R.id.tvGutRestoration);
     }
 
     private void setListener() {
@@ -59,8 +63,10 @@ public class ReportIndexActivity extends BaseActivity {
         tvTips.setOnClickListener(this);
         tvFood.setOnClickListener(this);
         tvGut.setOnClickListener(this);
+        tvDisease.setOnClickListener(this);
         tvSmartDiet.setOnClickListener(this);
         tvFoodSupplements.setOnClickListener(this);
+        tvGutRestoration.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +98,11 @@ public class ReportIndexActivity extends BaseActivity {
                 myGutIntent.putExtra("authToken", authToken);
                 startActivity(myGutIntent);
                 break;
+            case R.id.tvDisease:
+                Intent diseaseIntent = new Intent(ReportIndexActivity.this, ReportDiseaseRiskActivity.class);
+                diseaseIntent.putExtra("authToken", authToken);
+                startActivity(diseaseIntent);
+                break;
             case R.id.tvFoodSupplements:
                 Intent foodSupplementsIntent = new Intent(ReportIndexActivity.this, ReportFoodSupplementsActivity.class);
                 foodSupplementsIntent.putExtra("authToken", authToken);
@@ -101,6 +112,11 @@ public class ReportIndexActivity extends BaseActivity {
                 Intent smartDietIntent = new Intent(ReportIndexActivity.this, ReportSmartDietActivity.class);
                 smartDietIntent.putExtra("authToken", authToken);
                 startActivity(smartDietIntent);
+                break;
+            case R.id.tvGutRestoration:
+                Intent gutRestorationIntent = new Intent(ReportIndexActivity.this, ReportGutDietActivity.class);
+                gutRestorationIntent.putExtra("authToken", authToken);
+                startActivity(gutRestorationIntent);
                 break;
         }
     }

@@ -14,6 +14,7 @@ import com.bione.model.questionnaire.Questionnaire;
 import com.bione.model.reportMyMicro.MyMicrobiomeAuthLoginData;
 import com.bione.model.reportMyMicro.foodsupplements.FoodSuppl;
 import com.bione.model.reportMyMicro.frontpage.FrontPage;
+import com.bione.model.reportMyMicro.gutDiet.GutDiet;
 import com.bione.model.reportMyMicro.mygut.MyGut;
 import com.bione.model.reportMyMicro.smartdiet.SmartDiet;
 import com.bione.model.reportMyMicro.tips.ReportTips;
@@ -132,6 +133,11 @@ public interface ApiInterface {
 
     @GET("/report_food_recommendation/")// MyMicroBiome smart diet
     Call<SmartDiet> getSmartDiet(
+            @HeaderMap HashMap<String, String> headerMap,
+            @QueryMap Map<String, String> map);
+
+    @GET("/report_food_recommendation/")// MyMicroBiome smart diet
+    Call<GutDiet> getGutRestoration(
             @HeaderMap HashMap<String, String> headerMap,
             @QueryMap Map<String, String> map);
 

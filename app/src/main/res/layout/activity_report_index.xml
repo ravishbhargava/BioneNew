@@ -167,7 +167,27 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_xlarge" />
 
-            <View style="@style/viewLine" />
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGutRestoration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawableLeft="@drawable/ic_report_supplements"
+                android:drawableRight="@drawable/ic_button_next_light"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center|left"
+                android:padding="@dimen/spacing_small"
+                android:text="Gut Restoration"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textSize="@dimen/font_xlarge" />
+
+            <View
+                style="@style/viewLine"
+                android:background="#1A979797" />
         </LinearLayout>
     </ScrollView>
 

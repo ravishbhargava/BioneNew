@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDayTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:drawableLeft="@drawable/ic_report_intro"
+        android:drawableRight="@drawable/ic_button_next_light"
+        android:drawablePadding="@dimen/spacing_normal"
+        android:gravity="center|left"
+        android:padding="@dimen/spacing_small"
+        android:text="Early Morning"
+        android:textAppearance="@style/CustomTextAppearance.Medium"
+        android:textSize="@dimen/font_xlarge" />
+
+    <View
+        style="@style/viewLine"
+        android:background="#1A979797" />
+
+</LinearLayout>

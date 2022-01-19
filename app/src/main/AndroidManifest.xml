@@ -144,6 +144,14 @@
             android:name=".ui.dashboard.report.ReportSmartDietActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.dashboard.report.ReportGutDietActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.dashboard.report.ReportDiseaseRiskActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
 
 
