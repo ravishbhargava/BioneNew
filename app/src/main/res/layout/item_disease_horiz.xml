@@ -41,7 +41,7 @@
                 android:layout_centerInParent="true"
                 android:layout_toLeftOf="@+id/tvRight"
                 android:text="MyMicroBiome Test"
-                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_small"
                 android:textStyle="bold" />
@@ -59,7 +59,7 @@
                 android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_small"
-                android:textStyle="bold" />
+                />
 
 
         </RelativeLayout>

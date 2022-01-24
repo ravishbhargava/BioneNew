@@ -1,6 +1,6 @@
 package com.bione.ui.dashboard.report.adapter;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +18,16 @@ import java.util.List;
 
 import static com.bione.R.drawable.drawable_rectangle_high;
 import static com.bione.R.drawable.drawable_rectangle_low;
-import static com.bione.R.drawable.drawable_rectangle_nd;
 
 public class MicrobesAdapter extends RecyclerView.Adapter<MicrobesAdapter.SelectViewHolder> {
 
     private List<Microbe> microbeList;
+    private Context mContext;
 
     // Constructor
-    public MicrobesAdapter(ArrayList<Microbe> microbeList) {
+    public MicrobesAdapter(Context mContext, ArrayList<Microbe> microbeList) {
         this.microbeList = microbeList;
-
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -40,19 +40,19 @@ public class MicrobesAdapter extends RecyclerView.Adapter<MicrobesAdapter.Select
         return new SelectViewHolder(view);
     }
 
-    @SuppressLint("ResourceAsColor")
+
     @Override
     public void onBindViewHolder(@NonNull SelectViewHolder selectViewHolder, int position) {
 
-        if (microbeList.get(position).getStatus().equals("High")) {
-            selectViewHolder.tvRight.setTextColor(R.color.high_color);
+        if (microbeList.get(position).getOutcome().equals("Bad for GUT")) {
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.high_color));
             selectViewHolder.left.setBackgroundResource(drawable_rectangle_high);
-        } else if (microbeList.get(position).getStatus().equals("Low")) {
-            selectViewHolder.tvRight.setTextColor(R.color.low_color);
+        } else if (microbeList.get(position).getOutcome().equals("Good for GUT")) {
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.low_color));
             selectViewHolder.left.setBackgroundResource(drawable_rectangle_low);
         } else {
-            selectViewHolder.tvRight.setTextColor(R.color.colorPrimary);
-            selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.high_color));
+            selectViewHolder.left.setBackgroundResource(drawable_rectangle_high);
         }
 
         selectViewHolder.tvLeft.setText("" + microbeList.get(position).getAbPercentage() + "%");

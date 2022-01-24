@@ -1,6 +1,6 @@
 package com.bione.ui.dashboard.report.adapter;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +23,12 @@ import static com.bione.R.drawable.drawable_rectangle_nd;
 public class PathogenAdapter extends RecyclerView.Adapter<PathogenAdapter.SelectViewHolder> {
 
     private List<Pathogen> pathogenList;
+    private Context mContext;
 
     // Constructor
-    public PathogenAdapter(ArrayList<Pathogen> selectedProductDataList) {
+    public PathogenAdapter(Context mContext, ArrayList<Pathogen> selectedProductDataList) {
         this.pathogenList = selectedProductDataList;
-
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -40,18 +41,18 @@ public class PathogenAdapter extends RecyclerView.Adapter<PathogenAdapter.Select
         return new SelectViewHolder(view);
     }
 
-    @SuppressLint("ResourceAsColor")
+
     @Override
     public void onBindViewHolder(@NonNull SelectViewHolder selectViewHolder, int position) {
 
         if (pathogenList.get(position).getOutcome().equals("HIGH")) {
-            selectViewHolder.tvRight.setTextColor(R.color.high_color);
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.high_color));
             selectViewHolder.left.setBackgroundResource(drawable_rectangle_high);
         } else if (pathogenList.get(position).getOutcome().equals("LOW")) {
-            selectViewHolder.tvRight.setTextColor(R.color.low_color);
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.low_color));
             selectViewHolder.left.setBackgroundResource(drawable_rectangle_low);
         } else {
-            selectViewHolder.tvRight.setTextColor(R.color.colorPrimary);
+            selectViewHolder.tvRight.setTextColor(mContext.getResources().getColor(R.color.not_define_color));
             selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
         }
 

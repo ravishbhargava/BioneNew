@@ -138,7 +138,7 @@ public class ReportMyGutActivity extends BaseActivity {
 
 
     private void setMgmiRecyclerview() {
-        MgmiAdapter adapter = new MgmiAdapter(mgmi1ArrayList);
+        MgmiAdapter adapter = new MgmiAdapter(this,mgmi1ArrayList);
         mgmiRecyclerview = findViewById(R.id.mgmiRecyclerview);
         mgmiRecyclerview.setNestedScrollingEnabled(false);
         LinearLayoutManager linearLayoutManager =
@@ -148,7 +148,7 @@ public class ReportMyGutActivity extends BaseActivity {
     }
 
     private void setPathogenRecyclerview() {
-        PathogenAdapter adapter = new PathogenAdapter(pathogenArrayList);
+        PathogenAdapter adapter = new PathogenAdapter(this,pathogenArrayList);
         pathogenRecyclerView = findViewById(R.id.pathogenRecyclerView);
         pathogenRecyclerView.setNestedScrollingEnabled(false);
         LinearLayoutManager linearLayoutManager =
@@ -158,7 +158,7 @@ public class ReportMyGutActivity extends BaseActivity {
     }
 
     private void setMicrobesRecyclerview() {
-        MicrobesAdapter adapter = new MicrobesAdapter(microbeArrayList);
+        MicrobesAdapter adapter = new MicrobesAdapter(this,microbeArrayList);
         microbeRecyclerView = findViewById(R.id.microbeRecyclerView);
         microbeRecyclerView.setNestedScrollingEnabled(false);
         LinearLayoutManager linearLayoutManager =

@@ -20,6 +20,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.bione.R.drawable.drawable_rectangle_low;
+import static com.bione.R.drawable.drawable_rectangle_moderate;
+
 public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.SelectViewHolder> {
 
     private List<DiseasePrediction> diseasePredictionList;
@@ -47,11 +50,13 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.SelectVi
     public void onBindViewHolder(@NonNull SelectViewHolder selectViewHolder, int position) {
 
         if (diseasePredictionList.get(position).getRisk().equals("low")) {
-            selectViewHolder.tvRight.setBackgroundResource(R.color.button_color);
+            selectViewHolder.tvRight.setBackgroundResource(drawable_rectangle_low);
 //    selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
         } else {
-            selectViewHolder.tvRight.setBackgroundResource(R.color.low_color);
+            selectViewHolder.tvRight.setBackgroundResource(drawable_rectangle_moderate);
         }
+
+
 
         selectViewHolder.tvCenter.setText("" + Html.fromHtml(diseasePredictionList.get(position).getDisease()));
         selectViewHolder.tvRight.setText("" + Html.fromHtml(diseasePredictionList.get(position).getRisk()));

@@ -40,6 +40,6 @@
         android:padding="@dimen/spacing_normal"
         android:text="Low "
         android:textAppearance="@style/CustomTextAppearance"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_small" />
 </RelativeLayout>

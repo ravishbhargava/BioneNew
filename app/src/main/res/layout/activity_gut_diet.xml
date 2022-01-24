@@ -34,14 +34,69 @@
         android:padding="@dimen/spacing_small"
         android:text="Gut Restoration Diet Chart"
         android:textAppearance="@style/CustomTextAppearance.Bold"
-        android:textSize="@dimen/font_xxlarge" />
+        android:textSize="@dimen/font_xxlarge"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:itemCount="3"
+        tools:itemCount="0"
         tools:listitem="@layout/list_item_gut_diet" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tabMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHead"
+
+        android:layout_marginHorizontal="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@drawable/drawable_border"
+        android:gravity="center"
+        android:minHeight="@dimen/height_spacing_50"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestoration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="Gut Restoration"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_normal" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMaintenance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="Gut Maintenance"
+            android:textAppearance="@style/CustomTextAppearance.Medium"
+            android:textSize="@dimen/font_normal" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.bione.utils.CustomViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvSchedule"
+        android:layout_below="@+id/tabMode"
+        android:layout_margin="@dimen/spacing_normal" />
 
 
 </LinearLayout>

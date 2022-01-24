@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
+                tools:itemCount="3"
                 tools:listitem="@layout/item_gut_mgmi" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -129,6 +130,7 @@
                 android:id="@+id/microbeRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                tools:itemCount="2"
                 android:layout_marginTop="@dimen/spacing_small"
                 tools:listitem="@layout/item_gut_microbes" />
 

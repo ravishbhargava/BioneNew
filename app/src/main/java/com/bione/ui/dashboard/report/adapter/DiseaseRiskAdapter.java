@@ -20,6 +20,8 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bione.R.drawable.drawable_rectangle_high;
+
 public class DiseaseRiskAdapter extends RecyclerView.Adapter<DiseaseRiskAdapter.SelectViewHolder> {
 
     private List<DiseasePrediction> diseasePredictionList;
@@ -46,13 +48,8 @@ public class DiseaseRiskAdapter extends RecyclerView.Adapter<DiseaseRiskAdapter.
     @Override
     public void onBindViewHolder(@NonNull SelectViewHolder selectViewHolder, int position) {
 
-//        if (diseasePredictionList.get(position).getRisk().equals("low")) {
-//            selectViewHolder.tvRight.setBackgroundResource(R.color.button_color);
-////    selectViewHolder.left.setBackgroundResource(drawable_rectangle_nd);
-//        } else {
-//            selectViewHolder.tvRight.setBackgroundResource(R.color.low_color);
-//        }
 
+        selectViewHolder.tvRight.setBackgroundResource(drawable_rectangle_high);
         selectViewHolder.tvHeading.setText("" + Html.fromHtml(diseasePredictionList.get(position).getDisease()));
 //        selectViewHolder.tvRight.setText("" + Html.fromHtml(diseasePredictionList.get(position).getRisk()));
         Glide.with(mContext)
@@ -78,14 +75,14 @@ public class DiseaseRiskAdapter extends RecyclerView.Adapter<DiseaseRiskAdapter.
 
         private ImageView image;
         private AppCompatTextView tvHeading;
-//        private AppCompatTextView tvRight;
+        private AppCompatTextView tvRight;
 
 
         SelectViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             tvHeading = itemView.findViewById(R.id.tvHeading);
-//            tvRight = itemView.findViewById(R.id.tvRight);
+            tvRight = itemView.findViewById(R.id.tvRight);
 
         }
     }

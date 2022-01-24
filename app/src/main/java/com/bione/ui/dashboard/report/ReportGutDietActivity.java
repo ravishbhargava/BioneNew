@@ -2,6 +2,7 @@ package com.bione.ui.dashboard.report;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.ui.dashboard.report.adapter.GutRestorationAdapter;
+import com.bione.ui.dashboard.report.adapter.MyGutPagerAdapter;
+import com.bione.utils.CustomViewPager;
 import com.bione.utils.Log;
 
 import java.util.ArrayList;
@@ -25,9 +28,13 @@ import java.util.ArrayList;
 public class ReportGutDietActivity extends BaseActivity {
 
     private AppCompatTextView tvIntroduction;
+    private AppCompatTextView tvRestoration;
+    private AppCompatTextView tvMaintenance;
     private RecyclerView recyclerView;
     private GutRestorationDiet gutRestorationDiet;
     private String authToken = "";
+    private CustomViewPager viewPager;
+    private ArrayList<String> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,15 +48,33 @@ public class ReportGutDietActivity extends BaseActivity {
             // and get whatever type user account id is
         }
 
+
         init();
         setListener();
+        tvRestoration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(0);
+                upcomingSelected(tvRestoration, tvMaintenance);
+            }
+        });
+
+
+        tvMaintenance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(1);
+                pastSelected(tvMaintenance, tvRestoration);
+            }
+        });
 
         getGutRestoration();
 
     }
 
     private void init() {
-
+        tvRestoration = findViewById(R.id.tvRestoration);
+        tvMaintenance = findViewById(R.id.tvMaintenance);
     }
 
     private void setListener() {
@@ -89,7 +114,8 @@ public class ReportGutDietActivity extends BaseActivity {
 //                        Toast.makeText(getApplicationContext(), "Auth generated.", Toast.LENGTH_SHORT).show();
                         gutRestorationDiet = commonResponse.getGutRestorationDiet();
 
-                        setRecyclerview();
+//                        setRecyclerview();
+                        initViewPager();
                     }
 
                     @Override
@@ -107,15 +133,15 @@ public class ReportGutDietActivity extends BaseActivity {
     }
 
     private void setRecyclerview() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("breakfast");
-        arrayList.add("lunch");
-        arrayList.add("snack");
-        arrayList.add("dinner");
-        arrayList.add("breakfast");
-        arrayList.add("lunch");
-        arrayList.add("snack");
-        arrayList.add("dinner");
+
+//        arrayList.add("breakfast");
+//        arrayList.add("lunch");
+//        arrayList.add("snack");
+//        arrayList.add("dinner");
+//        arrayList.add("breakfast");
+//        arrayList.add("lunch");
+//        arrayList.add("snack");
+//        arrayList.add("dinner");
 
         GutRestorationAdapter adapter = new GutRestorationAdapter(arrayList);
         recyclerView = findViewById(R.id.recyclerView);
@@ -124,6 +150,41 @@ public class ReportGutDietActivity extends BaseActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void initViewPager() {
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setPagingEnabled(false);
+
+        arrayList.add("breakfast");
+        arrayList.add("lunch");
+        arrayList.add("snack");
+        arrayList.add("dinner");
+        arrayList.add("breakfast");
+        arrayList.add("lunch");
+        arrayList.add("snack");
+        arrayList.add("dinner");
+        // setting viewPager's pages
+        final MyGutPagerAdapter adapter = new MyGutPagerAdapter(getSupportFragmentManager(), 2,arrayList);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(0);
+    }
+
+    private void upcomingSelected(final TextView tvPressed, final TextView tvUnPressed) {
+        tvPressed.setBackgroundResource(R.drawable.drawable_left_border_selected);
+        tvPressed.setTextColor(getResources().getColor(R.color.white));
+
+        tvUnPressed.setBackgroundResource(R.drawable.drawable_right_border_unselected);
+        tvUnPressed.setTextColor(getResources().getColor(R.color.colorPrimary));
+    }
+
+    private void pastSelected(final TextView tvPressed, final TextView tvUnPressed) {
+        tvPressed.setBackgroundResource(R.drawable.drawable_right_border_selected);
+        tvPressed.setTextColor(getResources().getColor(R.color.white));
+
+        tvUnPressed.setBackgroundResource(R.drawable.drawable_left_border_unselected);
+        tvUnPressed.setTextColor(getResources().getColor(R.color.colorPrimary));
     }
 
 }
