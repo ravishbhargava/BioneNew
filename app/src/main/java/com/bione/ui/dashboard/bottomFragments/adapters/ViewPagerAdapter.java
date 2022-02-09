@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard.bottomFragments.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bione.R;
 import com.bione.model.BannerArray;
+import com.bione.ui.dashboard.report.ReportFrontPageActivity;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -52,6 +54,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         // inflating the item.xml
         View itemView = mLayoutInflater.inflate(R.layout.card_home, container, false);
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ReportFrontPageActivity.class);
+                context.startActivity(intent);
+            }
+        });
         // referencing the image view from the item.xml file
         TextView tvBoldText = (TextView) itemView.findViewById(R.id.tvBoldText);
 

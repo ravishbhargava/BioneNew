@@ -30,6 +30,7 @@ public class GutRestorationFragment extends BaseFragment {
         this.arrayList = arrayList;
     }
 
+    
 
     @Override
     public void onAttach(Context context) {

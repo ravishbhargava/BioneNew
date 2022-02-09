@@ -31,7 +31,8 @@ public class ReportSmartDietActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private RecyclerView horizRecyclerView;
     private SmartDietAdapter adapter;
-    private ArrayList<FoodRecommendation> foodRecommendationArrayList = new ArrayList<>();
+    private ArrayList<FoodRecommendation> foodRecommendationArrayList;
+    private ArrayList<FoodRecommendation> backendFoodRecommendationArrayList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,23 +64,28 @@ public class ReportSmartDietActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tvSuper:
                 ArrayList<FoodRecommendation> foodList = new ArrayList<>();
-                for (int i = 0; i < foodRecommendationArrayList.size(); i++) {
-                    if (foodRecommendationArrayList.get(i).getMM2019231362FoodCategory().equals("Super Food")) {
-                        foodList.add(foodRecommendationArrayList.get(i));
+                for (int i = 0; i < backendFoodRecommendationArrayList.size(); i++) {
+                    if (backendFoodRecommendationArrayList.get(i).getMM2019231362FoodCategory().equals("Super Food")) {
+                        foodList.add(backendFoodRecommendationArrayList.get(i));
                     }
                 }
-                recyclerView.getRecycledViewPool().clear();
+                Log.d("backendFoodRecommendationArrayList", "----" + backendFoodRecommendationArrayList.size());
+                Log.d("foodList", "----" + foodList.size());
+//                recyclerView.getRecycledViewPool().clear();
+
                 adapter.setArrayList(foodList);
                 break;
 
             case R.id.tvGood:
                 ArrayList<FoodRecommendation> foodList2 = new ArrayList<>();
-                for (int i = 0; i < foodRecommendationArrayList.size(); i++) {
-                    if (foodRecommendationArrayList.get(i).getMM2019231362FoodCategory().equals("Avoid Food")) {
-                        foodList2.add(foodRecommendationArrayList.get(i));
+                for (int i = 0; i < backendFoodRecommendationArrayList.size(); i++) {
+                    if (backendFoodRecommendationArrayList.get(i).getMM2019231362FoodCategory().equals("Avoid Food")) {
+                        foodList2.add(backendFoodRecommendationArrayList.get(i));
                     }
                 }
-                recyclerView.getRecycledViewPool().clear();
+                Log.d("backendFoodRecommendationArrayList", "----" + backendFoodRecommendationArrayList.size());
+                Log.d("foodList2", "----" + foodList2.size());
+//                recyclerView.getRecycledViewPool().clear();
                 adapter.setArrayList(foodList2);
                 break;
         }
@@ -106,8 +112,10 @@ public class ReportSmartDietActivity extends BaseActivity {
                     public void onSuccess(SmartDiet commonResponse) {
                         Log.d("onSuccess -----  ", "--");
 
-
-                        foodRecommendationArrayList = (ArrayList<FoodRecommendation>) commonResponse.getFoodRecommendation();
+                        foodRecommendationArrayList = new ArrayList<>();
+                        backendFoodRecommendationArrayList = new ArrayList<>();
+                        backendFoodRecommendationArrayList = (ArrayList<FoodRecommendation>) commonResponse.getFoodRecommendation();
+                        foodRecommendationArrayList.addAll(backendFoodRecommendationArrayList);
                         setRecyclerview();
                         setHorizRecyclerView();
                     }

@@ -125,18 +125,18 @@ public class KitDetailActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tvTrack:
-                if ("1".equalsIgnoreCase(customerKits.getActivationStatus())) {
-                    if (customerKits.getSkuCode().equals("MM")) {
-                        myMicroBiomeAuth();
-
-                    } else if (customerKits.getSkuCode().equals("LF")) {
-                        barCodeStatusLFAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
-                    }
-                } else {
+//                if ("1".equalsIgnoreCase(customerKits.getActivationStatus())) {
+//                    if (customerKits.getSkuCode().equals("MM")) {
+//                        myMicroBiomeAuth();
+//
+//                    } else if (customerKits.getSkuCode().equals("LF")) {
+//                        barCodeStatusLFAPI(KitDetailActivity.this, customerKits.getBarCode(), "Vipin@28");
+//                    }
+//                } else {
                     Intent intent = new Intent(KitDetailActivity.this, KitRegisterActivity.class);
                     intent.putExtra("barcode", "" + customerKits.getBarCode());
                     startActivity(intent);
-                }
+//                }
                 break;
 
             default:

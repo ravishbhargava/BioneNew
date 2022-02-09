@@ -60,7 +60,7 @@ public class TipsPagerAdapter extends PagerAdapter {
 
         // setting the image in the imageView
         tvPos.setText("0" + (position + 1));
-        tvText.setText("" + Html.fromHtml(bannerArrays.get(position).getTip().trim()));
+        tvText.setText("" + Html.fromHtml(bannerArrays.get(position).getTip()).toString().trim());
 
         tvText.setMovementMethod(new ScrollingMovementMethod());
         // Adding the View

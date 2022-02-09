@@ -51,6 +51,7 @@ public class CustomViewPager extends ViewPager {
         return this.isPagingEnabled && super.onInterceptTouchEvent(event);
     }
 
+
 //    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 //
